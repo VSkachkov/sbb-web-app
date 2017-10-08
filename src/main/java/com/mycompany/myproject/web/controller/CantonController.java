@@ -1,6 +1,7 @@
 package com.mycompany.myproject.web.controller;
 
 
+import com.mycompany.myproject.persist.entity.Canton;
 import com.mycompany.myproject.service.CantonService;
 import com.mycompany.myproject.service.dto.CantonDto;
 import org.dozer.DozerBeanMapper;
@@ -74,8 +75,14 @@ public class CantonController {
         @RequestMapping(value = "/cantonsList", method = RequestMethod.GET)
     public @ResponseBody List<CantonDto> cantonsList() {
         logger.debug("get json cantons list");
+        CantonDto m = new CantonDto();
+        m.setId(5L);
+        m.setName("Obwalden");
+        cantonService.save(m);
         return cantonService.findAll();
     }
+
+
 }    
 
  
