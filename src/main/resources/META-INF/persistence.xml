@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="sbb-persistence-unit" transaction-type="JTA">
+        <!--<persistence-unit name="mms-persistence-unit" transaction-type="RESOURCE_LOCAL">-->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <!--<provider>org.hibernate.</provider>-->
+        <!--<class>com.jvschool.model.OrderEntity</class>-->
+        <!--<class>com.jvschool.model.PropertyEntity</class>-->
+        <!--<class>com.jvschool.model.DeliveryWayEntity</class>-->
+        <!--<class>com.jvschool.model.PropertyGroupEntity</class>-->
+        <!--<class>com.jvschool.model.CategoryEntity</class>-->
+        <!--<class>com.jvschool.model.PayWayEntity</class>-->
+        <!--<class>com.jvschool.model.DeliveryStatusEntity</class>-->
+        <!--<class>com.jvschool.model.AddressEntity</class>-->
+        <!--<class>com.jvschool.model.BucketEntity</class>-->
+        <!--<class>com.jvschool.model.UserEntity</class>-->
+        <!--<class>com.jvschool.model.ProductEntity</class>-->
+        <!--<class>com.jvschool.model.PicturesEntity</class>-->
+        <!--<class>com.jvschool.model.RoleEntity</class>-->
+
+
+        <properties>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/DB_EXAMPLE"/>
+            <!--<property name="hibernate.connection.driver_class" value="net.sf.log4jdbc.DriverSpy"/>-->
+            <property name="hibernate.connection.username" value="springuser"/>
+            <property name="hibernate.connection.password" value="0000"/>
+            <!--<property name="hibernate.connection.url" value="jdbc:log4jdbc:mysql://localhost:3306/MYSHOP_SCHEMA"/>-->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <!--<property name="hibernate.show_sql" value = "true"/>-->
+            <!--<property name="openjpa.TransactionMode" value="managed"/>-->
+            <!--<property name="openjpa.ManagedRuntime" value="jndi(TransactionManagerName=java:/TransactionManager)"/>-->
+            <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
+
+        </properties>
+    </persistence-unit>
+
+
+
+</persistence>

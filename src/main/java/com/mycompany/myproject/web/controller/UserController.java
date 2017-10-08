@@ -29,10 +29,10 @@ public class UserController {
 
     @Autowired
     private DozerBeanMapper mapper;
-
+//
     @Autowired
     private UserService userService;
-
+//
 //    @Autowired
 //    private AuthorityService authorityService;
 
@@ -46,18 +46,15 @@ public class UserController {
         return new ModelAndView("home");
     }
 
-   
+
     @RequestMapping(value = "/usersList", method = RequestMethod.GET)
     public @ResponseBody List<UserDto> usersList() {
         logger.debug("get json user list");
         return userService.findAll();
     }
 
-//    @RequestMapping(value = "/linkToAuthorities", method = RequestMethod.GET)
-//    public @ResponseBody List<AuthorityDto> authoritiesList() {
-//        return authorityService.findAll();
-//    }
-    
+
+
     @RequestMapping(value = "users", method = RequestMethod.GET)
     public ModelAndView getUsers() {
         logger.debug("display user list");
@@ -72,6 +69,10 @@ public class UserController {
     }
 
 
+    //    @RequestMapping(value = "/linkToAuthorities", method = RequestMethod.GET)
+//    public @ResponseBody List<AuthorityDto> authoritiesList() {
+//        return authorityService.findAll();
+//    }
 
 }    
 
