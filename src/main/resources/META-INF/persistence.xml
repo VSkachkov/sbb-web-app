@@ -4,20 +4,13 @@
     <persistence-unit name="sbb-persistence-unit" transaction-type="JTA">
         <!--<persistence-unit name="mms-persistence-unit" transaction-type="RESOURCE_LOCAL">-->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
         <!--<provider>org.hibernate.</provider>-->
-        <!--<class>com.jvschool.model.OrderEntity</class>-->
-        <!--<class>com.jvschool.model.PropertyEntity</class>-->
-        <!--<class>com.jvschool.model.DeliveryWayEntity</class>-->
-        <!--<class>com.jvschool.model.PropertyGroupEntity</class>-->
-        <!--<class>com.jvschool.model.CategoryEntity</class>-->
-        <!--<class>com.jvschool.model.PayWayEntity</class>-->
-        <!--<class>com.jvschool.model.DeliveryStatusEntity</class>-->
-        <!--<class>com.jvschool.model.AddressEntity</class>-->
-        <!--<class>com.jvschool.model.BucketEntity</class>-->
-        <!--<class>com.jvschool.model.UserEntity</class>-->
-        <!--<class>com.jvschool.model.ProductEntity</class>-->
-        <!--<class>com.jvschool.model.PicturesEntity</class>-->
-        <!--<class>com.jvschool.model.RoleEntity</class>-->
+
+        <class>com.mycompany.myproject.persist.entity.Canton</class>
+        <class>com.mycompany.myproject.persist.entity.Authority</class>
+        <class>com.mycompany.myproject.persist.entity.User</class>
+
 
 
         <properties>

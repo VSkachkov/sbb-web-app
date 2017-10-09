@@ -77,7 +77,7 @@ public class CantonController {
         logger.debug("get json cantons list");
         CantonDto m = new CantonDto();
         m.setId(5L);
-        m.setName("Obwalden");
+        m.setName("Nidwalden");
         cantonService.save(m);
         return cantonService.findAll();
     }
