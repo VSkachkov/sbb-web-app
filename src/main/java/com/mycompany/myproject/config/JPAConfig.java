@@ -68,6 +68,8 @@ public class JPAConfig {
         ds.setUrl("jdbc:mysql://localhost:3306/db_example");
 
         Resource initschema = new ClassPathResource("resources/sbb_schema.sql");
+        DatabasePopulator databasePopulator = new ResourceDatabasePopulator();
+        DatabasePopulatorUtils.execute(databasePopulator, ds);
 
 
         return ds;
