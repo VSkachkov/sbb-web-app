@@ -7,8 +7,8 @@ public class TimetableDto {
     @Mapping("trainNumber")
     private Long trainNumber;
 
-    @Mapping ("train_type_id")
-    private Long train_type_id;
+    @Mapping ("station_id")
+    private Long station_id;
 
     @Mapping ("departure")
     private String departure;
@@ -24,12 +24,13 @@ public class TimetableDto {
         this.trainNumber = trainNumber;
     }
 
-    public Long getTrain_type_id() {
-        return train_type_id;
+
+    public Long getStation_id() {
+        return station_id;
     }
 
-    public void setTrain_type_id(Long train_type_id) {
-        this.train_type_id = train_type_id;
+    public void setStation_id(Long station_id) {
+        this.station_id = station_id;
     }
 
     public String getDeparture() {
