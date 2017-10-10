@@ -37,29 +37,29 @@ import java.util.List;
 //}
 
 @Entity
-@Table
+@Table (name = "cantons")
 public class Canton {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
-	private Long id;
+	private Long canton_id;
 
 	@Column
 	private String canton_name;
 
 
-//	@OneToMany(mappedBy = "canton")
-////	private List<Station> stations;
+//	@OneToMany(mappedBy = "cantonWithStations")
+//	private List<Station> stations;
 
 
 
 	public Long getId() {
-		return id;
+		return canton_id;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		this.canton_id = id;
 	}
 
 	public String getCantonName() {
@@ -71,6 +71,7 @@ public class Canton {
 	}
 
 //	@OneToMany(mappedBy = "canton")
+//	@JoinColumn (name = "cantonOwner_id", nullable = false)
 //	public List<Station> getStations() {
 //		return stations;
 //	}

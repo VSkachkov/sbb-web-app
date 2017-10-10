@@ -63,9 +63,9 @@ public class JPAConfig {
     public DataSource dataSource(){
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName("com.mysql.jdbc.Driver");
-        ds.setUsername("springuser");
+        ds.setUsername("root");
         ds.setPassword("0000");
-        ds.setUrl("jdbc:mysql://localhost:3306/db_example");
+        ds.setUrl("jdbc:mysql://localhost:3306/SBB_DB");
 
         Resource initschema = new ClassPathResource("resources/sbb_schema.sql");
         DatabasePopulator databasePopulator = new ResourceDatabasePopulator();

@@ -4,18 +4,18 @@ import org.dozer.Mapping;
 
 public class CantonDto {
 
-    @Mapping("id")
-    private Long id;
+    @Mapping("canton_id")
+    private Long canton_id;
 
     @Mapping("canton_name")
     private String name;
 
     public Long getId() {
-        return id;
+        return canton_id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.canton_id = id;
     }
 
     public String getName() {

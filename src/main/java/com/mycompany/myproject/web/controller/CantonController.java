@@ -76,8 +76,8 @@ public class CantonController {
     public @ResponseBody List<CantonDto> cantonsList() {
         logger.debug("get json cantons list");
         CantonDto m = new CantonDto();
-        m.setId(5L);
-        m.setName("Nidwalden");
+        m.setId(4L);
+        m.setName("Aargau");
         cantonService.save(m);
         return cantonService.findAll();
     }
