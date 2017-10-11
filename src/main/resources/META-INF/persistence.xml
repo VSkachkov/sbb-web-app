@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="sbb-persistence-unit" transaction-type="JTA">
+        <!--<persistence-unit name="mms-persistence-unit" transaction-type="RESOURCE_LOCAL">-->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!--<provider>org.hibernate.</provider>-->
+
+        <class>com.mycompany.myproject.persist.entity.Canton</class>
+        <class>com.mycompany.myproject.persist.entity.Authority</class>
+        <class>com.mycompany.myproject.persist.entity.User</class>
+
+
+
+        <properties>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/DB_EXAMPLE"/>
+            <!--<property name="hibernate.connection.driver_class" value="net.sf.log4jdbc.DriverSpy"/>-->
+            <property name="hibernate.connection.username" value="springuser"/>
+            <property name="hibernate.connection.password" value="0000"/>
+            <!--<property name="hibernate.connection.url" value="jdbc:log4jdbc:mysql://localhost:3306/MYSHOP_SCHEMA"/>-->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <!--<property name="hibernate.show_sql" value = "true"/>-->
+            <!--<property name="openjpa.TransactionMode" value="managed"/>-->
+            <!--<property name="openjpa.ManagedRuntime" value="jndi(TransactionManagerName=java:/TransactionManager)"/>-->
+            <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
+
+        </properties>
+    </persistence-unit>
+
+
+
+</persistence>

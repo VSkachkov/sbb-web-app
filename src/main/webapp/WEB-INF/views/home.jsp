@@ -11,9 +11,20 @@
 
 		<a href="users">users</a><br/>
 		<a href="usersList">json users list</a><br/>
+		<a href="authoritiesList">json authorities list</a><br/>
+		<a href="timetableList">json timetable list</a><br/>
+		<a href="cantonsList">json cantons list</a><br/>
+		<a href="stationsList">json stations list</a><br/>
 		<a href="linkToHelloWorld">GO to hello world! </a><br/>
-		<a href="linkToAuthorities">Authorities </a>
+		<%--<a href="linkToAuthorities">Authorities </a>--%>
 		<%--<button type="submit" formaction="http://localhost:8080/users">ClickMe</button>--%>
 		<%--<p>Hello World!</p>--%>
+<%--<div>--%>
+<%--<spring:form method="post" modelAttribute="CantonJSP" action="">--%>
+	<%--Enter Canton Id: <spring:input path="id"/> <br>--%>
+	<%--<spring:button>Submit</spring:button>--%>
+<%--</spring:form>--%>
+
+<%--</div>--%>
 </body>
 </html>

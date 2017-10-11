@@ -46,7 +46,7 @@ public class GenericServiceImpl<T, D, ID extends Serializable> implements Generi
         repository.saveAndFlush(mapper.map(dto, entityClass));
     }
 
-    public static interface AuthorityService extends GenericService<User, UserDto, Long>{
-
-    }
+//    public static interface AuthorityService extends GenericService<User, UserDto, Long>{
+//
+//    }
 }

@@ -20,4 +20,10 @@ insert into users_authority (id_user, id_authority) values (1, 2);
 insert into users_authority (id_user, id_authority) values (1, 3);
 insert into users_authority (id_user, id_authority) values (2, 3);
 insert into users_authority (id_user, id_authority) values (3, 3);
+
+insert into canton (canton_name) values ('Zurich');
+insert into canton (canton_name) values  ('Bern');
+insert into canton (canton_name) values ('Luzern');
+insert into canton (canton_name) values  ('Uri');
+insert into canton (canton_name) values ('Schwyz');
 	
