@@ -6,4 +6,6 @@ import com.mycompany.myproject.service.dto.TimetableDto;
 
 public interface TimetableService extends GenericService<Timetable, TimetableDto, Long>{
 
+
+    void findByStationName(String zurich);
 }

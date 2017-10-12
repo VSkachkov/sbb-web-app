@@ -1,6 +1,3 @@
--- RUN THIS SCRIPT IN MySQL Command Client--
-
-
 -- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
@@ -28,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `SBB_DB`.`Users` (
   `email` VARCHAR(45) NULL,
   `password` VARCHAR(45) NULL,
   `phone_Number` VARCHAR(12) NULL,
-  `is_Admin` TINYINT NULL,
+  `role_id` TINYINT NOT NULL,
   PRIMARY KEY (`User_id`),
   UNIQUE INDEX `Passenger_id_UNIQUE` (`User_id` ASC))
   ENGINE = InnoDB;
@@ -41,8 +38,21 @@ CREATE TABLE IF NOT EXISTS `SBB_DB`.`Carriages` (
   `Carriage_id` INT NOT NULL,
   `Carriage_Name` VARCHAR(45) NULL,
   `Seats` INT NOT NULL,
+  `Carriage_price_rate` FLOAT NOT NULL,
   PRIMARY KEY (`Carriage_id`),
   UNIQUE INDEX `Carriage_id_UNIQUE` (`Carriage_id` ASC))
+  ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `SBB_DB`.`dynamic_pricing`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SBB_DB`.`dynamic_pricing` (
+  `day_price_id` INT NOT NULL,
+  `day_low` INT NOT NULL,
+  `day_high` INT NOT NULL,
+  `price_rate` FLOAT NOT NULL,
+  PRIMARY KEY (`day_price_id`))
   ENGINE = InnoDB;
 
 
@@ -53,9 +63,12 @@ CREATE TABLE IF NOT EXISTS `SBB_DB`.`Tickets` (
   `Ticket_id` INT NOT NULL AUTO_INCREMENT,
   `Passenger_id` INT NOT NULL,
   `Carriage_id` INT NOT NULL,
+  `Buy_date` DATE NOT NULL,
+  `day_price_rate` INT NULL,
   PRIMARY KEY (`Ticket_id`),
   INDEX `Passenger_id_idx` (`Passenger_id` ASC),
   INDEX `Carriage_id_idx` (`Carriage_id` ASC),
+  INDEX `price_rate_key_idx` (`day_price_rate` ASC),
   CONSTRAINT `Passenger_id`
   FOREIGN KEY (`Passenger_id`)
   REFERENCES `SBB_DB`.`Users` (`User_id`)
@@ -64,6 +77,11 @@ CREATE TABLE IF NOT EXISTS `SBB_DB`.`Tickets` (
   CONSTRAINT `Carriage_id`
   FOREIGN KEY (`Carriage_id`)
   REFERENCES `SBB_DB`.`Carriages` (`Carriage_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `price_rate_key`
+  FOREIGN KEY (`day_price_rate`)
+  REFERENCES `SBB_DB`.`dynamic_pricing` (`day_price_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
   ENGINE = InnoDB;
@@ -145,8 +163,9 @@ CREATE TABLE IF NOT EXISTS `SBB_DB`.`Trains` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SBB_DB`.`Railroad_Hauls` (
   `Haul_Id` INT NOT NULL AUTO_INCREMENT,
-  `Station_One_ID` INT NULL,
-  `Station_Two_ID` INT NULL,
+  `Station_One_ID` INT NOT NULL,
+  `Station_Two_ID` INT NOT NULL,
+  `price_index` FLOAT NOT NULL,
   PRIMARY KEY (`Haul_Id`),
   INDEX `Station_id_idx` (`Station_One_ID` ASC),
   INDEX `Station_id_idx1` (`Station_Two_ID` ASC),
