@@ -1,29 +1,22 @@
 package com.mycompany.myproject.service.dto;
 
-import org.dozer.Mapping;
+import com.mycompany.myproject.persist.entity.Canton;
+import lombok.Getter;
+import lombok.Setter;
 
-public class CantonDto {
+@Getter
+@Setter
+public class CantonAttribute {
 
-    @Mapping("canton_id")
     private Long canton_id;
+    private String canton_name;
 
-    @Mapping("canton_name")
-    private String name;
-
-    public Long getId() {
-        return canton_id;
+    public CantonAttribute(Canton canton) {
+        this.canton_id = canton.getCanton_id();
+        this.canton_name = canton.getCanton_name();
     }
 
-    public void setId(Long id) {
-        this.canton_id = id;
-    }
+    public CantonAttribute(){
 
-    public String getName() {
-        return name;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
 }
