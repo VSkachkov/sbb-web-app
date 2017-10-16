@@ -11,29 +11,28 @@
 <div class="col-sm-offset-1 col-sm-10">
 
     <legend>
-        <spring:message code="table.user.title" />
+        <spring:message code="table.timetable.title" />
     </legend>
 
     <div>
         <table id="dataTable" class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th><spring:message code="table.user.id" /></th>
-                    <th><spring:message code="table.user.firstName" /></th>
-                    <th><spring:message code="table.user.familyName" /></th>
-                    <th><spring:message code="table.user.email" /></th>
-                    <th><spring:message code="table.user.phone" /></th>
-                    <%--<th><spring:message code="table.user.phone" /></th>--%>
+                    <th><spring:message code="table.timetable.title" /></th>
+                    <th><spring:message code="table.timetable.trainNumber" /></th>
+                    <th><spring:message code="table.timetable.stationId" /></th>
+                    <th><spring:message code="table.timetable.arrival" /></th>
+                    <th><spring:message code="table.timetable.departure" /></th>
                 </tr>
             <thead>
             <tbody>
-                <c:forEach var="u" items="${usersModel}">
+                <c:forEach var="t" items="${timetableModel}">
                     <tr>
-                        <td>${u.id}</td>
-                        <td>${u.firstName}</td>
-                        <td>${u.familyName}</td>
-                        <td>${u.email}</td>
-                        <td>${u.phone}</td>
+                        <td>${t.timetableId}</td>
+                        <td>${t.trainNumber}</td>
+                        <td>${t.stationId}</td>
+                        <td>${t.arrival}</td>
+                        <td>${t.departure}</td>
                     <tr>
                 </c:forEach>
             </tbody>

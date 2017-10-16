@@ -1,51 +1,34 @@
 package com.mycompany.myproject.service.dto;
 
-import org.dozer.Mapping;
+import com.mycompany.myproject.persist.entity.Timetable;
+import lombok.Getter;
+import lombok.Setter;
 
+
+
+@Getter
+@Setter
 public class TimetableDto {
 
-    @Mapping("trainNumber")
+
+    private Long timetableId;
+
     private Long trainNumber;
 
-    @Mapping ("station_id")
-    private Long station_id;
+    private Long stationId;
 
-    @Mapping ("departure")
     private String departure;
 
-    @Mapping ( "arrival")
     private String arrival;
 
-    public Long getTrainNumber() {
-        return trainNumber;
+    public TimetableDto(Timetable timetable) {
+        this.timetableId = timetable.getTimetableId();
+        this.trainNumber = timetable.getTrain().getTrainNumber();
+        this.stationId = timetable.getStation().getStationId();
+        this.departure = timetable.getDeparture();
+        this.arrival = timetable.getArrival();
     }
 
-    public void setTrainNumber(Long trainNumber) {
-        this.trainNumber = trainNumber;
-    }
-
-
-    public Long getStation_id() {
-        return station_id;
-    }
-
-    public void setStation_id(Long station_id) {
-        this.station_id = station_id;
-    }
-
-    public String getDeparture() {
-        return departure;
-    }
-
-    public void setDeparture(String departure) {
-        this.departure = departure;
-    }
-
-    public String getArrival() {
-        return arrival;
-    }
-
-    public void setArrival(String arrival) {
-        this.arrival = arrival;
+    public TimetableDto() {
     }
 }

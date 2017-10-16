@@ -1,8 +1,12 @@
 package com.mycompany.myproject.persist.entity;
-
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -36,44 +40,24 @@ import java.util.List;
 //
 //}
 
+@ToString
+@Getter
+@Setter
+@EqualsAndHashCode
 @Entity
-@Table (name = "cantons")
-public class Canton {
+@Table (name = "cantons", schema = "SBB_DB")
+public class Canton implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column
-	private Long canton_id;
+	@Column(name = "canton_id")
+	private Long cantonId;
 
-	@Column
-	private String canton_name;
-
-
-//	@OneToMany(mappedBy = "cantonWithStations")
-//	private List<Station> stations;
+	@Basic
+	@Column(name = "canton_name")
+	private String cantonName;
 
 
 
-	public Long getId() {
-		return canton_id;
-	}
-
-	public void setId(Long id) {
-		this.canton_id = id;
-	}
-
-	public String getCantonName() {
-		return canton_name;
-	}
-
-	public void setCantonName(String cantonName) {
-		this.canton_name = cantonName;
-	}
-
-//	@OneToMany(mappedBy = "canton")
-//	@JoinColumn (name = "cantonOwner_id", nullable = false)
-//	public List<Station> getStations() {
-//		return stations;
-//	}
 
 }

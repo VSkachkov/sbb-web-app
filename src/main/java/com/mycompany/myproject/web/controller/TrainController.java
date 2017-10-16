@@ -1,7 +1,7 @@
 package com.mycompany.myproject.web.controller;
 
 
-import com.mycompany.myproject.service.TrainService;
+import com.mycompany.myproject.service.svc.TrainService;
 import com.mycompany.myproject.service.dto.TrainDto;
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 

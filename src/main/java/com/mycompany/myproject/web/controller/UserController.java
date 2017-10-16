@@ -16,10 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mycompany.myproject.service.AuthorityService;
-import com.mycompany.myproject.service.UserService;
+import com.mycompany.myproject.service.svc.UserService;
 import com.mycompany.myproject.service.dto.UserDto;
-import com.mycompany.myproject.service.dto.AuthorityDto;
 
 @Controller
 @Scope("request")
@@ -38,8 +36,8 @@ public class UserController {
 
     @Autowired
     private MessageSource ms;
-    
-    
+
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView home() {
         logger.debug("redirect to home page");
@@ -65,7 +63,7 @@ public class UserController {
 
     @RequestMapping(value = "/linkToHelloWorld", method = RequestMethod.GET)
     public ModelAndView sendHello() {
-        return new ModelAndView("helloWorldJsp");
+        return new ModelAndView("helloWorld");
     }
 
 
@@ -74,6 +72,6 @@ public class UserController {
 //        return authorityService.findAll();
 //    }
 
-}    
+}
 
- 
+

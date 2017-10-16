@@ -1,8 +1,8 @@
 package com.mycompany.myproject.web.controller;
 
 
-import com.mycompany.myproject.service.StationService;
-import com.mycompany.myproject.service.dto.StationDto;
+import com.mycompany.myproject.persist.entity.Station;
+import com.mycompany.myproject.service.svc.StationService;
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,9 +44,9 @@ private DozerBeanMapper mapper;
 //    }
 
         @RequestMapping(value = "/stationsList", method = RequestMethod.GET)
-    public @ResponseBody List<StationDto> stationsList() {
+    public @ResponseBody List<Station> stationsList() {
         logger.debug("get json stations list");
-        return stationService.findAll();
+        return stationService.getAllStations();//.findAll();
     }
 }    
 

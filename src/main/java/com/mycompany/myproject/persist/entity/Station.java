@@ -1,58 +1,40 @@
 package com.mycompany.myproject.persist.entity;
 
-import javax.persistence.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+import javax.persistence.*;
+import java.io.Serializable;
+
+@ToString
+@Getter
+@Setter
+@EqualsAndHashCode
 @Entity // This tells Hibernate to make a table out of this class
-@Table (name = "Stations")
-public class Station {
+@Table (name = "Stations", schema = "SBB_DB")
+public class Station implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column (name = "station_id")
-    private Long station_id;
+    private Long stationId;
 
+    @Basic
     @Column(name = "station_name")
-    private String station_name;
+    private String stationName;
 
-//    @ManyToOne(fetch =FetchType.LAZY)
-//    @JoinTable (name = "Cantons")
-//    @JoinColumn (name = "cantonOwner_id", referencedColumnName = "canton_id", nullable = false)
-//    private Canton cantonWithStations;
 
-    @Column (name = "is_NODE")
-    private boolean is_NODE;
+    @Basic
+    @Column (name = "is_Node")
+    private boolean node;
 
-    @Column (name = "canton_id")
-    private Long canton_id;
+//    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "canton_id")
+    private Canton canton;
 
-    public Long getId() {
-        return station_id;
-    }
 
-    public void setId(Long id) {
-        this.station_id = id;
-    }
 
-    public String getName() {
-        return station_name;
-    }
 
-    public void setName(String name) {
-        this.station_name = name;
-    }
-
-    public boolean isNode() {
-        return is_NODE;
-    }
-
-    public void setNode(boolean node) {
-        is_NODE = node;
-    }
-
-    public Long getCantonOwner_id() {
-        return canton_id;
-    }
-
-    public void setCantonOwner_id(Long cantonOwner_id) {
-        this.canton_id = cantonOwner_id;
-    }
 }

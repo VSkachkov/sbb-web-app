@@ -19,13 +19,13 @@ USE `SBB_DB` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SBB_DB`.`Users` (
   `User_id` INT NOT NULL AUTO_INCREMENT,
-  `Pass_first_name` VARCHAR(45) NOT NULL,
-  `Pass_last_name` VARCHAR(45) NOT NULL,
-  `Birthday` DATE NOT NULL,
+  `first_name` VARCHAR(45) NOT NULL,
+  `last_name` VARCHAR(45) NOT NULL,
+  `birthday` DATE NOT NULL,
   `email` VARCHAR(45) NULL,
   `password` VARCHAR(45) NULL,
   `phone_Number` VARCHAR(12) NULL,
-  `role_id` TINYINT NOT NULL,
+  `is_Admin` TINYINT NULL,
   PRIMARY KEY (`User_id`),
   UNIQUE INDEX `Passenger_id_UNIQUE` (`User_id` ASC))
   ENGINE = InnoDB;
@@ -211,12 +211,14 @@ CREATE TABLE IF NOT EXISTS `SBB_DB`.`Reserve_seats` (
 -- Table `SBB_DB`.`Timetable`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SBB_DB`.`Timetable` (
+  `Timetable_id` INT NOT NULL,
   `TrainNumber` INT NOT NULL,
   `Station_id` INT NOT NULL,
   `Arrival` TIME NULL,
   `Departure` TIME NULL,
-  PRIMARY KEY (`TrainNumber`, `Station_id`),
+  PRIMARY KEY (`Timetable_id`),
   INDEX `Station_id_idx` (`Station_id` ASC),
+  UNIQUE INDEX `timetable_unique` (`TrainNumber` ASC, `Station_id` ASC),
   CONSTRAINT `TrainNumber`
   FOREIGN KEY (`TrainNumber`)
   REFERENCES `SBB_DB`.`Trains` (`TrainNumber`)

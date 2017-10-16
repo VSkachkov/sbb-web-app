@@ -1,53 +1,51 @@
 package com.mycompany.myproject.service.dao.impl;
 
-import com.mycompany.myproject.persist.entity.Canton;
-import com.mycompany.myproject.service.dao.api.CantonDao;
+import com.mycompany.myproject.persist.entity.Station;
+import com.mycompany.myproject.service.dao.api.StationDao;
 import org.springframework.stereotype.Repository;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-public class CantonDaoImp implements CantonDao {
+public class StationDaoImp implements StationDao {
 
     @PersistenceContext
     private EntityManager em;
 
     @Override
-    public List<Canton> getAllCantons() {
-        return em.createQuery("FROM Canton")
+    public List<Station> getAllStations() {
+        return em.createQuery("FROM Station")
                 .getResultList();
     }
 
 
     @Override
-    public void addNewCanton(Canton canton) {
-        em.persist(canton);
+    public void addNewStation(Station station) {
+        em.persist(station);
 
     }
 
     @Override
-    public void removeCanton(Long canton_id) {
-        Canton toDeleteCanton = this.getCantonById(canton_id);
-//        Query query = em.createQuery("DELETE  from Canton  where canton_id=:canton_id");
-////        query.executeUpdate();
-        em.remove(toDeleteCanton);
-//        em.getTransaction().commit();
+    public void removeStation(Long stationId) {
+        Station toDeleteStation = this.getStationById(stationId);
+        em.remove(toDeleteStation);
     }
 
     @Override
-    public Canton getCantonById(Long canton_id) {
-        List list = em.createQuery("FROM Canton where canton_id=:canton_id")
-                .setParameter("canton_id",canton_id).getResultList();
-        return (list.isEmpty()) ? null : (Canton) list.get(0);
+    public Station getStationById(Long stationId) {
+        List list = em.createQuery("FROM Station where stationId=:stationId")
+                .setParameter("stationId",stationId).getResultList();
+        return (list.isEmpty()) ? null : (Station) list.get(0);
 
     }
 
     @Override
-    public Canton getCantonByName(String canton_name) {
+    public Station getStationByName(String stationName) {
 
-        List list = em.createQuery("FROM Canton where canton_name=:canton_name")
-                .setParameter("canton_name", canton_name).getResultList();
-        return (list.isEmpty()) ? null : (Canton) list.get(0);
+        List list = em.createQuery("FROM Station where stationName=:stationName")
+                .setParameter("stationName", stationName).getResultList();
+        return (list.isEmpty()) ? null : (Station) list.get(0);
     }
 }

@@ -1,4 +1,4 @@
-package com.mycompany.myproject.service.dao;
+package com.mycompany.myproject.service.dao.api;
 
 import com.mycompany.myproject.persist.entity.Canton;
 

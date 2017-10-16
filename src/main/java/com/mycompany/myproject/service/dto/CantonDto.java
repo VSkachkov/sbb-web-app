@@ -6,17 +6,17 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CantonAttribute {
+public class CantonDto {
 
-    private Long canton_id;
-    private String canton_name;
+    private Long cantonId;
+    private String cantonName;
 
-    public CantonAttribute(Canton canton) {
-        this.canton_id = canton.getCanton_id();
-        this.canton_name = canton.getCanton_name();
+    public CantonDto(Canton canton) {
+        this.cantonId = canton.getCantonId();
+        this.cantonName = canton.getCantonName();
     }
 
-    public CantonAttribute(){
+    public CantonDto(){
 
     }
 }

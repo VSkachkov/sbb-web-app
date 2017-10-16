@@ -1,9 +1,9 @@
 package com.mycompany.myproject.web.controller;
 
 
-import com.mycompany.myproject.service.svc.CantonService;
-//import com.mycompany.myproject.service.dto.CantonDto;
-import com.mycompany.myproject.service.dto.CantonDto;
+import com.mycompany.myproject.persist.entity.Section;
+import com.mycompany.myproject.service.dto.SectionDto;
+import com.mycompany.myproject.service.svc.SectionService;
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +19,7 @@ import java.util.List;
 
 @Controller
 @Scope("request")
-public class CantonController {
+public class SectionController {
 
     private static final Logger logger = LoggerFactory.getLogger(CantonController.class);
 
@@ -27,30 +27,16 @@ public class CantonController {
     private DozerBeanMapper mapper;
 
     @Autowired
-    private CantonService cantonService;
+    private SectionService sectionService;
 
     @Autowired
     private MessageSource ms;
-    
-    
 
+    @RequestMapping(value = "/sectionsList", method = RequestMethod.GET)
+    public @ResponseBody
+    Section sectionsList() {
+        logger.debug("get json sections list");
 
-
-//        @RequestMapping(value = "/cantonsList", method = RequestMethod.GET)
-//    public @ResponseBody
-//    List<CantonDto> cantonsList() {
-//        logger.debug("get json cantons list");
-//
-//            return cantonService.getAllCantons();
-//    }
-@RequestMapping(value = "/cantonsList", method = RequestMethod.GET)
-public @ResponseBody
-List<CantonDto> cantonsList() {
-    logger.debug("get json cantons list");
-
-    return cantonService.getAllCantons();
+        return sectionService.getSectionById(1L);
+    }
 }
-
-}    
-
- 

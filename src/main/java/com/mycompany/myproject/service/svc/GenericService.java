@@ -1,4 +1,4 @@
-package com.mycompany.myproject.service;
+package com.mycompany.myproject.service.svc;
 
 import java.io.Serializable;
 import java.util.List;
