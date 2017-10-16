@@ -40,7 +40,7 @@ public class CantonServiceImpl //extends GenericServiceImpl<Canton,CantonDto_OBS
 
 
 //    @Override
-//    public List<Canton> getAllCantons() {
+//    public List<CantonDto> getAllCantons() {
 //        return cantonDao.getAllCantons();
 //    }
 

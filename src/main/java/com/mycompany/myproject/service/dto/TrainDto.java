@@ -1,28 +1,37 @@
 package com.mycompany.myproject.service.dto;
 
-import org.dozer.Mapping;
+import com.mycompany.myproject.persist.entity.Train;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class TrainDto {
 
-    //TODO Move it to standart represention of DTO!!!
-    private Long trainNumber;
-
+    private Long trainId;
     private String TrainName;
-
     private boolean departMon;
-
     private boolean departTue;
-
     private boolean departWed;
-
     private boolean departThu;
-
     private boolean departFri;
-
     private boolean departSat;
-
     private boolean departSun;
+    private Long capacity;
 
-    private Long trainTypeId;
+    public TrainDto() {
+    }
 
+    public TrainDto(Train train) {
+        this.trainId = train.getTrainId();
+        TrainName = train.getTrainName();
+        this.departMon = train.isDepartMon();
+        this.departTue = train.isDepartTue();
+        this.departWed = train.isDepartWed();
+        this.departThu = train.isDepartThu();
+        this.departFri = train.isDepartFri();
+        this.departSat = train.isDepartSat();
+        this.departSun = train.isDepartSun();
+        this.capacity = train.getCapacity();
+    }
 }

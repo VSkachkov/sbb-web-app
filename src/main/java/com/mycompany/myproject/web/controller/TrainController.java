@@ -35,7 +35,7 @@ public class TrainController {
     @RequestMapping(value = "/trainsList", method = RequestMethod.GET)
     public @ResponseBody List<TrainDto> usersList() {
         logger.debug("get json user list");
-        return trainService.findAll();
+        return trainService.getAllTrains();
     }
 
 

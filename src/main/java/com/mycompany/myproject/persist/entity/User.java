@@ -47,9 +47,12 @@ public class User {
 	private String password;
 
 	@Basic
-	@Column(name = "phone", nullable = false)
+	@Column(name = "phone_number", nullable = false)
 	private String phone;
 
+//	@ManyToOne(fetch = FetchType.EAGER)
+//	@JoinColumn(name = "ROLE_ID")
+//	private Role role;
 }
 
 

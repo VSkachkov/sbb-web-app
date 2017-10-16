@@ -29,6 +29,7 @@ public class TimetableDaoImpl implements TimetableDao{
 
     @Override
     public void addNewTimetable(Timetable timetable) {
+        em.persist(timetable);
 
     }
 

@@ -22,34 +22,43 @@ public class Train {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column (name = "trainNumber")
-    private Long trainNumber;
+    private Long trainId;
 
+    @Basic
     @Column (name = "Train_name")
     private String TrainName;
 
+    @Basic
     @Column (name = "Depart_MON")
     private boolean departMon;
 
+    @Basic
     @Column (name = "Depart_TUE")
     private boolean departTue;
 
+    @Basic
     @Column (name = "Depart_WED")
     private boolean departWed;
 
+    @Basic
     @Column (name = "Depart_THU")
     private boolean departThu;
 
+    @Basic
     @Column (name = "Depart_FRI")
     private boolean departFri;
 
+    @Basic
     @Column (name = "Depart_SAT")
     private boolean departSat;
 
+    @Basic
     @Column (name = "Depart_SUN")
     private boolean departSun;
 
-    @Column (name = "train_type_id")
-    private Long trainTypeId;
+    @Basic
+    @Column (name = "capacity")
+    private Long capacity;
 
 
 }

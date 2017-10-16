@@ -48,7 +48,7 @@ public class UserController {
     @RequestMapping(value = "/usersList", method = RequestMethod.GET)
     public @ResponseBody List<UserDto> usersList() {
         logger.debug("get json user list");
-        return userService.findAll();
+        return userService.getAllUsers();
     }
 
 
@@ -57,7 +57,7 @@ public class UserController {
     public ModelAndView getUsers() {
         logger.debug("display user list");
         ModelAndView mv= new ModelAndView("usersView");
-        mv.addObject("usersModel", userService.findAll());
+        mv.addObject("usersModel", userService.getAllUsers());
         return mv;
     }
 
@@ -66,6 +66,11 @@ public class UserController {
         return new ModelAndView("helloWorld");
     }
 
+
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    public ModelAndView goToRegistration() {
+        return new ModelAndView("registration");
+    }
 
     //    @RequestMapping(value = "/linkToAuthorities", method = RequestMethod.GET)
 //    public @ResponseBody List<AuthorityDto> authoritiesList() {

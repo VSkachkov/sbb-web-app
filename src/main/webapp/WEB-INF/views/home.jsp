@@ -19,10 +19,6 @@
 </head>
 
 <body>
-<a href="stationsList">json stations list</a><br/>
-<a href="cantonsList">json cantons list</a><br/>
-<a href="sectionsList">json sections list</a><br/>
-
 
 <!-- Navigation -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -45,6 +41,12 @@
 				<li class="nav-item">
 					<a class="nav-link" href="Timetable">Timetable</a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="registration">Sign In</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="registration">Sign Up</a>
+				</li>
 				<%--<li class="nav-item dropdown">--%>
 					<%--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
 						<%--Portfolio--%>
@@ -57,28 +59,28 @@
 						<%--<a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>--%>
 					<%--</div>--%>
 				<%--</li>--%>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Blog
-					</a>
-					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-						<a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
-						<a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
-						<a class="dropdown-item" href="blog-post.html">Blog Post</a>
-					</div>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Other Pages
-					</a>
-					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-						<a class="dropdown-item" href="full-width.html">Full Width Page</a>
-						<a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
-						<a class="dropdown-item" href="faq.html">FAQ</a>
-						<a class="dropdown-item" href="404.html">404</a>
-						<a class="dropdown-item" href="pricing.html">Pricing Table</a>
-					</div>
-				</li>
+				<%--<li class="nav-item dropdown">--%>
+					<%--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
+						<%--Blog--%>
+					<%--</a>--%>
+					<%--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">--%>
+						<%--<a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>--%>
+						<%--<a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>--%>
+						<%--<a class="dropdown-item" href="blog-post.html">Blog Post</a>--%>
+					<%--</div>--%>
+				<%--</li>--%>
+				<%--<li class="nav-item dropdown">--%>
+					<%--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
+						<%--Other Pages--%>
+					<%--</a>--%>
+					<%--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">--%>
+						<%--<a class="dropdown-item" href="full-width.html">Full Width Page</a>--%>
+						<%--<a class="dropdown-item" href="sidebar.html">Sidebar Page</a>--%>
+						<%--<a class="dropdown-item" href="faq.html">FAQ</a>--%>
+						<%--<a class="dropdown-item" href="404.html">404</a>--%>
+						<%--<a class="dropdown-item" href="pricing.html">Pricing Table</a>--%>
+					<%--</div>--%>
+				<%--</li>--%>
 			</ul>
 		</div>
 	</div>
@@ -96,28 +98,36 @@
 			<!-- Slide One - Set the background image for this slide in the line below -->
 			<div class="carousel-item active" style="background-image: url('https://www.kinggoya.com/wp/wp-content/uploads/2015/08/train-summer-med.jpg')">
 				<div class="carousel-caption d-none d-md-block">
-					<h3>First Slide</h3>
-					<p>This is a description for the first slide.</p>
+					<%--<h3>First Slide</h3>--%>
+					<%--<p>This is a description for the first slide.</p>--%>
+					<h3>   </h3>
+					<p>   </p>
 				</div>
 			</div>
 			<!-- Slide Two - Set the background image for this slide in the line below -->
 			<div class="carousel-item" style="background-image: url('http://arxitop.ru/foto/6/krasnyy_poezd_v_uschele_1920x1080.jpg')">
 				<div class="carousel-caption d-none d-md-block">
-					<h3>Second Slide</h3>
-					<p>This is a description for the second slide.</p>
+					<h3>   </h3>
+					<p>   </p>
+					<%--<h3>Second Slide</h3>--%>
+					<%--<p>This is a description for the second slide.</p>--%>
 				</div>
 			</div>
 			<!-- Slide Three - Set the background image for this slide in the line below -->
 			<div class="carousel-item" style="background-image: url('http://wp.widewallpapers.ru/2k/railroad/swiss/1920x1200/swiss-railroad-1920x1200-006.jpg')">
 				<div class="carousel-caption d-none d-md-block">
-					<h3>Third Slide</h3>
-					<p>This is a description for the third slide.</p>
+					<h3>   </h3>
+					<p>   </p>
+					<%--<h3>Third Slide</h3>--%>
+					<%--<p>This is a description for the third slide.</p>--%>
 				</div>
 			</div>
 			<div class="carousel-item" style="background-image: url('https://img3.goodfon.com/original/1920x1080/6/fd/bernina-express-poezd-most.jpg')">
 				<div class="carousel-caption d-none d-md-block">
-					<h3>Fourth Slide</h3>
-					<p>This is a description for the fourth slide.</p>
+					<%--<h3>Fourth Slide</h3>--%>
+					<%--<p>This is a description for the fourth slide.</p>--%>
+					<h3>   </h3>
+					<p>   </p>
 				</div>
 			</div>
 		</div>
@@ -131,6 +141,11 @@
 		</a>
 	</div>
 </header>
+
+<a href="stationsList">json stations list</a><br/>
+<a href="cantonsList">json cantons list</a><br/>
+<a href="sectionsList">json sections list</a><br/>
+<a href="usersList">json users list</a><br/>
 
 <!-- Page Content -->
 <div class="container">

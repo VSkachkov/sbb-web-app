@@ -83,4 +83,9 @@ INSERT INTO RAILROAD_HAULS VALUES (2, 2, 5, 40.1);
 
 
 
+INSERT INTO USERS VALUES (1, 'Vitali', 'Skachkov', '1986-10-20', 'vitali.skachkov@gmail.com', '0000', NULL, 1);
+
+
+
+
 

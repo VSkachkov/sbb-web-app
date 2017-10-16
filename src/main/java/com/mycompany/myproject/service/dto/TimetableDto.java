@@ -13,7 +13,7 @@ public class TimetableDto {
 
     private Long timetableId;
 
-    private Long trainNumber;
+    private Long trainId;
 
     private Long stationId;
 
@@ -23,7 +23,7 @@ public class TimetableDto {
 
     public TimetableDto(Timetable timetable) {
         this.timetableId = timetable.getTimetableId();
-        this.trainNumber = timetable.getTrain().getTrainNumber();
+        this.trainId = timetable.getTrain().getTrainId();
         this.stationId = timetable.getStation().getStationId();
         this.departure = timetable.getDeparture();
         this.arrival = timetable.getArrival();
