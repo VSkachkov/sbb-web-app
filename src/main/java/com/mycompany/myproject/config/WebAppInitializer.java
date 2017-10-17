@@ -1,8 +1,10 @@
 package com.mycompany.myproject.config;
 
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
+import com.mycompany.myproject.support.RoleFilter;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -27,7 +29,9 @@ public class WebAppInitializer implements WebApplicationInitializer {
         ServletRegistration.Dynamic dispatcher = container.addServlet("dispatcher", new DispatcherServlet(dispatcherServlet));
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
-        
+
+        container.addFilter("RoleFilter", RoleFilter.class).addMappingForUrlPatterns(null, false, "/*");
     }
+
 
  }

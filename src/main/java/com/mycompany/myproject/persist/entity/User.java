@@ -1,7 +1,7 @@
 package com.mycompany.myproject.persist.entity;
 
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -47,12 +47,12 @@ public class User {
 	private String password;
 
 	@Basic
-	@Column(name = "phone_number", nullable = false)
+	@Column(name = "phone_number")
 	private String phone;
 
-//	@ManyToOne(fetch = FetchType.EAGER)
-//	@JoinColumn(name = "ROLE_ID")
-//	private Role role;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "ROLE_ID")
+	private Role role;
 }
 
 

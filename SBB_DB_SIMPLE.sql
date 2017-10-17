@@ -15,6 +15,16 @@ CREATE SCHEMA IF NOT EXISTS `SBB_DB` DEFAULT CHARACTER SET utf8 ;
 USE `SBB_DB` ;
 
 -- -----------------------------------------------------
+-- Table `SBB_DB`.`ROLE`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SBB_DB`.`ROLE` (
+  `Role_id` INT NOT NULL,
+  `Name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`Role_id`))
+  ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `SBB_DB`.`Users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SBB_DB`.`Users` (
@@ -22,11 +32,19 @@ CREATE TABLE IF NOT EXISTS `SBB_DB`.`Users` (
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
   `birthday` DATE NOT NULL,
-  `email` VARCHAR(45) NULL,
-  `password` VARCHAR(45) NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
   `phone_Number` VARCHAR(12) NULL,
+  `Role_id` INT NOT NULL,
   PRIMARY KEY (`User_id`),
-  UNIQUE INDEX `Passenger_id_UNIQUE` (`User_id` ASC))
+  UNIQUE INDEX `Passenger_id_UNIQUE` (`User_id` ASC),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC),
+  INDEX `Role_id_fk_idx` (`Role_id` ASC),
+  CONSTRAINT `Role_id_fk`
+  FOREIGN KEY (`Role_id`)
+  REFERENCES `SBB_DB`.`ROLE` (`Role_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
   ENGINE = InnoDB;
 
 

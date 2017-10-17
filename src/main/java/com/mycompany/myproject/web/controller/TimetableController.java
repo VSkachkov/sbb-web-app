@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -104,17 +105,28 @@ public class TimetableController {
         return modelAndView;
     }
 
-//    String stationSubmit() {
-//        Model model;
-//        logger.error("\n");
-//        logger.error("Hello world, logger. We are in stationSubmit method!");
-//        model.addAttribute("timetableModel", timetableService.getAllRoutesThroughStationWithName(station.getStationName()));
-//        logger.error("StationName result is"+station.getStationName());
-//
-////        greeting.setContent("After default we add something in post method, but value is still 0!");
-//        return "TimetableResult";
-//    }
 
+
+//    @RequestMapping(value = "/get_station_list",
+//            method = RequestMethod.GET,
+//            headers="Accept=*/*")
+//    public @ResponseBody List<String> getStationsList(@RequestParam("term") String query) {
+//        List <String> lstr = new ArrayList<>();
+//        lstr.add("Station 1");
+//        lstr.add("Station 2");
+//
+//        return lstr;
+//    }
+//
+//    @RequestMapping(value = "/get_tech_list",
+//            method = RequestMethod.GET,
+//            headers="Accept=*/*")
+//    public @ResponseBody List<String> getTechList(@RequestParam("term") String query) {
+//        List<String> countryList = new ArrayList<>();
+//        countryList.add("St1");
+//        countryList.add("St2");
+//        return countryList;
+//    }
 
 
     @RequestMapping(value = "/demo", method = RequestMethod.GET)

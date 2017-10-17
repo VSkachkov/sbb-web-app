@@ -1,5 +1,6 @@
 package com.mycompany.myproject.web.controller;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -48,6 +49,12 @@ public class UserController {
     @RequestMapping(value = "/usersList", method = RequestMethod.GET)
     public @ResponseBody List<UserDto> usersList() {
         logger.debug("get json user list");
+        logger.info("Hello world");
+//        Date date = new Date();
+//        UserDto usrdto = new UserDto("vasya", "pupkin", date, "vasya@gm.ru", "0000", "9999999", "ROLE_MANAGER");
+//
+//        userService.addNewUser(usrdto);
+
         return userService.getAllUsers();
     }
 
@@ -67,10 +74,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public ModelAndView goToRegistration() {
-        return new ModelAndView("registration");
-    }
+
 
     //    @RequestMapping(value = "/linkToAuthorities", method = RequestMethod.GET)
 //    public @ResponseBody List<AuthorityDto> authoritiesList() {

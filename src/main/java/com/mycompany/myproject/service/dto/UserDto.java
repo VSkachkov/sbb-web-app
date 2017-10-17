@@ -1,6 +1,6 @@
 package com.mycompany.myproject.service.dto;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,6 +29,8 @@ public class UserDto {
 
     private String phone;
 
+    private String role;
+
     public UserDto(User user) {
         this.userId = user.getUserId();
         this.firstName = user.getFirstName();
@@ -37,10 +39,21 @@ public class UserDto {
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.phone = user.getPhone();
+        this.role = user.getRole().getRoleName();
     }
 
     public UserDto(){
+        this.role = "USER_ANONYM";
 
     }
 
+    public UserDto(String firstName, String lastName, Date birthday, String email, String password, String phone, String role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthday = birthday;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.role = role;
+    }
 }

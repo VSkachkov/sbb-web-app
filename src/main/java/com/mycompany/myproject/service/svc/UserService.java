@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserService //extends GenericService<User, UserDto, Long>
 {
     List<UserDto> getAllUsers();
-    void addNewUser(User user);
+    void addNewUser(UserDto user);
     void removeUser(Long id);
     UserDto getUserById(Long id);
 }
