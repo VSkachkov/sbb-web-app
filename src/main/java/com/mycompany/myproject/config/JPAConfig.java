@@ -46,18 +46,7 @@ public class JPAConfig {
 
     @Autowired
     Environment env;
-//// instead of embedded database
-//@Bean
-//public BasicDataSource dataSource() {
-//    BasicDataSource ds = new BasicDataSource();
-//    ds.setDriverClassName("com.mysql.jdbc.Driver");
-//    ds.setUrl("jdbc:mysql://localhost:3306/gene");
-//    ds.setUsername("root");
-//    ds.setPassword("root");
-//    return ds;
-//}
-//
-//
+
 
     @Bean
     public DataSource dataSource(){
@@ -69,6 +58,7 @@ public class JPAConfig {
 
         Resource initschema = new ClassPathResource("resources/sbb_schema.sql");
         DatabasePopulator databasePopulator = new ResourceDatabasePopulator();
+//        DatabasePopulator databasePopulator = new ResourceDatabasePopulator(initschema);
         DatabasePopulatorUtils.execute(databasePopulator, ds);
 
 
@@ -88,11 +78,6 @@ public class JPAConfig {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
-//    @Bean(name = "dataSource")
-//    public DataSource dataSource() {
-//        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL).setName("myDb")
-//                .addScript("classpath:schema.sql").addScript("classpath:data.sql").build();
-//    }
 
     @Bean(name = "entityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
@@ -105,33 +90,6 @@ public class JPAConfig {
         return factoryBean;
     }
 
-//    @Bean
-//    public PlatformTransactionManager transactionManager() {
-//        JpaTransactionManager transactionManager = new JpaTransactionManager();
-//        transactionManager.setEntityManagerFactory(entityManagerFactoryBean().getObject());
-//        return transactionManager;
-//    }
-
-//    @Bean
-//    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
-//        final LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-//        factoryBean.setDataSource(dataSource());
-//        factoryBean.setPackagesToScan(new String[] { "com.mycompany.persist" });
-//
-//        final JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter() {
-//            {
-//                setDatabase(Database.MYSQL);
-//                setDatabasePlatform(env.getProperty("hibernate.dialect"));
-//                setShowSql(env.getProperty("hibernate.show_sql", Boolean.class));
-//                setGenerateDdl(env.getProperty("jpa.generateDdl", Boolean.class));
-//            }
-//        };
-//        factoryBean.setJpaVendorAdapter(vendorAdapter);
-//
-////        factoryBean.setJpaProperties(additionlProperties());
-//
-//        return factoryBean;
-//    }
 
 
     @Bean

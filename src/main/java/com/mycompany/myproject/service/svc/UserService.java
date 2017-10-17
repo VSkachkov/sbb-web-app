@@ -11,5 +11,10 @@ public interface UserService //extends GenericService<User, UserDto, Long>
     List<UserDto> getAllUsers();
     void addNewUser(UserDto user);
     void removeUser(Long id);
-    UserDto getUserById(Long id);
+    User getUserById(Long id);
+    long getUserIdByEmail(String email);
+    long getUserIdByLogin(String login);
+    UserDto loginUser(String login, String password);
+    User getUserByEmail(String email);
+    User getUserByLogin(String login);
 }

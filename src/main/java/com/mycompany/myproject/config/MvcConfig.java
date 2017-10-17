@@ -1,5 +1,7 @@
 package com.mycompany.myproject.config;
-
+/*
+import com.mycompany.myproject.support.RoleFilter;*/
+import com.mycompany.myproject.support.RoleFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +24,11 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
+    @Bean
+    public RoleFilter roleFilter() {
+        return new RoleFilter();
+    }
+
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
@@ -42,5 +49,12 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         resource.setDefaultEncoding("UTF-8");
         return resource;
     }
+
+//    @Bean(name="multipartResolver")
+//    public CommonsMultipartResolver getResolver() {
+//        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+//        resolver.setMaxUploadSizePerFile(5242880);
+//        return resolver;
+//    }
 
 }

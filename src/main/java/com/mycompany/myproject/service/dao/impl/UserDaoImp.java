@@ -66,4 +66,13 @@ public class UserDaoImp implements UserDao {
         return (list.isEmpty()) ? 0 : (long) list.get(0);
     }
 
+    @Override
+    public User loginUser(String login, String password) {
+        List list =  em.createQuery("FROM User where login=:login" +
+                " and password=:password").setParameter("login", login)
+                .setParameter("password", password).getResultList();
+
+        return (list.isEmpty()) ? null : (User) list.get(0);
+    }
+
 }
