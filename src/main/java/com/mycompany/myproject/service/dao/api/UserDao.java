@@ -10,4 +10,8 @@ public interface UserDao {
     void addNewUser(User user);
     void removeUser(Long id);
     User getUserById(Long id);
+    User getUserByEmail(String s);
+    User getUserByLogin(String s);
+    long getUserIdByEmail(String email);
+    long getUserIdByLogin(String login);
 }

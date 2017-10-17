@@ -37,4 +37,33 @@ public class UserDaoImp implements UserDao {
                 .setParameter("userId",userId).getResultList();
         return (list.isEmpty()) ? null : (User) list.get(0);
     }
+
+    @Override
+    public User getUserByEmail(String email) {
+        List list = em.createQuery("FROM User where email=:email")
+                .setParameter("email",email).getResultList();
+        return (list.isEmpty()) ? null : (User) list.get(0);
+    }
+
+    @Override
+    public User getUserByLogin(String login) {
+        List list = em.createQuery("FROM User where login=:login")
+                .setParameter("login",login).getResultList();
+        return (list.isEmpty()) ? null : (User) list.get(0);
+    }
+
+    @Override
+    public long getUserIdByEmail(String email) {
+        List list =  em.createQuery("select u.id FROM User u where u.email=:email")
+                .setParameter("email", email).getResultList();
+        return (list.isEmpty()) ? 0 : (long) list.get(0);
+    }
+
+    @Override
+    public long getUserIdByLogin(String login) {
+        List list =  em.createQuery("select u.id FROM User u where u.login=:login")
+                .setParameter("login", login).getResultList();
+        return (list.isEmpty()) ? 0 : (long) list.get(0);
+    }
+
 }

@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `SBB_DB`.`Users` (
   `last_name` VARCHAR(45) NOT NULL,
   `birthday` DATE NOT NULL,
   `email` VARCHAR(45) NOT NULL,
+  `login` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   `phone_Number` VARCHAR(12) NULL,
   `Role_id` INT NOT NULL,
@@ -40,6 +41,7 @@ CREATE TABLE IF NOT EXISTS `SBB_DB`.`Users` (
   UNIQUE INDEX `Passenger_id_UNIQUE` (`User_id` ASC),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   INDEX `Role_id_fk_idx` (`Role_id` ASC),
+  UNIQUE INDEX `login_UNIQUE` (`login` ASC),
   CONSTRAINT `Role_id_fk`
   FOREIGN KEY (`Role_id`)
   REFERENCES `SBB_DB`.`ROLE` (`Role_id`)

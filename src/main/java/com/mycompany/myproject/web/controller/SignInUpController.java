@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @Scope("request")
 public class SignInUpController {
@@ -22,6 +24,25 @@ public class SignInUpController {
 
     @Autowired
     UserService userService;
+
+
+//    @GetMapping(value = {"/", "/home"})
+//    public String home() {
+//        return "home";
+//    }
+
+    @GetMapping(value = "/login")
+    public String start(Model model, String error, HttpServletRequest request) {
+        if (error != null)
+            model.addAttribute("error", "Username or password is incorrect.");
+        else {
+            String referrer = request.getHeader("Referer");
+            request.getSession().setAttribute("url_prior_login", referrer);
+        }
+        return "login";
+    }
+
+
 
     @GetMapping(value = "/registration")
     public String registration(Model model) {
@@ -44,9 +65,6 @@ public class SignInUpController {
         logger.error("SignInUpController works");
 
 
-        logger.error(userForm.getLastName());
-        logger.error(userForm.getEmail());
-        logger.error(userForm.getBirthday().toString());
         userService.addNewUser(userForm);
 //        .addUser(userForm);
 //        userForm.setId(userService.getUserIdByEmail(user.getEmail()));
@@ -58,7 +76,7 @@ public class SignInUpController {
 //        userForm.setProducts(user.getProducts());
 //        model.addAttribute("user", userForm);
 
-        return "/";
+        return "home";
     }
 
 //    @PostMapping(value = "/registration/findEmail/")

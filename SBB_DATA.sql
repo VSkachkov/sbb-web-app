@@ -86,7 +86,7 @@ INSERT INTO ROLE  VALUES (3, 'ROLE_CLIENT');
 INSERT INTO ROLE  VALUES (4, 'ROLE_ANONYM');
 
 
-INSERT INTO USERS VALUES (1, 'Vitali', 'Skachkov', '1986-10-20', 'vitali.skachkov@gmail.com', '0000', NULL, 1);
+INSERT INTO USERS VALUES (1, 'Vitali', 'Skachkov', '1986-10-20', 'vitali.skachkov@gmail.com', 'belrafter', '0000', NULL, 1);
 
 
 

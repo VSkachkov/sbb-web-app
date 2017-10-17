@@ -25,6 +25,8 @@ public class UserDto {
 
     private String email;
 
+    private String login;
+
     private String password;
 
     private String phone;
@@ -37,6 +39,7 @@ public class UserDto {
         this.lastName = user.getLastName();
         this.birthday = user.getBirthday();
         this.email = user.getEmail();
+        this.login = user.getLogin();
         this.password = user.getPassword();
         this.phone = user.getPhone();
         this.role = user.getRole().getRoleName();
@@ -47,13 +50,13 @@ public class UserDto {
 
     }
 
-    public UserDto(String firstName, String lastName, Date birthday, String email, String password, String phone, String role) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthday = birthday;
-        this.email = email;
-        this.password = password;
-        this.phone = phone;
-        this.role = role;
-    }
+//    public UserDto(String firstName, String lastName, Date birthday, String email, String password, String phone, String role) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.birthday = birthday;
+//        this.email = email;
+//        this.password = password;
+//        this.phone = phone;
+//        this.role = role;
+//    }
 }

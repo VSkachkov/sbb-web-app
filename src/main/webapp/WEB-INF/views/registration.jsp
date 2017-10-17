@@ -51,15 +51,15 @@
         </spring:bind>
 
 
-        <%--<spring:bind path="login">--%>
-            <%--<div class="form-group ${status.error ? 'has-error' : ''}">--%>
-                <%--<form:input  required="required" type="text" path="login" class="form-control" placeholder="Login"--%>
-                             <%--onblur="onBlurLoginFunction(this)"></form:input>--%>
-                <%--<form:errors path="login"></form:errors>--%>
-                    <%--&lt;%&ndash;<form:errors id="loginExists"></form:errors>&ndash;%&gt;--%>
-                <%--<div id="loginExists" class="has-error"></div>--%>
-            <%--</div>--%>
-        <%--</spring:bind>--%>
+        <spring:bind path="login">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input  required="required" type="text" path="login" class="form-control" placeholder="Login"
+                             onblur="onBlurLoginFunction(this)"></form:input>
+                <form:errors path="login"></form:errors>
+                    <%--<form:errors id="loginExists"></form:errors>--%>
+                <div id="loginExists" class="has-error"></div>
+            </div>
+        </spring:bind>
 
         <spring:bind path="password">
             <div class="form-group ${status.error ? 'has-error' : ''}">

@@ -42,7 +42,7 @@
 					<a class="nav-link" href="Timetable">Timetable</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="registration">Sign In</a>
+					<a class="nav-link" href="login">Sign In</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="registration">Sign Up</a>

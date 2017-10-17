@@ -43,6 +43,10 @@ public class User {
 	private String email;
 
 	@Basic
+	@Column(name = "login", nullable = false)
+	private String login;
+
+	@Basic
 	@Column(name = "password", nullable = false)
 	private String password;
 
