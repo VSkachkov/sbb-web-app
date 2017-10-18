@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Time;
 
 
 @ToString
@@ -43,8 +44,8 @@ private Long timetableId;
     private Station station;
 
     @Column (name = "departure")
-    private String departure;
+    private Time departure;
 
     @Column (name = "arrival")
-    private String arrival;
+    private Time arrival;
 }

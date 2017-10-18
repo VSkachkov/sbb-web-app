@@ -4,6 +4,7 @@ import com.mycompany.myproject.persist.entity.Timetable;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Time;
 
 
 @Getter
@@ -17,9 +18,9 @@ public class TimetableDto {
 
     private Long stationId;
 
-    private String departure;
+    private Time departure;
 
-    private String arrival;
+    private Time arrival;
 
     public TimetableDto(Timetable timetable) {
         this.timetableId = timetable.getTimetableId();

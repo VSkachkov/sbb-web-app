@@ -53,7 +53,7 @@
                     <a class="nav-link" href="Timetable">Timetable</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
+                    <a class="nav-link" href="Trains">Trains</a>
                 </li>
                 <%--<li class="nav-item dropdown">--%>
                     <%--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
@@ -93,7 +93,6 @@
         </div>
     </div>
 </nav>
-<a href="timetableList">json timetable list</a><br/>
 <!-- Page Content -->
 <div class="container">
 
@@ -117,46 +116,50 @@
         <input type="submit" value="Get Timetable"/>
     </form:form>
 
-    <div>
-        <%--${greeting.id}--%>
-        <%--${greeting.content}--%>
 
-        <%--TIMETABLE !!!!!!!!!!!!!!!!!!!!!!!!--%>
-        <div class="col-sm-offset-1 col-sm-10">
 
-            <legend>
-                <spring:message code="table.timetable.title" />
-            </legend>
 
-            <div>
-                <table id="dataTable" class="table table-striped table-bordered">
-                    <thead>
-                    <tr>
-                        <th><spring:message code="table.timetable.timetableId" /></th>
-                        <th><spring:message code="table.timetable.stationId" /></th>
-                        <th><spring:message code="table.timetable.trainNumber" /></th>
-                        <th><spring:message code="table.timetable.arrival" /></th>
-                        <th><spring:message code="table.timetable.departure" /></th>
-                    </tr>
-                    <thead>
-                    <tbody>
-                    <c:forEach var="t" items="${timetableModel}">
-                    <tr>
-                        <td>${t.timetableId}</td>
-                        <td>${t.arrival}</td>
-                        <td>${t.departure}</td>
-                    <tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
 
-    <%--<!-- Image Header -->--%>
-    <%--<img class="img-fluid rounded mb-4" src="http://placehold.it/1200x300" alt="">--%>
+    <%--<div>--%>
+        <%--&lt;%&ndash;${greeting.id}&ndash;%&gt;--%>
+        <%--&lt;%&ndash;${greeting.content}&ndash;%&gt;--%>
 
-</div>
+        <%--&lt;%&ndash;TIMETABLE !!!!!!!!!!!!!!!!!!!!!!!!&ndash;%&gt;--%>
+        <%--<div class="col-sm-offset-1 col-sm-10">--%>
+
+            <%--&lt;%&ndash;<legend>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<spring:message code="table.timetable.title" />&ndash;%&gt;--%>
+            <%--&lt;%&ndash;</legend>&ndash;%&gt;--%>
+
+            <%--&lt;%&ndash;<div>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<table id="dataTable" class="table table-striped table-bordered">&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<thead>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;<th><spring:message code="table.timetable.timetableId" /></th>&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;<th><spring:message code="table.timetable.stationId" /></th>&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;<th><spring:message code="table.timetable.trainNumber" /></th>&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;<th><spring:message code="table.timetable.arrival" /></th>&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;<th><spring:message code="table.timetable.departure" /></th>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<thead>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<tbody>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<c:forEach var="t" items="${timetableModel}">&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;<td>${t.timetableId}</td>&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;<td>${t.arrival}</td>&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;<td>${t.departure}</td>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;</c:forEach>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;</tbody>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;</table>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+    <%--</div>--%>
+
+    <%--&lt;%&ndash;<!-- Image Header -->&ndash;%&gt;--%>
+    <%--&lt;%&ndash;<img class="img-fluid rounded mb-4" src="http://placehold.it/1200x300" alt="">&ndash;%&gt;--%>
+
+<%--</div>--%>
 
 <%--<h3>Form</h3>--%>
 <%--<form:form method="post" action="resultZ" modelAttribute="greeting">--%>

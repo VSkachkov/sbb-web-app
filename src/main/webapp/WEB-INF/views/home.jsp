@@ -29,17 +29,21 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item">
-					<a class="nav-link" href="about.html">About</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="services.html">Services</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="contact.html">Contact</a>
-				</li>
+				<%--<li class="nav-item">--%>
+					<%--<a class="nav-link" href="about.html">About</a>--%>
+				<%--</li>--%>
+				<%--<li class="nav-item">--%>
+					<%--<a class="nav-link" href="services.html">Services</a>--%>
+				<%--</li>--%>
+				<%--<li class="nav-item">--%>
+					<%--<a class="nav-link" href="contact.html">Contact</a>--%>
+				<%--</li>--%>
 				<li class="nav-item">
 					<a class="nav-link" href="Timetable">Timetable</a>
+				</li>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="TrainsLink">Trains</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="login">Sign In</a>
@@ -146,7 +150,8 @@
 <a href="cantonsList">json cantons list</a><br/>
 <a href="sectionsList">json sections list</a><br/>
 <a href="usersList">json users list</a><br/>
-
+<a href="trainsList">json trains list</a><br/>
+<a href="timetableList">json timetable list</a><br/>
 <!-- Page Content -->
 <div class="container">
 

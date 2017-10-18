@@ -31,6 +31,8 @@ import java.sql.SQLException;
 @ComponentScan("com.mycompany.myproject.persist")
 @ImportResource("classpath*:persistence.xml")
 @EnableJpaRepositories("com.mycompany.myproject.persist")
+//@Configuration
+@ComponentScan("com.mycompany.myproject.service")
 public class JPAConfig {
 //
 //    @Bean (name = "entityManagerFactory")

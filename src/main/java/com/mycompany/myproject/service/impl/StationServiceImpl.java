@@ -41,6 +41,6 @@ public class StationServiceImpl //extends GenericServiceImpl<Station,StationDto,
 
     @Override
     public Station getStationByName(String name) {
-        return null;
+        return stationDao.getStationByName(name);
     }
 }
