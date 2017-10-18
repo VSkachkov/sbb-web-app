@@ -80,6 +80,16 @@ public class TimetableDaoImpl implements TimetableDao{
         return list;
     }
 
+    @Override
+    public List<Timetable> getTrainsViaStationWithTime(String stationName, Time earlyTime, Time lateTime) {
+        List list = em.createQuery("FROM Timetable where station=:stationId " +
+                "                      and departure BETWEEN :earlyTime and :lateTime")
+                .setParameter("stationId", stationDao.getStationByName(stationName))
+                .setParameter("earlyTime", earlyTime)
+                .setParameter("lateTime", lateTime).getResultList();
+        return list;
+    }
+
 //    @Override
 //    public List<Long> getAllTrainIdThroughStationName(String stationName) {
 //        List list = em.createQuery("SELECT trainNumber FROM Timetable t where station=:stationId")

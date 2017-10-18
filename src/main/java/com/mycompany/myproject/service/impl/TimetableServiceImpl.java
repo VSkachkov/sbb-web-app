@@ -6,6 +6,7 @@ import com.mycompany.myproject.service.dto.TimetableDto;
 import com.mycompany.myproject.service.dto.TrainsAttribute;
 import com.mycompany.myproject.service.svc.StationService;
 import com.mycompany.myproject.service.svc.TimetableService;
+import com.mycompany.myproject.support.MyTimeConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Time;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,6 +108,39 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
     }
 
     @Override
+    public ArrayList <Long> getListOfTrainsByStationAndTimePeriod(String stationName, String time1, String time2){
+        ArrayList<Long> trainsList = new ArrayList<>();
+        MyTimeConverter myTimeConverter = new MyTimeConverter();
+        Time t1 = new Time(0L);
+        Time t2 = new Time(33333L);
+        try {
+            t1 = myTimeConverter.convertFromDString(time1);
+        }
+        catch (ParseException e){
+            try{
+                t1 = myTimeConverter.convertFromDString("0000");
+            } catch (ParseException e2){
+
+            }
+        }
+        try {
+            t2 = myTimeConverter.convertFromDString(time2);
+        }
+        catch (ParseException e){
+            try{
+                t2 = myTimeConverter.convertFromDString("2359");
+            } catch (ParseException e2){
+            }
+        }
+
+        for (Timetable timetable:
+                timetableDao.getTrainsViaStationWithTime(stationName, t1, t2)) {
+            trainsList.add(timetable.getTrain().getTrainId());
+        }
+        return trainsList;
+    }
+
+    @Override
     public List <Long> getTrainsBetweenStations(String stationFrom, String StationTo){
         ArrayList <Long> trainsFromStation = getListOfTrainsByStation(stationFrom);
         ArrayList <Long> trainsToStation = getListOfTrainsByStation(StationTo);
@@ -120,9 +155,14 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
     public List<TrainsAttribute> getTimetableBetweenStations(String stationFrom, String stationTo,
                                                              String EarlyTime, String LateTime) {
         logger.error("We are in getTimetableBetweenStations method");
+        List<Long> trainsByTime = new ArrayList<>();
+        trainsByTime = getListOfTrainsByStationAndTimePeriod(stationFrom, EarlyTime,LateTime);
+
+
         List<TrainsAttribute> timetableInfo = new ArrayList<>();
         List<Long> trains = new ArrayList<>();
         trains = getTrainsBetweenStations(stationFrom, stationTo);
+        trains.retainAll(trainsByTime);
         logger.error("trains List: "+ trains.toString());
         for (Long train:
                 trains) {

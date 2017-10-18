@@ -7,6 +7,7 @@ import com.mycompany.myproject.service.dto.TrainsForm;
 import com.mycompany.myproject.service.svc.TimetableService;
 import com.mycompany.myproject.service.svc.TrainService;
 import com.mycompany.myproject.service.dto.TrainDto;
+import com.mycompany.myproject.support.MyTimeConverter;
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Controller

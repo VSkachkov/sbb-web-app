@@ -4,6 +4,8 @@ import com.mycompany.myproject.persist.entity.Timetable;
 import com.mycompany.myproject.service.dto.TimetableDto;
 import com.mycompany.myproject.service.dto.TrainsAttribute;
 
+import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,4 +19,5 @@ public interface TimetableService
     List <Long> getTrainsBetweenStations(String stationFrom, String StationTo);
     List<TrainsAttribute> getTimetableBetweenStations(String stationFrom, String stationTo,
                                                       String EarlyTime, String LateTime);
+    public ArrayList<Long> getListOfTrainsByStationAndTimePeriod(String stationName, String time1, String time2);
 }

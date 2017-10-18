@@ -13,13 +13,44 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class ManagerController {
 
     @GetMapping(value = "/managerLink")
-    public String goManagerPage(//Model model, @ModelAttribute("productForm") ProductAttribute productForm
-   //         , @ModelAttribute("user") SessionUser user
+    public String goManagerPage(
     ) {
 
 
         return "managerPage";
     }
 
+
+    @GetMapping(value = "/addTrainLink")
+    public String addTrain(
+    ) {
+
+
+        return "mAddTrainPage";
+    }
+
+    @GetMapping(value = "/addStationLink")
+    public String addStation(
+    ) {
+
+
+        return "mAddStationPage";
+    }
+
+    @GetMapping(value = "/getReservesLink")
+    public String getReserves(
+    ) {
+
+
+        return "mGetReservePage";
+    }
+
+    @GetMapping(value = "/getTrainsLink")
+    public String getTrains(
+    ) {
+
+
+        return "mGetTrainsPage";
+    }
 
 }

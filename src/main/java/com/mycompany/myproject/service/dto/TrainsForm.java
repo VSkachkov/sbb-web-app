@@ -10,8 +10,8 @@ import java.sql.Time;
 public class TrainsForm {
     String stationFrom;
     String stationTo;
-    String earlyTime;
-    String lateTime;
+    String earlyTime = "0000";
+    String lateTime = "2359";
 
     public TrainsForm() {
     }
