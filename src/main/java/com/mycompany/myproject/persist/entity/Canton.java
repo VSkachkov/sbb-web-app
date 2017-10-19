@@ -20,7 +20,8 @@ import java.util.List;
 public class Canton implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GenericGenerator(name = "generator", strategy = "increment")
+	@GeneratedValue(generator = "generator")
 	@Column(name = "canton_id")
 	private Long cantonId;
 

@@ -32,7 +32,18 @@ public class TrainServiceImpl //extends GenericServiceImpl<Train,TrainDto, Long>
     }
 
     @Override  //TODO IMPLEMENT
-    public void addNewTrain(Train train) {
+    public void addNewTrain(TrainDto trainDto) {
+        Train train = new Train();
+        train.setTrainName(trainDto.getTrainName());
+        train.setDepartMon(trainDto.isDepartMon());
+        train.setDepartTue(trainDto.isDepartTue());
+        train.setDepartWed(trainDto.isDepartWed());
+        train.setDepartThu(trainDto.isDepartThu());
+        train.setDepartFri(trainDto.isDepartFri());
+        train.setDepartSat(trainDto.isDepartSat());
+        train.setDepartSun(trainDto.isDepartSun());
+        train.setCapacity(trainDto.getCapacity());
+        trainDao.addNewTrain(train);
 
     }
 

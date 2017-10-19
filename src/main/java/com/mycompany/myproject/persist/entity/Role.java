@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -20,7 +21,8 @@ import java.io.Serializable;
 
         @Id
         @Column(name = "ROLE_ID", nullable = false)
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @GenericGenerator(name = "generator", strategy = "increment")
+        @GeneratedValue(generator = "generator")
         private long roleId;
 
         @Basic

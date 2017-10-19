@@ -40,7 +40,7 @@ public class ManagerController {
     public String addTrain(Model model){
 //        model.addAttribute("greeting", new Greeting());
 
-        model.addAttribute("trainsForm", new TrainsForm());
+//        model.addAttribute("trainsForm", new TrainsForm());
         model.addAttribute("trainDto", new TrainDto());
 //        logger.error("We are in GET method!");
         return "mAddTrainPage";
@@ -48,12 +48,18 @@ public class ManagerController {
 
     @PostMapping(value = "/addTrainResultLink")
     public ModelAndView addTrainForm(@ModelAttribute TrainDto trainDto
-    ) {
+    ) { //TODO Fix problem with checkbox in bootstrap
+        trainDto.setDepartMon(true);
+        trainDto.setDepartTue(true);
+        trainDto.setDepartWed(true);
+        trainDto.setDepartThu(true);
+        trainDto.setDepartFri(true);
+        trainDto.setDepartSat(true);
+        trainDto.setDepartSun(true);
+
+        managerService.addTrainToDB(trainDto);
+        logger.error("We are in POST method!");
         ModelAndView modelAndView = new ModelAndView();
-////        modelAndView.addObject("timetableModel", timetableService.getAllRoutesThroughStationWithName(trainsForm.getStationTo()));
-//        modelAndView.addObject("timetableModel",
-//                timetableService.getTimetableBetweenStations(trainsForm.getStationFrom(), trainsForm.getStationTo(),
-//                        trainsForm.getEarlyTime(), trainsForm.getLateTime()));
         modelAndView.setViewName("TrainsResult");
         return modelAndView;
     }

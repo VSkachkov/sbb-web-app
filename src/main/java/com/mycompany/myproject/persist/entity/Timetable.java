@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -30,7 +31,8 @@ public class Timetable implements Serializable{
 //    private Long station_id;
 //
 @Id
-@GeneratedValue(strategy= GenerationType.AUTO)
+@GenericGenerator(name = "generator", strategy = "increment")
+@GeneratedValue(generator = "generator")
 @Column (name = "timetable_id")
 private Long timetableId;
 

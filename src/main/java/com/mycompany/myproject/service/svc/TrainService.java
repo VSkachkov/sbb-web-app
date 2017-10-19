@@ -10,7 +10,7 @@ import java.util.List;
 public interface TrainService //extends GenericService<Train, TrainDto, Long>
 {
     List<TrainDto> getAllTrains();
-    void addNewTrain(Train train);
+    void addNewTrain(TrainDto trainDto);
     void removeTrain(Long id);
     TrainDto getTrainById(Long id);
 }

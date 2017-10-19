@@ -64,4 +64,10 @@ public class ManagerServiceImp implements ManagerService {
         }
         return trains;
     }
+
+
+    @Override
+    public void addTrainToDB(TrainDto trainDto){
+        trainService.addNewTrain(trainDto);
+    }
 }
