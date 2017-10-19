@@ -1,6 +1,8 @@
 package com.mycompany.myproject.service.dao.impl;
 
+import com.mycompany.myproject.persist.entity.Station;
 import com.mycompany.myproject.persist.entity.Timetable;
+import com.mycompany.myproject.persist.entity.Train;
 import com.mycompany.myproject.service.dao.api.StationDao;
 import com.mycompany.myproject.service.dao.api.TimetableDao;
 import com.mycompany.myproject.service.dao.api.TrainDao;
@@ -13,7 +15,7 @@ import java.sql.Time;
 import java.util.List;
 
 @Repository
-public class TimetableDaoImpl implements TimetableDao{
+public class TimetableDaoImpl implements TimetableDao {
 
     @Autowired
     StationDao stationDao;
@@ -29,7 +31,6 @@ public class TimetableDaoImpl implements TimetableDao{
         return em.createQuery("FROM Timetable ")
                 .getResultList();
     }
-
 
 
     @Override
@@ -57,7 +58,7 @@ public class TimetableDaoImpl implements TimetableDao{
         return timetable.get(0).getArrival();
     }
 
-    @Override //TODO: IMPLEMENT THIS METHOD AFTER TRAINS ADDED TO PROJECT
+    @Override
     public Time getDeparture(Long trainId, Long stationId) {
         List<Timetable> timetable = em.createQuery("FROM Timetable where station=:stationId and train=:trainId ")
                 .setParameter("stationId", stationDao.getStationById(stationId))
@@ -90,29 +91,21 @@ public class TimetableDaoImpl implements TimetableDao{
         return list;
     }
 
-//    @Override
-//    public List<Long> getAllTrainIdThroughStationName(String stationName) {
-//        List list = em.createQuery("SELECT trainNumber FROM Timetable t where station=:stationId")
-//                .setParameter("trainNumber", trainNumber)
-//                .setParameter("stationId", stationDao.getStationByName(stationName)).getResultList();
-//        return list;
-//    }
+    @Override
+    public Long getInitStationByTrain(Long trainId) {
+        List<Timetable> timetable = em.createQuery("FROM Timetable where train=:trainId and arrival IS NULL ")
+                .setParameter("trainId", trainDao.getTrainById(trainId))
+                .getResultList();
+        return timetable.get(0).getStation().getStationId();
+    }
+
+    @Override
+    public Long getLastStationByTrain(Long trainId) {
+        List<Timetable> timetable = em.createQuery("FROM Timetable where train=:trainId and departure IS NULL ")
+                .setParameter("trainId", trainDao.getTrainById(trainId))
+                .getResultList();
+        return timetable.get(0).getStation().getStationId();
+    }
 }
 
 
-//    // BUTCKET ENTITY
-//    @ManyToOne(cascade = CascadeType.MERGE)
-//    @JoinColumn(name = "PRODUCT_ID")
-//    private ProductEntity productId;
-//
-//
-//     // FROM BUCKET DAO IMPLEMENTATION
-//    @Autowired
-//    private ProductDAO productDAO;
-//
-//    @Override
-//    public List<BucketEntity> getBucketsByProductId(long id) {
-//
-//        return  em.createQuery("from BucketEntity where productId=:id")
-//                .setParameter("id", productDAO.getProductById(id)).getResultList();
-//    }

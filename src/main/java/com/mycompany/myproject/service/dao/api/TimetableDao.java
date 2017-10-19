@@ -1,5 +1,6 @@
 package com.mycompany.myproject.service.dao.api;
 
+import com.mycompany.myproject.persist.entity.Station;
 import com.mycompany.myproject.persist.entity.Timetable;
 
 import java.sql.Time;
@@ -18,6 +19,8 @@ public interface TimetableDao {
     List<Timetable> getAllTrainsThroughStationName(String stationName);
     List<Timetable> getTrainsViaStationWithTime(String stationName, Time earlyTime, Time lateTime);
 
+    Long getInitStationByTrain(Long trainId);
+    Long getLastStationByTrain(Long trainId);
 
 
 }

@@ -11,7 +11,7 @@
 <div class="col-sm-offset-1 col-sm-10">
 
     <legend>
-        <spring:message code="table.timetable.title" />
+        <spring:message code="table.trainsBetweenStations.title" />
     </legend>
 
     <div>

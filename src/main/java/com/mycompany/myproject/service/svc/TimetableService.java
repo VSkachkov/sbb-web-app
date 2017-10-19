@@ -19,5 +19,8 @@ public interface TimetableService
     List <Long> getTrainsBetweenStations(String stationFrom, String StationTo);
     List<TrainsAttribute> getTimetableBetweenStations(String stationFrom, String stationTo,
                                                       String EarlyTime, String LateTime);
-    public ArrayList<Long> getListOfTrainsByStationAndTimePeriod(String stationName, String time1, String time2);
+    ArrayList<Long> getListOfTrainsByStationAndTimePeriod(String stationName, String time1, String time2);
+
+    Long getInitStationByTrainId(Long trainId);
+    Long getLastStationByTrainId(Long trainId);
 }

@@ -46,6 +46,9 @@
 					<a class="nav-link" href="TrainsLink">Trains</a>
 				</li>
 				<li class="nav-item">
+					<a class="nav-link" href="Tickets">Tickets</a>
+				</li>
+    			<li class="nav-item">
 					<a class="nav-link" href="login">Sign In</a>
 				</li>
 				<li class="nav-item">

@@ -4,12 +4,14 @@ import com.mycompany.myproject.persist.entity.Train;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Time;
+
 @Getter
 @Setter
 public class TrainDto {
 
     private Long trainId;
-    private String TrainName;
+    private String trainName;
     private boolean departMon;
     private boolean departTue;
     private boolean departWed;
@@ -18,13 +20,38 @@ public class TrainDto {
     private boolean departSat;
     private boolean departSun;
     private Long capacity;
+    private String initStation;
+    private String lastStation;
+    private Time departureTime;
+    private Time arrivalTime;
+
+    public TrainDto(Long trainId, String trainName, boolean departMon,
+                    boolean departTue, boolean departWed, boolean departThu,
+                    boolean departFri, boolean departSat, boolean departSun,
+                    Long capacity, String initStation, String lastStation,
+                    Time departureTime, Time arrivalTime) {
+        this.trainId = trainId;
+        this.trainName = trainName;
+        this.departMon = departMon;
+        this.departTue = departTue;
+        this.departWed = departWed;
+        this.departThu = departThu;
+        this.departFri = departFri;
+        this.departSat = departSat;
+        this.departSun = departSun;
+        this.capacity = capacity;
+        this.initStation = initStation;
+        this.lastStation = lastStation;
+        this.departureTime = departureTime;
+        this.arrivalTime = arrivalTime;
+    }
 
     public TrainDto() {
     }
 
     public TrainDto(Train train) {
         this.trainId = train.getTrainId();
-        TrainName = train.getTrainName();
+        this.trainName = train.getTrainName();
         this.departMon = train.isDepartMon();
         this.departTue = train.isDepartTue();
         this.departWed = train.isDepartWed();

@@ -123,50 +123,6 @@
                     <form:errors path="lateTime"></form:errors>
                 </div>
             </spring:bind>
-            <%--<spring:bind path="birthday">--%>
-                <%--<div class="form-group ${status.error ? 'has-error' : ''}">--%>
-                    <%--<form:input  required="required" type="date" path="birthday" class="form-control" value="2000-06-01"--%>
-                                 <%--max="2017-06-01" min="1920-05-29"--%>
-                    <%--></form:input>--%>
-                    <%--<form:errors path="birthday"></form:errors>--%>
-                <%--</div>--%>
-            <%--</spring:bind>--%>
-
-            <%--<spring:bind path="email">--%>
-                <%--<div class="form-group ${status.error ? 'has-error' : ''}">--%>
-                    <%--<form:input  required="required" type="text" path="email" class="form-control" placeholder="Email"--%>
-                                 <%--onblur="onBlurEmailFunction(this)"></form:input>--%>
-                    <%--<form:errors path="email"></form:errors>--%>
-                        <%--&lt;%&ndash;<form:errors id="emailExists"></form:errors>&ndash;%&gt;--%>
-                    <%--<div id="emailExists" class="has-error"></div>--%>
-                <%--</div>--%>
-            <%--</spring:bind>--%>
-
-
-            <%--<spring:bind path="login">--%>
-                <%--<div class="form-group ${status.error ? 'has-error' : ''}">--%>
-                    <%--<form:input  required="required" type="text" path="login" class="form-control" placeholder="Login"--%>
-                                 <%--onblur="onBlurLoginFunction(this)"></form:input>--%>
-                    <%--<form:errors path="login"></form:errors>--%>
-                        <%--&lt;%&ndash;<form:errors id="loginExists"></form:errors>&ndash;%&gt;--%>
-                    <%--<div id="loginExists" class="has-error"></div>--%>
-                <%--</div>--%>
-            <%--</spring:bind>--%>
-
-            <%--<spring:bind path="password">--%>
-                <%--<div class="form-group ${status.error ? 'has-error' : ''}">--%>
-                    <%--<form:input  required="required" type="password" path="password" class="form-control" placeholder="Password"></form:input>--%>
-                    <%--<form:errors path="password"></form:errors>--%>
-                <%--</div>--%>
-            <%--</spring:bind>--%>
-
-            <%--&lt;%&ndash;<spring:bind path="confirmPassword">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<div class="form-group ${status.error ? 'has-error' : ''}">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<form:input  required="required" type="password" path="confirmPassword" class="form-control"&ndash;%&gt;--%>
-            <%--&lt;%&ndash;placeholder="Confirm your password"></form:input>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<form:errors path="confirmPassword"></form:errors>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</spring:bind>&ndash;%&gt;--%>
 
             <button class="btn btn-lg btn-primary btn-block" type="submit"
                     id="submit-registration">Find trains</button>

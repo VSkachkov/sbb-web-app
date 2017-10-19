@@ -141,6 +141,16 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
     }
 
     @Override
+    public Long getInitStationByTrainId(Long trainId) {
+        return timetableDao.getInitStationByTrain(trainId);
+    }
+
+    @Override //TODO Implement methhod
+    public Long getLastStationByTrainId(Long trainId) {
+        return timetableDao.getLastStationByTrain(trainId);
+    }
+
+    @Override
     public List <Long> getTrainsBetweenStations(String stationFrom, String StationTo){
         ArrayList <Long> trainsFromStation = getListOfTrainsByStation(stationFrom);
         ArrayList <Long> trainsToStation = getListOfTrainsByStation(StationTo);

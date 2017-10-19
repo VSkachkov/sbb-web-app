@@ -58,7 +58,6 @@ public class TimetableController {
     List<TimetableDto> timetableList() {
         logger.error("get json timetable list");
         List<Long> trains = timetableService.getTrainsBetweenStations("Bern", "Winterthur");
-        logger.error("Train Number"+trains.get(0).toString());
         return timetableService.getAllTimetable();
 //        return timetableService.getAllRoutesThroughStationWithId(2L);
 //        return timetableService.getAllRoutesThroughStationWithName("Bern");

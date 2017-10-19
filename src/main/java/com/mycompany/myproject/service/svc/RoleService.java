@@ -4,10 +4,7 @@ import com.mycompany.myproject.persist.entity.Role;
 import org.springframework.stereotype.Service;
 
 
-//
-//import com.mycompany.myproject.persist.entity.Role;
-//import org.springframework.stereotype.Service;
-//
+
 public interface RoleService {
 
     /**
