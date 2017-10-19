@@ -33,17 +33,6 @@ public class CantonController {
     @Autowired
     private MessageSource ms;
     
-    
-
-
-
-//        @RequestMapping(value = "/cantonsList", method = RequestMethod.GET)
-//    public @ResponseBody
-//    List<CantonDto> cantonsList() {
-//        logger.debug("get json cantons list");
-//
-//            return cantonService.getAllCantons();
-//    }
 @RequestMapping(value = "/cantonsList", method = RequestMethod.GET)
 public @ResponseBody
 List<CantonDto> cantonsList() {

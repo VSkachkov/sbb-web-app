@@ -35,14 +35,6 @@ private DozerBeanMapper mapper;
     private MessageSource ms;
 
 
-//    @RequestMapping(value = "/stationsList", method = RequestMethod.GET)
-//    public @ResponseBody String stationsList() {
-//        StationDto stdto = new StationDto();
-//        stdto.s
-//        logger.debug("get json stations list");
-//        return "Hello World";
-//    }
-
         @RequestMapping(value = "/stationsList", method = RequestMethod.GET)
     public @ResponseBody List<Station> stationsList() {
         logger.debug("get json stations list");

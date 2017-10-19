@@ -50,13 +50,5 @@ public class UserDto {
 
     }
 
-//    public UserDto(String firstName, String lastName, Date birthday, String email, String password, String phone, String role) {
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.birthday = birthday;
-//        this.email = email;
-//        this.password = password;
-//        this.phone = phone;
-//        this.role = role;
-//    }
+
 }

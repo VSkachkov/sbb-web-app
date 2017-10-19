@@ -25,12 +25,6 @@ public class SignInUpController {
     @Autowired
     UserService userService;
 
-
-//    @GetMapping(value = {"/", "/home"})
-//    public String home() {
-//        return "home";
-//    }
-
     @GetMapping(value = "/login")
     public String start(Model model, String error, HttpServletRequest request) {
         if (error != null)
@@ -50,7 +44,7 @@ public class SignInUpController {
         return "registration";
     }
 
-    //TODO !! Add control for email!!!
+    //TODO. Add control for email
     // spring.io/guides/gs/validating-form-input/
 
 
@@ -66,15 +60,6 @@ public class SignInUpController {
 
 
         userService.addNewUser(userForm);
-//        .addUser(userForm);
-//        userForm.setId(userService.getUserIdByEmail(user.getEmail()));
-//
-//        securityService.autoLogin(userForm.getLogin(), userForm.getConfirmPassword());
-//
-//        userForm.setPass("");
-//        userForm.setConfirmPassword("");
-//        userForm.setProducts(user.getProducts());
-//        model.addAttribute("user", userForm);
 
         return "home";
     }

@@ -33,16 +33,10 @@ public class CantonServiceImpl //extends GenericServiceImpl<Canton,CantonDto_OBS
         cantonDao.getAllCantons()) {
             cdto.add(new CantonDto(canton));
         }
-//        cantonDao.getAllCantons()
-//                .stream().forEach(ce -> cdto.add(new CantonDto(ce)));
+
         return cdto;
     }
 
-
-//    @Override
-//    public List<CantonDto> getAllCantons() {
-//        return cantonDao.getAllCantons();
-//    }
 
     @Override
     public void addNewCanton(Canton canton) {

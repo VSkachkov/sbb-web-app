@@ -31,8 +31,6 @@ public class ManagerController {
     @GetMapping(value = "/managerLink")
     public String goManagerPage(
     ) {
-
-
         return "managerPage";
     }
 
@@ -75,13 +73,6 @@ public class ManagerController {
         return "mAddStationPage";
     }
 
-    @GetMapping(value = "/getReservesLink")
-    public String getReserves(
-    ) {
-
-
-        return "mGetReservePage";
-    }
 
     @RequestMapping(value = "/getTrainsLink", method = RequestMethod.GET)
     public String getTrains(Model model

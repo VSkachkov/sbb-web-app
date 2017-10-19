@@ -62,14 +62,6 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
     @Autowired
     private TimetableDao timetableDao;
 
-    //    @Override
-    //    public List<TimetableDto> getAllTimetable() {
-    //        List <TimetableDto> ltdto = new ArrayList<TimetableDto>();
-    //        timetableDao.getAllTimetable()
-    //                .stream().forEachOrdered(ae -> ltdto.add(new TimetableDto(ae)));
-    //        return ltdto;
-    //    }
-
     @Override
     public List<TimetableDto> getAllTimetable() {
         List<TimetableDto> tdto = new ArrayList<>();

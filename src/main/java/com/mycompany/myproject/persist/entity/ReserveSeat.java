@@ -5,7 +5,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -15,12 +14,11 @@ import java.sql.Date;
 @Setter
 @EqualsAndHashCode
 @Entity
-@Table(name = "ReserveSeate", schema = "SBB_DB")
+@Table(name = "Reserve_Seats", schema = "SBB_DB")
 public class ReserveSeat {
 
     @Id
-    @GenericGenerator(name = "generator", strategy = "increment")
-    @GeneratedValue(generator = "generator")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Run_id")
     private Long runId;
 

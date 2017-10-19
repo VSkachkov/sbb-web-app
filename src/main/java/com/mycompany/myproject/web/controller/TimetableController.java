@@ -39,19 +39,7 @@ public class TimetableController {
     @Autowired
     private MessageSource ms;
 
-    Greeting gr = new Greeting(3, "Bye!");
-//    @RequestMapping(value = "/Timetable", method = RequestMethod.GET)
-//    public ModelAndView goToTimetable() {
-//        ModelAndView timetable = new ModelAndView();
-//        return timetable;
-//    }
-
-//    @RequestMapping(value = "/timetableList", method = RequestMethod.GET)
-//    public @ResponseBody
-//    List<TimetableDto> timetableList() {
-//        logger.debug("get json user list");
-//        return timetableService.findAll();
-//    }
+//    Greeting gr = new Greeting(3, "Bye!");
 
     @RequestMapping(value = "/timetableList", method = RequestMethod.GET)
     public @ResponseBody
@@ -59,8 +47,6 @@ public class TimetableController {
         logger.error("get json timetable list");
         List<Long> trains = timetableService.getTrainsBetweenStations("Bern", "Winterthur");
         return timetableService.getAllTimetable();
-//        return timetableService.getAllRoutesThroughStationWithId(2L);
-//        return timetableService.getAllRoutesThroughStationWithName("Bern");
     }
 
     @RequestMapping(value = "/Timetable", method = RequestMethod.GET)
@@ -70,8 +56,6 @@ public class TimetableController {
 
         model.addAttribute("station", stdo);
         model.addAttribute("timetableModel", timetableService.getAllTimetable());
-//        model.addAttribute("timetableModel", timetableService.getAllRoutesThroughStationWithName("Bern"));
-//        model.addAttribute("timetableModel", timetableService.getAllRoutesThroughStationWithName(stdo.getStationName()));
         logger.error("We are in GET method!");
         return "Timetable";
     }

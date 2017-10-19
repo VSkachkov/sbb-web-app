@@ -22,14 +22,6 @@ import java.sql.Time;
 public class Timetable implements Serializable{
 
 
-//    @Id
-//    @Column(name = "trainNumber", nullable = false)
-//    private Long trainNumber;
-//
-//    @Id
-//    @Column (name = "station_id", nullable = false)
-//    private Long station_id;
-//
 @Id
 @GenericGenerator(name = "generator", strategy = "increment")
 @GeneratedValue(generator = "generator")

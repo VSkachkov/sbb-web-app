@@ -34,17 +34,6 @@ import java.sql.SQLException;
 //@Configuration
 @ComponentScan("com.mycompany.myproject.service")
 public class JPAConfig {
-//
-//    @Bean (name = "entityManagerFactory")
-//    public EntityManagerFactory getEntityManagerFactory() {
-//        return Persistence.createEntityManagerFactory("sbb-persistence-unit");
-//    }
-//
-//    @Bean
-//    public PlatformTransactionManager platformTransactionManager() {
-////        return new JpaTransactionManager();
-//        return new JtaTransactionManager();
-//    }
 
     @Autowired
     Environment env;
