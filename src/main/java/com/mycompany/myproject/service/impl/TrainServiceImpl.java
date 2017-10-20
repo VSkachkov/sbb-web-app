@@ -4,7 +4,7 @@ package com.mycompany.myproject.service.impl;
 import com.mycompany.myproject.persist.entity.Train;
 import com.mycompany.myproject.service.dao.api.TrainDao;
 import com.mycompany.myproject.service.dto.TrainDto;
-import com.mycompany.myproject.service.impl.GenericServiceImpl;
+//import com.mycompany.myproject.service.impl.GenericServiceImpl;
 import com.mycompany.myproject.service.svc.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -10,6 +10,7 @@ public interface UserService //extends GenericService<User, UserDto, Long>
 {
     List<UserDto> getAllUsers();
     void addNewUser(UserDto user);
+    boolean doesUserExistInDb(UserDto userDto);
     void removeUser(Long id);
     User getUserById(Long id);
     long getUserIdByEmail(String email);

@@ -9,7 +9,6 @@ import org.springframework.context.annotation.*;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.jdbc.datasource.init.DatabasePopulator;
@@ -30,8 +29,6 @@ import java.sql.SQLException;
 @EnableTransactionManagement
 @ComponentScan("com.mycompany.myproject.persist")
 @ImportResource("classpath*:persistence.xml")
-@EnableJpaRepositories("com.mycompany.myproject.persist")
-//@Configuration
 @ComponentScan("com.mycompany.myproject.service")
 public class JPAConfig {
 

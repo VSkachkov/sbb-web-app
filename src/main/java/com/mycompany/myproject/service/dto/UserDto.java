@@ -50,5 +50,9 @@ public class UserDto {
 
     }
 
-
+    public UserDto(String firstName, String lastName, Date birthday) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthday = birthday;
+    }
 }

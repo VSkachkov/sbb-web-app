@@ -27,8 +27,8 @@ public class ReserveSeat {
     private Timetable timetableId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Ticket_id")
-    private Ticket ticket;
+    @JoinColumn(name = "User_id")
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TrainNumber")

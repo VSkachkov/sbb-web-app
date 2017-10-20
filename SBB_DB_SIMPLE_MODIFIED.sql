@@ -49,22 +49,6 @@ CREATE TABLE IF NOT EXISTS `SBB_DB`.`Users` (
 
 
 -- -----------------------------------------------------
--- Table `SBB_DB`.`Tickets`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SBB_DB`.`Tickets` (
-  `Ticket_id` INT NOT NULL AUTO_INCREMENT,
-  `Passenger_id` INT NOT NULL,
-  PRIMARY KEY (`Ticket_id`),
-  INDEX `Passenger_id_idx` (`Passenger_id` ASC),
-  CONSTRAINT `Passenger_id`
-  FOREIGN KEY (`Passenger_id`)
-  REFERENCES `SBB_DB`.`Users` (`User_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-  ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `SBB_DB`.`Cantons`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SBB_DB`.`Cantons` (
@@ -141,20 +125,15 @@ CREATE TABLE IF NOT EXISTS `SBB_DB`.`Timetable` (
 -- Table `SBB_DB`.`Reserve_seats`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SBB_DB`.`Reserve_seats` (
-  `Run_id` INT NOT NULL,
-  `Haul_id` INT NOT NULL,
-  `Ticket_id` INT NOT NULL,
+  `reserve_id` INT NOT NULL,
+  `User_id` INT NOT NULL,
   `TrainNumber` INT NOT NULL,
   `Travel_date` DATE NOT NULL,
   `Timetable_id` INT NOT NULL,
-  PRIMARY KEY (`Ticket_id`, `Haul_id`, `Run_id`),
+  PRIMARY KEY (`reserve_id`),
   INDEX `Train_number_FK_idx` (`TrainNumber` ASC),
   INDEX `Timetable_id_fk_idx` (`Timetable_id` ASC),
-  CONSTRAINT `Ticket_id`
-  FOREIGN KEY (`Ticket_id`)
-  REFERENCES `SBB_DB`.`Tickets` (`Ticket_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `User_id_fk_idx` (`User_id` ASC),
   CONSTRAINT `Train_number_FK`
   FOREIGN KEY (`TrainNumber`)
   REFERENCES `SBB_DB`.`Trains` (`TrainNumber`)
@@ -163,6 +142,11 @@ CREATE TABLE IF NOT EXISTS `SBB_DB`.`Reserve_seats` (
   CONSTRAINT `Timetable_id_fk`
   FOREIGN KEY (`Timetable_id`)
   REFERENCES `SBB_DB`.`Timetable` (`Timetable_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `User_id_fk`
+  FOREIGN KEY (`User_id`)
+  REFERENCES `SBB_DB`.`Users` (`User_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
   ENGINE = InnoDB;
