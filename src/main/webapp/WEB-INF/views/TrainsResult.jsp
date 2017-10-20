@@ -66,13 +66,18 @@
         <small> Mobility of the future </small>
     </h1>
 
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="home">Home</a>
-        </li>
-        <li class="breadcrumb-item active">Timetable</li>
-    </ol>
+    <%--<ol class="breadcrumb">--%>
+        <%--<li class="breadcrumb-item">--%>
+            <%--<a href="home">Home</a>--%>
+        <%--</li>--%>
+        <%--<li class="breadcrumb-item active">Timetable</li>--%>
+    <%--</ol>--%>
 </div>
+<br>
+<br>
+<br>
+<br>
+
 
 
 <div class="col-sm-offset-1 col-sm-10">
@@ -116,17 +121,17 @@
 <br>
 
     <form:form method="POST" action="buyTicketResult" modelAttribute="passengerForm" class="form-signin">
-        <h2 class="form-signin-heading">Enter travelling date:</h2>
+        <h2 class="form-signin-heading">Enter travelling information :</h2>
 
-        <p>travelDate:</p>
-        <spring:bind path="travelDate">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input  required="required" type="date" path="travelDate" value="2017-10-21"
-                             placeholder="travelDate"       min="2017-10-20"
-                ></form:input>
-                <form:errors path="travelDate"></form:errors>
-            </div>
-        </spring:bind>
+        <%--<p>travelDate:</p>--%>
+        <%--<spring:bind path="travelDate">--%>
+            <%--<div class="form-group ${status.error ? 'has-error' : ''}">--%>
+                <%--<form:input  required="required" type="date" path="travelDate" value="2000-06-01"--%>
+                             <%--placeholder="travelDate"       max="2017-06-01" min="1920-05-29"--%>
+                <%--></form:input>--%>
+                <%--<form:errors path="travelDate"></form:errors>--%>
+            <%--</div>--%>
+        <%--</spring:bind>--%>
 
         <p>trainNumber:</p>
         <spring:bind path="trainNumber">
@@ -144,7 +149,7 @@
         <spring:bind path="firstName">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <form:input required="required" type="text" path="firstName" placeholder="First Name"
-                            autofocus="true"></form:input>
+                            autofocus="false"></form:input>
                 <form:errors path="firstName"></form:errors>
             </div>
         </spring:bind>

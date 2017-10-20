@@ -106,7 +106,9 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
     }
 
     @Override
+
     public ArrayList <Long> getListOfTrainsByStationAndTimePeriod(String stationName, String time1, String time2){
+//    public ArrayList <Long> getListOfTrainsByStationAndTimePeriod(String stationName, Time time1, Time time2){
         ArrayList<Long> trainsList = new ArrayList<>();
         MyTimeConverter myTimeConverter = new MyTimeConverter();
         Time t1 = new Time(0L);
@@ -130,13 +132,33 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
             } catch (ParseException e2){
             }
         }
-
         for (Timetable timetable:
                 timetableDao.getTrainsViaStationWithTime(stationName, t1, t2)) {
             trainsList.add(timetable.getTrain().getTrainId());
         }
         return trainsList;
     }
+
+
+//    public ArrayList <Long> getListOfTrainsByStationAndTimePeriod(String stationName, Time time1, Time time2){
+//        ArrayList<Long> trainsList = new ArrayList<>();
+//
+//        for (Timetable timetable:
+//                timetableDao.getTrainsViaStationWithTime(stationName, time1, time2)) {
+//            trainsList.add(timetable.getTrain().getTrainId());
+//        }
+//        return trainsList;
+//    }
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public Long getInitStationByTrainId(Long trainId) {
@@ -185,11 +207,13 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
     }
 
     @Override
-    public List<TrainsAttribute> getTimetableBetweenStations(String stationFrom, String stationTo,
-                                                             String EarlyTime, String LateTime) {
+//    public List<TrainsAttribute> getTimetableBetweenStations(String stationFrom, String stationTo,
+//                                                             Time EarlyTime, Time LateTime) {
+        public List<TrainsAttribute> getTimetableBetweenStations(String stationFrom, String stationTo,
+                String EarlyTime, String LateTime) {
         List<Long> trainsByTime = new ArrayList<>();
+//        trainsByTime = getListOfTrainsByStationAndTimePeriod(stationFrom, EarlyTime,LateTime);
         trainsByTime = getListOfTrainsByStationAndTimePeriod(stationFrom, EarlyTime,LateTime);
-
 
         List<TrainsAttribute> timetableInfo = new ArrayList<>();
         List<Long> trains = new ArrayList<>();

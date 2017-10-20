@@ -2,12 +2,9 @@ package com.mycompany.myproject.web.controller;
 
 
 import com.mycompany.myproject.service.dao.api.TimetableDao;
-import com.mycompany.myproject.service.dto.PassengerForm;
-import com.mycompany.myproject.service.dto.StationDto;
-import com.mycompany.myproject.service.dto.TrainsForm;
+import com.mycompany.myproject.service.dto.*;
 import com.mycompany.myproject.service.svc.TimetableService;
 import com.mycompany.myproject.service.svc.TrainService;
-import com.mycompany.myproject.service.dto.TrainDto;
 import com.mycompany.myproject.support.MyTimeConverter;
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
@@ -52,7 +49,7 @@ public class TrainController {
     @RequestMapping(value = "/TrainsLink", method = RequestMethod.GET)
     public String setConditionsforTrainsBetweenStations(Model model) {
 //        model.addAttribute("greeting", new Greeting());
-        StationDto stdo = new StationDto();
+//        StationDto stdo = new StationDto();
 
         model.addAttribute("trainsForm", new TrainsForm());
         logger.error("We are in GET method!");
@@ -62,15 +59,34 @@ public class TrainController {
     @RequestMapping(value = "/resultTrainsLink", method = RequestMethod.POST)
     public ModelAndView getStationFiltered(@ModelAttribute TrainsForm trainsForm) {
         ModelAndView modelAndView = new ModelAndView();
-        logger.error("Time = "+trainsForm.getTravelTime());
+//        logger.error("Time = "+trainsForm.getTravelTimeFrom().toString());
+//        logger.error("Time = "+trainsForm.getTravelTimeTo().toString());
         logger.error("Date = "+trainsForm.getTravelDate());
+        logger.error("From = "+trainsForm.getStationFrom());
+        logger.error("To = "+trainsForm.getStationTo());
 //        modelAndView.addObject("trainsform", trainsForm);
-        modelAndView.addObject("passengerForm", new PassengerForm());
-
+        PassengerForm passengerForm = new PassengerForm();
+        modelAndView.addObject("passengerForm", passengerForm);
+        passengerForm.setFromStation(trainsForm.getStationFrom());
+        passengerForm.setToStation(trainsForm.getStationTo()); //TODO finish code here
 //        modelAndView.addObject("timetableModel", timetableService.getAllRoutesThroughStationWithName(trainsForm.getStationTo()));
+
+
+//        ////PREVIOUS VERSION
+        List<TrainsAttribute> trainsByRouteAndTime = timetableService.
+                getTimetableBetweenStations(trainsForm.getStationFrom(), trainsForm.getStationTo(),
+                trainsForm.getEarlyTime(), trainsForm.getLateTime());
+
+        // Future version WHERE TIME INSTEAD OF STRING
+//        List<TrainsAttribute> trainsByRouteAndTime = timetableService.
+//                getTimetableBetweenStations(trainsForm.getStationFrom(), trainsForm.getStationTo(),
+//                        trainsForm.getTravelTimeFrom(), trainsForm.getTravelTimeTo());
+
+        //sort list by date:
+        List<TrainsAttribute> filteredTrainsList = trainService.filterTrainsByDate(trainsByRouteAndTime, trainsForm.getTravelDate());
+
         modelAndView.addObject("timetableModel",
-                timetableService.getTimetableBetweenStations(trainsForm.getStationFrom(), trainsForm.getStationTo(),
-                        trainsForm.getEarlyTime(), trainsForm.getLateTime()));
+                filteredTrainsList);
         modelAndView.setViewName("TrainsResult");
         return modelAndView;
     }

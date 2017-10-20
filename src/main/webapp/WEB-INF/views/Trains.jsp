@@ -112,21 +112,33 @@
                 </div>
             </spring:bind>
 
+            <p>Travel date: </p>
             <spring:bind path="travelDate">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input  type="date" path="travelDate"  placeholder="Travel date"
+                <form:input  type="date" path="travelDate"  placeholder="Travel date" required="required"
+                             value="2017-10-22"
                 ></form:input>
                 <form:errors path="travelDate"></form:errors>
             </div>
         </spring:bind>
 
-            <spring:bind path="travelTime">
-                <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <form:input  type="time" ngmodel="time" path="travelTime"  placeholder="Travel date"
-                    ></form:input>
-                    <form:errors path="travelTime"></form:errors>
-                </div>
-            </spring:bind>
+            <%--<p>Time range from: </p>--%>
+            <%--<spring:bind path="travelTimeFrom">--%>
+                <%--<div class="form-group ${status.error ? 'has-error' : ''}">--%>
+                    <%--<form:input  type="time" path="travelTimeFrom"  placeholder="Travel time"--%>
+                                 <%--required="required" value="00:00:00"  ></form:input>--%>
+                    <%--<form:errors path="travelTimeFrom"></form:errors>--%>
+                <%--</div>--%>
+            <%--</spring:bind>--%>
+
+            <%--<p>Time range to: </p>--%>
+            <%--<spring:bind path="travelTimeTo">--%>
+                <%--<div class="form-group ${status.error ? 'has-error' : ''}">--%>
+                    <%--<form:input  type="time" ngmodel="time" path="travelTimeTo"  placeholder="Travel time"--%>
+                                 <%--required="required" value="23:59:59"  ></form:input>--%>
+                    <%--<form:errors path="travelTimeTo"></form:errors>--%>
+                <%--</div>--%>
+            <%--</spring:bind>--%>
 
             <button class="btn btn-lg btn-primary btn-block" type="submit"
                     id="submit-registration">Find trains</button>

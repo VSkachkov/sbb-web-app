@@ -5,6 +5,7 @@ import com.mycompany.myproject.persist.entity.Train;
 import com.mycompany.myproject.service.dao.api.TrainDao;
 import com.mycompany.myproject.service.dto.TrainDto;
 //import com.mycompany.myproject.service.impl.GenericServiceImpl;
+import com.mycompany.myproject.service.dto.TrainsAttribute;
 import com.mycompany.myproject.service.svc.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -92,5 +93,18 @@ public class TrainServiceImpl //extends GenericServiceImpl<Train,TrainDto, Long>
     public TrainDto getTrainById(Long id) {
         TrainDto trainDto = new TrainDto(trainDao.getTrainById(id));
         return trainDto;
+    }
+
+    @Override
+    public List<TrainsAttribute> filterTrainsByDate(List<TrainsAttribute> trainsInfo, Date date) {
+    List<TrainsAttribute> filteredTrainsList = new ArrayList<>();
+
+        for (TrainsAttribute trainInfo:
+             trainsInfo) {
+            if(checkTrainDate(trainInfo.getTrainId(), date)){
+                filteredTrainsList.add(trainInfo);
+            }
+        }
+        return filteredTrainsList;
     }
 }

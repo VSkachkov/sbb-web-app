@@ -20,6 +20,9 @@ public interface TimetableService
     List <Long> getTrainsBetweenStations(String stationFrom, String StationTo);
     List<TrainsAttribute> getTimetableBetweenStations(String stationFrom, String stationTo,
                                                       String EarlyTime, String LateTime);
+//    List<TrainsAttribute> getTimetableBetweenStations(String stationFrom, String stationTo,
+//                                                      Time EarlyTime, Time LateTime);
+//    ArrayList<Long> getListOfTrainsByStationAndTimePeriod(String stationName, Time time1, Time time2);
     ArrayList<Long> getListOfTrainsByStationAndTimePeriod(String stationName, String time1, String time2);
 
     Long getInitStationByTrainId(Long trainId);
@@ -27,4 +30,5 @@ public interface TimetableService
     Time getArrival(Long trainId, Long stationId);
     Time getDeparture(Long trainId, Long stationId);
     boolean checkEnoughTimeBeforeDeparture(Long trainId, Long stationId, LocalTime timeToCheck, Long enoughTime);
+
 }
