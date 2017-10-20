@@ -55,18 +55,6 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="Trains">Trains</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Other Pages
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                        <a class="dropdown-item" href="full-width.html">Full Width Page</a>
-                        <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
-                        <a class="dropdown-item" href="faq.html">FAQ</a>
-                        <a class="dropdown-item" href="404.html">404</a>
-                        <a class="dropdown-item" href="pricing.html">Pricing Table</a>
-                    </div>
-                </li>
             </ul>
         </div>
     </div>
@@ -95,14 +83,14 @@
 
             <spring:bind path="stationFrom">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <form:input required="required" type="text" path="stationFrom" class="form-control" placeholder="From Station"
+                    <form:input required="required" type="text" path="stationFrom" placeholder="From Station"
                                 autofocus="true"></form:input>
                     <form:errors path="stationFrom"></form:errors>
                 </div>
             </spring:bind>
             <spring:bind path="stationTo">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <form:input  required="required" type="text" path="stationTo" class="form-control" placeholder="To Station"
+                    <form:input  required="required" type="text" path="stationTo" placeholder="To Station"
                     ></form:input>
                     <form:errors path="stationTo"></form:errors>
                 </div>
@@ -110,7 +98,7 @@
 
             <spring:bind path="earlyTime">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <form:input  type="text" path="earlyTime" class="form-control" placeholder="Not earlier than ...(HHMM)"
+                    <form:input  type="text" path="earlyTime"  placeholder="Not earlier than ...(HHMM)"
                     ></form:input>
                     <form:errors path="earlyTime"></form:errors>
                 </div>
@@ -118,9 +106,25 @@
 
             <spring:bind path="lateTime">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <form:input  type="text" path="lateTime" class="form-control" placeholder="Not later than ...(HHMM)"
+                    <form:input  type="text" path="lateTime"  placeholder="Not later than ...(HHMM)"
                     ></form:input>
                     <form:errors path="lateTime"></form:errors>
+                </div>
+            </spring:bind>
+
+            <spring:bind path="travelDate">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input  type="date" path="travelDate"  placeholder="Travel date"
+                ></form:input>
+                <form:errors path="travelDate"></form:errors>
+            </div>
+        </spring:bind>
+
+            <spring:bind path="travelTime">
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <form:input  type="time" ngmodel="time" path="travelTime"  placeholder="Travel date"
+                    ></form:input>
+                    <form:errors path="travelTime"></form:errors>
                 </div>
             </spring:bind>
 

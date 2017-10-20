@@ -64,22 +64,6 @@ public class SignInUpController {
         return "home";
     }
 
-//    @PostMapping(value = "/registration/findEmail/")
-//    @ResponseBody
-//    public String checkEmailExisting(@RequestParam String email) {
-//        if (userService.getUserIdByEmail(email) != 0) {
-//            return "this email already exists";
-//        } else
-//            return "";
-//    }
 
-//    @PostMapping(value = "/registration/findLogin/")
-//    @ResponseBody
-//    public String checkLoginExisting(@RequestParam String login) {
-//        if (userService.getUserIdByLogin(login) != 0) {
-//            return "this login already exists";
-//        } else
-//            return "";
-//    }
 }
 

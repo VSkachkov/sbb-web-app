@@ -7,6 +7,8 @@ import com.mycompany.myproject.service.dto.TrainsAttribute;
 import com.mycompany.myproject.service.svc.StationService;
 import com.mycompany.myproject.service.svc.TimetableService;
 import com.mycompany.myproject.support.MyTimeConverter;
+import org.joda.time.DateTimeZone;
+import org.joda.time.LocalTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -15,8 +17,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Time;
 import java.text.ParseException;
+import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 //
@@ -56,6 +61,7 @@ import java.util.List;
 public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,TimetableDto, Long>
         implements TimetableService {
     private static final Logger logger = LoggerFactory.getLogger(TimetableServiceImpl.class);
+
 
     @Autowired
     StationService stationservice;
@@ -104,7 +110,7 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
         ArrayList<Long> trainsList = new ArrayList<>();
         MyTimeConverter myTimeConverter = new MyTimeConverter();
         Time t1 = new Time(0L);
-        Time t2 = new Time(33333L);
+        Time t2 = new Time(0L);
         try {
             t1 = myTimeConverter.convertFromDString(time1);
         }
@@ -143,20 +149,44 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
     }
 
     @Override
+    public Time getArrival(Long trainId, Long stationId) {
+        return timetableDao.getArrival(trainId, stationId);
+    }
+
+    @Override
+    public Time getDeparture(Long trainId, Long stationId) {
+        return timetableDao.getDeparture(trainId, stationId);
+    }
+
+    @Override
+    public boolean checkEnoughTimeBeforeDeparture(Long trainId, Long stationId, LocalTime timeToCheck, Long enoughTime) {
+        Time departureTime = timetableDao.getDeparture(trainId, stationId);
+        Time sqlTimeTocheck = new Time(new LocalTime(timeToCheck).toDateTimeToday().
+                withZone(DateTimeZone.forID("Europe/Moscow")).getMillis());
+        Time timezone = new java.sql.Time(6, 0, 0); //TODO fix problem with timezone
+        long diffInMillies = departureTime.getTime() - sqlTimeTocheck.getTime()-timezone.getTime();
+
+        Time diff = new Time(diffInMillies);
+        int h = diff.getHours();
+        int m = diff.getMinutes();
+        Long result = new Time(h, m, 0).getTime();
+        if (result<enoughTime)
+            return false;
+        else return true;
+    }
+
+    @Override
     public List <Long> getTrainsBetweenStations(String stationFrom, String StationTo){
         ArrayList <Long> trainsFromStation = getListOfTrainsByStation(stationFrom);
         ArrayList <Long> trainsToStation = getListOfTrainsByStation(StationTo);
         ArrayList<Long> common = new ArrayList<>(trainsFromStation);
         common.retainAll(trainsToStation);
-//        ArrayList<Long> trainsFromAToB = (ArrayList<Long>)trainsFromStation.clone();
-//        trainsFromAToB.removeAll((ArrayList<Long>)trainsToStation);
-        return common;
+       return common;
     }
 
     @Override
     public List<TrainsAttribute> getTimetableBetweenStations(String stationFrom, String stationTo,
                                                              String EarlyTime, String LateTime) {
-        logger.error("We are in getTimetableBetweenStations method");
         List<Long> trainsByTime = new ArrayList<>();
         trainsByTime = getListOfTrainsByStationAndTimePeriod(stationFrom, EarlyTime,LateTime);
 
@@ -165,7 +195,6 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
         List<Long> trains = new ArrayList<>();
         trains = getTrainsBetweenStations(stationFrom, stationTo);
         trains.retainAll(trainsByTime);
-        logger.error("trains List: "+ trains.toString());
         for (Long train:
                 trains) {
             Long trainId = train;

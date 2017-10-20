@@ -47,6 +47,7 @@
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
           <element id="library" level="project" name="Maven: javax.mail:javax.mail-api:1.5.5" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context-support:4.3.3.RELEASE" />
+          <element id="library" level="project" name="Maven: joda-time:joda-time:2.9.9" />
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-jpa:1.6.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-commons:1.8.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.8.0" />

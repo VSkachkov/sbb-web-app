@@ -39,15 +39,21 @@ public class User {
 	private Date birthday;
 
 	@Basic
-	@Column(name = "email", nullable = false)
+	@Column(name = "email")
+	@GenericGenerator(name = "generator", strategy = "increment")
+	@GeneratedValue(generator = "generator")
 	private String email;
 
 	@Basic
-	@Column(name = "login", nullable = false)
+	@Column(name = "login")
+	@GenericGenerator(name = "generator", strategy = "increment")
+	@GeneratedValue(generator = "generator")
 	private String login;
 
 	@Basic
-	@Column(name = "password", nullable = false)
+	@Column(name = "password")
+	@GenericGenerator(name = "generator", strategy = "increment")
+	@GeneratedValue(generator = "generator")
 	private String password;
 
 	@Basic

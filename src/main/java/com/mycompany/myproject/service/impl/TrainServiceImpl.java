@@ -10,13 +10,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @Service
 @Transactional //TODO IMPLEMENT CORRECT VERSION OF SERVICE IMPLEMENTATION
 public class TrainServiceImpl //extends GenericServiceImpl<Train,TrainDto, Long>
         implements TrainService {
+    final int SUN = 1;
+    final int MON = 2;
+    final int TUE = 3;
+    final int WED = 4;
+    final int THU = 5;
+    final int FRI = 6;
+    final int SAT = 7;
+
 
 
     @Autowired TrainDao trainDao;
@@ -47,6 +57,32 @@ public class TrainServiceImpl //extends GenericServiceImpl<Train,TrainDto, Long>
 
     }
 
+    @Override
+    public boolean checkTrainDate(Long trainId, Date travelDate) {
+        TrainDto trainDto = getTrainById(trainId);
+        Calendar c = Calendar.getInstance();
+        c.setTime(travelDate);
+        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+        switch(dayOfWeek) {
+            case MON:
+                return trainDto.isDepartMon();
+            case TUE:
+                return trainDto.isDepartTue();
+            case WED:
+                return trainDto.isDepartWed();
+            case THU:
+                return trainDto.isDepartThu();
+            case FRI:
+                return trainDto.isDepartFri();
+            case SAT:
+                return trainDto.isDepartSat();
+            case SUN:
+                return trainDto.isDepartSun();
+            default:
+                return false;
+        }
+    }
+
     @Override //TODO IMPLEMENT
     public void removeTrain(Long id) {
 
@@ -54,6 +90,7 @@ public class TrainServiceImpl //extends GenericServiceImpl<Train,TrainDto, Long>
 
     @Override //TODO IMPLEMENT
     public TrainDto getTrainById(Long id) {
-        return null;
+        TrainDto trainDto = new TrainDto(trainDao.getTrainById(id));
+        return trainDto;
     }
 }

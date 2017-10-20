@@ -3,6 +3,7 @@ package com.mycompany.myproject.service.svc;
 import com.mycompany.myproject.persist.entity.Timetable;
 import com.mycompany.myproject.service.dto.TimetableDto;
 import com.mycompany.myproject.service.dto.TrainsAttribute;
+import org.joda.time.LocalTime;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -23,4 +24,7 @@ public interface TimetableService
 
     Long getInitStationByTrainId(Long trainId);
     Long getLastStationByTrainId(Long trainId);
+    Time getArrival(Long trainId, Long stationId);
+    Time getDeparture(Long trainId, Long stationId);
+    boolean checkEnoughTimeBeforeDeparture(Long trainId, Long stationId, LocalTime timeToCheck, Long enoughTime);
 }

@@ -23,8 +23,8 @@ public class ReserveSeat {
     private Long runId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "timtable_id")
-    private Timetable timetableStation;
+    @JoinColumn(name = "timetable_id")
+    private Timetable timetableId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Ticket_id")

@@ -2,6 +2,7 @@ package com.mycompany.myproject.web.controller;
 
 
 import com.mycompany.myproject.service.dao.api.TimetableDao;
+import com.mycompany.myproject.service.dto.PassengerForm;
 import com.mycompany.myproject.service.dto.StationDto;
 import com.mycompany.myproject.service.dto.TrainsForm;
 import com.mycompany.myproject.service.svc.TimetableService;
@@ -16,10 +17,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.text.ParseException;
@@ -52,7 +50,7 @@ public class TrainController {
     }
 
     @RequestMapping(value = "/TrainsLink", method = RequestMethod.GET)
-    public String greetingForm(Model model) {
+    public String setConditionsforTrainsBetweenStations(Model model) {
 //        model.addAttribute("greeting", new Greeting());
         StationDto stdo = new StationDto();
 
@@ -62,8 +60,13 @@ public class TrainController {
     }
 
     @RequestMapping(value = "/resultTrainsLink", method = RequestMethod.POST)
-    public ModelAndView stationFiltered(@ModelAttribute TrainsForm trainsForm) {
+    public ModelAndView getStationFiltered(@ModelAttribute TrainsForm trainsForm) {
         ModelAndView modelAndView = new ModelAndView();
+        logger.error("Time = "+trainsForm.getTravelTime());
+        logger.error("Date = "+trainsForm.getTravelDate());
+//        modelAndView.addObject("trainsform", trainsForm);
+        modelAndView.addObject("passengerForm", new PassengerForm());
+
 //        modelAndView.addObject("timetableModel", timetableService.getAllRoutesThroughStationWithName(trainsForm.getStationTo()));
         modelAndView.addObject("timetableModel",
                 timetableService.getTimetableBetweenStations(trainsForm.getStationFrom(), trainsForm.getStationTo(),
@@ -71,6 +74,7 @@ public class TrainController {
         modelAndView.setViewName("TrainsResult");
         return modelAndView;
     }
+
 
 
 }    
