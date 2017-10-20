@@ -43,17 +43,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
+
                 <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="services.html">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Timetable">Timetable</a>
+                    <a class="nav-link" href="Timetable by Station">Timetable</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="Trains">Trains</a>
+                    <a class="nav-link" href="Trains and tickets">Trains</a>
                 </li>
             </ul>
         </div>

@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -68,10 +69,9 @@ public class TrainController {
         PassengerForm passengerForm = new PassengerForm();
         modelAndView.addObject("passengerForm", passengerForm);
         passengerForm.setFromStation(trainsForm.getStationFrom());
-        passengerForm.setToStation(trainsForm.getStationTo()); //TODO finish code here
+        passengerForm.setToStation(trainsForm.getStationTo()); //TODO finish code here\
+
 //        modelAndView.addObject("timetableModel", timetableService.getAllRoutesThroughStationWithName(trainsForm.getStationTo()));
-
-
 //        ////PREVIOUS VERSION
         List<TrainsAttribute> trainsByRouteAndTime = timetableService.
                 getTimetableBetweenStations(trainsForm.getStationFrom(), trainsForm.getStationTo(),
@@ -84,6 +84,8 @@ public class TrainController {
 
         //sort list by date:
         List<TrainsAttribute> filteredTrainsList = trainService.filterTrainsByDate(trainsByRouteAndTime, trainsForm.getTravelDate());
+
+
 
         modelAndView.addObject("timetableModel",
                 filteredTrainsList);

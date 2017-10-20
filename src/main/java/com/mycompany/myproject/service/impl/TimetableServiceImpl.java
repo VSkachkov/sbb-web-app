@@ -95,6 +95,19 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
         return tdto;
     }
 
+//    @Override
+//    public List<String> getStationsFromTimetable() {
+//         List<TimetableDto> timetable = getAllTimetable();
+//         List<String> stationsWithTrains = new ArrayList<>();
+//
+//        for (TimetableDto oneElementInTimetable:
+//             timetable) {
+//            if(!stationsWithTrains.contains())
+//                stationsWithTrains.add
+//        }
+
+//    }
+
     @Override
     public ArrayList <Long> getListOfTrainsByStation(String stationName){
         ArrayList<Long> trainsList = new ArrayList<>();

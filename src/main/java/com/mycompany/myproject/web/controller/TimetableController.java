@@ -2,6 +2,7 @@ package com.mycompany.myproject.web.controller;
 
 
 import com.mycompany.myproject.service.svc.CantonService;
+import com.mycompany.myproject.service.svc.StationService;
 import com.mycompany.myproject.service.svc.TimetableService;
 import com.mycompany.myproject.service.dto.StationDto;
 import com.mycompany.myproject.service.dto.TimetableDto;
@@ -30,10 +31,10 @@ public class TimetableController {
 
 
     @Autowired
-    private CantonService cantonService;
+    private TimetableService timetableService;
 
     @Autowired
-    private TimetableService timetableService;
+    StationService stationService;
 
 
     @Autowired
@@ -54,6 +55,12 @@ public class TimetableController {
         model.addAttribute("greeting", new Greeting());
         StationDto stdo = new StationDto();
 
+
+        List<String> someList = new ArrayList<>();
+        someList = stationService.getAllStationsNames();
+        model.addAttribute("myform", new MyForm());
+        model.addAttribute("someList", someList);
+
         model.addAttribute("station", stdo);
         model.addAttribute("timetableModel", timetableService.getAllTimetable());
         logger.error("We are in GET method!");
@@ -62,7 +69,10 @@ public class TimetableController {
 
 
     @RequestMapping(value = "Timetable", method = RequestMethod.POST)
+//    @RequestMapping(value = "Timetable", method = RequestMethod.GET)
     public String getUsers(@ModelAttribute Model model) {
+
+
         logger.debug("display all timetable list");
        return "Timetable";
     }
@@ -139,7 +149,19 @@ public class TimetableController {
         return modelAndView; //после уйдем на представление, указанное чуть выше, если оно будет найдено.
     }
 
+    class MyForm {
+        private String nameOfInstitution;
+
+        public String getNameOfInstitution() {
+            return nameOfInstitution;
+        }
+
+        public void setNameOfInstitution(String nameOfInstitution) {
+            this.nameOfInstitution = nameOfInstitution;
+        }
+    }
+
+
 
 }
 
- 

@@ -16,6 +16,7 @@ public interface TimetableService
     List<TimetableDto> getAllTimetable();
     List<Timetable> getAllRoutesThroughStationWithId(Long stationId);
     List<TimetableDto> getAllRoutesThroughStationWithName(String stationName);
+//    List<String> getStationsFromTimetable();
     List <Long> getListOfTrainsByStation(String stationName);
     List <Long> getTrainsBetweenStations(String stationFrom, String StationTo);
     List<TrainsAttribute> getTimetableBetweenStations(String stationFrom, String stationTo,

@@ -16,6 +16,7 @@ public interface StationService// extends GenericService<Station, StationDto, Lo
     void removeStation(Long id);
     Station getStationById(Long id);
     Station getStationByName(String name);
+    List<String>getAllStationsNames();
 
 
 }

@@ -55,28 +55,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="Trains">Trains</a>
                 </li>
-                <%--<li class="nav-item dropdown">--%>
-                    <%--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
-                        <%--Portfolio--%>
-                    <%--</a>--%>
-                    <%--&lt;%&ndash;<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<a class="dropdown-item" href="portfolio-2-col.html">2 Column Portfolio</a>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                <%--</li>--%>
-                <%--<li class="nav-item dropdown">--%>
-                    <%--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
-                        <%--Blog--%>
-                    <%--</a>--%>
-                    <%--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">--%>
-                        <%--<a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>--%>
-                        <%--<a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>--%>
-                        <%--<a class="dropdown-item" href="blog-post.html">Blog Post</a>--%>
-                    <%--</div>--%>
-                <%--</li>--%>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Other Pages
@@ -111,13 +90,24 @@
     <h3>Please, enter the station</h3>
     <form:form method="post" action="resultTT" modelAttribute="station">
         <form:label path="stationName">station Name( For ex. "Bern")</form:label>
-        <form:input path="stationName"/>
+           <form:select  path="stationName">
+           <form:option value="NONE"> --SELECT--</form:option>
+              <form:options items="${someList}"></form:options>
+            </form:select>
+        <%--<form:input path="stationName"/>--%>
         <br>
+
         <input type="submit" value="Get Timetable"/>
+
     </form:form>
 
 
-
+    <%--<form:form modelAttribute="myform" action="result" method="get" >--%>
+    <%--<form:select  path="nameOfInstitution">--%>
+    <%--<form:option value="NONE"> --SELECT--</form:option>--%>
+        <%--<form:options items="${someList}"></form:options>--%>
+    <%--</form:select>--%>
+    <%--</form:form>--%>
 
 
     <%--<div>--%>

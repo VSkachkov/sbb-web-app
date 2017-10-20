@@ -66,12 +66,7 @@
         <small> Mobility of the future </small>
     </h1>
 
-    <%--<ol class="breadcrumb">--%>
-        <%--<li class="breadcrumb-item">--%>
-            <%--<a href="home">Home</a>--%>
-        <%--</li>--%>
-        <%--<li class="breadcrumb-item active">Timetable</li>--%>
-    <%--</ol>--%>
+
 </div>
 <br>
 <br>
@@ -79,6 +74,14 @@
 <br>
 
 
+
+<br>
+<br>
+<br>
+<br>
+
+
+<c:out value="${someinfo}"/>
 
 <div class="col-sm-offset-1 col-sm-10">
 
@@ -119,6 +122,8 @@
 <br>
 <br>
 <br>
+    <p> Travelling date: </p>
+    <label model
 
     <form:form method="POST" action="buyTicketResult" modelAttribute="passengerForm" class="form-signin">
         <h2 class="form-signin-heading">Enter travelling information :</h2>

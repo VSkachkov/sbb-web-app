@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -42,5 +43,16 @@ public class StationServiceImpl //extends GenericServiceImpl<Station,StationDto,
     @Override
     public Station getStationByName(String name) {
         return stationDao.getStationByName(name);
+    }
+
+    @Override
+    public List<String> getAllStationsNames() {
+        List<String> stationNames  = new ArrayList<>();
+
+        for (Station station:
+                stationDao.getAllStations()) {
+            stationNames.add(station.getStationName());
+        }
+         return stationNames;
     }
 }
