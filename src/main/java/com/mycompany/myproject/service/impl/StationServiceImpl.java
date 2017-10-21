@@ -3,6 +3,8 @@ package com.mycompany.myproject.service.impl;
 
 import com.mycompany.myproject.persist.entity.Station;
 import com.mycompany.myproject.service.dao.api.StationDao;
+import com.mycompany.myproject.service.dto.StationForm;
+import com.mycompany.myproject.service.svc.CantonService;
 import com.mycompany.myproject.service.svc.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,11 +15,14 @@ import java.util.List;
 
 @Service
 @Transactional
-public class StationServiceImpl //extends GenericServiceImpl<Station,StationDto, Long>
+public class StationServiceImpl
         implements StationService {
 
     @Autowired
     private StationDao stationDao;
+
+    @Autowired
+    CantonService cantonService;
 
     @Override
     public List<Station> getAllStations() {
@@ -54,5 +59,14 @@ public class StationServiceImpl //extends GenericServiceImpl<Station,StationDto,
             stationNames.add(station.getStationName());
         }
          return stationNames;
+    }
+
+    @Override
+    public void addNewStationByForm(StationForm stationForm) {
+        Station station = new Station();
+        station.setCanton( cantonService.getCantonByName(stationForm.getCantonName()));
+        station.setStationName(stationForm.getStationName());
+
+        addNewStation(station);
     }
 }

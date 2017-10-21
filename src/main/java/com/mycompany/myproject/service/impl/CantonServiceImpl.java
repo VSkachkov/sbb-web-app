@@ -54,5 +54,16 @@ public class CantonServiceImpl //extends GenericServiceImpl<Canton,CantonDto_OBS
         return new CantonDto(cantonDao.getCantonById(id));
     }
 
+    @Override
+    public List<String> getAllCantonsNames() {
+        List<String> cantonNames  = new ArrayList<>();
+
+        for (Canton canton:
+                cantonDao.getAllCantons()) {
+            cantonNames.add(canton.getCantonName());
+        }
+        return cantonNames;
+    }
+
 }
 

@@ -1,5 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sping" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
+<%--<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>--%>
+
+<%@ page isELIgnored="false" %>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 
 <head>
 
@@ -8,13 +16,19 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SBB - Manager </title>
+    <title>SBB - Timetable</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="../resources/css/modern-business.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
+
+    <script type="text/javascript"
+            src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+
 
 </head>
 
@@ -29,116 +43,85 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="Timetable">Timetable</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link active" href="Trains">Trains</a>
+                </li>
 
-                <li class="nav-item">
-                    <a class="nav-link active" href="addStationLink">Add station</a>
-                </li>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="addTrainLink">Add train</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="getReservesLink">Get users on train</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="getTrainsLink">Get trains</a>
-                </li>
-                <%--<li class="nav-item dropdown">--%>
-                <%--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
-                <%--Portfolio--%>
-                <%--</a>--%>
-                <%--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">--%>
-                <%--<a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a>--%>
-                <%--<a class="dropdown-item" href="portfolio-2-col.html">2 Column Portfolio</a>--%>
-                <%--<a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>--%>
-                <%--<a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>--%>
-                <%--<a class="dropdown-item" href="portfolio-item.html">Single Portfolio Item</a>--%>
-                <%--</div>--%>
-                <%--</li>--%>
-                <%--<li class="nav-item dropdown">--%>
-                <%--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
-                <%--Blog--%>
-                <%--</a>--%>
-                <%--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">--%>
-                <%--<a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>--%>
-                <%--<a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>--%>
-                <%--<a class="dropdown-item" href="blog-post.html">Blog Post</a>--%>
-                <%--</div>--%>
-                <%--</li>--%>
-                <%--<li class="nav-item dropdown">--%>
-                <%--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
-                <%--Other Pages--%>
-                <%--</a>--%>
-                <%--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">--%>
-                <%--<a class="dropdown-item" href="full-width.html">Full Width Page</a>--%>
-                <%--<a class="dropdown-item" href="sidebar.html">Sidebar Page</a>--%>
-                <%--<a class="dropdown-item" href="faq.html">FAQ</a>--%>
-                <%--<a class="dropdown-item" href="404.html">404</a>--%>
-                <%--<a class="dropdown-item" href="pricing.html">Pricing Table</a>--%>
-                <%--</div>--%>
-                <%--</li>--%>
             </ul>
         </div>
     </div>
 </nav>
 
-<%--<header>--%>
-    <%--<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">--%>
-        <%--<ol class="carousel-indicators">--%>
-            <%--<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>--%>
-            <%--<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>--%>
-            <%--<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>--%>
-            <%--<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>--%>
-        <%--</ol>--%>
-        <%--<div class="carousel-inner" role="listbox">--%>
-            <%--<!-- Slide One - Set the background image for this slide in the line below -->--%>
-            <%--<div class="carousel-item active" style="background-image: url('https://www.kinggoya.com/wp/wp-content/uploads/2015/08/train-summer-med.jpg')">--%>
-                <%--<div class="carousel-caption d-none d-md-block">--%>
-                    <%--&lt;%&ndash;<h3>First Slide</h3>&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;<p>This is a description for the first slide.</p>&ndash;%&gt;--%>
-                    <%--<h3>   </h3>--%>
-                    <%--<p>   </p>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-            <%--<!-- Slide Two - Set the background image for this slide in the line below -->--%>
-            <%--<div class="carousel-item" style="background-image: url('http://arxitop.ru/foto/6/krasnyy_poezd_v_uschele_1920x1080.jpg')">--%>
-                <%--<div class="carousel-caption d-none d-md-block">--%>
-                    <%--<h3>   </h3>--%>
-                    <%--<p>   </p>--%>
-                    <%--&lt;%&ndash;<h3>Second Slide</h3>&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;<p>This is a description for the second slide.</p>&ndash;%&gt;--%>
-                <%--</div>--%>
-            <%--</div>--%>
-            <%--<!-- Slide Three - Set the background image for this slide in the line below -->--%>
-            <%--<div class="carousel-item" style="background-image: url('http://wp.widewallpapers.ru/2k/railroad/swiss/1920x1200/swiss-railroad-1920x1200-006.jpg')">--%>
-                <%--<div class="carousel-caption d-none d-md-block">--%>
-                    <%--<h3>   </h3>--%>
-                    <%--<p>   </p>--%>
-                    <%--&lt;%&ndash;<h3>Third Slide</h3>&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;<p>This is a description for the third slide.</p>&ndash;%&gt;--%>
-                <%--</div>--%>
-            <%--</div>--%>
-            <%--<div class="carousel-item" style="background-image: url('https://img3.goodfon.com/original/1920x1080/6/fd/bernina-express-poezd-most.jpg')">--%>
-                <%--<div class="carousel-caption d-none d-md-block">--%>
-                    <%--&lt;%&ndash;<h3>Fourth Slide</h3>&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;<p>This is a description for the fourth slide.</p>&ndash;%&gt;--%>
-                    <%--<h3>   </h3>--%>
-                    <%--<p>   </p>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</div>--%>
-        <%--<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">--%>
-            <%--<span class="carousel-control-prev-icon" aria-hidden="true"></span>--%>
-            <%--<span class="sr-only">Previous</span>--%>
-        <%--</a>--%>
-        <%--<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">--%>
-            <%--<span class="carousel-control-next-icon" aria-hidden="true"></span>--%>
-            <%--<span class="sr-only">Next</span>--%>
-        <%--</a>--%>
-    <%--</div>--%>
-<%--</header>--%>
+
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">SBB
+        <small> Mobility of the future </small>
+    </h1>
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="home">Home</a>
+        </li>
+        <li class="breadcrumb-item active">Timetable</li>
+    </ol>
 
 
+    <div class="container">
+
+        <form:form method="POST" action="addStationResultLink" modelAttribute="stationForm" class="form-signin">
+            <h2 class="form-signin-heading">Enter travelling data</h2>
+
+            <spring:bind path="stationName">
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <form:input required="required" type="text" path="stationName" class="form-control" placeholder="Enter station name"
+                                autofocus="true"></form:input>
+                    <form:errors path="stationName"></form:errors>
+                </div>
+            </spring:bind>
+
+            <spring:bind path="cantonName">
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <%--<form:input required="required" type="text"  path="cantonName" class="form-control"  placeholder="cantonName"--%>
+                                <%--autofocus="true"></form:input>--%>
+                        <form:select  path="cantonName">
+                            <form:option value="NONE"> --SELECT CANTON--</form:option>
+                            <form:options items="${cantonsList}"></form:options>
+                        </form:select>
+                    <form:errors path="cantonName"></form:errors>
+                </div>
+            </spring:bind>
+
+            <%--<p> Please, set departure days: </p>--%>
+            <%--&lt;%&ndash;<spring:bind path="departMon">&ndash;%&gt;--%>
+            <%--<spring:bind path="departMon">--%>
+            <%--<div class="form-group ${status.error ? 'has-error' : ''}">--%>
+            <%--<label class="form-check-label"--%>
+            <%--<form:input type="boolean"  path="departMon"--%>
+            <%--autofocus="true"></form:input>--%>
+
+            <%--</div>--%>
+
+            <%--</spring:bind>--%>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit"
+                    id="submit-registration">Add station</button>
+        </form:form>
+
+    </div>
+
+
+</div>
+
+<br>
+<br>
+
+
+<%--END OF TIMETABLE !!!!!!!!!!!!!!!!!!!!!!!!!!--%>
 <!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
@@ -155,3 +138,4 @@
 </body>
 
 </html>
+

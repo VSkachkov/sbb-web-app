@@ -3,9 +3,12 @@ package com.mycompany.myproject.service.impl;
 import com.mycompany.myproject.service.dao.api.StationDao;
 import com.mycompany.myproject.service.dao.api.TimetableDao;
 import com.mycompany.myproject.service.dto.StationDto;
+import com.mycompany.myproject.service.dto.StationForm;
 import com.mycompany.myproject.service.dto.TimetableDto;
 import com.mycompany.myproject.service.dto.TrainDto;
+import com.mycompany.myproject.service.svc.CantonService;
 import com.mycompany.myproject.service.svc.ManagerService;
+import com.mycompany.myproject.service.svc.StationService;
 import com.mycompany.myproject.service.svc.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +26,13 @@ public class ManagerServiceImp implements ManagerService {
 
     @Autowired
     StationDao stationDao;
+
+    @Autowired
+    CantonService cantonService;
+
+    @Autowired
+    StationService stationService;
+
 
     @Autowired
     TrainService trainService;
@@ -69,5 +79,15 @@ public class ManagerServiceImp implements ManagerService {
     @Override
     public void addTrainToDB(TrainDto trainDto){
         trainService.addNewTrain(trainDto);
+    }
+
+    @Override
+    public List<String> getCantonNames() {
+        return cantonService.getAllCantonsNames();
+    }
+
+    @Override
+    public void addStationToDB(StationForm stationForm) {
+        stationService.addNewStationByForm(stationForm);
     }
 }

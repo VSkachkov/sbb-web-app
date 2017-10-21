@@ -2,6 +2,7 @@
 <%@ taglib prefix="sping" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%--<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>--%>
 
 <%@ page isELIgnored="false" %>
@@ -66,7 +67,12 @@
         <small> Mobility of the future </small>
     </h1>
 
-
+    <%--<ol class="breadcrumb">--%>
+        <%--<li class="breadcrumb-item">--%>
+            <%--<a href="home">Home</a>--%>
+        <%--</li>--%>
+        <%--<li class="breadcrumb-item active">Timetable</li>--%>
+    <%--</ol>--%>
 </div>
 <br>
 <br>
@@ -74,14 +80,6 @@
 <br>
 
 
-
-<br>
-<br>
-<br>
-<br>
-
-
-<c:out value="${someinfo}"/>
 
 <div class="col-sm-offset-1 col-sm-10">
 
@@ -115,6 +113,7 @@
     </div>
 </div>
 
+<c:out value="${someDate}"/>
 
 
 <div class="container">
@@ -122,8 +121,6 @@
 <br>
 <br>
 <br>
-    <p> Travelling date: </p>
-    <label model
 
     <form:form method="POST" action="buyTicketResult" modelAttribute="passengerForm" class="form-signin">
         <h2 class="form-signin-heading">Enter travelling information :</h2>
@@ -179,6 +176,9 @@
 
         <button class="btn btn-lg btn-primary " type="submit"
                 id="submit-registration">Buy ticket</button>
+        <form:input hidden = "true" type="date" path="travelDate" value="${TravelDate}"></form:input>
+        <form:input hidden = "true" type="text" path="fromStation" value="${StationFrom}"></form:input>
+        <form:input hidden = "true" type="text" path="toStation" value="${StationTo}"></form:input>
     </form:form>
 
 </div>

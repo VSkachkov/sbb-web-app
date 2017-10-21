@@ -56,10 +56,10 @@ public class TimetableController {
         StationDto stdo = new StationDto();
 
 
-        List<String> someList = new ArrayList<>();
-        someList = stationService.getAllStationsNames();
-        model.addAttribute("myform", new MyForm());
-        model.addAttribute("someList", someList);
+        List<String> stationsList = new ArrayList<>();
+        stationsList = stationService.getAllStationsNames();
+//        model.addAttribute("myform", new MyForm());
+        model.addAttribute("someList", stationsList);
 
         model.addAttribute("station", stdo);
         model.addAttribute("timetableModel", timetableService.getAllTimetable());

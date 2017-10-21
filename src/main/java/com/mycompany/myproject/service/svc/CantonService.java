@@ -14,6 +14,7 @@ public interface CantonService //extends GenericService<Canton, CantonDto_OBSOLE
     void addNewCanton(Canton canton);
     void removeCanton(Long id);
     CantonDto getCantonById(Long id);
+    List<String>getAllCantonsNames();
 
 }
 
