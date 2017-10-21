@@ -1,7 +1,7 @@
-package com.mycompany.myproject.service.dao.impl;
+package com.mycompany.myproject.dao.impl;
 
 import com.mycompany.myproject.persist.entity.User;
-import com.mycompany.myproject.service.dao.api.UserDao;
+import com.mycompany.myproject.dao.api.UserDao;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

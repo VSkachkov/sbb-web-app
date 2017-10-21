@@ -1,7 +1,7 @@
-package com.mycompany.myproject.service.dao.impl;
+package com.mycompany.myproject.dao.impl;
 
 import com.mycompany.myproject.persist.entity.Canton;
-import com.mycompany.myproject.service.dao.api.CantonDao;
+import com.mycompany.myproject.dao.api.CantonDao;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

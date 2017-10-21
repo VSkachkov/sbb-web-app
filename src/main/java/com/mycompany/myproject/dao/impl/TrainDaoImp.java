@@ -1,8 +1,7 @@
-package com.mycompany.myproject.service.dao.impl;
+package com.mycompany.myproject.dao.impl;
 
 import com.mycompany.myproject.persist.entity.Train;
-import com.mycompany.myproject.service.dao.api.TrainDao;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.mycompany.myproject.dao.api.TrainDao;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

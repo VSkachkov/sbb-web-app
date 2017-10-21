@@ -1,4 +1,4 @@
-package com.mycompany.myproject.service.dto;
+package com.mycompany.myproject.dto;
 
 import lombok.Getter;
 import lombok.Setter;

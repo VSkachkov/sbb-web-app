@@ -1,4 +1,4 @@
-package com.mycompany.myproject.service.dto;
+package com.mycompany.myproject.dto;
 
 import com.mycompany.myproject.persist.entity.Timetable;
 import lombok.Getter;

@@ -1,10 +1,8 @@
-package com.mycompany.myproject.service.dto;
+package com.mycompany.myproject.dto;
 
-import com.mycompany.myproject.persist.entity.Canton;
 import com.mycompany.myproject.persist.entity.Station;
 import lombok.Getter;
 import lombok.Setter;
-import org.dozer.Mapping;
 
 @Getter
 @Setter

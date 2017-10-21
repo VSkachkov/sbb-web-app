@@ -1,8 +1,8 @@
 package com.mycompany.myproject.service.impl;
 
 import com.mycompany.myproject.persist.entity.Canton;
-import com.mycompany.myproject.service.dao.api.CantonDao;
-import com.mycompany.myproject.service.dto.CantonDto;
+import com.mycompany.myproject.dao.api.CantonDao;
+import com.mycompany.myproject.dto.CantonDto;
 import com.mycompany.myproject.service.svc.CantonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

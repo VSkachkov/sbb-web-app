@@ -1,4 +1,4 @@
-package com.mycompany.myproject.service.dao.api;
+package com.mycompany.myproject.dao.api;
 
 import com.mycompany.myproject.persist.entity.User;
 

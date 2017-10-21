@@ -1,7 +1,7 @@
 package com.mycompany.myproject.service.impl;
 
 import com.mycompany.myproject.persist.entity.ReserveSeat;
-import com.mycompany.myproject.service.dao.api.ReserveSeatDao;
+import com.mycompany.myproject.dao.api.ReserveSeatDao;
 import com.mycompany.myproject.service.svc.ReserveSeatService;
 import com.mycompany.myproject.service.svc.StationService;
 import com.mycompany.myproject.service.svc.TrainService;

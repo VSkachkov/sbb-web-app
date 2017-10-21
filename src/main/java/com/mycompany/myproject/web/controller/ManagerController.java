@@ -1,6 +1,6 @@
 package com.mycompany.myproject.web.controller;
 
-import com.mycompany.myproject.service.dto.*;
+import com.mycompany.myproject.dto.*;
 import com.mycompany.myproject.service.svc.CantonService;
 import com.mycompany.myproject.service.svc.ManagerService;
 import com.mycompany.myproject.service.svc.StationService;
@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ import java.util.List;
 
 @Controller
 @SessionAttributes("user")
+@Scope("request")
 @RequestMapping("/management")
 public class ManagerController {
 

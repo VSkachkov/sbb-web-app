@@ -3,8 +3,7 @@ package com.mycompany.myproject.service.svc;
 
 import com.mycompany.myproject.persist.entity.Station;
 //import com.mycompany.myproject.persist.repo.StationRepo;
-import com.mycompany.myproject.service.dto.StationDto;
-import com.mycompany.myproject.service.dto.StationForm;
+import com.mycompany.myproject.dto.StationForm;
 
 import java.util.List;
 

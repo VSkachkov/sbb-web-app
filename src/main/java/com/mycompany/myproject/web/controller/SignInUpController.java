@@ -1,6 +1,7 @@
 package com.mycompany.myproject.web.controller;
 
-import com.mycompany.myproject.service.dto.UserDto;
+import com.mycompany.myproject.dto.UserDto;
+import com.mycompany.myproject.persist.entity.User;
 import com.mycompany.myproject.service.svc.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -13,9 +14,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @Scope("request")
+@SessionAttributes("user")
 public class SignInUpController {
     private static final Logger logger = LoggerFactory.getLogger(TimetableController.class);
 
@@ -36,6 +39,49 @@ public class SignInUpController {
         return "login";
     }
 
+    @PostMapping(value = "login")
+    public  String SetUserSession(@ModelAttribute("user") UserDto user, Model model,
+                                               HttpServletRequest request){
+
+        logger.error("User enters login data "+user.getLogin());
+        logger.error("User enters login password "+user.getPassword());
+
+        user.setRole("ROLE_CLIENT");
+        model.addAttribute("user", user);
+
+        User usr = userService.getUserByLogin(user.getLogin());
+        UserDto userDto = new UserDto(usr);
+        model.addAttribute("user", userDto);
+        if (userDto.getRole().equals("ROLE_ADMIN"))
+            return "managerPage";
+        else
+            return "home";
+
+    }
+
+
+
+//    /// TODO Analize which version is better:
+//    //
+//    @PostMapping(value = "/login")
+//    public String login(@ModelAttribute("user") UserDto user, Model model, HttpSession httpSession) {
+//        UserDto su = userService.loginUser(user.getLogin(),user.getPass());
+//        if (su!=null) {
+//            su.setProducts(user.getProducts());
+//            model.addAttribute("user", su);
+//            return "redirect:/home";
+//        }
+//        else {
+//            model.addAttribute("error", "Username or password is incorrect.");
+//            return "login";
+//        }
+//    }
+
+//    @GetMapping(value = "/logout")
+//    public String logout(@ModelAttribute("user") SessionUser user, Model model) {
+//        model.addAttribute("user",new SessionUser());
+//        return "redirect:/login";
+//    }
 
 
     @GetMapping(value = "/registration")

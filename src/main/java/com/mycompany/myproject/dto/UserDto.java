@@ -1,14 +1,10 @@
-package com.mycompany.myproject.service.dto;
+package com.mycompany.myproject.dto;
 
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import com.mycompany.myproject.persist.entity.User;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.commons.lang3.StringUtils;
-import org.dozer.Mapping;
 
 
 @Getter

@@ -1,8 +1,7 @@
 package com.mycompany.myproject.service.svc;
 
 import com.mycompany.myproject.persist.entity.User;
-import com.mycompany.myproject.service.dto.UserDto;
-import com.mycompany.myproject.service.svc.GenericService;
+import com.mycompany.myproject.dto.UserDto;
 
 import java.util.List;
 

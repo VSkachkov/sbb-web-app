@@ -2,8 +2,8 @@ package com.mycompany.myproject.service.impl;
 
 
 import com.mycompany.myproject.persist.entity.Station;
-import com.mycompany.myproject.service.dao.api.StationDao;
-import com.mycompany.myproject.service.dto.StationForm;
+import com.mycompany.myproject.dao.api.StationDao;
+import com.mycompany.myproject.dto.StationForm;
 import com.mycompany.myproject.service.svc.CantonService;
 import com.mycompany.myproject.service.svc.StationService;
 import org.springframework.beans.factory.annotation.Autowired;

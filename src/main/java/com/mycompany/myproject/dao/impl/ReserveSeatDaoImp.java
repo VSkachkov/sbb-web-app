@@ -1,12 +1,11 @@
-package com.mycompany.myproject.service.dao.impl;
+package com.mycompany.myproject.dao.impl;
 
 import com.mycompany.myproject.persist.entity.ReserveSeat;
-import com.mycompany.myproject.service.dao.api.ReserveSeatDao;
+import com.mycompany.myproject.dao.api.ReserveSeatDao;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.sql.Date;
 import java.util.List;
 
 

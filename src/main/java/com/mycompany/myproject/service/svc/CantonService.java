@@ -1,7 +1,7 @@
 package com.mycompany.myproject.service.svc;
 
 import com.mycompany.myproject.persist.entity.Canton;
-import com.mycompany.myproject.service.dto.CantonDto;
+import com.mycompany.myproject.dto.CantonDto;
 
 import java.util.List;
 

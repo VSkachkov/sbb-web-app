@@ -1,6 +1,5 @@
-package com.mycompany.myproject.service.dao.api;
+package com.mycompany.myproject.dao.api;
 
-import com.mycompany.myproject.persist.entity.Station;
 import com.mycompany.myproject.persist.entity.Timetable;
 
 import java.sql.Time;

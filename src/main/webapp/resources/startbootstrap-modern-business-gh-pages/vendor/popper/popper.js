@@ -961,7 +961,7 @@ function destroy() {
   this.disableEventListeners();
 
   // remove the popper if user explicity asked for the deletion on destroy
-  // do not use `remove` because IE11 doesn't support it
+  // do not use `remove` because IE11 doesn't util it
   if (this.options.removeOnDestroy) {
     this.popper.parentNode.removeChild(this.popper);
   }
@@ -1165,7 +1165,7 @@ function computeStyle(data, options) {
       y = options.y;
   var popper = data.offsets.popper;
 
-  // Remove this legacy support in Popper.js v2
+  // Remove this legacy util in Popper.js v2
 
   var legacyGpuAccelerationOption = find(data.instance.modifiers, function (modifier) {
     return modifier.name === 'applyStyle';

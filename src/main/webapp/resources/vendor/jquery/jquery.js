@@ -504,7 +504,7 @@ jQuery.extend( {
 
 	now: Date.now,
 
-	// jQuery.support is not used in Core but other projects attach their
+	// jQuery.util is not used in Core but other projects attach their
 	// properties to it so it needs to exist.
 	support: support
 } );
@@ -1085,7 +1085,7 @@ function testContext( context ) {
 	return context && typeof context.getElementsByTagName !== "undefined" && context;
 }
 
-// Expose support vars for convenience
+// Expose util vars for convenience
 support = Sizzle.support = {};
 
 /**
@@ -1263,7 +1263,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	/* QSA/matchesSelector
 	---------------------------------------------------------------------- */
 
-	// QSA and matchesSelector support
+	// QSA and matchesSelector util
 
 	// matchesSelector(:active) reports false when true (IE9/Opera 11.5)
 	rbuggyMatches = [];
@@ -1933,7 +1933,7 @@ Expr = Sizzle.selectors = {
 				return fn( argument );
 			}
 
-			// But maintain support for old signatures
+			// But maintain util for old signatures
 			if ( fn.length > 1 ) {
 				args = [ pseudo, pseudo, "", argument ];
 				return Expr.setFilters.hasOwnProperty( pseudo.toLowerCase() ) ?
@@ -2966,7 +2966,7 @@ var rootjQuery,
 		}
 
 		// Method init() accepts an alternate rootjQuery
-		// so migrate can support jQuery.sub (gh-2101)
+		// so migrate can util jQuery.sub (gh-2101)
 		root = root || rootjQuery;
 
 		// Handle HTML strings
@@ -3201,7 +3201,7 @@ jQuery.each( {
 
         // Support: IE 9 - 11 only, iOS 7 only, Android Browser <=4.3 only
         // Treat the template element as a regular one in browsers that
-        // don't support it.
+        // don't util it.
         if ( nodeName( elem, "template" ) ) {
             elem = elem.content || elem;
         }
@@ -4187,7 +4187,7 @@ var dataUser = new Data();
 //	1. Enforce API surface and semantic compatibility with 1.9.x branch
 //	2. Improve the module's maintainability by reducing the storage
 //		paths to a single mechanism.
-//	3. Use the same single mechanism to support "private" and "user" data.
+//	3. Use the same single mechanism to util "private" and "user" data.
 //	4. _Never_ expose "private" data to user code (TODO: Drop _data, _removeData)
 //	5. Avoid exposing implementation details on user objects (eg. expando properties)
 //	6. Provide a clear path for implementation upgrade to WeakMap in 2014
@@ -4698,7 +4698,7 @@ var rscriptType = ( /^$|\/(?:java|ecma)script/i );
 
 
 
-// We have to close these tags to support XHTML (#13200)
+// We have to close these tags to util XHTML (#13200)
 var wrapMap = {
 
 	// Support: IE <=9 only
@@ -5692,7 +5692,7 @@ function cloneCopyEvent( src, dest ) {
 	}
 }
 
-// Fix IE bugs, see support tests
+// Fix IE bugs, see util tests
 function fixInput( src, dest ) {
 	var nodeName = dest.nodeName.toLowerCase();
 
@@ -6229,7 +6229,7 @@ function addGetHookIf( conditionFn, hookFn ) {
 				return;
 			}
 
-			// Hook needed; redefine it so that the support test is not executed again.
+			// Hook needed; redefine it so that the util test is not executed again.
 			return ( this.get = hookFn ).apply( this, arguments );
 		}
 	};

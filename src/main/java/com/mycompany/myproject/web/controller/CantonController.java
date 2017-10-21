@@ -1,10 +1,9 @@
 package com.mycompany.myproject.web.controller;
 
 
-import com.mycompany.myproject.persist.entity.Canton;
 import com.mycompany.myproject.service.svc.CantonService;
-//import com.mycompany.myproject.service.dto.CantonDto;
-import com.mycompany.myproject.service.dto.CantonDto;
+//import com.mycompany.myproject.dto.CantonDto;
+import com.mycompany.myproject.dto.CantonDto;
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

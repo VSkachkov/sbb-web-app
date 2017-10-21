@@ -1698,7 +1698,7 @@ var Dropdown = function ($) {
         }
 
         // if this is a touch-enabled device we remove the extra
-        // empty mouseover listeners we added for iOS support
+        // empty mouseover listeners we added for iOS util
         if ('ontouchstart' in document.documentElement) {
           $('body').children().off('mouseover', null, $.noop);
         }
@@ -3288,7 +3288,7 @@ var Tooltip = function ($) {
       $(tip).removeClass(ClassName.SHOW);
 
       // if this is a touch-enabled device we remove the extra
-      // empty mouseover listeners we added for iOS support
+      // empty mouseover listeners we added for iOS util
       if ('ontouchstart' in document.documentElement) {
         $('body').children().off('mouseover', null, $.noop);
       }

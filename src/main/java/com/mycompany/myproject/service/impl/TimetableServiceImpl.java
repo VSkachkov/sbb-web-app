@@ -1,12 +1,12 @@
 package com.mycompany.myproject.service.impl;
 
 import com.mycompany.myproject.persist.entity.Timetable;
-import com.mycompany.myproject.service.dao.api.TimetableDao;
-import com.mycompany.myproject.service.dto.TimetableDto;
-import com.mycompany.myproject.service.dto.TrainsAttribute;
+import com.mycompany.myproject.dao.api.TimetableDao;
+import com.mycompany.myproject.dto.TimetableDto;
+import com.mycompany.myproject.dto.TrainsAttribute;
 import com.mycompany.myproject.service.svc.StationService;
 import com.mycompany.myproject.service.svc.TimetableService;
-import com.mycompany.myproject.support.MyTimeConverter;
+import com.mycompany.myproject.util.CustomTimeConverter;
 import org.joda.time.DateTimeZone;
 import org.joda.time.LocalTime;
 import org.slf4j.Logger;
@@ -17,11 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Time;
 import java.text.ParseException;
-import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 
 //
@@ -135,7 +132,7 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
     public ArrayList <Long> getListOfTrainsByStationAndTimePeriod(String stationName, String time1, String time2){
 //    public ArrayList <Long> getListOfTrainsByStationAndTimePeriod(String stationName, Time time1, Time time2){
         ArrayList<Long> trainsList = new ArrayList<>();
-        MyTimeConverter myTimeConverter = new MyTimeConverter();
+        CustomTimeConverter myTimeConverter = new CustomTimeConverter();
         Time t1 = new Time(0L);
         Time t2 = new Time(0L);
         try {

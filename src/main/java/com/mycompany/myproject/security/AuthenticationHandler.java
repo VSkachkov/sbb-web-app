@@ -11,7 +11,7 @@
 //import javax.servlet.http.HttpSession;
 //import java.io.IOException;
 //
-//import com.mycompany.myproject.service.dto.UserDto;
+//import com.mycompany.myproject.dto.UserDto;
 //import com.mycompany.myproject.persist.entity.User;
 //import com.mycompany.myproject.service.svc.UserService;
 //import org.springframework.beans.factory.annotation.Autowired;

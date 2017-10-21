@@ -1,7 +1,7 @@
 //package com.mycompany.myproject.security;
 //
 //import com.mycompany.myproject.persist.entity.User;
-//import com.mycompany.myproject.service.dao.api.UserDao;
+//import com.mycompany.myproject.dao.api.UserDao;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.GrantedAuthority;
 //import org.springframework.security.core.authority.SimpleGrantedAuthority;

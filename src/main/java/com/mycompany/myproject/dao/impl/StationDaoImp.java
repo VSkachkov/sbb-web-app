@@ -1,7 +1,7 @@
-package com.mycompany.myproject.service.dao.impl;
+package com.mycompany.myproject.dao.impl;
 
 import com.mycompany.myproject.persist.entity.Station;
-import com.mycompany.myproject.service.dao.api.StationDao;
+import com.mycompany.myproject.dao.api.StationDao;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

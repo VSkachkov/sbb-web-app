@@ -14,7 +14,7 @@
 //import com.mycompany.myproject.config.ServiceConfig;
 //import com.mycompany.myproject.persist.entity.Authority;
 //import com.mycompany.myproject.persist.entity.User;
-//import com.mycompany.myproject.service.dto.AuthorityDto;
+//import com.mycompany.myproject.dto.AuthorityDto;
 //
 //
 //@RunWith(SpringJUnit4ClassRunner.class)

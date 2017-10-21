@@ -2,9 +2,9 @@ package com.mycompany.myproject.service.impl;
 
 import com.mycompany.myproject.persist.entity.ReserveSeat;
 import com.mycompany.myproject.persist.entity.User;
-import com.mycompany.myproject.service.dao.api.StationDao;
-import com.mycompany.myproject.service.dao.api.TimetableDao;
-import com.mycompany.myproject.service.dto.*;
+import com.mycompany.myproject.dao.api.StationDao;
+import com.mycompany.myproject.dao.api.TimetableDao;
+import com.mycompany.myproject.dto.*;
 import com.mycompany.myproject.service.svc.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

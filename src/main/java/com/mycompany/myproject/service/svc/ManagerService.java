@@ -1,8 +1,8 @@
 package com.mycompany.myproject.service.svc;
 
-import com.mycompany.myproject.service.dto.PassengerForm;
-import com.mycompany.myproject.service.dto.StationForm;
-import com.mycompany.myproject.service.dto.TrainDto;
+import com.mycompany.myproject.dto.PassengerForm;
+import com.mycompany.myproject.dto.StationForm;
+import com.mycompany.myproject.dto.TrainDto;
 
 import java.sql.Date;
 import java.util.List;

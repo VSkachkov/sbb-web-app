@@ -1,7 +1,7 @@
 package com.mycompany.myproject.service.impl;
 
 import com.mycompany.myproject.persist.entity.Role;
-import com.mycompany.myproject.service.dao.api.RoleDao;
+import com.mycompany.myproject.dao.api.RoleDao;
 import com.mycompany.myproject.service.svc.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

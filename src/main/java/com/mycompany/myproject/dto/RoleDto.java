@@ -1,4 +1,4 @@
-package com.mycompany.myproject.service.dto;
+package com.mycompany.myproject.dto;
 
 public class RoleDto {
     //TODO When necessary

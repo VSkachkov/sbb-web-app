@@ -1,9 +1,8 @@
 package com.mycompany.myproject.service.svc;
 
 import com.mycompany.myproject.persist.entity.Train;
-import com.mycompany.myproject.service.dto.TrainDto;
-import com.mycompany.myproject.service.dto.TrainsAttribute;
-import com.mycompany.myproject.service.svc.GenericService;
+import com.mycompany.myproject.dto.TrainDto;
+import com.mycompany.myproject.dto.TrainsAttribute;
 
 import java.sql.Date;
 import java.util.List;

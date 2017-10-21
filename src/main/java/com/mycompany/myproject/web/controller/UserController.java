@@ -1,6 +1,5 @@
 package com.mycompany.myproject.web.controller;
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -15,13 +14,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mycompany.myproject.service.svc.UserService;
-import com.mycompany.myproject.service.dto.UserDto;
+import com.mycompany.myproject.dto.UserDto;
 
 @Controller
 @Scope("request")
+@SessionAttributes("user")
 public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -42,7 +43,9 @@ public class UserController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView home() {
         logger.debug("redirect to home page");
-        return new ModelAndView("home");
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("home");
+        return modelAndView;
     }
 
 

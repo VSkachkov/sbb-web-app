@@ -1,8 +1,8 @@
 package com.mycompany.myproject.service.svc;
 
 import com.mycompany.myproject.persist.entity.Timetable;
-import com.mycompany.myproject.service.dto.TimetableDto;
-import com.mycompany.myproject.service.dto.TrainsAttribute;
+import com.mycompany.myproject.dto.TimetableDto;
+import com.mycompany.myproject.dto.TrainsAttribute;
 import org.joda.time.LocalTime;
 
 import java.sql.Time;

@@ -1,10 +1,9 @@
 package com.mycompany.myproject.service.impl;
 
 
-import com.mycompany.myproject.service.dto.PassengerForm;
-import com.mycompany.myproject.service.dto.UserDto;
+import com.mycompany.myproject.dto.PassengerForm;
+import com.mycompany.myproject.dto.UserDto;
 import com.mycompany.myproject.service.svc.*;
-import org.joda.time.DateTimeZone;
 import org.joda.time.LocalTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.joda.time.DateTime;
 
 import java.sql.Date;
-import java.sql.Time;
 import java.util.Calendar;
 import java.util.List;
-import java.util.TimeZone;
 
 @Service
 @Transactional
