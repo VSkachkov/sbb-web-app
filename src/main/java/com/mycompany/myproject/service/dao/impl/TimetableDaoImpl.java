@@ -46,7 +46,9 @@ public class TimetableDaoImpl implements TimetableDao {
 
     @Override
     public List<Timetable> getAllRouteOfTrain(Long trainId) {
-        return null;
+        List list = em.createQuery("FROM Timetable where train=:trainId order by arrival")
+                .setParameter("trainId",  trainDao.getTrainById(trainId)).getResultList();
+        return list;
     }
 
     @Override

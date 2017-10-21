@@ -18,4 +18,6 @@ public interface UserService //extends GenericService<User, UserDto, Long>
     UserDto loginUser(String login, String password);
     User getUserByEmail(String email);
     User getUserByLogin(String login);
+
+    Long getUserIdByPrivateInfo(UserDto user);
 }

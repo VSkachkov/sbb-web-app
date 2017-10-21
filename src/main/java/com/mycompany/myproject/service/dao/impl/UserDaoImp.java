@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.sql.Date;
 import java.util.List;
 
 @Repository
@@ -73,6 +74,19 @@ public class UserDaoImp implements UserDao {
                 .setParameter("password", password).getResultList();
 
         return (list.isEmpty()) ? null : (User) list.get(0);
+    }
+
+    @Override
+    public Long getUserByPrivateData(String firstName, String lastName, Date birthday) {
+        List list =  em.createQuery("FROM User where firstName=:firstName" +
+                " and lastName=:lastName and birthday=:birthday")
+                .setParameter("firstName", firstName)
+                .setParameter("lastName", lastName)
+                .setParameter("birthday", birthday)
+                .getResultList();
+
+        User usr = (list.isEmpty()) ? null : (User) list.get(0);
+        return usr.getUserId();
     }
 
 }

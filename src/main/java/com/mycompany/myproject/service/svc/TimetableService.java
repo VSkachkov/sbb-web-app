@@ -15,6 +15,7 @@ public interface TimetableService
 
     List<TimetableDto> getAllTimetable();
     List<Timetable> getAllRoutesThroughStationWithId(Long stationId);
+    List<TimetableDto> getRouteOfTrain(Long trainId);
     List<TimetableDto> getAllRoutesThroughStationWithName(String stationName);
 //    List<String> getStationsFromTimetable();
     List <Long> getListOfTrainsByStation(String stationName);
@@ -32,4 +33,5 @@ public interface TimetableService
     Time getDeparture(Long trainId, Long stationId);
     boolean checkEnoughTimeBeforeDeparture(Long trainId, Long stationId, LocalTime timeToCheck, Long enoughTime);
 
+    List<Long> getChainOfStations(Long trainId, Long departureStation, Long arrivalStation);
 }

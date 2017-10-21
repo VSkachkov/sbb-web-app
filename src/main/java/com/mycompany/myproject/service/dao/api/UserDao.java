@@ -2,6 +2,7 @@ package com.mycompany.myproject.service.dao.api;
 
 import com.mycompany.myproject.persist.entity.User;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface UserDao {
@@ -16,4 +17,6 @@ public interface UserDao {
     long getUserIdByLogin(String login);
 
     User loginUser(String login, String password);
+
+    Long getUserByPrivateData(String firstName, String lastName, Date birthday);
 }

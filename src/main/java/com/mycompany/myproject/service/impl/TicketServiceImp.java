@@ -51,9 +51,12 @@ public class TicketServiceImp implements  TicketService {
 //        java.util.Date today = Calendar.getInstance(TimeZone.getDefault()).getTime();
 
         Long departureStation = (stationService.getStationByName(passengerForm.getFromStation())).getStationId();
+        Long arrivalStation = (stationService.getStationByName(passengerForm.getToStation())).getStationId();
         DateTime currentDateTime = DateTime.now();
         LocalTime localTime = new LocalTime(currentDateTime);
 //        Time currentTime = new java.sql.Time(today.getTime());
+        java.sql.Date today = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        if(travelDate==today)
         if (!timetableService.checkEnoughTimeBeforeDeparture(trainId, departureStation, localTime, TENMINUTES))
             return result =  "Oops, something went wrong. It seem that you missed this train. " +
                                 "Please, choose train that departs later.";
@@ -61,8 +64,11 @@ public class TicketServiceImp implements  TicketService {
         UserDto user = new UserDto(passengerForm.getFirstName(),
                                    passengerForm.getLastName(),
                                    passengerForm.getBirthday());
-        if(userService.doesUserExistInDb(user))
+        if(!userService.doesUserExistInDb(user))
             userService.addNewUser(user);
+        Long userId = userService.getUserIdByPrivateInfo(user);
+        List<Long> chainOfStations = timetableService.getChainOfStations(trainId, departureStation, arrivalStation);
+
 
         return result;
     }

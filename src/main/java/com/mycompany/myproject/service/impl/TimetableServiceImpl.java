@@ -86,6 +86,18 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
     }
 
     @Override
+    public List<TimetableDto> getRouteOfTrain(Long trainId) {
+
+
+        List<TimetableDto> tdto = new ArrayList<>();
+        for (Timetable timetable:
+                timetableDao.getAllRouteOfTrain(trainId)) {
+            tdto.add(new TimetableDto(timetable));
+        }
+        return tdto;
+    }
+
+    @Override
     public List<TimetableDto> getAllRoutesThroughStationWithName(String stationName) {
         List<TimetableDto> tdto = new ArrayList<>();
         for (Timetable timetable:
@@ -105,7 +117,7 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
 //            if(!stationsWithTrains.contains())
 //                stationsWithTrains.add
 //        }
-
+//
 //    }
 
     @Override
@@ -208,6 +220,34 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
         if (result<enoughTime)
             return false;
         else return true;
+    }
+
+    @Override
+    public List<Long> getChainOfStations(Long trainId, Long departureStation, Long arrivalStation) {
+        List<TimetableDto> tdto = this.getRouteOfTrain(trainId);
+
+        Long departureTimeLong = this.getDeparture(trainId, departureStation).getTime();
+        Long arrivalTimeLong = this.getArrival(trainId, arrivalStation).getTime();
+
+        List<Long> stations = new ArrayList<>();
+        for (TimetableDto timetable:
+                tdto) {
+                    stations.add(timetable.getStationId());
+            }
+        int indexFirst = stations.indexOf(departureStation);
+        int indexLast = stations.indexOf(arrivalStation);
+        List<Long> stationsInRoute = new ArrayList<>();
+        for (Long stationIdx:
+             stations) {
+            if (stations.indexOf(stationIdx)<=indexLast){
+                if(stations.indexOf(stationIdx)>=indexFirst){
+                    stationsInRoute.add(stationIdx);
+                }
+            }
+
+        }
+
+        return stationsInRoute;
     }
 
     @Override
