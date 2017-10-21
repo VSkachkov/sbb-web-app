@@ -13,4 +13,6 @@ public interface ReserveSeatService {
     boolean checkFreeSeats(Long trainId, List<Long> chainOfStations, Date travelDate);
 
     void addNewRide(Long trainId, List<Long> chainOfStations, Date travelDate, Long userId);
+
+    void getReserves(Long trainNumber, Date travelDate);
 }

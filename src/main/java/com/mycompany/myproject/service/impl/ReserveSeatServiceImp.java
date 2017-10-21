@@ -44,7 +44,7 @@ public class ReserveSeatServiceImp implements ReserveSeatService{
     @Override
     public boolean checkFreeSeats(Long trainId, List<Long> chainOfStations, Date travelDate) {
 
-        reserveSeatDao.getReserveSeatsForTrainDate(trainId, travelDate);
+//        reserveSeatDao.getReserveSeatsForTrainDate(trainId, travelDate);
         return true; //TODO FINISH THIS METHOD
     }
 
@@ -62,5 +62,10 @@ public class ReserveSeatServiceImp implements ReserveSeatService{
         }
 
 
+    }
+
+    @Override
+    public void getReserves(Long trainNumber, Date travelDate) {
+//        reserveSeatDao.getReserveSeatsForTrainDate(trainNumber, travelDate);
     }
 }

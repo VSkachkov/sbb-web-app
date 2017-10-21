@@ -9,5 +9,5 @@ public interface ReserveSeatDao {
     List<ReserveSeat> getAllReserveSeats();
     void addNewReserveSeat(ReserveSeat reserveSeat);
 
-    void getReserveSeatsForTrainDate(Long trainId, Date travelDate);
+//    List<ReserveSeat> getReserveSeatsForTrainDate(Long trainId, Date travelDate);
 }

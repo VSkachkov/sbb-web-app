@@ -2,18 +2,13 @@ package com.mycompany.myproject.service.impl;
 
 import com.mycompany.myproject.service.dao.api.StationDao;
 import com.mycompany.myproject.service.dao.api.TimetableDao;
-import com.mycompany.myproject.service.dto.StationDto;
-import com.mycompany.myproject.service.dto.StationForm;
-import com.mycompany.myproject.service.dto.TimetableDto;
-import com.mycompany.myproject.service.dto.TrainDto;
-import com.mycompany.myproject.service.svc.CantonService;
-import com.mycompany.myproject.service.svc.ManagerService;
-import com.mycompany.myproject.service.svc.StationService;
-import com.mycompany.myproject.service.svc.TrainService;
+import com.mycompany.myproject.service.dto.*;
+import com.mycompany.myproject.service.svc.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 
@@ -29,6 +24,9 @@ public class ManagerServiceImp implements ManagerService {
 
     @Autowired
     CantonService cantonService;
+
+    @Autowired
+    ReserveSeatService reserveSeatService;
 
     @Autowired
     StationService stationService;
@@ -89,5 +87,11 @@ public class ManagerServiceImp implements ManagerService {
     @Override
     public void addStationToDB(StationForm stationForm) {
         stationService.addNewStationByForm(stationForm);
+    }
+
+    @Override
+    public List<PassengerForm> getPassengers(Long trainNumber, Date travelDate) {
+        reserveSeatService.getReserves(trainNumber, travelDate);
+        return null;
     }
 }
