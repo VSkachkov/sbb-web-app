@@ -32,9 +32,9 @@ CREATE TABLE IF NOT EXISTS `SBB_DB`.`Users` (
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
   `birthday` DATE NOT NULL,
-  `email` VARCHAR(45) NOT NULL,
-  `login` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NULL,
+  `login` VARCHAR(45) NULL,
+  `password` VARCHAR(45) NULL,
   `phone_Number` VARCHAR(12) NULL,
   `Role_id` INT NOT NULL,
   PRIMARY KEY (`User_id`),
@@ -97,6 +97,36 @@ CREATE TABLE IF NOT EXISTS `SBB_DB`.`Trains` (
 
 
 -- -----------------------------------------------------
+-- Table `SBB_DB`.`Reserve_seats`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SBB_DB`.`Reserve_seats` (
+  `reserve_id` INT NOT NULL,
+  `User_id` INT NOT NULL,
+  `TrainNumber` INT NOT NULL,
+  `Travel_date` DATE NOT NULL,
+  `station_id` INT NOT NULL,
+  PRIMARY KEY (`reserve_id`),
+  INDEX `Train_number_FK_idx` (`TrainNumber` ASC),
+  INDEX `User_id_fk_idx` (`User_id` ASC),
+  CONSTRAINT `Train_number_FK`
+  FOREIGN KEY (`TrainNumber`)
+  REFERENCES `SBB_DB`.`Trains` (`TrainNumber`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `User_id_fk`
+  FOREIGN KEY (`User_id`)
+  REFERENCES `SBB_DB`.`Users` (`User_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `station_id_fk`
+  FOREIGN KEY (`station_id`)
+  REFERENCES `SBB_DB`.`Stations` (`Station_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+  ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `SBB_DB`.`Timetable`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SBB_DB`.`Timetable` (
@@ -116,37 +146,6 @@ CREATE TABLE IF NOT EXISTS `SBB_DB`.`Timetable` (
   CONSTRAINT `Station_id`
   FOREIGN KEY (`Station_id`)
   REFERENCES `SBB_DB`.`Stations` (`Station_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-  ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `SBB_DB`.`Reserve_seats`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `SBB_DB`.`Reserve_seats` (
-  `reserve_id` INT NOT NULL,
-  `User_id` INT NOT NULL,
-  `TrainNumber` INT NOT NULL,
-  `Travel_date` DATE NOT NULL,
-  `Timetable_id` INT NOT NULL,
-  PRIMARY KEY (`reserve_id`),
-  INDEX `Train_number_FK_idx` (`TrainNumber` ASC),
-  INDEX `Timetable_id_fk_idx` (`Timetable_id` ASC),
-  INDEX `User_id_fk_idx` (`User_id` ASC),
-  CONSTRAINT `Train_number_FK`
-  FOREIGN KEY (`TrainNumber`)
-  REFERENCES `SBB_DB`.`Trains` (`TrainNumber`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `Timetable_id_fk`
-  FOREIGN KEY (`Timetable_id`)
-  REFERENCES `SBB_DB`.`Timetable` (`Timetable_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `User_id_fk`
-  FOREIGN KEY (`User_id`)
-  REFERENCES `SBB_DB`.`Users` (`User_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
   ENGINE = InnoDB;

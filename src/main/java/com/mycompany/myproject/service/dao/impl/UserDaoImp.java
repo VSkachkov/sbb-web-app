@@ -23,7 +23,8 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public void addNewUser(User user) {
-        em.persist(user);
+        em.merge(user);
+        em.flush();
     }
 
     @Override

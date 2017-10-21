@@ -80,43 +80,29 @@
 
     <div class="container">
 
-        <form:form method="POST" action="addStationResultLink" modelAttribute="stationForm" class="form-signin">
+        <form:form method="POST" action="addReservesResultLink" modelAttribute="passengerForm" class="form-signin">
             <h2 class="form-signin-heading">Enter travelling data</h2>
 
-            <spring:bind path="stationName">
+            <spring:bind path="trainNumber">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <form:input required="required" type="text" path="stationName" class="form-control" placeholder="Enter station name"
+                    <form:input required="required" type="number" path="trainNumber" class="form-control" placeholder="Enter train number"
                                 autofocus="true"></form:input>
-                    <form:errors path="stationName"></form:errors>
+                    <form:errors path="trainNumber"></form:errors>
                 </div>
             </spring:bind>
 
-            <spring:bind path="cantonName">
+            <spring:bind path="travelDate">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <%--<form:input required="required" type="text"  path="cantonName" class="form-control"  placeholder="cantonName"--%>
-                                <%--autofocus="true"></form:input>--%>
-                        <form:select  path="cantonName">
-                            <form:option value="NONE"> --SELECT CANTON--</form:option>
-                            <form:options items="${cantonsList}"></form:options>
-                        </form:select>
-                    <form:errors path="cantonName"></form:errors>
+                    <form:input required="required" type="date" path="travelDate" class="form-control" placeholder="Enter travel date"
+                                autofocus="true"></form:input>
+                    <form:errors path="travelDate"></form:errors>
                 </div>
             </spring:bind>
 
-            <%--<p> Please, set departure days: </p>--%>
-            <%--&lt;%&ndash;<spring:bind path="departMon">&ndash;%&gt;--%>
-            <%--<spring:bind path="departMon">--%>
-            <%--<div class="form-group ${status.error ? 'has-error' : ''}">--%>
-            <%--<label class="form-check-label"--%>
-            <%--<form:input type="boolean"  path="departMon"--%>
-            <%--autofocus="true"></form:input>--%>
 
-            <%--</div>--%>
-
-            <%--</spring:bind>--%>
 
             <button class="btn btn-lg btn-primary btn-block" type="submit"
-                    id="submit-registration">Add station</button>
+                    id="submit-registration">Show passengers</button>
         </form:form>
 
     </div>

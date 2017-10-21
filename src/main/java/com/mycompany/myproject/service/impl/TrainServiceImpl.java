@@ -89,6 +89,11 @@ public class TrainServiceImpl //extends GenericServiceImpl<Train,TrainDto, Long>
 
     }
 
+    @Override
+    public Train getTrainByTrainId(Long id) {
+        return trainDao.getTrainById(id);
+    }
+
     @Override //TODO IMPLEMENT
     public TrainDto getTrainById(Long id) {
         TrainDto trainDto = new TrainDto(trainDao.getTrainById(id));

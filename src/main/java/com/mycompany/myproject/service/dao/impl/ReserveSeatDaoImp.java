@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.sql.Date;
 import java.util.List;
 
 
@@ -27,5 +28,10 @@ public class ReserveSeatDaoImp implements ReserveSeatDao {
         {
             em.merge(reserveSeat); //
         }
+    }
+
+    @Override
+    public void getReserveSeatsForTrainDate(Long trainId, Date travelDate) {
+
     }
 }

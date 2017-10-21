@@ -18,9 +18,7 @@
         <table id="dataTable" class="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th><spring:message code="table.timetable.title" /></th>
                     <th><spring:message code="table.timetable.trainId" /></th>
-                    <th><spring:message code="table.timetable.stationId" /></th>
                     <th><spring:message code="table.timetable.arrival" /></th>
                     <th><spring:message code="table.timetable.departure" /></th>
                 </tr>
@@ -28,9 +26,7 @@
             <tbody>
                 <c:forEach var="t" items="${timetableModel}">
                     <tr>
-                        <td>${t.timetableId}</td>
                         <td>${t.trainId}</td>
-                        <td>${t.stationId}</td>
                         <td>${t.arrival}</td>
                         <td>${t.departure}</td>
                     <tr>

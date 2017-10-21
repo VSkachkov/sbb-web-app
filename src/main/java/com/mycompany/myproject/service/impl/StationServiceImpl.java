@@ -42,7 +42,7 @@ public class StationServiceImpl
 
     @Override
     public Station getStationById(Long id) {
-        return null;
+        return stationDao.getStationById(id);
     }
 
     @Override

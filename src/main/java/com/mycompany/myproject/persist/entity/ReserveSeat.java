@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -18,21 +19,22 @@ import java.sql.Date;
 public class ReserveSeat {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Run_id")
+    @GenericGenerator(name = "generator", strategy = "increment")
+    @GeneratedValue(generator = "generator")
+    @Column(name = "reserve_id")
     private Long runId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "timetable_id")
-    private Timetable timetableId;
+    @JoinColumn(name = "station_id")
+    private Station stationId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "User_id")
-    private User user;
+    private User userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TrainNumber")
-    private Train train;
+    private Train trainId;
 
     @Basic
     @Column(name = "Travel_date")

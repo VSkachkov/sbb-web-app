@@ -1,9 +1,6 @@
 package com.mycompany.myproject.web.controller;
 
-import com.mycompany.myproject.service.dto.StationDto;
-import com.mycompany.myproject.service.dto.StationForm;
-import com.mycompany.myproject.service.dto.TrainDto;
-import com.mycompany.myproject.service.dto.TrainsForm;
+import com.mycompany.myproject.service.dto.*;
 import com.mycompany.myproject.service.svc.CantonService;
 import com.mycompany.myproject.service.svc.ManagerService;
 import com.mycompany.myproject.service.svc.StationService;
@@ -17,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,6 +81,23 @@ public class ManagerController {
         model.addAttribute("cantonsList", cantonsList);
         model.addAttribute("stationForm", new StationForm());
         return "mAddStationPage";
+    }
+
+    @RequestMapping(value="getReservesLink", method = RequestMethod.GET)
+    public String getReserves(Model model){
+
+        List<Long> trainsList = new ArrayList<>();
+        Long trainNumberAttribute = 0L;
+        Date travelDate = new Date(0L);
+        model.addAttribute("passengerForm", new PassengerForm());
+
+
+        return "mGetReservesPage";
+    }
+
+    @PostMapping(value="/addReservesResultLink")
+        public @ResponseBody String showReserveResult(@ModelAttribute PassengerForm passengerForm){
+        return "Hello World!";
     }
 
 

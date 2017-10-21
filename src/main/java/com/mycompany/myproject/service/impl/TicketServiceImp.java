@@ -40,9 +40,12 @@ public class TicketServiceImp implements  TicketService {
     @Autowired
     TimetableService timetableService;
 
+    @Autowired
+    ReserveSeatService reserveSeatService;
+
     @Override
     public String launchBuyingProcedure(PassengerForm passengerForm){
-        String result="Not clear";
+        String result="Success!";
         Long trainId = passengerForm.getTrainNumber();
         Date travelDate = passengerForm.getTravelDate();
         if (!trainService.checkTrainDate(trainId, travelDate))
@@ -68,6 +71,14 @@ public class TicketServiceImp implements  TicketService {
             userService.addNewUser(user);
         Long userId = userService.getUserIdByPrivateInfo(user);
         List<Long> chainOfStations = timetableService.getChainOfStations(trainId, departureStation, arrivalStation);
+
+        boolean isFreeSeat = reserveSeatService.checkFreeSeats(trainId, chainOfStations, travelDate);
+
+        if(!isFreeSeat){
+
+            return result = "no free seats available!";
+        }
+        reserveSeatService.addNewRide(trainId, chainOfStations,travelDate, userId );
 
 
         return result;

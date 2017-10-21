@@ -15,6 +15,7 @@ public interface TrainService //extends GenericService<Train, TrainDto, Long>
     void addNewTrain(TrainDto trainDto);
     boolean checkTrainDate(Long trainId, Date travelDate);
     void removeTrain(Long id);
+    Train getTrainByTrainId(Long id);
     TrainDto getTrainById(Long id);
     List <TrainsAttribute> filterTrainsByDate(List<TrainsAttribute> trainsInfo, Date date);
 }
