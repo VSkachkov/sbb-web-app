@@ -96,20 +96,17 @@ public class ManagerController {
     }
 
     @PostMapping(value="/addReservesResultLink")
-        public  String showReserveResult(@ModelAttribute PassengerForm passengerForm){
+        public  ModelAndView showReserveResult(@ModelAttribute PassengerForm passengerForm){
 
         Date travelDate = passengerForm.getTravelDate();
         Long trainNumber = passengerForm.getTrainNumber();
         ModelAndView modelAndView = new ModelAndView();
         List<PassengerForm> passengers = managerService.getPassengers(trainNumber, travelDate);
-//        PassengerForm pass = new PassengerForm();
-//        pass.setFirstName("Hello");
-//        pass.setLastName("World");
-        modelAndView.addObject("passengerForm", passengers);
 
+        modelAndView.addObject("passengers", passengers);
+        modelAndView.setViewName("mShowReserveResult");
 
-        System.out.println("w");
-        return "mShowReserveResult";
+        return modelAndView;
     }
 
 

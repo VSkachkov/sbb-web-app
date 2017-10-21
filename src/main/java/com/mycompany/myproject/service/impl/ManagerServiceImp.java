@@ -1,5 +1,7 @@
 package com.mycompany.myproject.service.impl;
 
+import com.mycompany.myproject.persist.entity.ReserveSeat;
+import com.mycompany.myproject.persist.entity.User;
 import com.mycompany.myproject.service.dao.api.StationDao;
 import com.mycompany.myproject.service.dao.api.TimetableDao;
 import com.mycompany.myproject.service.dto.*;
@@ -10,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,8 +25,12 @@ public class ManagerServiceImp implements ManagerService {
     @Autowired
     StationDao stationDao;
 
+
     @Autowired
     CantonService cantonService;
+    
+    @Autowired
+    UserService userService;
 
     @Autowired
     ReserveSeatService reserveSeatService;
@@ -91,7 +98,37 @@ public class ManagerServiceImp implements ManagerService {
 
     @Override
     public List<PassengerForm> getPassengers(Long trainNumber, Date travelDate) {
-        reserveSeatService.getReserves(trainNumber, travelDate);
-        return null;
+        List <PassengerForm> passengers = new ArrayList<>();
+
+        List <Long> passengersIds = new ArrayList<>();
+        for (ReserveSeat reserveSeat:
+                reserveSeatService.getAllReserveSeats()) {
+            Long trainId = reserveSeat.getTrainId().getTrainId();
+            if (trainId==trainNumber){
+                Date date = new Date(0L);
+                date = reserveSeat.getTravelDate();
+                if(date.compareTo(travelDate)==0){
+                    if(!passengersIds.contains(reserveSeat.getUserId().getUserId())){
+                        passengersIds.add(reserveSeat.getUserId().getUserId());
+                    }
+                }
+            }
+        }
+
+
+        for (Long userId:
+                passengersIds) {
+            PassengerForm passForm = new PassengerForm();
+            User user = userService.getUserById(userId);
+            passForm.setFirstName( user.getFirstName());
+            passForm.setLastName( user.getLastName());
+            passForm.setBirthday(user.getBirthday());
+            passengers.add(passForm);
+        }
+
+        System.out.println("");
+
+
+        return passengers;
     }
 }

@@ -42,11 +42,19 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
+
                 <li class="nav-item">
-                    <a class="nav-link" href="Timetable">Timetable</a>
+                    <a class="nav-link" href="addStationLink">Add station</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="Trains">Trains</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="addTrainLink">Add train</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="getReservesLink">Get users on train</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="getTrainsLink">Get trains</a>
                 </li>
             </ul>
         </div>
@@ -78,7 +86,7 @@
 <div class="col-sm-offset-1 col-sm-10">
 
     <legend>
-        <spring:message code="table.trainsBetweenStations.title" />
+        <%--<spring:message code="table.trainsBetweenStations.title" />--%>
     </legend>
 
     <div>
@@ -87,17 +95,17 @@
                 <tr>
                     <th>  First name  </th>
                     <th> Last Name </th>
-                    <%--<th>Departure time</th>--%>
+                    <th>Birthday</th>
                     <%--<th>Arrival station</th>--%>
                     <%--<th>Arrival time</th>--%>
                 </tr>
             <thead>
             <tbody>
-                <c:forEach var="t" items="${passengerForm}">
+                <c:forEach var="t" items="${passengers}">
                     <tr>
                         <td>${t.firstName}</td>
                         <td>${t.lastName}</td>
-                        <%--<td>${t.stationTo}</td>--%>
+                        <td>${t.birthday}</td>
                         <%--<td>${t.stationTo}</td>--%>
                         <%--<td>${t.arrival}</td>--%>
                     <tr>

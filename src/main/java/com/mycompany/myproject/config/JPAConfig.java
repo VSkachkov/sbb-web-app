@@ -44,7 +44,7 @@ public class JPAConfig {
         ds.setPassword("0000");
         ds.setUrl("jdbc:mysql://localhost:3306/SBB_DB");
 
-        Resource initschema = new ClassPathResource("resources/sbb_schema.sql");
+        Resource initschema = new ClassPathResource("resources/sbb_schema.sql");//TODO DELETE
         DatabasePopulator databasePopulator = new ResourceDatabasePopulator();
 //        DatabasePopulator databasePopulator = new ResourceDatabasePopulator(initschema);
         DatabasePopulatorUtils.execute(databasePopulator, ds);
