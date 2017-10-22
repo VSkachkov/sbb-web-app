@@ -3,6 +3,7 @@ package com.mycompany.myproject.web.controller;
 import com.mycompany.myproject.dto.UserDto;
 import com.mycompany.myproject.persist.entity.User;
 import com.mycompany.myproject.service.svc.UserService;
+import com.mycompany.myproject.util.WebException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@Scope("request")
+@Scope("session")
 @SessionAttributes("user")
 public class SignInUpController {
     private static final Logger logger = LoggerFactory.getLogger(TimetableController.class);
@@ -27,6 +28,19 @@ public class SignInUpController {
 
     @Autowired
     UserService userService;
+
+    @GetMapping(value = {"/home"})
+    public String home() {
+        return "home";
+    }
+
+    @GetMapping(value = "/logout")
+    public String logout (HttpSession session, Model model){
+        model.addAttribute("user",new UserDto());
+        session.invalidate();
+        return "redirect:/home";
+    }
+
 
     @GetMapping(value = "/login")
     public String start(Model model, String error, HttpServletRequest request) {
@@ -43,24 +57,37 @@ public class SignInUpController {
     public  String SetUserSession(@ModelAttribute("user") UserDto user, Model model,
                                                HttpServletRequest request){
 
-        logger.error("User enters login data "+user.getLogin());
-        logger.error("User enters login password "+user.getPassword());
+        try {
+            logger.error("User enters login data " + user.getLogin());
+            logger.error("User enters login password " + user.getPassword());
 
-        user.setRole("ROLE_CLIENT");
-        model.addAttribute("user", user);
+            user.setRole("ROLE_CLIENT");
+            model.addAttribute("user", user);
 
-        User usr = userService.getUserByLogin(user.getLogin());
-        UserDto userDto = new UserDto(usr);
-        model.addAttribute("user", userDto);
-        if (userDto.getRole().equals("ROLE_ADMIN"))
-            return "managerPage";
-        else
-            return "home";
+            User usr = userService.getUserByLogin(user.getLogin());
+            UserDto userDto = new UserDto(usr);
+            model.addAttribute("user", userDto);
+            if (userDto.getRole().equals("ROLE_ADMIN"))
+                return "managerPage";
+            else
+                return "home";
+        }catch (Exception e){
+            logger.error("Failure when user Signs In");
+            return "404";
 
+        }
     }
 
 
 
+    @PostMapping(value = "/findEmail")
+    @ResponseBody
+    public String checkEmailExisting(@RequestParam String email) {
+        if (userService.getUserIdByEmail(email)!=0) {
+            return "this email already exists";
+        } else
+            return "";
+    }
 //    /// TODO Analize which version is better:
 //    //
 //    @PostMapping(value = "/login")

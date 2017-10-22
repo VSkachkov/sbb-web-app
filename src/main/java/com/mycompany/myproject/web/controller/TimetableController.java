@@ -1,10 +1,12 @@
 package com.mycompany.myproject.web.controller;
 
 
+import com.mycompany.myproject.dto.UserDto;
 import com.mycompany.myproject.service.svc.StationService;
 import com.mycompany.myproject.service.svc.TimetableService;
 import com.mycompany.myproject.dto.StationDto;
 import com.mycompany.myproject.dto.TimetableDto;
+import com.mycompany.myproject.service.svc.UserService;
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +30,9 @@ public class TimetableController {
     @Autowired
     private DozerBeanMapper mapper;
 
+    @Autowired
+    private UserService userService;
+
 
     @Autowired
     private TimetableService timetableService;
@@ -40,7 +45,7 @@ public class TimetableController {
     private MessageSource ms;
 
 
-    @RequestMapping(value = "/Timetable", method = RequestMethod.GET)
+    @RequestMapping(value = "/timetable", method = RequestMethod.GET)
     public String greetingForm(Model model) {
         model.addAttribute("greeting", new Greeting());
         StationDto stdo = new StationDto();
@@ -54,23 +59,47 @@ public class TimetableController {
         model.addAttribute("station", stdo);
         model.addAttribute("timetableModel", timetableService.getAllTimetable());
         logger.error("We are in GET method!");
-        return "Timetable";
+        return "timetable";
+    }
+
+    @RequestMapping(value = "/getCharNum", method = RequestMethod.GET)
+    public @ResponseBody Response getCharNum(@RequestParam String text) {
+
+        Response result = new Response();
+
+        if (text != null) {
+            result.setText(text);
+            result.setCount(text.length());
+        }
+
+        return result;
     }
 
 
-    @RequestMapping(value = "Timetable", method = RequestMethod.POST)
+    @RequestMapping(value = "/getUserInfo", method = RequestMethod.GET)
+    public @ResponseBody UserDto getCharNum(@RequestParam Long id) {
+
+        UserDto user = new UserDto();
+        if (user != null) {
+        user = new UserDto(userService.getUserById(id));
+        }
+
+        return user;
+    }
+
+    @RequestMapping(value = "timetable", method = RequestMethod.POST)
 //    @RequestMapping(value = "Timetable", method = RequestMethod.GET)
     public String getUsers(@ModelAttribute Model model) {
 
 
         logger.debug("display all timetable list");
-       return "Timetable";
+       return "timetable";
     }
 
 
-        @RequestMapping(value = "TimetableResult", method = RequestMethod.POST)
+        @RequestMapping(value = "timetableResult", method = RequestMethod.POST)
         public String getTimetable(@ModelAttribute Model model) {
-            return "TimetableResult";
+            return "timetableResult";
     }
 
 
@@ -86,7 +115,7 @@ public class TimetableController {
     public ModelAndView stationFiltered(@ModelAttribute StationDto station) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("timetableModel", timetableService.getAllRoutesThroughStationWithName(station.getStationName()));
-        modelAndView.setViewName("TimetableResult");
+        modelAndView.setViewName("timetableResult");
         return modelAndView;
     }
 
@@ -109,3 +138,22 @@ public class TimetableController {
 
 }
 
+
+class Response {
+
+    private int count;
+    private String text;
+
+    public int getCount() {
+        return count;
+    }
+    public void setCount(int count) {
+        this.count = count;
+    }
+    public String getText() {
+        return text;
+    }
+    public void setText(String text) {
+        this.text = text;
+    }
+}

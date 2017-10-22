@@ -34,33 +34,7 @@
 
 <body>
 
-<!-- Navigation -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="home">SBB main page</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-
-                <li class="nav-item">
-                    <a class="nav-link active" href="addStationLink">Add station</a>
-                </li>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="addTrainLink">Add train</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="getReservesLink">Get users on train</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="getTrainsLink">Get trains</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<jsp:include page="templates/navigation.jsp"/>
 
 
 <div class="container">
@@ -116,12 +90,7 @@
 
 <%--END OF TIMETABLE !!!!!!!!!!!!!!!!!!!!!!!!!!--%>
 <!-- Footer -->
-<footer class="py-5 bg-dark">
-    <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; T-Systems, 22nd Java School 2017</p>
-    </div>
-    <!-- /.container -->
-</footer>
+<jsp:include page="templates/footer.jsp"/>
 
 <!-- Bootstrap core JavaScript -->
 <script src="../resources/vendor/jquery/jquery.min.js"></script>

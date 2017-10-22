@@ -1,5 +1,6 @@
 package com.mycompany.myproject.web.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -11,14 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mycompany.myproject.service.svc.UserService;
 import com.mycompany.myproject.dto.UserDto;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @Scope("request")
@@ -47,6 +49,7 @@ public class UserController {
         modelAndView.setViewName("home");
         return modelAndView;
     }
+
 
 
     @RequestMapping(value = "/usersList", method = RequestMethod.GET)
@@ -85,5 +88,6 @@ public class UserController {
 //    }
 
 }
+
 
 

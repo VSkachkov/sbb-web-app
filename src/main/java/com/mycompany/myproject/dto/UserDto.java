@@ -42,7 +42,7 @@ public class UserDto {
     }
 
     public UserDto(){
-        this.role = "USER_ANONYM";
+        this.role = "ROLE_ANONYM";
 
     }
 

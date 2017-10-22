@@ -29,7 +29,36 @@
     <script type="text/javascript"
             src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 
+<%---------------%>
 
+    <%-------------------------------------------------------------------------------------------------%>
+    <title>Spring MVC Ajax example</title>
+    <script type="text/JavaScript"
+            src="${pageContext.request.contextPath}/resources/js/jquery-1.9.1.min.js">
+    </script>
+
+    <script type="text/javascript">
+        function doAjax() {
+
+            var inputText = $("#input_str").val();
+
+            $.ajax({
+                url : 'getCharNum',
+                type: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                mimeType: 'application/json',
+                data : ({
+                    text: inputText
+                }),
+                success: function (data) {
+
+                    var result = '"'+data.text+'", '+data.count+' characters';
+                    $("#result_text").text(result);
+                }
+            });
+        }
+    </script>
 </head>
 
 <body>
@@ -45,12 +74,17 @@
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item ">
-                    <a class="nav-link active" href="Timetable">Timetable</a>
+                    <a class="nav-link active" href="timetable">Timetable</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="TrainsLink">Trains</a>
+                    <a class="nav-link" href="trains">Trains</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="login">Sign In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="registration">Sign Up</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -91,14 +125,46 @@
 
 
 
+
+
+    <div class="col-sm-offset-1 col-sm-10">
+
+        <legend>
+            <spring:message code="table.timetable.title" />
+        </legend>
+
+        <div>
+            <table id="dataTable" class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th><spring:message code="table.timetable.trainId" /></th>
+                    <th><spring:message code="table.timetable.arrival" /></th>
+                    <th><spring:message code="table.timetable.departure" /></th>
+                </tr>
+                <thead>
+                <tbody>
+                <c:forEach var="t" items="${timetableModel}">
+                <tr>
+                    <td>${t.trainId}</td>
+                    <td>${t.arrival}</td>
+                    <td>${t.departure}</td>
+                <tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <h3>Enter text:</h3>
+    <input id="input_str" type="text">
+    <input type="button" value="OK" onclick="doAjax()">
+    <p id="result_text"></p>
+
 <%--END OF TIMETABLE !!!!!!!!!!!!!!!!!!!!!!!!!!--%>
 <!-- Footer -->
-<footer class="py-5 bg-dark">
-    <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; T-Systems, 22nd Java School 2017</p>
-    </div>
-    <!-- /.container -->
-</footer>
+    <!-- Footer -->
+    <jsp:include page="templates/footer.jsp"/>
 
 <!-- Bootstrap core JavaScript -->
 <script src="../resources/vendor/jquery/jquery.min.js"></script>

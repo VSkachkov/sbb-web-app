@@ -42,14 +42,14 @@ public class TrainController {
         return trainService.getAllTrains();
     }
 
-    @RequestMapping(value = "/TrainsLink", method = RequestMethod.GET)
+    @RequestMapping(value = "/trains", method = RequestMethod.GET)
     public String setConditionsforTrainsBetweenStations(Model model) {
 //        model.addAttribute("greeting", new Greeting());
 //        StationDto stdo = new StationDto();
 
         model.addAttribute("trainsForm", new TrainsForm());
         logger.error("We are in GET method!");
-        return "Trains";
+        return "trains";
     }
 
 //    @RequestMapping(value = "/resultTrainsLink", method = RequestMethod.POST)
@@ -129,7 +129,7 @@ public class TrainController {
 
         model.addAttribute("timetableModel",
                 filteredTrainsList);
-        return "TrainsResult";
+        return "trainsResult";
     }
 
 

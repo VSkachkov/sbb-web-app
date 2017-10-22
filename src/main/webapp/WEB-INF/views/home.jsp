@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,54 +11,23 @@
 
 	<title>SBB - homepage </title>
 
+
+
 	<!-- Bootstrap core CSS -->
 	<link href="../resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 	<!-- Custom styles for this template -->
 	<link href="../resources/css/modern-business.css" rel="stylesheet">
 
+
+
+	<%-------------------------------------------------------------------------------------------------%>
+
 </head>
 
 <body>
-<%=session.getAttribute("user.role")%>
-<!-- Navigation -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-	<div class="container">
-		<a class="navbar-brand" href="home">SBB main page</a>
-		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarResponsive">
-			<ul class="navbar-nav ml-auto">
-				<%--<li class="nav-item">--%>
-					<%--<a class="nav-link" href="about.html">About</a>--%>
-				<%--</li>--%>
-				<%--<li class="nav-item">--%>
-					<%--<a class="nav-link" href="services.html">Services</a>--%>
-				<%--</li>--%>
-				<%--<li class="nav-item">--%>
-					<%--<a class="nav-link" href="contact.html">Contact</a>--%>
-				<%--</li>--%>
-				<li class="nav-item">
-					<a class="nav-link" href="Timetable">Timetable</a>
-				</li>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="TrainsLink">Trains</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="Tickets">Tickets</a>
-				</li>
-    			<li class="nav-item">
-					<a class="nav-link" href="login">Sign In</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="registration">Sign Up</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-</nav>
+
+<jsp:include page="templates/navigation.jsp"/>
 
 <header>
 	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -115,13 +85,14 @@
 	</div>
 </header>
 
+<%--------------------------------------------------------------------------------------%>
+
+<%---------------------------------------------------------------------------------------------%>
+
+
+
 <!-- Footer -->
-<footer class="py-5 bg-dark">
-	<div class="container">
-		<p class="m-0 text-center text-white">Copyright &copy; T-Systems, 22nd Java School 2017</p>
-	</div>
-	<!-- /.container -->
-</footer>
+<jsp:include page="templates/footer.jsp"/>
 
 <!-- Bootstrap core JavaScript -->
 <script src="../resources/vendor/jquery/jquery.min.js"></script>

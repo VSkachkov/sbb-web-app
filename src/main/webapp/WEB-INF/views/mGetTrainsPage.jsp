@@ -114,6 +114,8 @@
 </head>
 <body>
 
+<jsp:include page="templates/navigation.jsp"/>
+
 <div class="col-sm-offset-1 col-sm-10">
 
     <legend>

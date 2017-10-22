@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ import java.util.List;
 @Controller
 @SessionAttributes("user")
 @Scope("request")
-@RequestMapping("/management")
+//@RequestMapping("/management")
 public class ManagerController {
 
     private static final Logger logger = LoggerFactory.getLogger(TrainController.class);
@@ -43,14 +44,22 @@ public class ManagerController {
     private MessageSource ms;
 
     @GetMapping(value = "/managerLink")
-    public String goManagerPage(
+    public String goManagerPage(HttpSession session, @ModelAttribute UserDto user
     ) {
+        UserDto userDto = (UserDto)session.getAttribute("user");
+        if (userDto.getRole().equals("ROLE_ADMIN"))
         return "managerPage";
+        else return "404";
     }
 
     @PostMapping(value = "/addTrainResultLink")
-    public @ResponseBody String addTrainForm(@ModelAttribute TrainDto trainDto
-    ) { //TODO Fix problem with checkbox in bootstrap
+    public @ResponseBody String addTrainForm(HttpSession session,
+                                             @ModelAttribute TrainDto trainDto,
+                                             @ModelAttribute UserDto user) {
+        UserDto userDto = (UserDto)session.getAttribute("user");
+        if (userDto.getRole().equals("ROLE_ADMIN"))
+        {
+        //TODO Fix problem with checkbox in bootstrap
         trainDto.setDepartMon(true);
         trainDto.setDepartTue(true);
         trainDto.setDepartWed(true);
@@ -64,19 +73,29 @@ public class ManagerController {
 //        ModelAndView modelAndView = new ModelAndView();
 //        modelAndView.setViewName("TrainsResult");
 
-        return "Train was added to DB";
+        return "Train was added to DB";}
+        else return "404";
     }
 
 
 
     @RequestMapping(value = "/addTrainLink", method = RequestMethod.GET)
-    public String addTrain(Model model){
+    public String addTrain(Model model, HttpSession session){
+        UserDto userDto = (UserDto)session.getAttribute("user");
+        if (!userDto.getRole().equals("ROLE_ADMIN"))
+        { return "home";}
+
         model.addAttribute("trainDto", new TrainDto());
         return "mAddTrainPage";
     }
 
     @RequestMapping(value = "/addStationLink", method = RequestMethod.GET)
-    public String addStation(Model model){
+    public String addStation(Model model,
+                             HttpSession session){
+        UserDto userDto = (UserDto)session.getAttribute("user");
+        if (!userDto.getRole().equals("ROLE_ADMIN"))
+        { return "home";}
+
         List <String> cantonsList = new ArrayList<>();
         cantonsList = cantonService.getAllCantonsNames();
 
@@ -86,7 +105,11 @@ public class ManagerController {
     }
 
     @RequestMapping(value="getReservesLink", method = RequestMethod.GET)
-    public String getReserves(Model model){
+    public String getReserves(Model model,
+                              HttpSession session){
+        UserDto userDto = (UserDto)session.getAttribute("user");
+        if (!userDto.getRole().equals("ROLE_ADMIN"))
+        { return "home";}
 
         List<Long> trainsList = new ArrayList<>();
         Long trainNumberAttribute = 0L;
@@ -98,7 +121,11 @@ public class ManagerController {
     }
 
     @PostMapping(value="/addReservesResultLink")
-        public  ModelAndView showReserveResult(@ModelAttribute PassengerForm passengerForm){
+        public  ModelAndView showReserveResult(@ModelAttribute PassengerForm passengerForm,
+                                               HttpSession session){
+        UserDto userDto = (UserDto)session.getAttribute("user");
+        if (!userDto.getRole().equals("ROLE_ADMIN"))
+        { return new ModelAndView("home");}
 
         Date travelDate = passengerForm.getTravelDate();
         Long trainNumber = passengerForm.getTrainNumber();
@@ -115,44 +142,25 @@ public class ManagerController {
 
 
     @PostMapping(value = "/addStationResultLink")
-    public @ResponseBody String addTrainForm(@ModelAttribute StationForm stationForm
-    ) {
+    public @ResponseBody String addTrainForm(@ModelAttribute StationForm stationForm,
+                                             HttpSession session) {
+        UserDto userDto = (UserDto)session.getAttribute("user");
+        if (!userDto.getRole().equals("ROLE_ADMIN"))
+        { return "home";}
+
         managerService.addStationToDB(stationForm);
 
 
         return "Station was added to DB";
     }
 
-//    @GetMapping(value = "/addStationLink")
-//    public String addStation(Model model
-//    ) {
-//        model.addAttribute("greeting", new Greeting());
-//        StationDto stdo = new StationDto();
-//
-//
-//        List<String> stationsList = new ArrayList<>();
-//        stationsList = stationService.getAllStationsNames();
-////        model.addAttribute("myform", new MyForm());
-//        model.addAttribute("someList", stationsList);
-//
-//        model.addAttribute("station", stdo);
-//        model.addAttribute("timetableModel", timetableService.getAllTimetable());
-//        logger.error("We are in GET method!");
-//        return "mAddStationPage";
-//    }
-//
-//    @PostMapping(value = "/mResultAddStation")
-//    public @ResponseBody String addStationResult(Model model, @ModelAttribute ("station") StationForm stationForm)
-//     {
-//
-//
-//        return "OK";
-//    }
-
-
     @RequestMapping(value = "/getTrainsLink", method = RequestMethod.GET)
-    public String getTrains(Model model
-    ) {
+    public String getTrains(Model model,
+                            HttpSession session) {
+        UserDto userDto = (UserDto)session.getAttribute("user");
+        if (!userDto.getRole().equals("ROLE_ADMIN"))
+        { return "home";}
+
         List <TrainDto> trainDtos = managerService.getTrainsForManagers();
 //        ModelAndView modelAndView = new ModelAndView("mGetTrainsPage" );
 ////        modelAndView.setViewName("");

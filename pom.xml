@@ -169,6 +169,13 @@
 			<version>2.5.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.5.3</version>
+		</dependency>
+
+
 		<!-- hsql -->
 		<dependency>
 			<groupId>org.hsqldb</groupId>
