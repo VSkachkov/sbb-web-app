@@ -48,78 +48,27 @@ public class TrainController {
 //        StationDto stdo = new StationDto();
 
         model.addAttribute("trainsForm", new TrainsForm());
-        logger.error("We are in GET method!");
+        logger.info("We are in GET method!");
         return "trains";
     }
 
-//    @RequestMapping(value = "/resultTrainsLink", method = RequestMethod.POST)
-//    public ModelAndView getStationFiltered(@ModelAttribute TrainsForm trainsForm) {
-//        ModelAndView modelAndView = new ModelAndView();
-////        logger.error("Time = "+trainsForm.getTravelTimeFrom().toString());
-////        logger.error("Time = "+trainsForm.getTravelTimeTo().toString());
-//        logger.error("Date = "+trainsForm.getTravelDate());
-//        logger.error("From = "+trainsForm.getStationFrom());
-//        logger.error("To = "+trainsForm.getStationTo());
-////        modelAndView.addObject("trainsform", trainsForm);
-//        List<Long> trainsList = new ArrayList<>();
-//        trainsList.add(1L);
-//        trainsList.add(4L);
-//        trainsList.add(6L);
-//
-//        PassengerForm passengerForm = new PassengerForm();
-//        modelAndView.addObject("trainsForm",trainsForm );
-//        modelAndView.addObject("trainsList", trainsList);
-//        modelAndView.addObject("showTravelDate", trainsForm.getTravelDate().toString());
-//        modelAndView.addObject("passengerForm", passengerForm);
-//        passengerForm.setFromStation(trainsForm.getStationFrom());
-//        passengerForm.setToStation(trainsForm.getStationTo()); //TODO finish code here\
-//
-////        modelAndView.addObject("timetableModel", timetableService.getAllRoutesThroughStationWithName(trainsForm.getStationTo()));
-////        ////PREVIOUS VERSION
-//        List<TrainsAttribute> trainsByRouteAndTime = timetableService.
-//                getTimetableBetweenStations(trainsForm.getStationFrom(), trainsForm.getStationTo(),
-//                trainsForm.getEarlyTime(), trainsForm.getLateTime());
-//
-//        // Future version WHERE TIME INSTEAD OF STRING
-////        List<TrainsAttribute> trainsByRouteAndTime = timetableService.
-////                getTimetableBetweenStations(trainsForm.getStationFrom(), trainsForm.getStationTo(),
-////                        trainsForm.getTravelTimeFrom(), trainsForm.getTravelTimeTo());
-//
-//        //sort list by date:
-//        List<TrainsAttribute> filteredTrainsList = trainService.filterTrainsByDate(trainsByRouteAndTime, trainsForm.getTravelDate());
-//
-//
-//
-//        modelAndView.addObject("timetableModel",
-//                filteredTrainsList);
-//        modelAndView.setViewName("TrainsResult");
-//        return modelAndView;
-//    }
 
     @RequestMapping(value = "/resultTrains", method = RequestMethod.POST)
     public String getStationFiltered(Model model, @ModelAttribute("trainsForm") TrainsForm trainsForm) {
-//        logger.error("Time = "+trainsForm.getTravelTimeFrom().toString());
-//        logger.error("Time = "+trainsForm.getTravelTimeTo().toString());
-//        logger.error("Date = "+trainsForm.getTravelDate());
-//        logger.error("From = "+trainsForm.getStationFrom());
-//        logger.error("To = "+trainsForm.getStationTo());
-//        modelAndView.addObject("trainsform", trainsForm);
         List<Long> trainsList = new ArrayList<>();
-        trainsList.add(1L);
-        trainsList.add(4L);
-        trainsList.add(6L);
-         PassengerForm passengerForm = new PassengerForm();
-        model.addAttribute("trainsForm",trainsForm );
-        model.addAttribute("TravelDate", trainsForm.getTravelDate());
-        model.addAttribute("StationFrom", trainsForm.getStationFrom());
-        model.addAttribute("StationTo", trainsForm.getStationTo());
-//        model.addAttribute("trainsList", trainsList);
-//        model.addAttribute("showTravelDate", trainsForm.getTravelDate().toString());
-
-        passengerForm.setFromStation(trainsForm.getStationFrom());
-        passengerForm.setToStation(trainsForm.getStationTo()); //TODO finish code here\
-        passengerForm.setTravelDate(trainsForm.getTravelDate());
-        model.addAttribute("passengerForm", passengerForm);
+//
+//         PassengerForm passengerForm = new PassengerForm();
+//        model.addAttribute("trainsForm",trainsForm );
+//        model.addAttribute("TravelDate", trainsForm.getTravelDate());
+//        model.addAttribute("StationFrom", trainsForm.getStationFrom());
+//        model.addAttribute("StationTo", trainsForm.getStationTo());
+////        model.addAttribute("trainsList", trainsList);
+////        model.addAttribute("showTravelDate", trainsForm.getTravelDate().toString());
+//
+//        passengerForm.setFromStation(trainsForm.getStationFrom());
+//        passengerForm.setToStation(trainsForm.getStationTo()); //TODO finish code here\
+//        passengerForm.setTravelDate(trainsForm.getTravelDate());
+//        model.addAttribute("passengerForm", passengerForm);
         List<TrainsAttribute> trainsByRouteAndTime = timetableService.
                 getTimetableBetweenStations(trainsForm.getStationFrom(), trainsForm.getStationTo(),
                         trainsForm.getEarlyTime(), trainsForm.getLateTime());

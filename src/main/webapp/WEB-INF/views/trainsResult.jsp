@@ -52,11 +52,6 @@
     </ol>
 </div>
 <br>
-<br>
-<br>
-<br>
-
-
 
 <div class="col-sm-offset-1 col-sm-10">
 
@@ -90,117 +85,114 @@
     </div>
 </div>
 
-<c:out value="${someDate}"/>
-
-
 <div class="container">
 <br>
 <br>
 <br>
 <br>
 
-    <form:form method="POST" action="buyTicketResult" modelAttribute="passengerForm" class="form-signin">
-        <h2 class="form-signin-heading">Enter travelling information :</h2>
+    <%--<form:form method="POST" action="buyTicketResult" modelAttribute="passengerForm" class="form-signin">--%>
+        <%--<h2 class="form-signin-heading">Enter travelling information :</h2>--%>
 
-        <%--<p>travelDate:</p>--%>
-        <%--<spring:bind path="travelDate">--%>
+        <%--&lt;%&ndash;<p>travelDate:</p>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;<spring:bind path="travelDate">&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<div class="form-group ${status.error ? 'has-error' : ''}">&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<form:input  required="required" type="date" path="travelDate" value="2000-06-01"&ndash;%&gt;--%>
+                             <%--&lt;%&ndash;placeholder="travelDate"       max="2017-06-01" min="1920-05-29"&ndash;%&gt;--%>
+                <%--&lt;%&ndash;></form:input>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<form:errors path="travelDate"></form:errors>&ndash;%&gt;--%>
+            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;</spring:bind>&ndash;%&gt;--%>
+
+        <%--<p>trainNumber:</p>--%>
+        <%--<spring:bind path="trainNumber">--%>
             <%--<div class="form-group ${status.error ? 'has-error' : ''}">--%>
-                <%--<form:input  required="required" type="date" path="travelDate" value="2000-06-01"--%>
-                             <%--placeholder="travelDate"       max="2017-06-01" min="1920-05-29"--%>
+                <%--<form:input  required="required" type="number" path="trainNumber"--%>
+                             <%--placeholder="trainNumber"--%>
                 <%--></form:input>--%>
-                <%--<form:errors path="travelDate"></form:errors>--%>
+                <%--<form:errors path="trainNumber"></form:errors>--%>
+            <%--</div>--%>
+        <%--</spring:bind>--%>
+        <%--<br>--%>
+        <%--<br>--%>
+        <%--<br>--%>
+        <%--<br>--%>
+        <%--<spring:bind path="firstName">--%>
+            <%--<div class="form-group ${status.error ? 'has-error' : ''}">--%>
+                <%--<form:input required="required" type="text" path="firstName" placeholder="First Name"--%>
+                            <%--autofocus="false"></form:input>--%>
+                <%--<form:errors path="firstName"></form:errors>--%>
+            <%--</div>--%>
+        <%--</spring:bind>--%>
+        <%--<spring:bind path="lastName">--%>
+            <%--<div class="form-group ${status.error ? 'has-error' : ''}">--%>
+                <%--<form:input  required="required" type="text" path="lastName"  placeholder="Last Name"--%>
+                <%--></form:input>--%>
+                <%--<form:errors path="lastName"></form:errors>--%>
             <%--</div>--%>
         <%--</spring:bind>--%>
 
-        <p>trainNumber:</p>
-        <spring:bind path="trainNumber">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input  required="required" type="number" path="trainNumber"
-                             placeholder="trainNumber"
-                ></form:input>
-                <form:errors path="trainNumber"></form:errors>
-            </div>
-        </spring:bind>
-        <br>
-        <br>
-        <br>
-        <br>
-        <spring:bind path="firstName">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input required="required" type="text" path="firstName" placeholder="First Name"
-                            autofocus="false"></form:input>
-                <form:errors path="firstName"></form:errors>
-            </div>
-        </spring:bind>
-        <spring:bind path="lastName">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input  required="required" type="text" path="lastName"  placeholder="Last Name"
-                ></form:input>
-                <form:errors path="lastName"></form:errors>
-            </div>
-        </spring:bind>
 
+        <%--<p>Bithday:</p>--%>
+        <%--<spring:bind path="birthday">--%>
+            <%--<div class="form-group ${status.error ? 'has-error' : ''}">--%>
+                <%--<form:input  required="required" type="date" path="birthday" value="2000-06-01"--%>
+                             <%--placeholder="Birtday"       max="2017-06-01" min="1920-05-29"--%>
+                <%--></form:input>--%>
+                <%--<form:errors path="birthday"></form:errors>--%>
+            <%--</div>--%>
+        <%--</spring:bind>--%>
 
-        <p>Bithday:</p>
-        <spring:bind path="birthday">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input  required="required" type="date" path="birthday" value="2000-06-01"
-                             placeholder="Birtday"       max="2017-06-01" min="1920-05-29"
-                ></form:input>
-                <form:errors path="birthday"></form:errors>
-            </div>
-        </spring:bind>
+        <%--<button class="btn btn-lg btn-primary " type="submit"--%>
+                <%--id="submit-registration">Buy ticket</button>--%>
+        <%--<form:input hidden = "true" type="date" path="travelDate" value="${TravelDate}"></form:input>--%>
+        <%--<form:input hidden = "true" type="text" path="fromStation" value="${StationFrom}"></form:input>--%>
+        <%--<form:input hidden = "true" type="text" path="toStation" value="${StationTo}"></form:input>--%>
+    <%--</form:form>--%>
 
-        <button class="btn btn-lg btn-primary " type="submit"
-                id="submit-registration">Buy ticket</button>
-        <form:input hidden = "true" type="date" path="travelDate" value="${TravelDate}"></form:input>
-        <form:input hidden = "true" type="text" path="fromStation" value="${StationFrom}"></form:input>
-        <form:input hidden = "true" type="text" path="toStation" value="${StationTo}"></form:input>
-    </form:form>
+<%--</div>--%>
+<%--<script>--%>
+    <%--function checkParams() {--%>
+        <%--var loginError = document.getElementById('loginExists').innerHTML;--%>
+        <%--var emailError = document.getElementById('emailExists').innerHTML;--%>
 
-</div>
-<script>
-    function checkParams() {
-        var loginError = document.getElementById('loginExists').innerHTML;
-        var emailError = document.getElementById('emailExists').innerHTML;
+        <%--if(loginError.length !== 0 || emailError.length !== 0) {--%>
+            <%--$('#submit-registration').removeAttr('active');--%>
+            <%--$('#submit-registration').attr('disabled', 'disabled');--%>
+        <%--} else {--%>
+            <%--$('#submit-registration').removeAttr('disabled');--%>
+            <%--$('#submit-registration').attr('active', 'active');--%>
+        <%--}--%>
+    <%--}--%>
 
-        if(loginError.length !== 0 || emailError.length !== 0) {
-            $('#submit-registration').removeAttr('active');
-            $('#submit-registration').attr('disabled', 'disabled');
-        } else {
-            $('#submit-registration').removeAttr('disabled');
-            $('#submit-registration').attr('active', 'active');
-        }
-    }
+    <%--function onBlurEmailFunction(obj){--%>
+        <%--var email = obj.value;--%>
+        <%--$.ajax({--%>
+            <%--type: "POST",--%>
+            <%--data: {email : email},--%>
+            <%--url: "${pageContext.request.contextPath}/registration/findEmail/",--%>
+            <%--success: function (msg) {--%>
+                <%--$("#emailExists").html(msg);--%>
+                <%--checkParams();--%>
+            <%--}--%>
+        <%--})--%>
 
-    function onBlurEmailFunction(obj){
-        var email = obj.value;
-        $.ajax({
-            type: "POST",
-            data: {email : email},
-            url: "${pageContext.request.contextPath}/registration/findEmail/",
-            success: function (msg) {
-                $("#emailExists").html(msg);
-                checkParams();
-            }
-        })
+    <%--};--%>
 
-    };
+    <%--function onBlurLoginFunction(obj) {--%>
+        <%--var login = obj.value;--%>
+        <%--$.ajax({--%>
+            <%--type: "POST",--%>
+            <%--data: {login : login},--%>
+            <%--url: "${pageContext.request.contextPath}/registration/findLogin/",--%>
+            <%--success: function (msg) {--%>
+                <%--$("#loginExists").text(msg);--%>
+                <%--checkParams();--%>
+            <%--}--%>
+        <%--})--%>
 
-    function onBlurLoginFunction(obj) {
-        var login = obj.value;
-        $.ajax({
-            type: "POST",
-            data: {login : login},
-            url: "${pageContext.request.contextPath}/registration/findLogin/",
-            success: function (msg) {
-                $("#loginExists").text(msg);
-                checkParams();
-            }
-        })
-
-    }
-</script>
+    <%--}--%>
+<%--</script>--%>
 
 
 

@@ -131,47 +131,47 @@
 
 
 
-    <div class="col-sm-offset-1 col-sm-10">
+    <%--<div class="col-sm-offset-1 col-sm-10">--%>
 
-        <legend>
-            <spring:message code="table.timetable.title" />
-        </legend>
+        <%--<legend>--%>
+            <%--<spring:message code="table.timetable.title" />--%>
+        <%--</legend>--%>
 
-        <div>
-            <table id="dataTable" class="table table-striped table-bordered">
-                <thead>
-                <tr>
-                    <th><spring:message code="table.timetable.trainId" /></th>
-                    <th><spring:message code="table.timetable.arrival" /></th>
-                    <th><spring:message code="table.timetable.departure" /></th>
-                </tr>
-                <thead>
-                <tbody>
-                <c:forEach var="t" items="${timetableModel}">
-                <tr>
-                    <td>${t.trainId}</td>
-                    <td>${t.arrival}</td>
-                    <td>${t.departure}</td>
-                <tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-        </div>
-    </div>
+        <%--<div>--%>
+            <%--<table id="dataTable" class="table table-striped table-bordered">--%>
+                <%--<thead>--%>
+                <%--<tr>--%>
+                    <%--<th><spring:message code="table.timetable.trainId" /></th>--%>
+                    <%--<th><spring:message code="table.timetable.arrival" /></th>--%>
+                    <%--<th><spring:message code="table.timetable.departure" /></th>--%>
+                <%--</tr>--%>
+                <%--<thead>--%>
+                <%--<tbody>--%>
+                <%--<c:forEach var="t" items="${timetableModel}">--%>
+                <%--<tr>--%>
+                    <%--<td>${t.trainId}</td>--%>
+                    <%--<td>${t.arrival}</td>--%>
+                    <%--<td>${t.departure}</td>--%>
+                <%--<tr>--%>
+                    <%--</c:forEach>--%>
+                <%--</tbody>--%>
+            <%--</table>--%>
+        <%--</div>--%>
+    <%--</div>--%>
 
 
-    <h3>Enter user login:</h3>
-    <input id="input_login" type="text">
-    <input type="button" value="OK" onclick="sendUserLogin()">
-    <p id="result_user"></p>
+    <%--<h3>Enter user login:</h3>--%>
+    <%--<input id="input_login" type="text">--%>
+    <%--<input type="button" value="OK" onclick="sendUserLogin()">--%>
+    <%--<p id="result_user"></p>--%>
 
-    <br>
-    <br>
+    <%--<br>--%>
+    <%--<br>--%>
 
-    <h3>Enter text:</h3>
-    <input id="input_str" type="text">
-    <input type="button" value="OK" onclick="doAjax()">
-    <p id="result_text"></p>
+    <%--<h3>Enter text:</h3>--%>
+    <%--<input id="input_str" type="text">--%>
+    <%--<input type="button" value="OK" onclick="doAjax()">--%>
+    <%--<p id="result_text"></p>--%>
 
 
 

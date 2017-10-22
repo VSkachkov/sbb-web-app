@@ -19,9 +19,9 @@
     <title>SBB - Timetable</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="../resources/css/modern-business.css" rel="stylesheet">
+    <link href="../../resources/css/modern-business.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
 
     <script type="text/javascript"
@@ -47,13 +47,13 @@
         <li class="breadcrumb-item">
             <a href="home">Home</a>
         </li>
-        <li class="breadcrumb-item active">Trains</li>
+        <li class="breadcrumb-item active">Tickets</li>
     </ol>
 
 
     <div class="container">
 
-        <form:form method="POST" action="resultTrains" modelAttribute="trainsForm" class="form-signin">
+        <form:form method="POST" action="resultTrainsForTicket" modelAttribute="trainsForm" class="form-signin">
             <h2 class="form-signin-heading">Enter travelling data</h2>
 
             <spring:bind path="stationFrom">
@@ -123,9 +123,9 @@
 </footer>
 
 <!-- Bootstrap core JavaScript -->
-<script src="../resources/vendor/jquery/jquery.min.js"></script>
-<script src="../resources/vendor/popper/popper.min.js"></script>
-<script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../resources/vendor/jquery/jquery.min.js"></script>
+<script src="../../resources/vendor/popper/popper.min.js"></script>
+<script src="../../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 </body>
 

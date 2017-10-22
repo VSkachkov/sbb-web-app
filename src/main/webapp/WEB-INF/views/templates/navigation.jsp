@@ -58,7 +58,7 @@
                         <a class="nav-link" href="trains">Trains</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="trains">Buy ticket</a>
+                        <a class="nav-link" href="buyTicket">Buy ticket</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="logout">Sign out</a>
