@@ -52,8 +52,7 @@ public class UserController {
 
     @RequestMapping(value = "/usersList", method = RequestMethod.GET)
     public @ResponseBody List<UserDto> usersList() {
-        logger.debug("get json user list");
-        logger.info("Hello world");
+        logger.info("Request of users JSON list");
         return userService.getAllUsers();
     }
 
@@ -61,7 +60,7 @@ public class UserController {
 
     @RequestMapping(value = "users", method = RequestMethod.GET)
     public ModelAndView getUsers() {
-        logger.debug("display user list");
+        logger.info("Displaying information about users");
         ModelAndView mv= new ModelAndView("usersView");
         mv.addObject("usersModel", userService.getAllUsers());
         return mv;

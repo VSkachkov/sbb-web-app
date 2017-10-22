@@ -37,6 +37,7 @@ public class ManagerController {
     @GetMapping(value = "/manager")
     public String goManagerPage(HttpSession session, @ModelAttribute UserDto user
     ) {
+        logger.info("user tries to log in as admin");
         UserDto userDto = (UserDto)session.getAttribute("user");
         if (userDto.getRole().equals("ROLE_ADMIN"))
         return "managerPage";
@@ -46,6 +47,7 @@ public class ManagerController {
     @GetMapping(value = "/managerPage")
     public String goToManagerPage(HttpSession session, @ModelAttribute UserDto user
     ) {
+        logger.info("user tries to log in as admin");
         UserDto userDto = (UserDto)session.getAttribute("user");
         if (userDto.getRole().equals("ROLE_ADMIN"))
             return "managerPage";
@@ -60,7 +62,8 @@ public class ManagerController {
         UserDto userDto = (UserDto)session.getAttribute("user");
         if (userDto.getRole().equals("ROLE_ADMIN"))
         {
-        //TODO Fix problem with checkbox in bootstrap
+            logger.info("manager requests list of trains in database");
+            //TODO Fix problem with checkbox in bootstrap
         trainDto.setDepartMon(true);
         trainDto.setDepartTue(true);
         trainDto.setDepartWed(true);
@@ -80,6 +83,7 @@ public class ManagerController {
 
     @RequestMapping(value = "/addTrain", method = RequestMethod.GET)
     public String addTrain(Model model, HttpSession session){
+        logger.info("manager adds train to database");
         UserDto userDto = (UserDto)session.getAttribute("user");
         if (!userDto.getRole().equals("ROLE_ADMIN"))
         { return "home";}
@@ -92,6 +96,7 @@ public class ManagerController {
     @RequestMapping(value="getReserves", method = RequestMethod.GET)
     public String getReserves(Model model,
                               HttpSession session){
+        logger.info("manager checks passengers onboard");
         UserDto userDto = (UserDto)session.getAttribute("user");
         if (!userDto.getRole().equals("ROLE_ADMIN"))
         { return "home";}
@@ -108,6 +113,7 @@ public class ManagerController {
     @PostMapping(value="/addReservesResult")
         public  ModelAndView showReserveResult(@ModelAttribute PassengerForm passengerForm,
                                                HttpSession session){
+        logger.info("manager checks registered passengers depending on the train");
         UserDto userDto = (UserDto)session.getAttribute("user");
         if (!userDto.getRole().equals("ROLE_ADMIN"))
         { return new ModelAndView("home");}
@@ -128,6 +134,7 @@ public class ManagerController {
     @RequestMapping(value = "/addStation", method = RequestMethod.GET)
     public String addStation(Model model,
                              HttpSession session){
+        logger.info("manager adds station to database");
         UserDto userDto = (UserDto)session.getAttribute("user");
         if (!userDto.getRole().equals("ROLE_ADMIN"))
         { return "home";}
@@ -144,6 +151,7 @@ public class ManagerController {
     public  String addStationForm(@ModelAttribute StationForm stationForm,
                                              HttpSession session,
                                   Model model) {
+        logger.info("manager adds station to database. Result of adding station to DB");
         UserDto userDto = (UserDto)session.getAttribute("user");
         if (!userDto.getRole().equals("ROLE_ADMIN"))
         { return "home";}
@@ -163,6 +171,7 @@ public class ManagerController {
     @RequestMapping(value = "/getTrains", method = RequestMethod.GET)
     public String getTrains(Model model,
                             HttpSession session) {
+        logger.info("manager gets list of trains in database");
         UserDto userDto = (UserDto)session.getAttribute("user");
         if (!userDto.getRole().equals("ROLE_ADMIN"))
         { return "home";}

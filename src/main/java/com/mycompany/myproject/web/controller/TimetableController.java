@@ -48,15 +48,13 @@ public class TimetableController {
     @RequestMapping(value = "/timetable", method = RequestMethod.GET)
     public String greetingForm(Model model) {
        StationDto stdo = new StationDto();
-
-
         List<String> stationsList = new ArrayList<>();
         stationsList = timetableService.getAllStationsNames();
         model.addAttribute("someList", stationsList);
 
         model.addAttribute("station", stdo);
         model.addAttribute("timetableModel", timetableService.getAllTimetable());
-        logger.error("We are in GET method!");
+        logger.info("Someone requests timetable");
         return "timetable";
     }
 
@@ -70,7 +68,7 @@ public class TimetableController {
         if (user != null) {
         user = new UserDto(userService.getUserByLogin(login));
         }
-
+        logger.info("getting information about user");
         return user;
     }
 
@@ -78,10 +76,9 @@ public class TimetableController {
     public String getUsers(@ModelAttribute Model model) {
 
 
-        logger.debug("display all timetable list");
+        logger.debug("Discpaying timetable list");
        return "timetable";
     }
-
 
         @RequestMapping(value = "timetableResult", method = RequestMethod.POST)
         public String getTimetable(@ModelAttribute Model model) {
@@ -92,6 +89,7 @@ public class TimetableController {
 
     @RequestMapping(value = "/resultTT", method = RequestMethod.GET)
     public ModelAndView stationFiltered(@ModelAttribute StationDto station) {
+        logger.debug("Filtering information about stations");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("timetableModel", timetableService.getAllRoutesThroughStationWithName(station.getStationName()));
         modelAndView.setViewName("timetableResult");

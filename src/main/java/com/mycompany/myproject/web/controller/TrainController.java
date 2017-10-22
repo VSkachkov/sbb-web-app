@@ -38,7 +38,7 @@ public class TrainController {
 
     @RequestMapping(value = "/trainsList", method = RequestMethod.GET)
     public @ResponseBody List<TrainDto> usersList() {
-        logger.debug("get json trains list");
+        logger.info("Request trains list");
         return trainService.getAllTrains();
     }
 
@@ -46,13 +46,14 @@ public class TrainController {
     public String setConditionsforTrainsBetweenStations(Model model) {
 
         model.addAttribute("trainsForm", new TrainsForm());
-        logger.info("We are in GET method!");
+        logger.info("Setting conditions for trains between stations");
         return "trains";
     }
 
 
     @RequestMapping(value = "/resultTrains", method = RequestMethod.POST)
     public String getStationFiltered(Model model, @ModelAttribute("trainsForm") TrainsForm trainsForm) {
+        logger.info("Providing information about traons between stations");
         List<Long> trainsList = new ArrayList<>();
         List<TrainsAttribute> trainsByRouteAndTime = timetableService.
                 getTimetableBetweenStations(trainsForm.getStationFrom(), trainsForm.getStationTo(),
@@ -63,6 +64,7 @@ public class TrainController {
 
         model.addAttribute("timetableModel",
                 filteredTrainsList);
+        logger.info("Providing information about traons between stations. Before sending to JSP");
         return "trainsResult";
     }
 

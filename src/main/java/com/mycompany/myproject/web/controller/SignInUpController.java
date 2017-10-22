@@ -106,15 +106,14 @@ public class SignInUpController {
 
     @PostMapping(value = "/registration")
     public String registration(@ModelAttribute("userForm") UserDto userForm, BindingResult bindingResult,
-                               //@ModelAttribute("user") UserDto user,
                                Model model) {
 
-        logger.error("SignInUpController works");
+        logger.info("Returning to main page after user registered in database");
 
 
         userService.addNewUser(userForm);
 
-        return "home";
+        return "redirect:/login";
     }
 
 

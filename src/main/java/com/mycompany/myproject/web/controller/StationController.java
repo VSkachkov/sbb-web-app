@@ -37,7 +37,7 @@ private DozerBeanMapper mapper;
 
         @RequestMapping(value = "/stationsList", method = RequestMethod.GET)
     public @ResponseBody List<Station> stationsList() {
-        logger.debug("get json stations list");
+        logger.info("someone requests stations list");
         return stationService.getAllStations();//.findAll();
     }
 }    

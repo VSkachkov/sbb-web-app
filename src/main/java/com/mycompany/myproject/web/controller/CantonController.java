@@ -35,7 +35,7 @@ public class CantonController {
 @RequestMapping(value = "/cantonsList", method = RequestMethod.GET)
 public @ResponseBody
 List<CantonDto> cantonsList() {
-    logger.debug("get json cantons list");
+    logger.info("user requests list of cantons");
 
     return cantonService.getAllCantons();
 }

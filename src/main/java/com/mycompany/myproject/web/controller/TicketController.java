@@ -45,13 +45,9 @@ public class TicketController {
     @PostMapping(value="buyTicketResult")
     public
     String showBuyingTicketResult(Model model, @ModelAttribute PassengerForm passengerForm){
-
-
-
-
+        logger.info("Buying procedure starts");
         String result = ticketService.launchBuyingProcedure(passengerForm);
-        logger.info("Launching buying procedure");
-        logger.info("Type of date" + passengerForm.getTravelDate().getClass().toString());
+        logger.info("Buying procedure finishes with result:" + result);
         model.addAttribute("result", result);
         return "buyTicketResult";
     }
@@ -65,7 +61,7 @@ public class TicketController {
         return "404";
 
         model.addAttribute("trainsForm", new TrainsForm());
-        logger.info("We are in GET method!");
+        logger.info("User starts buying ticket procedure");
         return "trainsForTicket";
     }
 
@@ -77,6 +73,7 @@ public class TicketController {
         UserDto userDto = (UserDto)session.getAttribute("user");
         if (!userDto.getRole().equals("ROLE_CLIENT"))
             return "404";
+        logger.info("Buying ticket procedure is going on");
         List<Long> trainsList = new ArrayList<>();
         PassengerForm passengerForm = new PassengerForm();
         model.addAttribute("trainsForm",trainsForm );
@@ -84,7 +81,7 @@ public class TicketController {
         model.addAttribute("StationFrom", trainsForm.getStationFrom());
         model.addAttribute("StationTo", trainsForm.getStationTo());
 
-
+        logger.info("Buying ticket procedure is going on, all forms added");
         passengerForm.setFromStation(trainsForm.getStationFrom());
         passengerForm.setToStation(trainsForm.getStationTo()); //TODO finish code here\
         passengerForm.setTravelDate(trainsForm.getTravelDate());
@@ -98,6 +95,7 @@ public class TicketController {
 
         model.addAttribute("timetableModel",
                 filteredTrainsList);
+        logger.info("Buying ticket procedure finished");
         return "trainsResultForTicket";
     }
 }

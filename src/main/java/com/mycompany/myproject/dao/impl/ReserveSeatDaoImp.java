@@ -1,5 +1,8 @@
 package com.mycompany.myproject.dao.impl;
 
+import com.mycompany.myproject.dao.api.StationDao;
+import com.mycompany.myproject.dao.api.TrainDao;
+import com.mycompany.myproject.dao.api.UserDao;
 import com.mycompany.myproject.persist.entity.ReserveSeat;
 import com.mycompany.myproject.dao.api.ReserveSeatDao;
 import com.mycompany.myproject.service.svc.StationService;
@@ -20,12 +23,15 @@ public class ReserveSeatDaoImp implements ReserveSeatDao {
     @PersistenceContext
     private EntityManager em;
 
+
     @Autowired
-    UserService userService;
+    private UserDao userDao;
+
     @Autowired
-    TrainService trainService;
+    private TrainDao trainDao;
+
     @Autowired
-    StationService stationService;
+    private StationDao stationDao;
 
     @Override
     public List<ReserveSeat> getAllReserveSeats() {
@@ -36,9 +42,9 @@ public class ReserveSeatDaoImp implements ReserveSeatDao {
     @Override
     public  boolean isReserved(Date travelDate, Long userId, Long trainId, Long stationId){
         List list = em.createQuery("FROM ReserveSeat where travelDate=:travelDate and userId=:userId and stationId=:stationId and trainId=:trainId")
-                .setParameter("userId", userService.getUserById(userId))
-                .setParameter("trainId", trainService.getTrainByTrainId(trainId))
-                .setParameter("stationId", stationService.getStationById(stationId))
+                .setParameter("userId", userDao.getUserById(userId))
+                .setParameter("trainId", trainDao.getTrainById(trainId))
+                .setParameter("stationId", stationDao.getStationById(stationId))
                 .setParameter("travelDate", travelDate)
                 .getResultList();
          return (!(list.isEmpty()));
