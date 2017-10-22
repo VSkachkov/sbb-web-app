@@ -48,13 +48,13 @@
         <li class="breadcrumb-item">
             <a href="home">Home</a>
         </li>
-        <li class="breadcrumb-item active">Timetable</li>
+        <li class="breadcrumb-item active">Passengers on train </li>
     </ol>
 
 
     <div class="container">
 
-        <form:form method="POST" action="addReservesResultLink" modelAttribute="passengerForm" class="form-signin">
+        <form:form method="POST" action="addReservesResult" modelAttribute="passengerForm" class="form-signin">
             <h2 class="form-signin-heading">Enter travelling data</h2>
 
             <spring:bind path="trainNumber">

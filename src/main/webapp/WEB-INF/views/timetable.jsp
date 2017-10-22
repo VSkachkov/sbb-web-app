@@ -28,7 +28,9 @@
             src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript"
             src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
-
+    <script type="text/javascript"
+            src="response.js"></script>
+    <script src="/js/response.js"></script>
 <%---------------%>
 
     <%-------------------------------------------------------------------------------------------------%>
@@ -36,6 +38,30 @@
     <script type="text/JavaScript"
             src="${pageContext.request.contextPath}/resources/js/jquery-1.9.1.min.js">
     </script>
+
+    <script type="text/javascript">
+        function sendUserLogin() {
+
+            var inputLogin = $("#input_login").val();
+
+            $.ajax({
+                url : 'getUserInfo',
+                type: 'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                mimeType: 'application/json',
+                data : ({
+                    text: inputLogin
+                }),
+                success: function (data) {
+
+                    var result = data.firstName+'", '+data.lastName;
+                    $("#result_user").text(result);
+                }
+            });
+        }
+    </script>
+
 
     <script type="text/javascript">
         function doAjax() {
@@ -59,36 +85,14 @@
             });
         }
     </script>
+
+
 </head>
 
 <body>
 
 <!-- Navigation -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="home">SBB main page</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-
-                <li class="nav-item ">
-                    <a class="nav-link active" href="timetable">Timetable</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="trains">Trains</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login">Sign In</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="registration">Sign Up</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<jsp:include page="templates/navigation.jsp"/>
 <!-- Page Content -->
 <div class="container">
 
@@ -105,7 +109,7 @@
     </ol>
 
     <h3>Please, enter the station</h3>
-    <form:form method="post" action="resultTT" modelAttribute="station">
+    <form:form method="get" action="resultTT" modelAttribute="station">
         <form:label path="stationName"></form:label>
            <form:select  path="stationName">
            <form:option value="NONE"> --SELECT STATION--</form:option>
@@ -156,10 +160,21 @@
     </div>
 
 
+    <h3>Enter user login:</h3>
+    <input id="input_login" type="text">
+    <input type="button" value="OK" onclick="sendUserLogin()">
+    <p id="result_user"></p>
+
+    <br>
+    <br>
+
     <h3>Enter text:</h3>
     <input id="input_str" type="text">
     <input type="button" value="OK" onclick="doAjax()">
     <p id="result_text"></p>
+
+
+
 
 <%--END OF TIMETABLE !!!!!!!!!!!!!!!!!!!!!!!!!!--%>
 <!-- Footer -->

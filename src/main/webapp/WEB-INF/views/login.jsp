@@ -44,14 +44,14 @@
         <span>${message}</span>
         <input id="login-login" required name="login" type="text" class="form-control" placeholder="Login"
                autofocus="true"/>
-        <input id="login-password" required name="pass" type="password" class="form-control"
+        <input id="login-password" required name="password" type="password" class="form-control"
                placeholder="Password"/>
         <span id="login-error">${error}</span>
         <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
         <h4 class="text-center"><a href="${pageContext.request.contextPath}/registration">Create an account</a></h4>
-        <p class="text-center" style="color: #a5a5a5; text-decoration: underline"><a id="click-forgot-password">I forgot my password</a></p>
+        <%--<p class="text-center" style="color: #a5a5a5; text-decoration: underline"><a id="click-forgot-password">I forgot my password</a></p>--%>
     </div>
 
 </form>

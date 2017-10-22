@@ -131,4 +131,9 @@ public class ManagerServiceImp implements ManagerService {
 
         return passengers;
     }
+
+    @Override
+    public List<String> getAllCantonsNames() {
+        return cantonService.getAllCantonsNames();
+    }
 }

@@ -47,12 +47,11 @@ public class TimetableController {
 
     @RequestMapping(value = "/timetable", method = RequestMethod.GET)
     public String greetingForm(Model model) {
-        model.addAttribute("greeting", new Greeting());
-        StationDto stdo = new StationDto();
+       StationDto stdo = new StationDto();
 
 
         List<String> stationsList = new ArrayList<>();
-        stationsList = stationService.getAllStationsNames();
+        stationsList = timetableService.getAllStationsNames();
 //        model.addAttribute("myform", new MyForm());
         model.addAttribute("someList", stationsList);
 
@@ -77,11 +76,11 @@ public class TimetableController {
 
 
     @RequestMapping(value = "/getUserInfo", method = RequestMethod.GET)
-    public @ResponseBody UserDto getCharNum(@RequestParam Long id) {
+    public @ResponseBody UserDto getUserInfo(@RequestParam String login) {
 
         UserDto user = new UserDto();
         if (user != null) {
-        user = new UserDto(userService.getUserById(id));
+        user = new UserDto(userService.getUserByLogin(login));
         }
 
         return user;
@@ -103,15 +102,15 @@ public class TimetableController {
     }
 
 
-    @RequestMapping(value = "/resultZ", method = RequestMethod.POST)
-    public String greetingSubmit(@ModelAttribute Greeting greeting) {
-        logger.error("\n");
-        logger.error("Hello world, logger. We are in POST method!");
-//        greeting.setContent("After default we add something in post method, but value is still 0!");
-        return "resultPage";
-    }
+//    @RequestMapping(value = "/resultZ", method = RequestMethod.POST)
+//    public String greetingSubmit(@ModelAttribute Greeting greeting) {
+//        logger.error("\n");
+//        logger.error("Hello world, logger. We are in POST method!");
+////        greeting.setContent("After default we add something in post method, but value is still 0!");
+//        return "resultPage";
+//    }
 
-    @RequestMapping(value = "/resultTT", method = RequestMethod.POST)
+    @RequestMapping(value = "/resultTT", method = RequestMethod.GET)
     public ModelAndView stationFiltered(@ModelAttribute StationDto station) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("timetableModel", timetableService.getAllRoutesThroughStationWithName(station.getStationName()));

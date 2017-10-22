@@ -31,19 +31,19 @@ public class ManagerController {
     @Autowired
     private ManagerService managerService;
 
-    @Autowired
-    StationService stationService;
-
-    @Autowired
-    CantonService cantonService;
-
-    @Autowired
-    TimetableService timetableService;
+//    @Autowired
+//    StationService stationService;
+//
+//    @Autowired
+//    CantonService cantonService;
+//
+//    @Autowired
+//    TimetableService timetableService;
 
     @Autowired
     private MessageSource ms;
 
-    @GetMapping(value = "/managerLink")
+    @GetMapping(value = "/manager")
     public String goManagerPage(HttpSession session, @ModelAttribute UserDto user
     ) {
         UserDto userDto = (UserDto)session.getAttribute("user");
@@ -52,10 +52,20 @@ public class ManagerController {
         else return "404";
     }
 
-    @PostMapping(value = "/addTrainResultLink")
-    public @ResponseBody String addTrainForm(HttpSession session,
+    @GetMapping(value = "/managerPage")
+    public String goToManagerPage(HttpSession session, @ModelAttribute UserDto user
+    ) {
+        UserDto userDto = (UserDto)session.getAttribute("user");
+        if (userDto.getRole().equals("ROLE_ADMIN"))
+            return "managerPage";
+        else return "404";
+    }
+
+    @PostMapping(value = "/addTrainResult")
+    public  String addTrainForm(HttpSession session,
                                              @ModelAttribute TrainDto trainDto,
-                                             @ModelAttribute UserDto user) {
+                                             @ModelAttribute UserDto user,
+                                Model model) {
         UserDto userDto = (UserDto)session.getAttribute("user");
         if (userDto.getRole().equals("ROLE_ADMIN"))
         {
@@ -69,17 +79,15 @@ public class ManagerController {
         trainDto.setDepartSun(true);
 
         managerService.addTrainToDB(trainDto);
-//        logger.error("We are in POST method!");
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("TrainsResult");
+        model.addAttribute("addTrainResult",  "Train was added to database");
+            return "mAddTrainResult";}
 
-        return "Train was added to DB";}
         else return "404";
     }
 
 
 
-    @RequestMapping(value = "/addTrainLink", method = RequestMethod.GET)
+    @RequestMapping(value = "/addTrain", method = RequestMethod.GET)
     public String addTrain(Model model, HttpSession session){
         UserDto userDto = (UserDto)session.getAttribute("user");
         if (!userDto.getRole().equals("ROLE_ADMIN"))
@@ -89,22 +97,8 @@ public class ManagerController {
         return "mAddTrainPage";
     }
 
-    @RequestMapping(value = "/addStationLink", method = RequestMethod.GET)
-    public String addStation(Model model,
-                             HttpSession session){
-        UserDto userDto = (UserDto)session.getAttribute("user");
-        if (!userDto.getRole().equals("ROLE_ADMIN"))
-        { return "home";}
 
-        List <String> cantonsList = new ArrayList<>();
-        cantonsList = cantonService.getAllCantonsNames();
-
-        model.addAttribute("cantonsList", cantonsList);
-        model.addAttribute("stationForm", new StationForm());
-        return "mAddStationPage";
-    }
-
-    @RequestMapping(value="getReservesLink", method = RequestMethod.GET)
+    @RequestMapping(value="getReserves", method = RequestMethod.GET)
     public String getReserves(Model model,
                               HttpSession session){
         UserDto userDto = (UserDto)session.getAttribute("user");
@@ -120,7 +114,7 @@ public class ManagerController {
         return "mGetReservesPage";
     }
 
-    @PostMapping(value="/addReservesResultLink")
+    @PostMapping(value="/addReservesResult")
         public  ModelAndView showReserveResult(@ModelAttribute PassengerForm passengerForm,
                                                HttpSession session){
         UserDto userDto = (UserDto)session.getAttribute("user");
@@ -140,21 +134,42 @@ public class ManagerController {
 
 
 
-
-    @PostMapping(value = "/addStationResultLink")
-    public @ResponseBody String addTrainForm(@ModelAttribute StationForm stationForm,
-                                             HttpSession session) {
+    @RequestMapping(value = "/addStation", method = RequestMethod.GET)
+    public String addStation(Model model,
+                             HttpSession session){
         UserDto userDto = (UserDto)session.getAttribute("user");
         if (!userDto.getRole().equals("ROLE_ADMIN"))
         { return "home";}
 
-        managerService.addStationToDB(stationForm);
+        List <String> cantonsList = new ArrayList<>();
+        cantonsList = managerService.getAllCantonsNames();
 
-
-        return "Station was added to DB";
+        model.addAttribute("cantonsList", cantonsList);
+        model.addAttribute("stationForm", new StationForm());
+        return "mAddStationPage";
     }
 
-    @RequestMapping(value = "/getTrainsLink", method = RequestMethod.GET)
+    @PostMapping(value = "/addStationResult")
+    public  String addStationForm(@ModelAttribute StationForm stationForm,
+                                             HttpSession session,
+                                  Model model) {
+        UserDto userDto = (UserDto)session.getAttribute("user");
+        if (!userDto.getRole().equals("ROLE_ADMIN"))
+        { return "home";}
+
+        model.addAttribute("stationAddResult", "Station was added to database");
+        try {
+            managerService.addStationToDB(stationForm);
+        }
+        catch (Exception e){
+            model.addAttribute("stationAddResult", "Station was not added to database");
+        }
+
+
+        return "mAddStationResult";
+    }
+
+    @RequestMapping(value = "/getTrains", method = RequestMethod.GET)
     public String getTrains(Model model,
                             HttpSession session) {
         UserDto userDto = (UserDto)session.getAttribute("user");

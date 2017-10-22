@@ -80,17 +80,17 @@
                 <ul class="navbar-nav ml-auto">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="addStationLink">Add station</a>
+                        <a class="nav-link" href="addStation">Add station</a>
                     </li>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="addTrainLink">Add train</a>
+                        <a class="nav-link" href="addTrain">Add train</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="getReservesLink">Passengers on train</a>
+                        <a class="nav-link" href="getReserves">Passengers on train</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="getTrainsLink">Trains in database</a>
+                        <a class="nav-link" href="getTrains">Trains in database</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="logout">Sign out</a>

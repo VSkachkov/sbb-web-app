@@ -68,4 +68,15 @@ public class ReserveSeatServiceImp implements ReserveSeatService{
     public void getReserves(Long trainNumber, Date travelDate) {
 //        reserveSeatDao.getReserveSeatsForTrainDate(trainNumber, travelDate);
     }
+
+    @Override
+    public boolean isPassengerOnboard(Long trainId, List<Long> chainOfStations, Date travelDate, Long userId) {
+        for (Long stationId :
+                chainOfStations) {
+            if (reserveSeatDao.isReserved(travelDate, userId, trainId, stationId)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

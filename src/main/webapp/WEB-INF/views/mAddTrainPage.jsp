@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SBB - Timetable</title>
+    <title>SBB - Trains</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -45,15 +45,16 @@
 
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
-            <a href="home">Home</a>
+            <a href="manager">Manager page</a>
         </li>
-        <li class="breadcrumb-item active">Timetable</li>
+        <li class="breadcrumb-item active">Adding trains</li>
     </ol>
+
 
 
     <div class="container">
 
-        <form:form method="POST" action="addTrainResultLink" modelAttribute="trainDto" class="form-signin">
+        <form:form method="POST" action="addTrainResult" modelAttribute="trainDto" class="form-signin">
             <h2 class="form-signin-heading">Enter travelling data</h2>
 
             <spring:bind path="trainName">

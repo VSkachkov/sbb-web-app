@@ -81,7 +81,7 @@
 
         <spring:bind path="birthday">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input  required="required" type="date" path="birthday" value="2000-06-01"
+                <form:input  type="date" path="birthday" value="2000-06-01"
                              max="2017-06-01" min="1920-05-29"
                 ></form:input>
                 <form:errors path="birthday"></form:errors>
@@ -90,7 +90,7 @@
 
         <spring:bind path="email">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input  type="text" path="email" placeholder="Email"
+                <form:input  required="required" type="text" path="email" placeholder="Email"
                              onblur="onBlurEmailFunction(this)"></form:input>
                 <form:errors path="email"></form:errors>
                     <%--<form:errors id="emailExists"></form:errors>--%>
@@ -101,7 +101,7 @@
 
         <spring:bind path="login">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input  type="text" path="login"  placeholder="Login"
+                <form:input required="required"  type="text" path="login"  placeholder="Login"
                              onblur="onBlurLoginFunction(this)"></form:input>
                 <form:errors path="login"></form:errors>
                     <%--<form:errors id="loginExists"></form:errors>--%>
@@ -111,7 +111,7 @@
 
         <spring:bind path="password">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input  type="password" path="password"  placeholder="Password"></form:input>
+                <form:input required="required"  type="password" path="password"  placeholder="Password"></form:input>
                 <form:errors path="password"></form:errors>
             </div>
         </spring:bind>

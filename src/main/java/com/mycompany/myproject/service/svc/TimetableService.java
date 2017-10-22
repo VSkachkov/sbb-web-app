@@ -34,4 +34,6 @@ public interface TimetableService
     boolean checkEnoughTimeBeforeDeparture(Long trainId, Long stationId, LocalTime timeToCheck, Long enoughTime);
 
     List<Long> getChainOfStations(Long trainId, Long departureStation, Long arrivalStation);
+
+    List<String> getAllStationsNames();
 }

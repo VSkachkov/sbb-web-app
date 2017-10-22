@@ -58,13 +58,18 @@ public class SignInUpController {
                                                HttpServletRequest request){
 
         try {
-            logger.error("User enters login data " + user.getLogin());
-            logger.error("User enters login password " + user.getPassword());
+            logger.error("User enters login data ");
+            logger.error("User enters login password " );
 
-            user.setRole("ROLE_CLIENT");
-            model.addAttribute("user", user);
+//            user.setRole("ROLE_CLIENT");
+//            model.addAttribute("user", user);
 
             User usr = userService.getUserByLogin(user.getLogin());
+            if (!(usr.getPassword().equals(user.getPassword()))){
+
+                return "home";
+            }
+
             UserDto userDto = new UserDto(usr);
             model.addAttribute("user", userDto);
             if (userDto.getRole().equals("ROLE_ADMIN"))

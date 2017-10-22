@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SBB - Timetable</title>
+    <title>SBB - Tickets</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -46,37 +46,10 @@
     <li class="breadcrumb-item">
         <a href="home">Home</a>
     </li>
-    <li class="breadcrumb-item active">Timetable</li>
+    <li class="breadcrumb-item active">Sbb tickets</li>
 </ol>
 
-<div class="col-sm-offset-1 col-sm-10">
-
-    <legend>
-       Timetable by station
-    </legend>
-
-    <div>
-        <table id="dataTable" class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>  Train Number  </th>
-                    <th>  Arrival time  </th>
-                    <th>  Departure time</th>
-                </tr>
-            <thead>
-            <tbody>
-                <c:forEach var="t" items="${timetableModel}">
-                    <tr>
-                        <td>${t.trainId}</td>
-                        <td>${t.arrival}</td>
-                        <td>${t.departure}</td>
-                    <tr>
-                </c:forEach>
-            </tbody>
-        </table>
-    </div>
-</div>
-
+<p> <c:out value="${result}"/> </p>
 
 <jsp:include page="templates/footer.jsp"/>
 

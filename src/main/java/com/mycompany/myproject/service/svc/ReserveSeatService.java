@@ -15,4 +15,6 @@ public interface ReserveSeatService {
     void addNewRide(Long trainId, List<Long> chainOfStations, Date travelDate, Long userId);
 
     void getReserves(Long trainNumber, Date travelDate);
+
+    boolean isPassengerOnboard(Long trainId, List<Long> chainOfStations, Date travelDate, Long userId);
 }

@@ -96,7 +96,7 @@ public class TrainController {
 //        return modelAndView;
 //    }
 
-    @RequestMapping(value = "/resultTrainsLink", method = RequestMethod.POST)
+    @RequestMapping(value = "/resultTrains", method = RequestMethod.POST)
     public String getStationFiltered(Model model, @ModelAttribute("trainsForm") TrainsForm trainsForm) {
 //        logger.error("Time = "+trainsForm.getTravelTimeFrom().toString());
 //        logger.error("Time = "+trainsForm.getTravelTimeTo().toString());

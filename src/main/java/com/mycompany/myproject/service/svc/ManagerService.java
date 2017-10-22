@@ -17,4 +17,6 @@ public interface ManagerService {
     void addStationToDB(StationForm stationForm);
 
     List<PassengerForm> getPassengers(Long trainNumber, Date travelDate);
+
+    List<String> getAllCantonsNames();
 }

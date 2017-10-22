@@ -49,49 +49,7 @@
         <li class="breadcrumb-item active">Adding stations</li>
     </ol>
 
-
-    <div class="container">
-
-        <form:form method="POST" action="addStationResult" modelAttribute="stationForm" class="form-signin">
-            <h2 class="form-signin-heading">Enter travelling data</h2>
-
-            <spring:bind path="stationName">
-                <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <form:input required="required" type="text" path="stationName" class="form-control" placeholder="Enter station name"
-                                autofocus="true"></form:input>
-                    <form:errors path="stationName"></form:errors>
-                </div>
-            </spring:bind>
-
-            <spring:bind path="cantonName">
-                <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <%--<form:input required="required" type="text"  path="cantonName" class="form-control"  placeholder="cantonName"--%>
-                                <%--autofocus="true"></form:input>--%>
-                        <form:select  path="cantonName" required="required">
-                            <%--<form:option value=" " > --SELECT CANTON--</form:option>--%>
-                            <form:options items="${cantonsList}"></form:options>
-                        </form:select>
-                    <form:errors path="cantonName"></form:errors>
-                </div>
-            </spring:bind>
-
-            <%--<p> Please, set departure days: </p>--%>
-            <%--&lt;%&ndash;<spring:bind path="departMon">&ndash;%&gt;--%>
-            <%--<spring:bind path="departMon">--%>
-            <%--<div class="form-group ${status.error ? 'has-error' : ''}">--%>
-            <%--<label class="form-check-label"--%>
-            <%--<form:input type="boolean"  path="departMon"--%>
-            <%--autofocus="true"></form:input>--%>
-
-            <%--</div>--%>
-
-            <%--</spring:bind>--%>
-
-            <button class="btn btn-lg btn-primary btn-block" type="submit"
-                    id="submit-registration">Add station</button>
-        </form:form>
-
-    </div>
+<c:out value="${stationAddResult}"/>
 
 
 </div>

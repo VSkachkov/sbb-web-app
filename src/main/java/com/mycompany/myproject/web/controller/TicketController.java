@@ -29,14 +29,16 @@ public class TicketController {
 
 
     @PostMapping(value="buyTicketResult")
-    public @ResponseBody
+    public
     String showBuyingTicketResult(Model model, @ModelAttribute PassengerForm passengerForm){
 
 
 
-        String result = ticketService.launchBuyingProcedure(passengerForm);
-        logger.info("Type of date" + passengerForm.getTravelDate().getClass().toString());
 
-        return result;
+        String result = ticketService.launchBuyingProcedure(passengerForm);
+        logger.info("Launching buying procedure");
+        logger.info("Type of date" + passengerForm.getTravelDate().getClass().toString());
+        model.addAttribute("result", result);
+        return "buyTicketResult";
     }
 }

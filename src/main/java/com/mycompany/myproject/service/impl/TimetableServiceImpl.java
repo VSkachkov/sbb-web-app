@@ -21,37 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-//
-//@Service
-//@Transactional
-//public class TimetableServiceImpl implements TimetableService {
-//
-//
-//    @Autowired
-//    TimetableDao timetableDao;
-//    @Override
-//    public List<TimetableDto> getAllTimetable() {
-//        List<TimetableDto> sdto = new ArrayList<>();
-//
-//        for (Timetable timetable :
-//                timetableDao.getAllTimetable()) {
-//            sdto.add(new TimetableDto(timetable));
-//        }
-//        return sdto;
-//    }
-//
-//    @Override
-//    public List<Timetable> getAllRoutesThroughStationWithId(Long stationId) {
-//        return null;
-//    }
-//
-//    @Override
-//    public List<TimetableDto> getAllRoutesThroughStationWithName(String stationName) {
-//        return null;
-//    }
-//}
-//
-
 
 @Service
 @Transactional
@@ -61,7 +30,7 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
 
 
     @Autowired
-    StationService stationservice;
+    StationService stationService;
     @Autowired
     private TimetableDao timetableDao;
 
@@ -162,26 +131,6 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
     }
 
 
-//    public ArrayList <Long> getListOfTrainsByStationAndTimePeriod(String stationName, Time time1, Time time2){
-//        ArrayList<Long> trainsList = new ArrayList<>();
-//
-//        for (Timetable timetable:
-//                timetableDao.getTrainsViaStationWithTime(stationName, time1, time2)) {
-//            trainsList.add(timetable.getTrain().getTrainId());
-//        }
-//        return trainsList;
-//    }
-
-
-
-
-
-
-
-
-
-
-
     @Override
     public Long getInitStationByTrainId(Long trainId) {
         return timetableDao.getInitStationByTrain(trainId);
@@ -248,6 +197,11 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
     }
 
     @Override
+    public List<String> getAllStationsNames() {
+        return stationService.getAllStationsNames();
+    }
+
+    @Override
     public List <Long> getTrainsBetweenStations(String stationFrom, String StationTo){
         ArrayList <Long> trainsFromStation = getListOfTrainsByStation(stationFrom);
         ArrayList <Long> trainsToStation = getListOfTrainsByStation(StationTo);
@@ -272,9 +226,9 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
         for (Long train:
                 trains) {
             Long trainId = train;
-            Long stToId = stationservice.getStationByName(stationTo).getStationId();
+            Long stToId = stationService.getStationByName(stationTo).getStationId();
             Time arrival = timetableDao.getArrival(train, stToId);
-            Long stFromId = stationservice.getStationByName(stationFrom).getStationId();
+            Long stFromId = stationService.getStationByName(stationFrom).getStationId();
             Time departure = timetableDao.getDeparture(train, stFromId);
 
             timetableInfo.add(new TrainsAttribute(trainId, stationFrom, departure, stationTo, arrival));

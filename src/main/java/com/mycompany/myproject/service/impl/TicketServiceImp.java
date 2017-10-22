@@ -47,8 +47,6 @@ public class TicketServiceImp implements  TicketService {
         Date travelDate = passengerForm.getTravelDate();
         if (!trainService.checkTrainDate(trainId, travelDate))
             return result =  "Oops, something went wrong. Seems that train does not go this day";
-//        java.util.Date today = new java.util.Date();
-//        java.util.Date today = Calendar.getInstance(TimeZone.getDefault()).getTime();
 
         Long departureStation = (stationService.getStationByName(passengerForm.getFromStation())).getStationId();
         Long arrivalStation = (stationService.getStationByName(passengerForm.getToStation())).getStationId();
@@ -75,6 +73,8 @@ public class TicketServiceImp implements  TicketService {
 
             return result = "no free seats available!";
         }
+        if (reserveSeatService.isPassengerOnboard(trainId, chainOfStations, travelDate, userId))
+            return "Error. This passenger has been registered on this train earlier.";
         reserveSeatService.addNewRide(trainId, chainOfStations,travelDate, userId );
 
 
