@@ -99,15 +99,6 @@
     <form:form method="POST" action="buyTicketResult" modelAttribute="passengerForm" class="form-signin">
         <h2 class="form-signin-heading">Enter travelling information :</h2>
 
-        <%--<p>travelDate:</p>--%>
-        <%--<spring:bind path="travelDate">--%>
-            <%--<div class="form-group ${status.error ? 'has-error' : ''}">--%>
-                <%--<form:input  required="required" type="date" path="travelDate" value="2000-06-01"--%>
-                             <%--placeholder="travelDate"       max="2017-06-01" min="1920-05-29"--%>
-                <%--></form:input>--%>
-                <%--<form:errors path="travelDate"></form:errors>--%>
-            <%--</div>--%>
-        <%--</spring:bind>--%>
 
         <p>trainNumber:</p>
         <spring:bind path="trainNumber">

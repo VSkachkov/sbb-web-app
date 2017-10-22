@@ -29,10 +29,7 @@ public class CantonDaoImp implements CantonDao {
     @Override
     public void removeCanton(Long cantonId) {
         Canton toDeleteCanton = this.getCantonById(cantonId);
-//        Query query = em.createQuery("DELETE  from Canton  where canton_id=:canton_id");
-////        query.executeUpdate();
         em.remove(toDeleteCanton);
-//        em.getTransaction().commit();
     }
 
     @Override

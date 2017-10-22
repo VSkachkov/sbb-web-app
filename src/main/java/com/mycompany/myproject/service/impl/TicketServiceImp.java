@@ -52,7 +52,6 @@ public class TicketServiceImp implements  TicketService {
         Long arrivalStation = (stationService.getStationByName(passengerForm.getToStation())).getStationId();
         DateTime currentDateTime = DateTime.now();
         LocalTime localTime = new LocalTime(currentDateTime);
-//        Time currentTime = new java.sql.Time(today.getTime());
         java.sql.Date today = new java.sql.Date(Calendar.getInstance().getTime().getTime());
         if(travelDate==today)
         if (!timetableService.checkEnoughTimeBeforeDeparture(trainId, departureStation, localTime, TENMINUTES))

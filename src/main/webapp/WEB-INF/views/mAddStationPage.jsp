@@ -75,17 +75,6 @@
                 </div>
             </spring:bind>
 
-            <%--<p> Please, set departure days: </p>--%>
-            <%--&lt;%&ndash;<spring:bind path="departMon">&ndash;%&gt;--%>
-            <%--<spring:bind path="departMon">--%>
-            <%--<div class="form-group ${status.error ? 'has-error' : ''}">--%>
-            <%--<label class="form-check-label"--%>
-            <%--<form:input type="boolean"  path="departMon"--%>
-            <%--autofocus="true"></form:input>--%>
-
-            <%--</div>--%>
-
-            <%--</spring:bind>--%>
 
             <button class="btn btn-lg btn-primary btn-block" type="submit"
                     id="submit-registration">Add station</button>

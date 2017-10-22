@@ -44,8 +44,6 @@ public class TrainController {
 
     @RequestMapping(value = "/trains", method = RequestMethod.GET)
     public String setConditionsforTrainsBetweenStations(Model model) {
-//        model.addAttribute("greeting", new Greeting());
-//        StationDto stdo = new StationDto();
 
         model.addAttribute("trainsForm", new TrainsForm());
         logger.info("We are in GET method!");
@@ -56,19 +54,6 @@ public class TrainController {
     @RequestMapping(value = "/resultTrains", method = RequestMethod.POST)
     public String getStationFiltered(Model model, @ModelAttribute("trainsForm") TrainsForm trainsForm) {
         List<Long> trainsList = new ArrayList<>();
-//
-//         PassengerForm passengerForm = new PassengerForm();
-//        model.addAttribute("trainsForm",trainsForm );
-//        model.addAttribute("TravelDate", trainsForm.getTravelDate());
-//        model.addAttribute("StationFrom", trainsForm.getStationFrom());
-//        model.addAttribute("StationTo", trainsForm.getStationTo());
-////        model.addAttribute("trainsList", trainsList);
-////        model.addAttribute("showTravelDate", trainsForm.getTravelDate().toString());
-//
-//        passengerForm.setFromStation(trainsForm.getStationFrom());
-//        passengerForm.setToStation(trainsForm.getStationTo()); //TODO finish code here\
-//        passengerForm.setTravelDate(trainsForm.getTravelDate());
-//        model.addAttribute("passengerForm", passengerForm);
         List<TrainsAttribute> trainsByRouteAndTime = timetableService.
                 getTimetableBetweenStations(trainsForm.getStationFrom(), trainsForm.getStationTo(),
                         trainsForm.getEarlyTime(), trainsForm.getLateTime());

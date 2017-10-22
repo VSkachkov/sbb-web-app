@@ -31,15 +31,6 @@ public class ManagerController {
     @Autowired
     private ManagerService managerService;
 
-//    @Autowired
-//    StationService stationService;
-//
-//    @Autowired
-//    CantonService cantonService;
-//
-//    @Autowired
-//    TimetableService timetableService;
-
     @Autowired
     private MessageSource ms;
 
@@ -177,12 +168,7 @@ public class ManagerController {
         { return "home";}
 
         List <TrainDto> trainDtos = managerService.getTrainsForManagers();
-//        ModelAndView modelAndView = new ModelAndView("mGetTrainsPage" );
-////        modelAndView.setViewName("");
-//        modelAndView.addObject("timetableModel",trainDtos  );
         model.addAttribute("timetableModel",trainDtos);
-
-//        List<TrainDto> ltdto = managerService.getTrainsForManagers();
         return "mGetTrainsPage";
     }
 

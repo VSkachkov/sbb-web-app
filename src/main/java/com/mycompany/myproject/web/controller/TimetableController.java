@@ -52,7 +52,6 @@ public class TimetableController {
 
         List<String> stationsList = new ArrayList<>();
         stationsList = timetableService.getAllStationsNames();
-//        model.addAttribute("myform", new MyForm());
         model.addAttribute("someList", stationsList);
 
         model.addAttribute("station", stdo);
@@ -61,18 +60,7 @@ public class TimetableController {
         return "timetable";
     }
 
-    @RequestMapping(value = "/getCharNum", method = RequestMethod.GET)
-    public @ResponseBody Response getCharNum(@RequestParam String text) {
 
-        Response result = new Response();
-
-        if (text != null) {
-            result.setText(text);
-            result.setCount(text.length());
-        }
-
-        return result;
-    }
 
 
     @RequestMapping(value = "/getUserInfo", method = RequestMethod.GET)
@@ -87,7 +75,6 @@ public class TimetableController {
     }
 
     @RequestMapping(value = "timetable", method = RequestMethod.POST)
-//    @RequestMapping(value = "Timetable", method = RequestMethod.GET)
     public String getUsers(@ModelAttribute Model model) {
 
 
@@ -102,13 +89,6 @@ public class TimetableController {
     }
 
 
-//    @RequestMapping(value = "/resultZ", method = RequestMethod.POST)
-//    public String greetingSubmit(@ModelAttribute Greeting greeting) {
-//        logger.error("\n");
-//        logger.error("Hello world, logger. We are in POST method!");
-////        greeting.setContent("After default we add something in post method, but value is still 0!");
-//        return "resultPage";
-//    }
 
     @RequestMapping(value = "/resultTT", method = RequestMethod.GET)
     public ModelAndView stationFiltered(@ModelAttribute StationDto station) {
@@ -119,40 +99,39 @@ public class TimetableController {
     }
 
 
+
+
+
+}
+
+
+//class Response {
 //
+//    private int count;
+//    private String text;
 //
-//    class MyForm {
-//        private String nameOfInstitution;
-//
-//        public String getNameOfInstitution() {
-//            return nameOfInstitution;
-//        }
-//
-//        public void setNameOfInstitution(String nameOfInstitution) {
-//            this.nameOfInstitution = nameOfInstitution;
-//        }
+//    public int getCount() {
+//        return count;
 //    }
-
-
-
-}
-
-
-class Response {
-
-    private int count;
-    private String text;
-
-    public int getCount() {
-        return count;
-    }
-    public void setCount(int count) {
-        this.count = count;
-    }
-    public String getText() {
-        return text;
-    }
-    public void setText(String text) {
-        this.text = text;
-    }
-}
+//    public void setCount(int count) {
+//        this.count = count;
+//    }
+//    public String getText() {
+//        return text;
+//    }
+//    public void setText(String text) {
+//        this.text = text;
+//    }
+//}
+//@RequestMapping(value = "/getCharNum", method = RequestMethod.GET)
+//public @ResponseBody Response getCharNum(@RequestParam String text) {
+//
+//    Response result = new Response();
+//
+//    if (text != null) {
+//        result.setText(text);
+//        result.setCount(text.length());
+//    }
+//
+//    return result;
+//}

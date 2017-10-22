@@ -61,8 +61,6 @@ public class SignInUpController {
             logger.error("User enters login data ");
             logger.error("User enters login password " );
 
-//            user.setRole("ROLE_CLIENT");
-//            model.addAttribute("user", user);
 
             User usr = userService.getUserByLogin(user.getLogin());
             if (!(usr.getPassword().equals(user.getPassword()))){
@@ -93,27 +91,7 @@ public class SignInUpController {
         } else
             return "";
     }
-//    /// TODO Analize which version is better:
-//    //
-//    @PostMapping(value = "/login")
-//    public String login(@ModelAttribute("user") UserDto user, Model model, HttpSession httpSession) {
-//        UserDto su = userService.loginUser(user.getLogin(),user.getPass());
-//        if (su!=null) {
-//            su.setProducts(user.getProducts());
-//            model.addAttribute("user", su);
-//            return "redirect:/home";
-//        }
-//        else {
-//            model.addAttribute("error", "Username or password is incorrect.");
-//            return "login";
-//        }
-//    }
 
-//    @GetMapping(value = "/logout")
-//    public String logout(@ModelAttribute("user") SessionUser user, Model model) {
-//        model.addAttribute("user",new SessionUser());
-//        return "redirect:/login";
-//    }
 
 
     @GetMapping(value = "/registration")
@@ -130,10 +108,7 @@ public class SignInUpController {
     public String registration(@ModelAttribute("userForm") UserDto userForm, BindingResult bindingResult,
                                //@ModelAttribute("user") UserDto user,
                                Model model) {
-//        userValidator.validate(userForm, bindingResult);
-//        if (bindingResult.hasErrors()) {
-//            return "registration";
-//        }
+
         logger.error("SignInUpController works");
 
 

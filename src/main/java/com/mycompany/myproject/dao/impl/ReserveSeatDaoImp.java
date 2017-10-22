@@ -44,9 +44,6 @@ public class ReserveSeatDaoImp implements ReserveSeatDao {
          return (!(list.isEmpty()));
     }
 
-//    List list = em.createQuery("FROM Timetable where train=:trainId order by arrival")
-//            .setParameter("trainId",  trainDao.getTrainById(trainId)).getResultList();
-//        return list;
 
 
     @Override
@@ -54,10 +51,6 @@ public class ReserveSeatDaoImp implements ReserveSeatDao {
         em.merge(reserveSeat); //
     }
 
-//    @Override
-//    public List<ReserveSeat> getReserveSeatsForTrainDate(Long trainId, Date travelDate) {
-//        return em.createQuery("FROM ReserveSeat")
-//                .getResultList();
-//    }
+
 
 }

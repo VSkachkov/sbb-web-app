@@ -72,14 +72,12 @@ public class TicketController {
 
 
     @RequestMapping(value = "/resultTrainsForTicket", method = RequestMethod.POST)
-    public String getStationFilteredForTicket(Model model, @ModelAttribute("trainsForm") TrainsForm trainsForm) {
-//        logger.error("Time = "+trainsForm.getTravelTimeFrom().toString());
-//        logger.error("Time = "+trainsForm.getTravelTimeTo().toString());
-
+    public String getStationFilteredForTicket(Model model, @ModelAttribute("trainsForm") TrainsForm trainsForm,
+                                              HttpSession session) {
+        UserDto userDto = (UserDto)session.getAttribute("user");
+        if (!userDto.getRole().equals("ROLE_CLIENT"))
+            return "404";
         List<Long> trainsList = new ArrayList<>();
-        trainsList.add(1L);
-        trainsList.add(4L);
-        trainsList.add(6L);
         PassengerForm passengerForm = new PassengerForm();
         model.addAttribute("trainsForm",trainsForm );
         model.addAttribute("TravelDate", trainsForm.getTravelDate());

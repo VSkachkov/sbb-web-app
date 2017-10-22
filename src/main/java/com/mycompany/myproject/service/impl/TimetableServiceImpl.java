@@ -73,18 +73,7 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
         return tdto;
     }
 
-//    @Override
-//    public List<String> getStationsFromTimetable() {
-//         List<TimetableDto> timetable = getAllTimetable();
-//         List<String> stationsWithTrains = new ArrayList<>();
-//
-//        for (TimetableDto oneElementInTimetable:
-//             timetable) {
-//            if(!stationsWithTrains.contains())
-//                stationsWithTrains.add
-//        }
-//
-//    }
+
 
     @Override
     public ArrayList <Long> getListOfTrainsByStation(String stationName){
@@ -211,12 +200,9 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
     }
 
     @Override
-//    public List<TrainsAttribute> getTimetableBetweenStations(String stationFrom, String stationTo,
-//                                                             Time EarlyTime, Time LateTime) {
         public List<TrainsAttribute> getTimetableBetweenStations(String stationFrom, String stationTo,
                 String EarlyTime, String LateTime) {
         List<Long> trainsByTime = new ArrayList<>();
-//        trainsByTime = getListOfTrainsByStationAndTimePeriod(stationFrom, EarlyTime,LateTime);
         trainsByTime = getListOfTrainsByStationAndTimePeriod(stationFrom, EarlyTime,LateTime);
 
         List<TrainsAttribute> timetableInfo = new ArrayList<>();
