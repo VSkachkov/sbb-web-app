@@ -27,7 +27,7 @@ import java.sql.SQLException;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("com.mycompany.myproject")
+@ComponentScan("com.mycompany.myproject.*")
 //@ComponentScan("com.mycompany.myproject.persist")
 @ImportResource("classpath*:persistence.xml")
 //@ComponentScan("com.mycompany.myproject.service")
@@ -44,12 +44,8 @@ public class JPAConfig {
         ds.setUsername("root");
         ds.setPassword("0000");
         ds.setUrl("jdbc:mysql://localhost:3306/SBB_DB");
-
-
         DatabasePopulator databasePopulator = new ResourceDatabasePopulator();
         DatabasePopulatorUtils.execute(databasePopulator, ds);
-
-
         return ds;
     }
 
@@ -71,7 +67,7 @@ public class JPAConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setDataSource(dataSource());
-        factoryBean.setPackagesToScan(new String[] { "com.mycompany.myproject.persist" });
+        factoryBean.setPackagesToScan(new String[] { "com.mycompany.myproject" });
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setShowSql(true);
         factoryBean.setJpaVendorAdapter(vendorAdapter);

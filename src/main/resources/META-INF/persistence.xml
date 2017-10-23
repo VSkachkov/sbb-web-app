@@ -8,7 +8,6 @@
         <!--<provider>org.hibernate.</provider>-->
 
         <class>com.mycompany.myproject.persist.entity.Canton</class>
-        <class>com.mycompany.myproject.persist.entity.Authority</class>
         <class>com.mycompany.myproject.persist.entity.User</class>
 
 

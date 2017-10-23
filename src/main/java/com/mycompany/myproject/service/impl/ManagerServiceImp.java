@@ -43,7 +43,7 @@ public class ManagerServiceImp implements ManagerService {
     TrainService trainService;
 
     @Override
-    public List<TrainDto> getTrainsForManagers(){ //TODO change implementantion VIA JOIN
+    public List<TrainDto> getTrainsForManagers(){
         List<TrainDto> trains = trainService.getAllTrains();
 
         for (TrainDto tdto:
