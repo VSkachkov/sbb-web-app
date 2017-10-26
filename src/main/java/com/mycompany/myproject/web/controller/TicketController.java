@@ -60,6 +60,9 @@ public class TicketController {
         if (!userDto.getRole().equals("ROLE_CLIENT"))
         return "404";
 
+        List<String> stationsList = new ArrayList<>();
+        stationsList = timetableService.getAllStationsNames();
+        model.addAttribute("someList", stationsList);
         model.addAttribute("trainsForm", new TrainsForm());
         logger.info("User starts buying ticket procedure");
         return "trainsForTicket";

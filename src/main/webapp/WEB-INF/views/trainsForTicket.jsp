@@ -58,18 +58,21 @@
 
             <spring:bind path="stationFrom">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <form:input required="required" type="text" path="stationFrom" placeholder="From Station"
-                                autofocus="true"></form:input>
-                    <form:errors path="stationFrom"></form:errors>
+                    <form:select  path="stationFrom">
+                        <form:option value="NONE"> --SELECT STATION--</form:option>
+                        <form:options items="${someList}"></form:options>
+                    </form:select>
                 </div>
             </spring:bind>
             <spring:bind path="stationTo">
                 <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <form:input  required="required" type="text" path="stationTo" placeholder="To Station"
-                    ></form:input>
-                    <form:errors path="stationTo"></form:errors>
+                    <form:select  path="stationTo">
+                        <form:option value="NONE"> --SELECT STATION--</form:option>
+                        <form:options items="${someList}"></form:options>
+                    </form:select>
                 </div>
             </spring:bind>
+
 
             <spring:bind path="earlyTime">
                 <div class="form-group ${status.error ? 'has-error' : ''}">

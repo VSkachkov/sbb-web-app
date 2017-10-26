@@ -45,6 +45,9 @@ public class TrainController {
     @RequestMapping(value = "/trains", method = RequestMethod.GET)
     public String setConditionsforTrainsBetweenStations(Model model) {
 
+        List<String> stationsList = new ArrayList<>();
+        stationsList = timetableService.getAllStationsNames();
+        model.addAttribute("someList", stationsList);
         model.addAttribute("trainsForm", new TrainsForm());
         logger.info("Setting conditions for trains between stations");
         return "trains";
