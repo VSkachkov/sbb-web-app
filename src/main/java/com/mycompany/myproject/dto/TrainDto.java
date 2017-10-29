@@ -59,6 +59,5 @@ public class TrainDto {
         this.departFri = train.isDepartFri();
         this.departSat = train.isDepartSat();
         this.departSun = train.isDepartSun();
-        this.capacity = train.getCapacity();
     }
 }

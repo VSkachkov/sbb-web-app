@@ -15,8 +15,8 @@ public class CantonDaoImp implements CantonDao {
 
     @Override
     public List<Canton> getAllCantons() {
-        return em.createQuery("FROM Canton")
-                .getResultList();
+            return em.createQuery("FROM Canton")
+                    .getResultList();
     }
 
 

@@ -53,7 +53,6 @@ public class TrainServiceImpl //extends GenericServiceImpl<Train,TrainDto, Long>
         train.setDepartFri(trainDto.isDepartFri());
         train.setDepartSat(trainDto.isDepartSat());
         train.setDepartSun(trainDto.isDepartSun());
-        train.setCapacity(trainDto.getCapacity());
         trainDao.addNewTrain(train);
 
     }

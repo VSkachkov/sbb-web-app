@@ -20,8 +20,8 @@ public interface TrainService //extends GenericService<Train, TrainDto, Long>
      * adds new train to DB
      * @param trainDto train DTO
      */
-    void addNewTrain(TrainDto trainDto);
 
+    public void addNewTrain(TrainDto trainDto);
     /**
      * checks if train goes specific date
      * @param trainId train number

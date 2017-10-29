@@ -7,6 +7,7 @@ import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -17,7 +18,7 @@ import java.util.List;
 @EqualsAndHashCode
 @Entity // This tells Hibernate to make a table out of this class
 @Table (name = "Trains")
-public class Train {
+public class Train  implements Serializable {
 
     @Id
     @GenericGenerator(name = "generator", strategy = "increment")
@@ -57,9 +58,20 @@ public class Train {
     @Column (name = "Depart_SUN")
     private boolean departSun;
 
-    @Basic
-    @Column (name = "capacity")
-    private Long capacity;
+
+    @ManyToOne
+    @JoinColumn(name = "train_types_number_id")
+    private TrainTypeNumber trainTypeNumber;
+
+//    @ManyToOne(fetch = FetchType.LAZY)
+////    @JoinColumn(name = "Train_type_id")
+////    @Embedded
+////    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumns({
+//            @JoinColumn(name = "Train_type_id", referencedColumnName = "Train_type_id"),
+//            @JoinColumn(name ="car_id", referencedColumnName = "Car")
+//    })
+//    private TrainType trainType;
 
 
 }

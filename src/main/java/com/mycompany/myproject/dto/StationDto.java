@@ -22,7 +22,7 @@ public class  StationDto {
         this.stationId = station.getStationId();
         this.stationName = station.getStationName();
         this.cantonId = station.getCanton().getCantonId();
-        this.node = station.isNode();
+//        this.node = station.isNode();
     }
 
 }

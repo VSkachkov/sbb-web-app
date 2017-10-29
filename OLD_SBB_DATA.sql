@@ -68,6 +68,9 @@ INSERT INTO STATIONS VALUES (40, 'Lugano', 1, 21);
 INSERT INTO STATIONS VALUES (41, 'Geneva Airport', 1, 25);
 INSERT INTO STATIONS VALUES (42, 'Bellinzona', 1, 21);
 
+INSERT INTO CARRIAGES VALUES (1, "Giruno 1st class", 39, 1.75);
+
+
 
 INSERT INTO TRAINS VALUES (1, "Bern Express", 1, 1, 1, 1, 1, 1, 1, 10);
 INSERT INTO TRAINS VALUES (2, 'Zurich Express', 1, 0, 1, 0, 1, 0, 1, 5);
