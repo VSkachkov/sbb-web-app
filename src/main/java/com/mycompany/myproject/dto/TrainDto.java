@@ -1,10 +1,13 @@
 package com.mycompany.myproject.dto;
 
 import com.mycompany.myproject.persist.entity.Train;
+import com.mycompany.myproject.persist.entity.TrainType;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,6 +27,10 @@ public class TrainDto {
     private String lastStation;
     private Time departureTime;
     private Time arrivalTime;
+    private Long trainTypeNumber;
+    private List<TrainTypeDto> trainTypeDtos = new ArrayList<>();
+    public Long trainType;
+
 
     public TrainDto(Long trainId, String trainName, boolean departMon,
                     boolean departTue, boolean departWed, boolean departThu,
@@ -59,5 +66,10 @@ public class TrainDto {
         this.departFri = train.isDepartFri();
         this.departSat = train.isDepartSat();
         this.departSun = train.isDepartSun();
+        this.trainTypeNumber = train.getTrainTypeNumber().getTrainTypeNumberId();
+
+//        TrainType trainType =
+//        trainType.
+//        this.trainTypeDtos = train.getTrainTypeNumber().
     }
 }

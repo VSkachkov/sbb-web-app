@@ -8,6 +8,7 @@ import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @ToString
 @Getter
@@ -15,7 +16,7 @@ import javax.persistence.*;
 @EqualsAndHashCode
 @Entity
 @Table(name = "Carriages", schema = "SBB_DB")
-public class Car {
+public class Car implements Serializable {
     @Id
     @GenericGenerator(name = "generator", strategy = "increment")
     @GeneratedValue(generator = "generator")

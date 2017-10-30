@@ -1,12 +1,15 @@
 package com.mycompany.myproject.service.impl;
 
 
+import com.mycompany.myproject.dto.TrainTypeDto;
 import com.mycompany.myproject.persist.entity.Train;
 import com.mycompany.myproject.dao.api.TrainDao;
 import com.mycompany.myproject.dto.TrainDto;
 //import com.mycompany.myproject.service.impl.GenericServiceImpl;
 import com.mycompany.myproject.dto.TrainsAttribute;
+import com.mycompany.myproject.persist.entity.TrainType;
 import com.mycompany.myproject.service.svc.TrainService;
+import com.mycompany.myproject.service.svc.TrainTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +33,12 @@ public class TrainServiceImpl //extends GenericServiceImpl<Train,TrainDto, Long>
 
 
 
-    @Autowired TrainDao trainDao;
+    @Autowired
+    TrainDao trainDao;
+
+    @Autowired
+    TrainTypeService trainTypeService;
+
     @Override
     public List<TrainDto> getAllTrains() {
         List<TrainDto> sdto = new ArrayList<>();
@@ -93,9 +101,13 @@ public class TrainServiceImpl //extends GenericServiceImpl<Train,TrainDto, Long>
         return trainDao.getTrainById(id);
     }
 
-    @Override //TODO IMPLEMENT
-    public TrainDto getTrainById(Long id) {
-        TrainDto trainDto = new TrainDto(trainDao.getTrainById(id));
+    @Override
+    public TrainDto getTrainById(Long trainId) {
+        Train train = trainDao.getTrainById(trainId);
+        TrainDto trainDto = new TrainDto(train);
+        Long trainTypeNumber = trainDto.getTrainTypeNumber();
+        List <TrainTypeDto> trainTypeDtos = trainTypeService.getTrainTypeInfo(trainTypeNumber);
+        trainDto.setTrainTypeDtos(trainTypeDtos);
         return trainDto;
     }
 

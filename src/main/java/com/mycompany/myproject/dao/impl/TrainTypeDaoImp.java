@@ -40,7 +40,7 @@ public class TrainTypeDaoImp implements TrainTypeDao {
     @Override
     public TrainTypeNumber getTrainTypeNumberById(Long trainTypeNumber){
 
-        List list = em.createQuery("FROM TrainTypeNumber where trainTypeNumber=:trainTypeNumber")
+        List list = em.createQuery("FROM TrainTypeNumber where trainTypeNumberId=:trainTypeNumber")
                 .setParameter("trainTypeNumber",trainTypeNumber).getResultList();
         return (list.isEmpty()) ? null : (TrainTypeNumber) list.get(0);
     }

@@ -17,7 +17,7 @@ public class TrainTypeDto {
     }
 
     public TrainTypeDto(TrainType trainType) {
-        this.trainTypeNumber = trainType.getTrainTypeNumber().getTrainTypeNumber();
+        this.trainTypeNumber = trainType.getTrainTypeNumber().getTrainTypeNumberId();
         this.carId = trainType.getCar().getCarId();
         this.trainTypeName = trainType.getTrainTypeName();
         this.numberOfCars = trainType.getNumberOfCars();

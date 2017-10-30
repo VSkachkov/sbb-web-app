@@ -8,6 +8,7 @@ import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 
 @ToString
@@ -16,7 +17,7 @@ import java.sql.Date;
 @EqualsAndHashCode
 @Entity
 @Table(name = "Reserve_Seats", schema = "SBB_DB")
-public class ReserveSeat {
+public class ReserveSeat implements Serializable {
 
     @Id
     @GenericGenerator(name = "generator", strategy = "increment")

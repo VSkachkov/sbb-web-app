@@ -19,11 +19,26 @@ public class SectionDaoImp implements SectionDao {
 
     @Override
     public List<Section> getAllSections() {
-        return null;
+        return em.createQuery("FROM Section")
+                .getResultList();
     }
 
     @Override
     public List<Section> getSectionsByStationId(Long stationId) {
-        return null;
+        List <Section> sections = em.createQuery("FROM Section WHERE stationFromId=:stationId OR stationToId=:stationId")
+                .setParameter("stationId", stationId)
+                .getResultList();
+        return sections;
+    }
+
+    @Override
+    public boolean addNewSectionByParams(Long stationOneId, Long stationTwoId, float length) {
+        return false;
+    }
+
+    @Override
+    public void addNewSection(Section section) {
+        em.persist(section);
+        em.flush();
     }
 }

@@ -8,6 +8,7 @@ import org.hibernate.annotations.Check;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @ToString
 @Getter
@@ -16,7 +17,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "seats_left_rate", schema = "SBB_DB")
 @Check(constraints = "seats_left_low <= seats_left_high")
-public class RateSeatsLeft {
+public class RateSeatsLeft implements Serializable {
 
 
     @Id

@@ -1,6 +1,7 @@
 package com.mycompany.myproject.persist.entity;
 
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,7 +19,7 @@ import org.hibernate.annotations.GenericGenerator;
 @EqualsAndHashCode
 @Entity
 @Table(name = "users", schema="SBB_DB")
-public class User {
+public class User implements Serializable {
 
 	@Id
 	@GenericGenerator(name = "generator", strategy = "increment")

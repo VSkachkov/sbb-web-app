@@ -8,31 +8,37 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Time;
 
 @ToString
 @Getter
 @Setter
 @EqualsAndHashCode
 @Entity
-@Table(name = "Sections", schema = "SBB_DB")
-public class Section implements Serializable {
-
+@Table(name = "Routes", schema = "SBB_DB")
+public class Route implements Serializable {
     @Id
+    @Column(name = "Route_id", nullable = false)
     @GenericGenerator(name = "generator", strategy = "increment")
     @GeneratedValue(generator = "generator")
-    @Column(name = "section_id")
-    private Long sectionId;
+    private long routeId;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "station_from_id")
-    private Station stationFromId;
-
+    @JoinColumn(name = "Section_id")
+    private Section section;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "station_to_id")
-    private Station stationToId;
+    @JoinColumn(name = "train_number")
+    private Train train;
 
     @Basic
-    @Column (name = "Length")
-    private float length;
+    @Column (name = "Departure")
+    private Time departure;
+
+
+    @Basic
+    @Column (name = "Arrival")
+    private Time arrival;
+
+
 }

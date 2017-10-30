@@ -60,18 +60,7 @@ public class Train  implements Serializable {
 
 
     @ManyToOne
-    @JoinColumn(name = "train_types_number_id")
+    @JoinColumn(name = "train_type_number")
     private TrainTypeNumber trainTypeNumber;
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-////    @JoinColumn(name = "Train_type_id")
-////    @Embedded
-////    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumns({
-//            @JoinColumn(name = "Train_type_id", referencedColumnName = "Train_type_id"),
-//            @JoinColumn(name ="car_id", referencedColumnName = "Car")
-//    })
-//    private TrainType trainType;
-
 
 }

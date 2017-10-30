@@ -8,6 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @ToString
 @Getter
@@ -21,6 +22,10 @@ public class TrainTypeNumber implements Serializable{
     @GenericGenerator(name = "generator", strategy = "increment")
     @GeneratedValue(generator = "generator")
     @Column(name = "train_types_number_id")
-    private Long trainTypeNumber;
+    private Long trainTypeNumberId;
+
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JoinColumn(name = "train_type_id")
+//    private List<TrainType> trainTypes;
 
 }

@@ -8,6 +8,7 @@ import org.hibernate.annotations.Check;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @ToString
 @Getter
@@ -16,7 +17,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "age_rate", schema = "SBB_DB")
 @Check(constraints = "age_low <= age_high")
-public class RateAge {
+public class RateAge implements Serializable {
     @Id
     @GenericGenerator(name = "generator", strategy = "increment")
     @GeneratedValue(generator = "generator")

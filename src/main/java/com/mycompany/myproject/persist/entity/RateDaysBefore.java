@@ -8,6 +8,8 @@ import org.hibernate.annotations.Check;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
+
 @ToString
 @Getter
 @Setter
@@ -15,7 +17,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "days_before_rate", schema = "SBB_DB")
 @Check(constraints = "days_low <= days_high")
-public class RateDaysBefore {
+public class RateDaysBefore implements Serializable {
 
         @Id
         @GenericGenerator(name = "generator", strategy = "increment")
