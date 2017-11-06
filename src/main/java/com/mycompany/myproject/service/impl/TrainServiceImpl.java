@@ -8,6 +8,7 @@ import com.mycompany.myproject.dto.TrainDto;
 //import com.mycompany.myproject.service.impl.GenericServiceImpl;
 import com.mycompany.myproject.dto.TrainsAttribute;
 import com.mycompany.myproject.persist.entity.TrainType;
+import com.mycompany.myproject.persist.entity.TrainTypeNumber;
 import com.mycompany.myproject.service.svc.TrainService;
 import com.mycompany.myproject.service.svc.TrainTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -122,5 +124,22 @@ public class TrainServiceImpl //extends GenericServiceImpl<Train,TrainDto, Long>
             }
         }
         return filteredTrainsList;
+    }
+    
+    @Override
+    public HashMap<Long, Long> getCarriages(Long trainId){
+        HashMap<Long, Long> carriages = new HashMap<>();
+        Train train = this.getTrainByTrainId(trainId);
+        TrainTypeNumber typeNumber = train.getTrainTypeNumber();
+        Long typeNumberId = typeNumber.getTrainTypeNumberId();
+        List <TrainTypeDto> typeDtos = trainTypeService.getTrainTypeInfo(typeNumberId);
+
+        for (TrainTypeDto typeDto :
+             typeDtos) {
+            Long carId = typeDto.getCarId();
+            Long numberOfCars = typeDto.getNumberOfCars();
+            carriages.put(carId, numberOfCars);
+        }
+        return carriages;
     }
 }

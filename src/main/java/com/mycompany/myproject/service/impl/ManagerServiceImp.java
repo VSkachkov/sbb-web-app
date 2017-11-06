@@ -1,7 +1,6 @@
 package com.mycompany.myproject.service.impl;
 
-import com.mycompany.myproject.persist.entity.ReserveSeat;
-import com.mycompany.myproject.persist.entity.User;
+import com.mycompany.myproject.persist.entity.*;
 import com.mycompany.myproject.dao.api.StationDao;
 import com.mycompany.myproject.dao.api.TimetableDao;
 import com.mycompany.myproject.dto.*;
@@ -28,6 +27,12 @@ public class ManagerServiceImp implements ManagerService {
 
     @Autowired
     CantonService cantonService;
+
+    @Autowired
+    RouteService routeService;
+
+    @Autowired
+    SectionService sectionService;
     
     @Autowired
     UserService userService;
@@ -53,19 +58,21 @@ public class ManagerServiceImp implements ManagerService {
             Long trainId = tdto.getTrainId();
             Time startTime, finishTime;
             try {
-                initStationId = timetableDao.getInitStationByTrain(trainId);
-                startTime = timetableDao.getDeparture(trainId, initStationId);
-                initStationName = stationDao.getStationById(initStationId).getStationName();
-
+                initStationName = routeService.getInitStationNameOfTrain(trainId);
+                initStationId = routeService.getInitStationIdOfTrain(trainId);
+                startTime = routeService.getTrainDepartureByStation(initStationId, trainId);
             } catch (IndexOutOfBoundsException e){
                 startTime = null;
                 initStationName = "--//--";
             }
             try {
+                lastStationName = routeService.getLastStationNameOfTrain(trainId);
+                lastStationId = routeService.getLastStationIdOfTrain(trainId);
+                finishTime = routeService.getTrainArrivalByStation(lastStationId, trainId);
 
-                lastStationId = timetableDao.getLastStationByTrain(trainId);
-                finishTime = timetableDao.getArrival(trainId, lastStationId);
-                lastStationName = stationDao.getStationById(lastStationId).getStationName();
+//                lastStationId = timetableDao.getLastStationByTrain(trainId);
+//                finishTime = timetableDao.getArrival(trainId, lastStationId);
+//                lastStationName = stationDao.getStationById(lastStationId).getStationName();
             }
             catch (IndexOutOfBoundsException e) {
                 finishTime = null;
@@ -114,8 +121,6 @@ public class ManagerServiceImp implements ManagerService {
                 }
             }
         }
-
-
         for (Long userId:
                 passengersIds) {
             PassengerForm passForm = new PassengerForm();
@@ -125,10 +130,7 @@ public class ManagerServiceImp implements ManagerService {
             passForm.setBirthday(user.getBirthday());
             passengers.add(passForm);
         }
-
         System.out.println("");
-
-
         return passengers;
     }
 
@@ -136,4 +138,33 @@ public class ManagerServiceImp implements ManagerService {
     public List<String> getAllCantonsNames() {
         return cantonService.getAllCantonsNames();
     }
+
+    @Override
+    public void addRouteToDB(RouteDto routeDto) {
+        Route route = new Route();
+        route.setArrival(routeDto.getArrival());
+        route.setDeparture(routeDto.getDeparture());
+        route.setSection(sectionService.getSectionById(routeDto.getSectionId()));
+        route.setTrain(trainService.getTrainByTrainId(routeDto.getTrainId()));
+    }
+
+    @Override
+    public void addSectionToDB(SectionDto sectionDto) {
+        Section section = new Section();
+        section.setStationFromId(stationService.getStationById(sectionDto.getStationFromId()));
+        section.setStationToId(stationService.getStationById(sectionDto.getStationToId()));
+        section.setLength(sectionDto.getLength());
+
+
+    }
+
+    @Override
+    public void addCarToDB(CarDto carDto) {
+        Car car = new Car();
+        car.setCarPriceRate(carDto.getCarPriceRate());
+        car.setCarName(carDto.getCarName());
+        car.setSeatsNumber(carDto.getSeatsNumber());
+    }
+
+
 }

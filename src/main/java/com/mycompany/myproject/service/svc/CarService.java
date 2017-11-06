@@ -18,7 +18,9 @@ public interface CarService //extends GenericService<Canton, CantonDto_OBSOLETE,
 
     void removeCar(Long id);
 
-    CarDto getCarById(Long id);
+    CarDto getCarDtoById(Long id);
+
+    Car getCarById(Long id);
 
     Car getCarByName(String s);
 

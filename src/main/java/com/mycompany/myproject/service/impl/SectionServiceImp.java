@@ -1,6 +1,7 @@
 package com.mycompany.myproject.service.impl;
 
 import com.mycompany.myproject.dao.api.SectionDao;
+import com.mycompany.myproject.dto.SectionDto;
 import com.mycompany.myproject.persist.entity.Section;
 import com.mycompany.myproject.service.svc.SectionService;
 import com.mycompany.myproject.service.svc.StationService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,7 +34,26 @@ public class SectionServiceImp implements SectionService {
     }
 
     @Override
-    public List<SectionDto>
+    public List<Section> getSectionsByStationToId(Long stationId) {
+        return sectionDao.getSectionsByStationToId(stationId);
+    }
+
+    @Override
+    public List<Section> getSectionsByStationFromId(Long stationId) {
+        return sectionDao.getSectionsByStationFromId(stationId);
+    }
+
+    @Override
+    public List<SectionDto>getSectionsDtosByStationId(Long stationId){
+        List <Section> sections = getSectionsByStationId(stationId);
+
+        List <SectionDto> sectionsDto = new ArrayList<>();
+        for (Section section:
+             sections) {
+            sectionsDto.add(new SectionDto(section));
+        }
+        return sectionsDto;
+    }
 
     @Override
     public boolean addNewSectionByParams(Long stationOneId, Long stationTwoId, float length){
@@ -57,6 +78,11 @@ public class SectionServiceImp implements SectionService {
     public boolean addNewSection(Section section){
         sectionDao.addNewSection(section);
         return true;
+    }
+
+    @Override
+    public Section getSectionById(Long sectionId) {
+        return sectionDao.getSectionById(sectionId);
     }
 
 }

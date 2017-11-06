@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.HashMap;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {MvcConfig.class, JPAConfig.class, ServiceConfig.class})
 public class TrainServiceTest {
@@ -31,5 +33,12 @@ public class TrainServiceTest {
         trainDto = trainService.getTrainById(1L);
         Assert.assertTrue(trainDto.isDepartFri());
     }
+
+    @Test
+    public void testGetCarriages(){
+        HashMap<Long, Long> cars = trainService.getCarriages(2L);
+        Assert.assertTrue(!cars.isEmpty());
+    }
+
 
 }

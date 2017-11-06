@@ -45,8 +45,13 @@ public class CarServiceImpl //extends GenericServiceImpl<Canton,CantonDto_OBSOLE
     }
 
     @Override
-    public CarDto getCarById(Long id) {
+    public CarDto getCarDtoById(Long id) {
         return new CarDto(carDao.getCarById(id));
+    }
+
+    @Override
+    public Car getCarById(Long id) {
+        return carDao.getCarById(id);
     }
 
     @Override

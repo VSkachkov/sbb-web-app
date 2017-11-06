@@ -16,6 +16,7 @@ public class PassengerForm {
     Date birthday;
     Date travelDate;
     Long trainNumber;
+    Long carId;
 
 
     public PassengerForm(String firstName,
@@ -24,7 +25,8 @@ public class PassengerForm {
                          String toStation,
                          Date birthday,
                          Date travelDate,
-                         Long trainNumber) {
+                         Long trainNumber,
+                         Long carId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.fromStation = fromStation;
@@ -32,6 +34,7 @@ public class PassengerForm {
         this.birthday = birthday;
         this.travelDate = travelDate;
         this.trainNumber = trainNumber;
+        this.carId = carId;
     }
 
     public PassengerForm() {

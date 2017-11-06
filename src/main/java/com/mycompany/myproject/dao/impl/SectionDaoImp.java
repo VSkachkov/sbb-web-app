@@ -1,7 +1,9 @@
 package com.mycompany.myproject.dao.impl;
 
 import com.mycompany.myproject.dao.api.SectionDao;
+import com.mycompany.myproject.dao.api.StationDao;
 import com.mycompany.myproject.persist.entity.Section;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -16,6 +18,9 @@ public class SectionDaoImp implements SectionDao {
     @PersistenceContext
     private EntityManager em;
 
+    @Autowired
+    StationDao stationDao;
+
 
     @Override
     public List<Section> getAllSections() {
@@ -26,7 +31,23 @@ public class SectionDaoImp implements SectionDao {
     @Override
     public List<Section> getSectionsByStationId(Long stationId) {
         List <Section> sections = em.createQuery("FROM Section WHERE stationFromId=:stationId OR stationToId=:stationId")
-                .setParameter("stationId", stationId)
+                .setParameter("stationId", stationDao.getStationById(stationId))
+                .getResultList();
+        return sections;
+    }
+
+    @Override
+    public List<Section> getSectionsByStationFromId(Long stationId) {
+        List <Section> sections = em.createQuery("FROM Section WHERE stationFromId=:stationId")
+                .setParameter("stationId", stationDao.getStationById(stationId))
+                .getResultList();
+        return sections;
+    }
+
+    @Override
+    public List<Section> getSectionsByStationToId(Long stationId) {
+        List <Section> sections = em.createQuery("FROM Section WHERE stationToId=:stationId")
+                .setParameter("stationId", stationDao.getStationById(stationId))
                 .getResultList();
         return sections;
     }
@@ -40,5 +61,12 @@ public class SectionDaoImp implements SectionDao {
     public void addNewSection(Section section) {
         em.persist(section);
         em.flush();
+    }
+
+    @Override
+    public Section getSectionById( Long sectionId) {
+        List list = em.createQuery("FROM Section where sectionId=:sectionId")
+                .setParameter("sectionId",sectionId).getResultList();
+        return (list.isEmpty()) ? null : (Section) list.get(0);
     }
 }

@@ -4,6 +4,7 @@ package com.mycompany.myproject.service;
 import com.mycompany.myproject.config.JPAConfig;
 import com.mycompany.myproject.config.MvcConfig;
 import com.mycompany.myproject.config.ServiceConfig;
+import com.mycompany.myproject.dto.SectionDto;
 import com.mycompany.myproject.persist.entity.Section;
 import com.mycompany.myproject.service.svc.SectionService;
 import org.junit.Assert;
@@ -34,6 +35,12 @@ public class SectionServiceTest {
     public void testAddNewSections(){
         sectionService.addNewSectionByParams(13L, 38L, 27.5f);
         Assert.assertTrue(sectionService.getAllSections().size()==12);
+    }
+
+    @Test
+    public void testGetSectionsDtosByStationId(){
+        List <SectionDto> sectionsDtos = sectionService.getSectionsDtosByStationId(13L);
+        Assert.assertTrue(!sectionsDtos.isEmpty());
     }
 
 

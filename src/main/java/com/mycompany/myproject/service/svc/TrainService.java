@@ -5,6 +5,7 @@ import com.mycompany.myproject.dto.TrainDto;
 import com.mycompany.myproject.dto.TrainsAttribute;
 
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -57,4 +58,5 @@ public interface TrainService //extends GenericService<Train, TrainDto, Long>
      * @return trains that go that day
      */
     List <TrainsAttribute> filterTrainsByDate(List<TrainsAttribute> trainsInfo, Date date);
+    HashMap<Long, Long> getCarriages(Long trainId);
 }

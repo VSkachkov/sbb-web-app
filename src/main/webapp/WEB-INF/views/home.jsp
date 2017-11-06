@@ -14,11 +14,15 @@
 
 
 	<!-- Bootstrap core CSS -->
-	<link href="../resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+	<%--<link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">--%>
+	<link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Custom styles for this template -->
-	<link href="../resources/css/modern-business.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet">
+	<!-- Bootstrap core CSS -->
+	<%--<link href="bootstrap.min.css" rel="stylesheet">--%>
 
+	<%--<!-- Custom styles for this template -->--%>
+	<%--<link href="modern-business.css" rel="stylesheet">--%>
 
 
 	<%-------------------------------------------------------------------------------------------------%>
@@ -95,9 +99,9 @@
 <jsp:include page="templates/footer.jsp"/>
 
 <!-- Bootstrap core JavaScript -->
-<script src="../resources/vendor/jquery/jquery.min.js"></script>
-<script src="../resources/vendor/popper/popper.min.js"></script>
-<script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/vendor/popper/popper.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 </body>
 

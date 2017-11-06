@@ -2,6 +2,8 @@ package com.mycompany.myproject.service.svc;
 
 import com.mycompany.myproject.dto.PassengerForm;
 
+import java.sql.Date;
+
 public interface TicketService {
 
     /**
@@ -10,4 +12,9 @@ public interface TicketService {
      * @return result information
      */
     String launchBuyingProcedure(PassengerForm passengerForm);
+    String launchUpdatedBuyProcedure(PassengerForm passengerForm);
+    boolean checkEnoughTimeBeforeDeparture(Long trainId, Long stationId);
+    boolean checkDateValidity(Date travelDate);
+
+
 }

@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Getter
@@ -30,6 +31,7 @@ public class TrainDto {
     private Long trainTypeNumber;
     private List<TrainTypeDto> trainTypeDtos = new ArrayList<>();
     public Long trainType;
+    private HashMap<Long, Long> carriage;
 
 
     public TrainDto(Long trainId, String trainName, boolean departMon,

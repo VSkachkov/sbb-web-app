@@ -36,6 +36,14 @@ public class Station implements Serializable {
     @JoinColumn(name = "canton_id")
     private Canton canton;
 
+    @Basic
+    @Column(name = "Latitude")
+    private Float  latitude;
+
+
+    @Basic
+    @Column(name = "Longitude")
+    private Float longitude;
 
 
 

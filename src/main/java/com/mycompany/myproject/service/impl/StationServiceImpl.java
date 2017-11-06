@@ -66,7 +66,8 @@ public class StationServiceImpl
         Station station = new Station();
         station.setCanton( cantonService.getCantonByName(stationForm.getCantonName()));
         station.setStationName(stationForm.getStationName());
-
+        station.setLatitude(stationForm.getLatitude());
+        station.setLongitude(stationForm.getLongitude());
         addNewStation(station);
     }
 }

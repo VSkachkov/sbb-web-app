@@ -1,8 +1,6 @@
 package com.mycompany.myproject.service.svc;
 
-import com.mycompany.myproject.dto.PassengerForm;
-import com.mycompany.myproject.dto.StationForm;
-import com.mycompany.myproject.dto.TrainDto;
+import com.mycompany.myproject.dto.*;
 
 import java.sql.Date;
 import java.util.List;
@@ -46,4 +44,10 @@ public interface ManagerService {
      * @return List of cantons names
      */
     List<String> getAllCantonsNames();
+
+    void addRouteToDB(RouteDto routeDto);
+
+    void addSectionToDB(SectionDto sectionDto);
+
+    void addCarToDB(CarDto carDto);
 }

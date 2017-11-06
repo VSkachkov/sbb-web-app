@@ -10,6 +10,8 @@ public class StationForm {
 
     String stationName;
     String cantonName;
+    Float latitude;
+    Float longitude;
 
     public StationForm() {
     }
