@@ -9,7 +9,5 @@ public interface CarDao {
     void addNewCar(Car car);
     void removeCar(Long id);
     Car getCarById(Long id);
-
     Car getCarByName(String s);
-//    Car getCarriageByName(String name);
 }

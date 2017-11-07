@@ -24,6 +24,8 @@ public class ManagerServiceImp implements ManagerService {
     @Autowired
     StationDao stationDao;
 
+    @Autowired
+    RatesService ratesService;
 
     @Autowired
     CantonService cantonService;
@@ -43,9 +45,17 @@ public class ManagerServiceImp implements ManagerService {
     @Autowired
     StationService stationService;
 
+    @Autowired
+    TrainTypeNumberService trainTypeNumberService;
 
     @Autowired
     TrainService trainService;
+
+    @Autowired
+    CarService carService;
+
+    @Autowired
+    TrainTypeService trainTypeService;
 
     @Override
     public List<TrainDto> getTrainsForManagers(){
@@ -70,9 +80,6 @@ public class ManagerServiceImp implements ManagerService {
                 lastStationId = routeService.getLastStationIdOfTrain(trainId);
                 finishTime = routeService.getTrainArrivalByStation(lastStationId, trainId);
 
-//                lastStationId = timetableDao.getLastStationByTrain(trainId);
-//                finishTime = timetableDao.getArrival(trainId, lastStationId);
-//                lastStationName = stationDao.getStationById(lastStationId).getStationName();
             }
             catch (IndexOutOfBoundsException e) {
                 finishTime = null;
@@ -166,5 +173,11 @@ public class ManagerServiceImp implements ManagerService {
         car.setSeatsNumber(carDto.getSeatsNumber());
     }
 
-
+    @Override
+    public void addTrainType(TrainTypeDto trainTypeDto) {
+        TrainTypeNumber trainTypeNumber = new TrainTypeNumber();
+        Long trainTypeNumberId = trainTypeNumberService.add(trainTypeNumber);
+        trainTypeDto.setTrainTypeNumber(trainTypeNumberId);
+        trainTypeService.addNewTrainType(trainTypeDto);
+    }
 }

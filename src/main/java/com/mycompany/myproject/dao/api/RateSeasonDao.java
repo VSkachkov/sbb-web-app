@@ -5,6 +5,7 @@ import com.mycompany.myproject.persist.entity.RateSeason;
 import java.util.List;
 
 public interface RateSeasonDao {
-    public List<RateSeason> getAllSeasonRates();
-    public float getSeasonRateByDay(int dayNumber);
+    List<RateSeason> getAllSeasonRates();
+    float getSeasonRateByDay(int dayNumber);
+    void addNewSeasonRate(RateSeason rateSeason);
 }

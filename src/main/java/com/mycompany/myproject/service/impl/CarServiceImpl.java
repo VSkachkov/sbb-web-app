@@ -59,16 +59,5 @@ public class CarServiceImpl //extends GenericServiceImpl<Canton,CantonDto_OBSOLE
         return carDao.getCarByName(s);
     }
 
-//    @Override
-//    public List<String> getAllCarNames() {
-//        List<String> carNames  = new ArrayList<>();
-//
-//        for (Car car:
-//                carDao.getAllCars()) {
-//            carNames.add(car.getCarName());
-//        }
-//        return carNames;
-//    }
-
 }
 

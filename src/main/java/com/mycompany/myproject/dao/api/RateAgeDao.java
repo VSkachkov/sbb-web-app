@@ -9,6 +9,5 @@ public interface RateAgeDao {
     List<RateAge> getAllAgeRates();
     void addNewRateAge(RateAge rateAge);
     void removeRateAge(Long rateId);
-
     float getAgeRateByAge(int ageInt);
 }

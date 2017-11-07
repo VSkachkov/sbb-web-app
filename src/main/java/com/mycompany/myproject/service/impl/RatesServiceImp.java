@@ -36,6 +36,7 @@ public class RatesServiceImp implements RatesService {
 
     @Autowired
     RateSeatsLeftDao rateSeatsLeftDao;
+
     @Override
     public float getRateAgeByUser(Long userId){
         User user = userService.getUserById(userId);
@@ -88,6 +89,4 @@ public class RatesServiceImp implements RatesService {
         float rateTotal = (rateAge+rateSeason+rateBuyBefore+rateOccupancy)/4;
         return rateTotal;
     }
-
-
 }

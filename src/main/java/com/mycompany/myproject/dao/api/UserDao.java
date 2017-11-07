@@ -15,8 +15,6 @@ public interface UserDao {
     User getUserByLogin(String s);
     long getUserIdByEmail(String email);
     long getUserIdByLogin(String login);
-
     User loginUser(String login, String password);
-
     Long getUserByPrivateData(String firstName, String lastName, Date birthday);
 }

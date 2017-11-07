@@ -9,6 +9,7 @@ import java.util.List;
 public interface GeneralService {
 
     List<TrainDto> getTrainDtosViaStation(Long stationId);
+    List<TrainDto> getTrainDtosViaStationAndDate(Long stationId, Date travelDate);
     List <Long> extractTrainIdsOnRoutes(List<RouteDto> routeDtos);
     List <Long> findTrainsViaStation(Long stationId);
     TrainDto getTrainInfoFromOneStationToOther(Long stationFrom, Long stationTo, Long trainId);
@@ -17,4 +18,8 @@ public interface GeneralService {
     List<TrainDto> findTrainDtosFromOneToAnotherStation(Long stationFrom, Long stationTo);
     List <Long> findTrainsBetweenStations(Long stationIdOne, Long stationIdTwo);
     List <Long> findTrainsFromStationToStation(Long stationFrom, Long stationTo);
+    List<TrainDto> fillTrainDtoWithData(List<Long> trainIds, List<RouteDto> routeDtos, Long stationId);
+    List<List<TrainDto>> findTrainDtosFromOneToAnotherStationWithDateAndChange(Long stationFrom,
+            Long stationTo,
+            Date travelDate);
 }

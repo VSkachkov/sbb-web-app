@@ -88,7 +88,6 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
     @Override
 
     public ArrayList <Long> getListOfTrainsByStationAndTimePeriod(String stationName, String time1, String time2){
-//    public ArrayList <Long> getListOfTrainsByStationAndTimePeriod(String stationName, Time time1, Time time2){
         ArrayList<Long> trainsList = new ArrayList<>();
         CustomTimeConverter myTimeConverter = new CustomTimeConverter();
         Time t1 = new Time(0L);

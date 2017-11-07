@@ -54,9 +54,6 @@ public class GeneralServiceImp implements GeneralService {
 
     @Override
     public List<Long> findTrainsFromStationToStation(Long stationFrom, Long stationTo) {
-        //the problem is that when we fing trains using method fingTrainsBetween stations
-        //this method doed not take into account any time. I.e. it can be later on "From Station"
-        //than on "To Station.
         List <Long> trainsBetweenStations = this.findTrainsBetweenStations(stationFrom, stationTo);
         List <Long> trainFromToStation = new ArrayList<>();
         Time departureFromStationFrom = new Time(0, 0, 0);
@@ -136,25 +133,27 @@ public class GeneralServiceImp implements GeneralService {
         }
         return trainDtos;
     }
-//
-//    @Override
-//    private List<Long> findTrainsFromStationToStationWithDate(Long stationFrom, Long stationTo, Date travelDate) {
-//        List <Long> allTrainIds = this.findTrainsFromStationToStation(stationFrom, stationTo);
-//        routeService.getRoutesOfTrain()
-//
-//
-//        List<TrainDto> trainDtos = new ArrayList<>();
-//
-//    }
+
+    @Override
+    public List<List<TrainDto>> findTrainDtosFromOneToAnotherStationWithDateAndChange(
+            Long stationFrom,
+            Long stationTo,
+            Date travelDate
+    ){
+        return null;
+    }
 
 
     @Override
-    public List<TrainDto> getTrainDtosViaStation(Long stationId){ //TODO! probably this method needs to be refactored
+    public List<TrainDto> getTrainDtosViaStation(Long stationId){
 
         List<RouteDto> routeDtos = routeService.getRoutesDtosViaStationId(stationId);
         List <Long> trainIds = this.extractTrainIdsOnRoutes(routeDtos);
+        return fillTrainDtoWithData(trainIds, routeDtos, stationId);
+    }
 
-
+    @Override
+    public List<TrainDto> fillTrainDtoWithData(List<Long> trainIds, List<RouteDto> routeDtos, Long stationId){
         List<TrainDto> trainDtos = new ArrayList<>();
         for (Long trainId : //for each train Id we get it's DTO with neccessary information
                 trainIds) {
@@ -172,7 +171,19 @@ public class GeneralServiceImp implements GeneralService {
             trainDtos.add(trainDto);
         }
         return trainDtos;
+    }
 
+    @Override
+    public List<TrainDto> getTrainDtosViaStationAndDate(Long stationId, Date travelDate) {
+        List<RouteDto> routeDtos = routeService.getRoutesDtosViaStationId(stationId);
+        List <Long> trainIds = this.extractTrainIdsOnRoutes(routeDtos);
+        List<Long> filteredTrainIds = new ArrayList<>();
+        for (Long trainId :
+                trainIds) {
+            if(trainService.checkTrainDate(trainId, travelDate))
+                filteredTrainIds.add(trainId);
+        }
+        return fillTrainDtoWithData( filteredTrainIds, routeDtos, stationId);
     }
 
 }

@@ -33,5 +33,10 @@ public class RateSeasonDaoImp implements RateSeasonDao{
 
     }
 
+    @Override
+    public void addNewSeasonRate(RateSeason rateSeason){
+        em.persist(rateSeason);
+    }
+
 
 }

@@ -24,6 +24,5 @@ public interface RouteService {
     Long getLastStationIdOfTrain(Long trainId);
     String getInitStationNameOfTrain(Long trainId);
     String getLastStationNameOfTrain(Long trainId);
-
     Time getTrainArrivalByStation(Long stationId, Long trainId);
 }

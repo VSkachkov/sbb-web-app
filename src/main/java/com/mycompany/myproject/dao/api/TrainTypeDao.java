@@ -13,6 +13,4 @@ public interface TrainTypeDao {
     TrainTypeNumber getTrainTypeNumberById(Long id);
     void removeTrainType(Long id);
     List<TrainType> getTrainTypeById(Long id);
-
-
 }

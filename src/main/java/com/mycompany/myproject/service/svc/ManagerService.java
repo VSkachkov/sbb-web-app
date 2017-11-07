@@ -1,6 +1,7 @@
 package com.mycompany.myproject.service.svc;
 
 import com.mycompany.myproject.dto.*;
+import com.mycompany.myproject.persist.entity.TrainType;
 
 import java.sql.Date;
 import java.util.List;
@@ -50,4 +51,6 @@ public interface ManagerService {
     void addSectionToDB(SectionDto sectionDto);
 
     void addCarToDB(CarDto carDto);
+
+    void addTrainType(TrainTypeDto trainTypeDto);
 }

@@ -68,10 +68,7 @@ public class SectionServiceImp implements SectionService {
         sectionOppositeDirection.setStationToId(stationService.getStationById(stationOneId));
         sectionOppositeDirection.setLength(length);
         this.addNewSection(sectionOppositeDirection);
-
         return true;
-
-//        return sectionDao.addNewSectionByParams(stationOneId, stationTwoId, length);
     }
 
     @Override

@@ -22,12 +22,21 @@ public class TrainTypeNumberDaoImp implements TrainTypeNumberDao {
 
     @Override
     public TrainTypeNumber getTrainTypeNumberById(Long trainTypeNumberId) {
-        return null;
+        List list =  em.createQuery("FROM TrainTypeNumber where trainTypeNumberId=:trainTypeNumberId")
+                .setParameter("trainTypeNumberId", trainTypeNumberId).getResultList();
+        return (list.isEmpty()) ? null : (TrainTypeNumber) list.get(0);
+
     }
 
     @Override
     public List<TrainType> getTrainTypeById(Long trainTypeNumberId) {
 
         return null;
+    }
+
+    @Override
+    public Long add(TrainTypeNumber trainTypeNumber) {
+        em.persist(trainTypeNumber);
+        return trainTypeNumber.getTrainTypeNumberId();
     }
 }

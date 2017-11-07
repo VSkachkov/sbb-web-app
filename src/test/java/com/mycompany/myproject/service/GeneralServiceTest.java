@@ -6,6 +6,8 @@ import com.mycompany.myproject.config.MvcConfig;
 import com.mycompany.myproject.config.ServiceConfig;
 import com.mycompany.myproject.dto.TrainDto;
 import com.mycompany.myproject.service.svc.GeneralService;
+import com.mycompany.myproject.service.svc.ReserveService;
+import com.mycompany.myproject.service.svc.RouteService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,11 +25,24 @@ public class GeneralServiceTest {
     @Autowired
     GeneralService generalService;
 
+    @Autowired
+    RouteService routeService;
+
+    @Autowired
+    ReserveService reserveService;
+
     @Test
     public void testGetTrainDtosViaStation(){
         List <TrainDto> trainDtos = generalService.getTrainDtosViaStation(13L);
         Assert.assertTrue(!trainDtos.isEmpty());
+    }
 
+    @Test
+    public void testGetTrainDtosViaStationAndDate(){
+        Date date = reserveService.getReserveById(1L).getTravelDate();
+        date.setDate(date.getDate()-1);
+        List<TrainDto> trainDtos = generalService.getTrainDtosViaStationAndDate(13L, date);
+        Assert.assertTrue(!trainDtos.isEmpty());
     }
 
     @Test

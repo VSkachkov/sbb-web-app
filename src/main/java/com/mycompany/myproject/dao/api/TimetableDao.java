@@ -17,7 +17,6 @@ public interface TimetableDao {
     List<Timetable>getAllRoutesThroughStationId(Long stationId);
     List<Timetable> getAllTrainsThroughStationName(String stationName);
     List<Timetable> getTrainsViaStationWithTime(String stationName, Time earlyTime, Time lateTime);
-
     Long getInitStationByTrain(Long trainId);
     Long getLastStationByTrain(Long trainId);
 

@@ -22,6 +22,16 @@ public class TrainTypeNumberServiceImp implements TrainTypeNumberService {
         return trainTypeNumberDao.getAllTrainTypeNumbers();
     }
 
+    @Override
+    public Long add(TrainTypeNumber trainTypeNumber) {
+        return trainTypeNumberDao.add(trainTypeNumber);
+    }
+
+    @Override
+    public TrainTypeNumber getTrainTypeNumberById(Long trainTypeNumberId) {
+        return trainTypeNumberDao.getTrainTypeNumberById(trainTypeNumberId);
+    }
+
     public List<TrainType> getTrainTypeByTrainTypeNumber(Long trainTypeNumberId){
         return null;
 //        return trainTypeNumberDao.getTrainTypeById(trainTypeNumberId);

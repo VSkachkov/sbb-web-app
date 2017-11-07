@@ -26,9 +26,6 @@ public class TicketServiceImp implements  TicketService {
     final private Long TENMINUTES = new java.sql.Time(0, 10, 0).getTime();
     final private Long HOUR = new java.sql.Time(1, 0, 0).getTime();;
 
-//    @Autowired
-//    TicketDao ticketDao;
-
     @Autowired
     StationService stationService;
 
@@ -155,7 +152,7 @@ public class TicketServiceImp implements  TicketService {
         Long latestPossibleTime = timeNow  + TENMINUTES;
         if(latestPossibleTime>sqlDateTimeDepartureToLong)
             return false;
-        return true; //TODO Check this method!!!!!
+        return true;
     }
 
 

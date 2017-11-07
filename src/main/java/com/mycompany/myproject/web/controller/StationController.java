@@ -22,11 +22,8 @@ public class StationController {
 
     private static final Logger logger = LoggerFactory.getLogger(StationController.class);
 
+    private DozerBeanMapper mapper;
 
-//    @Autowired
-private DozerBeanMapper mapper;
-//    @Autowired
-//    private UserService userService;
 
     @Autowired
     private StationService stationService;

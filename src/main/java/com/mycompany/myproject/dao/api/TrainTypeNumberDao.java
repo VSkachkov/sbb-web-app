@@ -10,4 +10,5 @@ public interface TrainTypeNumberDao {
     List<TrainTypeNumber> getAllTrainTypeNumbers();
     TrainTypeNumber getTrainTypeNumberById (Long trainTypeNumberId);
     List <TrainType> getTrainTypeById(Long trainTypeNumberId);
+    Long add(TrainTypeNumber trainTypeNumber);
 }

@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface TrainTypeNumberService {
      List<TrainTypeNumber> getAllTrainTypesNumbers();
+
+    Long add(TrainTypeNumber trainTypeNumber);
+
+    TrainTypeNumber getTrainTypeNumberById(Long trainTypeNumberId);
 }

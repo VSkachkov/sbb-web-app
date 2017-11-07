@@ -23,7 +23,7 @@ public class RateAgeDaoImp implements RateAgeDao {
 
     @Override
     public void addNewRateAge(RateAge rateAge) {
-
+        em.persist(rateAge);
     }
 
     @Override
@@ -42,5 +42,4 @@ public class RateAgeDaoImp implements RateAgeDao {
 
        return (list.isEmpty()) ? 1 : rate;
     }
-
 }

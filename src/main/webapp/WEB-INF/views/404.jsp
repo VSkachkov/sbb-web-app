@@ -14,10 +14,9 @@
 
 
     <!-- Bootstrap core CSS -->
-    <link href="../resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="../resources/css/modern-business.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/modern-business.css" rel="stylesheet">
 
 
 
