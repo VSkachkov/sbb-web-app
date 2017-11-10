@@ -22,4 +22,5 @@ public interface GeneralService {
     List<List<TrainDto>> findTrainDtosFromOneToAnotherStationWithDateAndChange(Long stationFrom,
             Long stationTo,
             Date travelDate);
+    List<TrainDto> getTrainsForBoardOnline(String stationName);
 }

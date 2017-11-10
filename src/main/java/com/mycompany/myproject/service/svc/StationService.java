@@ -1,6 +1,7 @@
 package com.mycompany.myproject.service.svc;
 
 
+import com.mycompany.myproject.dto.StationDto;
 import com.mycompany.myproject.persist.entity.Station;
 //import com.mycompany.myproject.persist.repo.StationRepo;
 import com.mycompany.myproject.dto.StationForm;
@@ -54,4 +55,6 @@ public interface StationService// extends GenericService<Station, StationDto, Lo
      * @param stationForm station information
      */
     void addNewStationByForm(StationForm stationForm);
+
+    List <StationDto> getAllStationDtos();
 }

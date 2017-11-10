@@ -1,11 +1,9 @@
 package com.mycompany.myproject.service.impl;
 
-import com.mycompany.myproject.dto.RouteDto;
-import com.mycompany.myproject.dto.TrainDto;
+import com.mycompany.myproject.dto.*;
 import com.mycompany.myproject.persist.entity.Route;
-import com.mycompany.myproject.service.svc.GeneralService;
-import com.mycompany.myproject.service.svc.RouteService;
-import com.mycompany.myproject.service.svc.TrainService;
+import com.mycompany.myproject.persist.entity.TrainChange;
+import com.mycompany.myproject.service.svc.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -24,6 +23,12 @@ public class GeneralServiceImp implements GeneralService {
 
     @Autowired
     TrainService trainService;
+
+    @Autowired
+    StationService stationService;
+
+    @Autowired
+    TrainChangeService trainChangeService;
 
     @Override
     public List <Long> extractTrainIdsOnRoutes(List<RouteDto> routeDtos){
@@ -141,6 +146,23 @@ public class GeneralServiceImp implements GeneralService {
             Date travelDate
     ){
         return null;
+    }
+
+    @Override
+    public List<TrainDto> getTrainsForBoardOnline(String stationName) {
+        Long stationId = stationService.getStationByName(stationName).getStationId();
+        TrainsDto trainsDto = new TrainsDto();
+        Date today =  new Date(Calendar.getInstance().getTime().getTime());
+        List<TrainDto> trainDtos = getTrainDtosViaStationAndDate(stationId,today);
+        for (TrainDto trainDto :
+                trainDtos) {
+            trainDto.setTrainTypeDtos(null);
+            TrainChange change = trainChangeService.getChangeByTrainIdAndDate(trainDto.getTrainId(), today);
+            if (change!=null)
+                trainDto.setStatus(change.getStatus());
+        };
+        trainsDto.setTrains(trainDtos);
+        return trainDtos;
     }
 
 

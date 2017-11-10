@@ -1,6 +1,7 @@
 package com.mycompany.myproject.service.impl;
 
 
+import com.mycompany.myproject.dto.StationDto;
 import com.mycompany.myproject.persist.entity.Station;
 import com.mycompany.myproject.dao.api.StationDao;
 import com.mycompany.myproject.dto.StationForm;
@@ -15,8 +16,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class StationServiceImpl
-        implements StationService {
+public class StationServiceImpl implements StationService {
 
     @Autowired
     private StationDao stationDao;
@@ -69,5 +69,19 @@ public class StationServiceImpl
         station.setLatitude(stationForm.getLatitude());
         station.setLongitude(stationForm.getLongitude());
         addNewStation(station);
+    }
+
+    @Override
+    public List<StationDto> getAllStationDtos() {
+        List <Station> stations = this.getAllStations();
+        List <StationDto> stationDtos = new ArrayList<>();
+
+        for (Station station :
+                stations) {
+            StationDto stationDto = new StationDto(station);
+            stationDtos.add(stationDto);
+        }
+
+        return stationDtos;
     }
 }

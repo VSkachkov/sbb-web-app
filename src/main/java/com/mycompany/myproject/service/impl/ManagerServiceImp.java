@@ -5,6 +5,7 @@ import com.mycompany.myproject.dao.api.StationDao;
 import com.mycompany.myproject.dao.api.TimetableDao;
 import com.mycompany.myproject.dto.*;
 import com.mycompany.myproject.service.svc.*;
+import com.mycompany.myproject.util.Sender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -179,5 +180,11 @@ public class ManagerServiceImp implements ManagerService {
         Long trainTypeNumberId = trainTypeNumberService.add(trainTypeNumber);
         trainTypeDto.setTrainTypeNumber(trainTypeNumberId);
         trainTypeService.addNewTrainType(trainTypeDto);
+    }
+
+    @Override
+    public void updateDataOnRemoteServer(){
+        new Sender().send();
+
     }
 }

@@ -53,4 +53,6 @@ public interface ManagerService {
     void addCarToDB(CarDto carDto);
 
     void addTrainType(TrainTypeDto trainTypeDto);
+
+    public void updateDataOnRemoteServer();
 }

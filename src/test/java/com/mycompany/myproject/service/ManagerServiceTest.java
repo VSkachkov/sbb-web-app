@@ -54,5 +54,12 @@ public class ManagerServiceTest {
 //        Assert.assertTrue(trainTypeNumberService.getTrainTypeNumberById(3L)!=null);
     }
 
+    @Test
+    public void updateDataOnRemoteServer(){
+        managerService.updateDataOnRemoteServer();
+        Assert.assertTrue(true);
+
+    }
+
 
 }

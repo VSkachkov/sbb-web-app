@@ -16,6 +16,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -41,7 +42,9 @@ public class GeneralServiceTest {
     public void testGetTrainDtosViaStationAndDate(){
         Date date = reserveService.getReserveById(1L).getTravelDate();
         date.setDate(date.getDate()-1);
-        List<TrainDto> trainDtos = generalService.getTrainDtosViaStationAndDate(13L, date);
+        Date travelDate = new Date(Calendar.getInstance().getTime().getTime());
+        List<TrainDto> trainDtos = generalService
+                .getTrainDtosViaStationAndDate(13L, travelDate);
         Assert.assertTrue(!trainDtos.isEmpty());
     }
 

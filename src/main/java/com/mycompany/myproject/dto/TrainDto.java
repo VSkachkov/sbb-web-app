@@ -32,6 +32,7 @@ public class TrainDto {
     private List<TrainTypeDto> trainTypeDtos = new ArrayList<>();
     public Long trainType;
     private HashMap<Long, Long> carriage;
+    private String status;
 
 
     public TrainDto(Long trainId, String trainName, boolean departMon,

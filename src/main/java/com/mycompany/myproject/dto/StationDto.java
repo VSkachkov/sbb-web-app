@@ -12,6 +12,7 @@ public class  StationDto {
     private Long stationId;
     private Long cantonId;
     private String stationName;
+    private String cantonName;
     private boolean node;
 
     public StationDto(){
@@ -22,6 +23,7 @@ public class  StationDto {
         this.stationId = station.getStationId();
         this.stationName = station.getStationName();
         this.cantonId = station.getCanton().getCantonId();
+        this.cantonName = station.getCanton().getCantonName();
 //        this.node = station.isNode();
     }
 
