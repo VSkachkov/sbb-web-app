@@ -13,7 +13,7 @@ public class  StationDto {
     private Long cantonId;
     private String stationName;
     private String cantonName;
-    private boolean node;
+
 
     public StationDto(){
 

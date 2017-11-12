@@ -1,9 +1,6 @@
 package com.mycompany.myproject.web.controller;
 
-import com.mycompany.myproject.dto.PersonDto;
-import com.mycompany.myproject.dto.PersonsDto;
-import com.mycompany.myproject.dto.TrainDto;
-import com.mycompany.myproject.dto.TrainsDto;
+import com.mycompany.myproject.dto.*;
 import com.mycompany.myproject.persist.entity.TrainChange;
 import com.mycompany.myproject.service.svc.GeneralService;
 import com.mycompany.myproject.service.svc.StationService;
@@ -36,7 +33,7 @@ public class BoardRestController {
     @Autowired
     TrainChangeService trainChangeService;
 
-//    @RequestMapping( value = "/board", method = RequestMethod.GET)
+
 @RequestMapping(  value = "/board/{stationName}", produces = APPLICATION_JSON_VALUE,
                                                   method = RequestMethod.GET)
     public List<TrainDto> boardInfo(@PathVariable("stationName") String stationName) {
@@ -52,6 +49,13 @@ public class BoardRestController {
         trainChangeService.updateStatusByChangeId(change.getChangeId(), status);
         Sender sender = new Sender();
         sender.send();
+    }
+
+    @RequestMapping(  value = "/stations", produces = APPLICATION_JSON_VALUE,
+            method = RequestMethod.GET)
+    public List<StationDto>  stationsForBoardOnline() {
+    return stationService.getAllStationDtos();
+
     }
 
 

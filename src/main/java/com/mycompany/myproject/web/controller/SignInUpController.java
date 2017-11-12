@@ -2,6 +2,7 @@ package com.mycompany.myproject.web.controller;
 
 import com.mycompany.myproject.dto.UserDto;
 import com.mycompany.myproject.persist.entity.User;
+import com.mycompany.myproject.security.SecurityService;
 import com.mycompany.myproject.service.svc.UserService;
 import com.mycompany.myproject.util.WebException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,12 @@ public class SignInUpController {
 
     @Autowired
     UserService userService;
+
+//    @Autowired
+//    private SecurityService securityService;
+//
+//    @Autowired
+//    private UserValidator userValidator;
 
     @GetMapping(value = {"/home"})
     public String home() {
@@ -58,8 +65,8 @@ public class SignInUpController {
                                                HttpServletRequest request){
 
         try {
-            logger.error("User enters login data ");
-            logger.error("User enters login password " );
+            logger.info("User enters login data ");
+            logger.info("User enters login password " );
 
 
             User usr = userService.getUserByLogin(user.getLogin());

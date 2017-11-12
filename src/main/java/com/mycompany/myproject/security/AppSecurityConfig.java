@@ -41,7 +41,9 @@
 //        http.csrf().disable();
 //        http
 //                .authorizeRequests()
-//                .antMatchers("/management/**").access("hasRole('ROLE_MANAGER')")
+//                .antMatchers("/management/**").access("hasRole('ROLE_ADMIN')")
+//                .antMatchers("/addTrain").access("hasRole('ROLE_ADMIN')")
+//                .antMatchers("/addTrain").access("hasRole('ROLE_ADMIN')")
 ////                .antMatchers("/profile/**").access("hasRole('ROLE_CLIENT') or hasRole('ROLE_MANAGER')") //TODO OTHER PAGES
 ////                .antMatchers("/checkout/**").access("hasRole('ROLE_CLIENT') or hasRole('ROLE_MANAGER')")
 //                .and().formLogin().loginPage("/login").usernameParameter("login").passwordParameter("pass")
