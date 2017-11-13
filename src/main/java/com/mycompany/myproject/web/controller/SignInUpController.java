@@ -2,6 +2,7 @@ package com.mycompany.myproject.web.controller;
 
 import com.mycompany.myproject.dto.UserDto;
 import com.mycompany.myproject.persist.entity.User;
+//import com.mycompany.myproject.security.SecurityService;
 import com.mycompany.myproject.security.SecurityService;
 import com.mycompany.myproject.service.svc.UserService;
 import com.mycompany.myproject.util.WebException;
@@ -26,6 +27,9 @@ public class SignInUpController {
 
     @Autowired
     private MessageSource ms;
+
+    @Autowired
+    private SecurityService securityService;
 
     @Autowired
     UserService userService;
@@ -70,6 +74,7 @@ public class SignInUpController {
 
 
             User usr = userService.getUserByLogin(user.getLogin());
+            securityService.autoLogin(usr.getLogin(),user.getPassword());
             if (!(usr.getPassword().equals(user.getPassword()))){
 
                 return "home";
