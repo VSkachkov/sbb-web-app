@@ -28,9 +28,7 @@ import java.sql.SQLException;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan("com.mycompany.myproject.*")
-//@ComponentScan("com.mycompany.myproject.persist")
 @ImportResource("classpath*:persistence.xml")
-//@ComponentScan("com.mycompany.myproject.service")
 public class JPAConfig {
 
     @Autowired

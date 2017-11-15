@@ -75,13 +75,13 @@ public class SignInUpController {
 
             User usr = userService.getUserByLogin(user.getLogin());
             securityService.autoLogin(usr.getLogin(),user.getPassword());
-            if (!(usr.getPassword().equals(user.getPassword()))){
-
-                return "home";
-            }
+//            if (!(usr.getPassword().equals(user.getPassword()))){
+//
+//                return "home";
+//            }
 
             UserDto userDto = new UserDto(usr);
-            model.addAttribute("user", userDto);
+       //     model.addAttribute("user", userDto);
             if (userDto.getRole().equals("ROLE_ADMIN"))
                 return "managerPage";
             else

@@ -12,11 +12,14 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@EnableWebMvc
 @Configuration
+//@Import(JPAConfig.class)
+@Import({SecurityConfig.class})
+@EnableWebMvc
 @ComponentScan(basePackages = { "com.mycompany.myproject" })
-@Import(JPAConfig.class)
+@EnableSwagger2
 public class MvcConfig extends WebMvcConfigurerAdapter {
 
     @Override

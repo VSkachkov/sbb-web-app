@@ -410,6 +410,20 @@ CREATE TABLE IF NOT EXISTS `SBB_DB`.`Train_changes` (
   ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `SBB_DB`.`Token`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SBB_DB`.`Token` (
+  `series` VARCHAR(50) NOT NULL,
+  `value` VARCHAR(50) NULL,
+  `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ip_address` VARCHAR(50) NULL,
+  `user_agent` VARCHAR(200) NULL,
+  `user_login` VARCHAR(50) NULL,
+  PRIMARY KEY (`series`))
+  ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

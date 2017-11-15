@@ -34,7 +34,8 @@ public class AuthenticationHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest,
                                         HttpServletResponse httpServletResponse,
-                                        Authentication authentication) throws IOException, ServletException {
+                                        Authentication authentication) throws IOException, ServletException
+    {
 
         HttpSession session = httpServletRequest.getSession();
         UserDto user = (UserDto) session.getAttribute("user");
@@ -70,7 +71,8 @@ public class AuthenticationHandler implements AuthenticationSuccessHandler {
         } else {
             httpServletResponse.sendRedirect("/");
         }
-
+        SecurityUtils.sendResponse(httpServletResponse, HttpServletResponse.SC_OK, user);
     }
+
 }
 

@@ -14,6 +14,7 @@
 		<spring.version>4.3.9.RELEASE</spring.version>
 		<hibernate-version>5.0.1.Final</hibernate-version>
 		<spring-security.version>4.2.3.RELEASE</spring-security.version>
+		<springfox-version>2.2.2</springfox-version>
 		<!--<jboss.home>D:\DISTR\wildfly-10.1.0.Final</jboss.home>-->
 
 	</properties>
@@ -28,6 +29,11 @@
 			<version>5.1.34</version>
 		</dependency>
 
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox-version}</version>
+		</dependency>
 		<!-- Hibernate -->
 		<!-- to start need only this -->
 		<dependency>
