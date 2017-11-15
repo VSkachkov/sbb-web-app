@@ -1,4 +1,4 @@
-package com.mycompany.myproject.security;
+package com.mycompany.myproject.config;
 
 
 

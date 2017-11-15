@@ -1,0 +1,62 @@
+<!--<!DOCTYPE html>-->
+<!--<html ng-app="myApp">-->
+<!--<head lang="en">-->
+    <!--<meta charset="UTF-8"/>-->
+    <!--<link rel="icon" type="image/png" href="resources/img/favicon.jpeg"/>-->
+    <!--&lt;!&ndash; inject:css &ndash;&gt;-->
+    <!--<link rel="stylesheet" href="resources/vendor/css/lib.min.css">-->
+    <!--<link rel="stylesheet" href="resources/css/main.css">-->
+    <!--&lt;!&ndash; endinject &ndash;&gt;-->
+    <!--<title></title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<p>Hello world</p>-->
+<!--&lt;!&ndash;<div ng-if="authenticated" ng-include="'partials/navbar.html'"></div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<div class="container">&ndash;&gt;-->
+    <!--&lt;!&ndash;<div style="position: relative">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div ng-view="" class="fade"></div>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;&lt;!&ndash; inject:js &ndash;&gt;&ndash;&gt;-->
+
+<!--&lt;!&ndash;<script src="resources/vendor/js/lib.min.js"></script>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<script src="resources/js/app.js"></script>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<script src="resources/js/controllers.js"></script>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<script src="resources/js/directives.js"></script>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<script src="resources/js/services.js"></script>&ndash;&gt;-->
+
+<!--&lt;!&ndash;&lt;!&ndash; endinject &ndash;&gt;&ndash;&gt;-->
+
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+    <p>Today's welcome message is changed and changed again:</p>
+
+    <h1>{{myWelcome}}</h1>
+
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $http) {
+        $http.get("stationsList")
+            .then(function(response) {
+                $scope.myWelcome = response.data;
+            });
+    });
+</script>
+
+</body>
+</html>
