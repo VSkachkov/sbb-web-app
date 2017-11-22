@@ -1,21 +1,24 @@
 package com.mycompany.myproject.web.controller;
 
 import com.mycompany.myproject.dto.*;
-import com.mycompany.myproject.service.svc.CantonService;
-import com.mycompany.myproject.service.svc.ManagerService;
-import com.mycompany.myproject.service.svc.StationService;
-import com.mycompany.myproject.service.svc.TimetableService;
+import com.mycompany.myproject.service.svc.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.net.URI;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +33,10 @@ public class ManagerController {
 
     @Autowired
     private ManagerService managerService;
+
+    @Autowired
+    private UserService userService;
+
 
     @Autowired
     private MessageSource ms;
@@ -180,5 +187,16 @@ public class ManagerController {
         model.addAttribute("timetableModel",trainDtos);
         return "mGetTrainsPage";
     }
+
+    @CrossOrigin
+    @RequestMapping(value = "/addStationRest", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    ResponseEntity<String> stationInfo(@RequestBody String msg, HttpServletResponse response) {
+        msg.toString();
+        ResponseEntity myResponse = new ResponseEntity(HttpStatus.OK);
+        return myResponse;
+    }
+
+
 
 }

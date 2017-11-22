@@ -17,17 +17,18 @@ public class RateSeasonDaoImp implements RateSeasonDao{
 
     @Override
     public List<RateSeason> getAllSeasonRates() {
-        return em.createQuery("FROM RateSeason")
+        return em.createQuery("FROM RateSeason  order by dateLow")
                 .getResultList();
     }
 
     @Override
     public float getSeasonRateByDay(int dayNumber) {
-        List list = em.createQuery("FROM RateSeason where dateLow<=:dayNumber and dateHigh>:dayNumber")
+        List list = em.createQuery("FROM RateSeason where dateLow<=:dayNumber order by dateLow")
                 .setParameter("dayNumber",dayNumber).getResultList();
         if (list.isEmpty())
             return (float)1;
-        RateSeason rateSeason = (RateSeason)list.get(0);
+        int size = list.size();
+        RateSeason rateSeason = (RateSeason)list.get(size-1);
         float rate = rateSeason.getSeasonRate();
         return (list.isEmpty()) ? 1 : rate;
 

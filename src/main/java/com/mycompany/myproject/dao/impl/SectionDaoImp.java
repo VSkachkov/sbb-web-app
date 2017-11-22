@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 
@@ -68,5 +69,18 @@ public class SectionDaoImp implements SectionDao {
         List list = em.createQuery("FROM Section where sectionId=:sectionId")
                 .setParameter("sectionId",sectionId).getResultList();
         return (list.isEmpty()) ? null : (Section) list.get(0);
+    }
+
+    @Override
+    public void deleteSection(Long sectionId) {
+        em.remove((Section) em.find(Section.class, sectionId));
+    }
+
+    @Override
+    public void updateLength(Long sectionId, float length) {
+        Query query = em.createQuery("UPDATE Section set length=:length  where sectionId=:sectionId")
+                .setParameter("sectionId",sectionId)
+                .setParameter("length", length);
+        query.executeUpdate();
     }
 }

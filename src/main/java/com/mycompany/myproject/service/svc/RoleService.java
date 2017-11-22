@@ -1,11 +1,15 @@
 package com.mycompany.myproject.service.svc;
 
+import com.mycompany.myproject.dto.RoleDto;
 import com.mycompany.myproject.persist.entity.Role;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 
 
 public interface RoleService {
+
+    List<RoleDto> getAllRoleDtos();
 
     /**
      * returns Role entity by it's name
@@ -19,4 +23,7 @@ public interface RoleService {
      * @param name Role name
      */
     void addRole(String name);
+
+    List <Long> getRolesIds();
+
 }

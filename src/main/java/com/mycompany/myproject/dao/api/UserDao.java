@@ -17,4 +17,5 @@ public interface UserDao {
     long getUserIdByLogin(String login);
     User loginUser(String login, String password);
     Long getUserByPrivateData(String firstName, String lastName, Date birthday);
+    void updateRole(Long userId, Long roleId);
 }

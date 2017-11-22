@@ -4,6 +4,7 @@ package com.mycompany.myproject.service;
 import com.mycompany.myproject.config.JPAConfig;
 import com.mycompany.myproject.config.MvcConfig;
 import com.mycompany.myproject.config.ServiceConfig;
+import com.mycompany.myproject.dto.RateAgeDto;
 import com.mycompany.myproject.service.svc.RatesService;
 import org.joda.time.LocalDate;
 import org.junit.Assert;
@@ -14,6 +15,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.sql.Date;
+import java.util.List;
+
 import org.joda.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -34,10 +37,13 @@ public class RatesServiceTest {
     }
 
     @Test
-    public void testGetRateDaysBeforeByTravelDate(){
-//        java.sql.Date now = new java.sql.Date( new java.util.Date().getTime());
-//        java.sql.Date travelDate = new java.sql.Date(now.getTime() +5000*24*60*60*1000);
+    public void testGetAllAgeRates(){
+        List<RateAgeDto> ageRateDtos =ratesService.getAllAgeRates();
+        Assert.assertTrue(!ageRateDtos.isEmpty());
+    }
 
+    @Test
+    public void testGetRateDaysBeforeByTravelDate(){
         LocalDate currentDate = new LocalDate();
         LocalDate travelDate = LocalDate.now().plusMonths(3);
 

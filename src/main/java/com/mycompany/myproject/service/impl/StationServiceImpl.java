@@ -72,6 +72,31 @@ public class StationServiceImpl implements StationService {
     }
 
     @Override
+    public boolean addNewStationByDto(StationDto stationDto) {
+        Station station = new Station();
+
+
+        station.setCanton(cantonService.getCantonById(stationDto.getCantonId()));
+        station.setStationName(stationDto.getStationName());
+        addNewStation(station);
+        return true;
+    }
+
+    @Override
+    public boolean isStationIdInDb(Long stationId) {
+        if(getStationById(stationId)!=null)
+            return true;
+        else return false;
+    }
+
+    @Override
+    public boolean isStationNameInDb(String stationName) {
+        if(getStationByName(stationName)!=null)
+            return true;
+        else return false;
+    }
+
+    @Override
     public List<StationDto> getAllStationDtos() {
         List <Station> stations = this.getAllStations();
         List <StationDto> stationDtos = new ArrayList<>();
@@ -83,5 +108,10 @@ public class StationServiceImpl implements StationService {
         }
 
         return stationDtos;
+    }
+
+    @Override
+    public void updateStation(StationDto stationDto) {
+        stationDao.updateStation(stationDto);
     }
 }

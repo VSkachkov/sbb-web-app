@@ -56,5 +56,13 @@ public interface StationService// extends GenericService<Station, StationDto, Lo
      */
     void addNewStationByForm(StationForm stationForm);
 
+    boolean addNewStationByDto(StationDto stationDto);
+
+    boolean isStationIdInDb(Long stationId);
+
+    boolean isStationNameInDb(String stationName);
+
     List <StationDto> getAllStationDtos();
+
+    void updateStation(StationDto stationDto);
 }

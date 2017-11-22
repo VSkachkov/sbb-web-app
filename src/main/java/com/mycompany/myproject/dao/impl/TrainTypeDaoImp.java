@@ -18,7 +18,7 @@ public class TrainTypeDaoImp implements TrainTypeDao {
 
     @Override
     public List<TrainType> getAllTrainTypes() {
-        List <TrainType> trainTypes = em.createQuery("FROM Train")
+        List <TrainType> trainTypes = em.createQuery("FROM TrainType")
                 .getResultList();
         return trainTypes;
     }

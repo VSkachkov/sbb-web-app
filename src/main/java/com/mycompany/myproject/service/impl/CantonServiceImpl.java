@@ -50,8 +50,9 @@ public class CantonServiceImpl //extends GenericServiceImpl<Canton,CantonDto_OBS
     }
 
     @Override
-    public CantonDto getCantonById(Long id) {
-        return new CantonDto(cantonDao.getCantonById(id));
+    public Canton getCantonById(Long id) {
+        return cantonDao.getCantonById(id);
+//        return new CantonDto(cantonDao.getCantonById(id));
     }
 
     @Override

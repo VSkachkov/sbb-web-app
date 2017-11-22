@@ -10,4 +10,6 @@ public interface CarDao {
     void removeCar(Long id);
     Car getCarById(Long id);
     Car getCarByName(String s);
+
+    void updateCar(Long carId, String carName, Long seatsNumber, float rate);
 }

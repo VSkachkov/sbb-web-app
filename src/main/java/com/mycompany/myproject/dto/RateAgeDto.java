@@ -8,8 +8,7 @@ import lombok.Setter;
 @Setter
 public class RateAgeDto {
     private Long ageRateId;
-    private int ageLow;
-    private int ageHigh;
+    private int age;
     private float ageRate;
 
     public RateAgeDto() {
@@ -17,15 +16,15 @@ public class RateAgeDto {
 
     public RateAgeDto(Long ageRateId, int ageLow, int ageHigh, float ageRate) {
         this.ageRateId = ageRateId;
-        this.ageLow = ageLow;
-        this.ageHigh = ageHigh;
+        this.age = ageLow;
+//        this.ageHigh = ageHigh;
         this.ageRate = ageRate;
     }
 
     public RateAgeDto(RateAge rateAge){
         this.ageRateId = rateAge.getAgeRateId();
-        this.ageLow = rateAge.getAgeLow();
-        this.ageHigh = rateAge.getAgeHigh();
+        this.age = rateAge.getAgeLow();
+//        this.ageHigh = rateAge.getAgeHigh();
         this.ageRate = rateAge.getAgeRate();
     }
 }

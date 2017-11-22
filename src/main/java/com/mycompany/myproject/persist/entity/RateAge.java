@@ -28,9 +28,9 @@ public class RateAge implements Serializable {
     @Column (name = "age_low")
     private int ageLow;
 
-    @Basic
-    @Column (name = "age_high")
-    private int ageHigh;
+//    @Basic
+//    @Column (name = "age_high")
+//    private int ageHigh;
 
     @Basic
     @Column (name = "age_rate")

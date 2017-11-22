@@ -17,6 +17,9 @@ public class CarDto {
     public CarDto(Car car) {
         this.carId = car.getCarId();
         this.carName = car.getCarName();
+        this.seatsNumber = car.getSeatsNumber();
+        this.carPriceRate = car.getCarPriceRate();
+
     }
 
     public CarDto(){

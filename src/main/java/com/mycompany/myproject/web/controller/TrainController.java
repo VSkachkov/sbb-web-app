@@ -2,8 +2,8 @@ package com.mycompany.myproject.web.controller;
 
 
 import com.mycompany.myproject.dto.*;
-import com.mycompany.myproject.service.svc.TimetableService;
-import com.mycompany.myproject.service.svc.TrainService;
+import com.mycompany.myproject.persist.entity.TrainTypeNumber;
+import com.mycompany.myproject.service.svc.*;
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +31,15 @@ public class TrainController {
 
     @Autowired
     TimetableService timetableService;
+
+    @Autowired
+    CarService carService;
+
+    @Autowired
+    TrainTypeService trainTypeService;
+
+    @Autowired
+    TrainTypeNumberService trainTypeNumberService;
 
     @Autowired
     private MessageSource ms;
@@ -72,7 +81,21 @@ public class TrainController {
     }
 
 
+    @CrossOrigin
+    @RequestMapping(value = "/getTrainTypes", method = RequestMethod.GET)
+    public @ResponseBody
+    List<TrainTypeDto> getTrainTypes() {
+        logger.info("Web-server requests train types info");
+        return trainTypeService.getAllTrainTypes();
+    }
 
+    @CrossOrigin
+    @RequestMapping(value = "/getTrainTypeNumbers", method = RequestMethod.GET)
+    public @ResponseBody
+    List<TrainTypeNumber> getTrainTypesNumbers() {
+        logger.info("Web-server requests carriages info");
+        return trainTypeNumberService.getAllTrainTypesNumbers();
+    }
 
 }    
 

@@ -17,7 +17,7 @@ public class RateAgeDaoImp implements RateAgeDao {
 
     @Override
     public List<RateAge> getAllAgeRates() {
-        return em.createQuery("FROM RateAge ")
+        return em.createQuery("FROM RateAge   order by ageLow")
                 .getResultList();
     }
 
@@ -33,13 +33,13 @@ public class RateAgeDaoImp implements RateAgeDao {
 
     @Override
     public float getAgeRateByAge(int ageInt) {
-        List list = em.createQuery("FROM RateAge where ageLow<=:ageInt and ageHigh>:ageInt")
+        List list = em.createQuery("FROM RateAge where ageLow<=:ageInt  order by ageLow")
                 .setParameter("ageInt",ageInt).getResultList();
         if (list.isEmpty())
             return (float)1;
-        RateAge rateAge = (RateAge)list.get(0);
+        int size = list.size();
+        RateAge rateAge = (RateAge)list.get(size-1);
         float rate = rateAge.getAgeRate();
-
-       return (list.isEmpty()) ? 1 : rate;
+        return (list.isEmpty()) ? 1 : rate;
     }
 }

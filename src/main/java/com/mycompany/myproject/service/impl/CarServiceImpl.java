@@ -59,5 +59,59 @@ public class CarServiceImpl //extends GenericServiceImpl<Canton,CantonDto_OBSOLE
         return carDao.getCarByName(s);
     }
 
+    @Override
+    public boolean saveCarToDb(CarDto carDto) {
+        Long carId = carDto.getCarId();
+        String carName = carDto.getCarName();
+        Long seatsNumber = carDto.getSeatsNumber();
+        float rate = carDto.getCarPriceRate();
+        if (carName==null||carName.equals(""))
+            return false;
+        if (seatsNumber<1||seatsNumber>120||seatsNumber==null)
+            return false;
+        if(rate<0.1||rate>10)
+            return false;
+        if(getCarById(carId)==null)
+        {
+            if (getCarByName(carName)!=null)
+                return false;
+            else
+            {
+                Car car = new Car();
+                car.setCarName(carName);
+                car.setSeatsNumber(seatsNumber);
+                car.setCarPriceRate(rate);
+                addNewCar(car);
+                return true;
+            }
+        }
+        else {
+            this.updateCar(carId, carName, seatsNumber, rate);
+            return true;
+        }
+
+    }
+
+    @Override
+    public boolean deleteCarFromDB(CarDto carDto) {
+
+        Long carId = carDto.getCarId();
+        if (carId == null )
+            return false;
+        else
+        {
+            if(this.getCarById(carId)!=null)
+                this.removeCar(carId);
+            if(this.getCarById(carId)==null)
+                return true;
+            else return true;
+        }
+    }
+
+    @Override
+    public void updateCar(Long carId, String carName, Long seatsNumber, float rate) {
+        carDao.updateCar(carId, carName, seatsNumber, rate);
+    }
+
 }
 

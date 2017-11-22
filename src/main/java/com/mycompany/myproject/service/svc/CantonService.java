@@ -38,7 +38,7 @@ public interface CantonService //extends GenericService<Canton, CantonDto_OBSOLE
      * @param id Canton Id
      * @return Canton DTO
      */
-    CantonDto getCantonById(Long id);
+    Canton getCantonById(Long id);
 
     /**
      * extracts names of all cantons from database

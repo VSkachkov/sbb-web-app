@@ -19,7 +19,7 @@ public class RateDaysBeforeDaoImp  implements RateDaysBeforeDao{
 
     @Override
     public List<RateDaysBefore> getAllRatesDaysBefore() {
-        return em.createQuery("FROM RateDaysBefore")
+        return em.createQuery("FROM RateDaysBefore order by daysBeforeLow")
                 .getResultList();
     }
 
@@ -35,13 +35,13 @@ public class RateDaysBeforeDaoImp  implements RateDaysBeforeDao{
 
     @Override
     public float getRateDaysBeforeByDays(int daysBefore) {
-        List list = em.createQuery("FROM RateDaysBefore where daysBeforeLow<=:daysBefore and daysBeforeHigh>:daysBefore")
+        List list = em.createQuery("FROM RateDaysBefore where daysBeforeLow<=:daysBefore order by daysBeforeLow")
                 .setParameter("daysBefore",daysBefore).getResultList();
         if (list.isEmpty())
             return (float)1;
-        RateDaysBefore rateDaysBefore = (RateDaysBefore)list.get(0);
+        int size = list.size();
+        RateDaysBefore rateDaysBefore = (RateDaysBefore)list.get(size-1);
         float rate = rateDaysBefore.getDaysBeforeRate();
-
         return (list.isEmpty()) ? 1 : rate;
     }
 }

@@ -35,7 +35,9 @@ public class UserServiceImpl// extends GenericServiceImpl<User, UserDto, Long>
 
         for (User user :
                 userDao.getAllUsers()) {
-            sdto.add(new UserDto(user));
+            UserDto userDto = new UserDto(user);
+            userDto.setPassword(null);
+            sdto.add(userDto);
         }
         return sdto;
     }
@@ -128,5 +130,10 @@ public class UserServiceImpl// extends GenericServiceImpl<User, UserDto, Long>
         String lastName = user.getLastName();
         Date birthday = user.getBirthday();
         return userDao.getUserByPrivateData(firstName, lastName, birthday);
+    }
+
+    @Override
+    public void updateRole(Long userId, Long roleId) {
+        userDao.updateRole(userId, roleId);
     }
 }

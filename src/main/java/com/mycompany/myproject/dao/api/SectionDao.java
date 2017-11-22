@@ -12,4 +12,8 @@ public interface SectionDao {
     boolean addNewSectionByParams(Long stationOneId, Long stationTwoId, float length);
     void addNewSection(Section section);
     Section getSectionById( Long sectionId);
+
+    void deleteSection(Long sectionId);
+
+    void updateLength(Long sectionId, float length);
 }

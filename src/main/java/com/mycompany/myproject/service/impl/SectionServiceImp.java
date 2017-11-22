@@ -6,6 +6,8 @@ import com.mycompany.myproject.persist.entity.Section;
 import com.mycompany.myproject.service.svc.SectionService;
 import com.mycompany.myproject.service.svc.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +28,16 @@ public class SectionServiceImp implements SectionService {
     @Override
     public List<Section> getAllSections(){
         return sectionDao.getAllSections();
+    }
+
+    @Override
+    public void deleteSection(Long sectionId) {
+        sectionDao.deleteSection(sectionId);
+    }
+
+    @Override
+    public void updateLength(Long sectionId, float length) {
+        sectionDao.updateLength(sectionId, length);
     }
 
     @Override
@@ -56,6 +68,17 @@ public class SectionServiceImp implements SectionService {
     }
 
     @Override
+    public List<SectionDto> getAllSectionsDtos() {
+        List <Section> sections = getAllSections();
+        List <SectionDto> sectionDtos = new ArrayList<>();
+        for (Section section :
+                sections) {
+            sectionDtos.add(new SectionDto(section));
+        }
+        return sectionDtos;
+    }
+
+    @Override
     public boolean addNewSectionByParams(Long stationOneId, Long stationTwoId, float length){
         Section sectionOneDirection = new Section();
         sectionOneDirection.setStationFromId(stationService.getStationById(stationOneId));
@@ -80,6 +103,29 @@ public class SectionServiceImp implements SectionService {
     @Override
     public Section getSectionById(Long sectionId) {
         return sectionDao.getSectionById(sectionId);
+    }
+
+    @Override
+    public boolean saveSectionToDb(SectionDto sectionDto) {
+        float length = sectionDto.getLength();
+        Long stationOne = sectionDto.getStationFromId();
+        Long stationTwo = sectionDto.getStationToId();
+        Long sectionId = sectionDto.getSectionId();
+        if (stationTwo == null)
+            return false;
+        if (stationOne == null)
+            return false;
+        if (stationTwo == stationOne)
+            return false;
+        if (length < 0.5 || length > 100)
+            return false;
+        if (sectionId == null) {
+            addNewSectionByParams(stationOne, stationTwo, length);
+            return true;
+        } else {
+            updateLength(sectionId, length);
+            return true;
+        }
     }
 
 }

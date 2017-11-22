@@ -3,12 +3,12 @@ package com.mycompany.myproject.dto;
 import java.sql.Date;
 
 import com.mycompany.myproject.persist.entity.User;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 
-@Getter
-@Setter
+@Data
 public class UserDto {
 
     private Long userId;
@@ -29,6 +29,8 @@ public class UserDto {
 
     private String role;
 
+    private Long roleId;
+
     public UserDto(User user) {
         this.userId = user.getUserId();
         this.firstName = user.getFirstName();
@@ -39,10 +41,12 @@ public class UserDto {
         this.password = user.getPassword();
         this.phone = user.getPhone();
         this.role = user.getRole().getRoleName();
+        this.roleId = user.getRole().getRoleId();
     }
 
     public UserDto(){
         this.role = "ROLE_ANONYM";
+        this.roleId = 4L;
 
     }
 

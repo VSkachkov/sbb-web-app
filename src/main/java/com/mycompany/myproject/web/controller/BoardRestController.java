@@ -1,16 +1,15 @@
 package com.mycompany.myproject.web.controller;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.mycompany.myproject.dto.*;
+import com.mycompany.myproject.model.Response;
 import com.mycompany.myproject.persist.entity.TrainChange;
 import com.mycompany.myproject.service.svc.GeneralService;
 import com.mycompany.myproject.service.svc.StationService;
 import com.mycompany.myproject.service.svc.TrainChangeService;
 import com.mycompany.myproject.util.Sender;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -54,9 +53,18 @@ public class BoardRestController {
     @RequestMapping(  value = "/stations", produces = APPLICATION_JSON_VALUE,
             method = RequestMethod.GET)
     public List<StationDto>  stationsForBoardOnline() {
-    return stationService.getAllStationDtos();
-
+        return stationService.getAllStationDtos();
     }
+
+
+//    @CrossOrigin
+//    @RequestMapping(  value = "/addStationRest", consumes = APPLICATION_JSON_VALUE,
+//            method = RequestMethod.POST)
+//    public JSONPObject stationsAdd(JSONPObject inputJSonObj) {
+//    String input = (String) inputJSonObj.getValue();
+//        return null;
+//    }
+
 
 
 }

@@ -24,8 +24,10 @@ public interface CarService //extends GenericService<Canton, CantonDto_OBSOLETE,
 
     Car getCarByName(String s);
 
+    boolean saveCarToDb(CarDto carDto);
 
-//    List<String>getAllCarsNames();*/
+    boolean deleteCarFromDB(CarDto carDto);
 
+    void updateCar(Long carId, String carName, Long seatsNumber, float rate);
 }
 

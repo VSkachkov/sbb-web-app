@@ -1,11 +1,14 @@
 package com.mycompany.myproject.dao.impl;
 
+import com.mycompany.myproject.dao.api.RoleDao;
 import com.mycompany.myproject.persist.entity.User;
 import com.mycompany.myproject.dao.api.UserDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.sql.Date;
 import java.util.List;
 
@@ -14,6 +17,9 @@ public class UserDaoImp implements UserDao {
 
     @PersistenceContext
     private EntityManager em;
+
+    @Autowired
+    RoleDao roleDao;
 
     @Override
     public List<User> getAllUsers() {
@@ -89,5 +95,15 @@ public class UserDaoImp implements UserDao {
         User usr = (list.isEmpty()) ? null : (User) list.get(0);
         return usr.getUserId();
     }
+
+    @Override
+    public void updateRole(Long userId, Long roleId) {
+        Query query = em.createQuery("UPDATE User set role=:roleId where userId=:userId")
+                .setParameter("userId",userId)
+                .setParameter("roleId", roleDao.getRoleByRoleId(roleId));
+        query.executeUpdate();
+    }
+
+
 
 }

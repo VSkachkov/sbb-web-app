@@ -18,18 +18,19 @@ public class RateSeatsLeftDaoImp implements RateSeatsLeftDao {
 
     @Override
     public List<RateSeatsLeft> getAllSeatsLeftRates() {
-        return em.createQuery("FROM RateSeatsLeft ")
+        return em.createQuery("FROM RateSeatsLeft  order by seatsLeftLow")
                 .getResultList();
 
     }
 
     @Override
     public float getSeatsLeftRateByOccupancy(float occupancy) {
-        List list = em.createQuery("FROM RateSeatsLeft where seatsLeftLow<=:occupancy and seatsLeftHigh>:occupancy")
+        List list = em.createQuery("FROM RateSeatsLeft where seatsLeftLow<=:occupancy order by seatsLeftLow")
                 .setParameter("occupancy",occupancy).getResultList();
         if (list.isEmpty())
             return (float)1;
-        RateSeatsLeft rateSeatsLeft = (RateSeatsLeft)list.get(0);
+        int size = list.size();
+        RateSeatsLeft rateSeatsLeft = (RateSeatsLeft)list.get(size-1);
         float rate = rateSeatsLeft.getSeatsLeftRate();
         return (list.isEmpty()) ? 1 : rate;
 

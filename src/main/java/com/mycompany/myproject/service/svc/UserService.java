@@ -81,4 +81,6 @@ public interface UserService //extends GenericService<User, UserDto, Long>
      * @return user ID
      */
     Long getUserIdByPrivateInfo(UserDto user);
+
+    void updateRole(Long userId, Long roleId);
 }
