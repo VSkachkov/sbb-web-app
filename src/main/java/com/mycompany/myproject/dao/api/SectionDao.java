@@ -8,6 +8,7 @@ public interface SectionDao {
     List<Section> getAllSections();
     List<Section> getSectionsByStationId(Long stationId);
     List<Section> getSectionsByStationFromId(Long stationId);
+    Section getSectionByFromAndToIds(Long stationFromId, Long stationToId);
     List<Section> getSectionsByStationToId(Long stationId);
     boolean addNewSectionByParams(Long stationOneId, Long stationTwoId, float length);
     void addNewSection(Section section);

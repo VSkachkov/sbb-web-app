@@ -32,9 +32,13 @@ public class TrainTypeNumberServiceImp implements TrainTypeNumberService {
         return trainTypeNumberDao.getTrainTypeNumberById(trainTypeNumberId);
     }
 
-    public List<TrainType> getTrainTypeByTrainTypeNumber(Long trainTypeNumberId){
-        return null;
-//        return trainTypeNumberDao.getTrainTypeById(trainTypeNumberId);
+    @Override
+    public TrainTypeNumber getTrainTypeByName(String trainTypeName){
+        return trainTypeNumberDao.getTrainTypeByName(trainTypeName);
+    }
+    @Override
+    public void deleteTrainTypeNumberById(Long id){
+        trainTypeNumberDao.deleteTrainTypeNumberById(id);
     }
 
 }

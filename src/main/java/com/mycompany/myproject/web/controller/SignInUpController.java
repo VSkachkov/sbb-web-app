@@ -34,99 +34,43 @@ public class SignInUpController {
     @Autowired
     UserService userService;
 
-//    @Autowired
-//    private SecurityService securityService;
-//
-//    @Autowired
-//    private UserValidator userValidator;
 
     @GetMapping(value = {"/home"})
     public String home() {
         return "home";
     }
 
-    @GetMapping(value = "/logout")
-    public String logout (HttpSession session, Model model){
-        model.addAttribute("user",new UserDto());
-        session.invalidate();
-        return "redirect:/home";
-    }
-
-
-    @GetMapping(value = "/login")
-    public String start(Model model, String error, HttpServletRequest request) {
-        if (error != null)
-            model.addAttribute("error", "Username or password is incorrect.");
-        else {
-            String referrer = request.getHeader("Referer");
-            request.getSession().setAttribute("url_prior_login", referrer);
-        }
-        return "login";
-    }
-
-    @PostMapping(value = "login")
-    public  String SetUserSession(@ModelAttribute("user") UserDto user, Model model,
-                                               HttpServletRequest request){
-
-        try {
-            logger.info("User enters login data ");
-            logger.info("User enters login password " );
-
-
-            User usr = userService.getUserByLogin(user.getLogin());
-            securityService.autoLogin(usr.getLogin(),user.getPassword());
-//            if (!(usr.getPassword().equals(user.getPassword()))){
 //
-//                return "home";
-//            }
+//    @PostMapping(value = "/findEmail")
+//    @ResponseBody
+//    public String checkEmailExisting(@RequestParam String email) {
+//        if (userService.getUserIdByEmail(email)!=0) {
+//            return "this email already exists";
+//        } else
+//            return "";
+//    }
+//
 
-            UserDto userDto = new UserDto(usr);
-       //     model.addAttribute("user", userDto);
-            if (userDto.getRole().equals("ROLE_ADMIN"))
-                return "managerPage";
-            else
-                return "home";
-        }catch (Exception e){
-            logger.error("Failure when user Signs In");
-            return "404";
-
-        }
-    }
-
-
-
-    @PostMapping(value = "/findEmail")
-    @ResponseBody
-    public String checkEmailExisting(@RequestParam String email) {
-        if (userService.getUserIdByEmail(email)!=0) {
-            return "this email already exists";
-        } else
-            return "";
-    }
-
-
-
-    @GetMapping(value = "/registration")
-    public String registration(Model model) {
-        model.addAttribute("userForm", new UserDto());
-        return "registration";
-    }
-
-    //TODO. Add control for email
-    // spring.io/guides/gs/validating-form-input/
-
-
-    @PostMapping(value = "/registration")
-    public String registration(@ModelAttribute("userForm") UserDto userForm, BindingResult bindingResult,
-                               Model model) {
-
-        logger.info("Returning to main page after user registered in database");
-
-
-        userService.addNewUser(userForm);
-
-        return "redirect:/login";
-    }
+//
+//    @GetMapping(value = "/registration")
+//    public String registration(Model model) {
+//        model.addAttribute("userForm", new UserDto());
+//        return "registration";
+//    }
+//
+//
+//
+//    @PostMapping(value = "/registration")
+//    public String registration(@ModelAttribute("userForm") UserDto userForm, BindingResult bindingResult,
+//                               Model model) {
+//
+//        logger.info("Returning to main page after user registered in database");
+//
+//
+//        userService.addNewUser(userForm);
+//
+//        return "redirect:/login";
+//    }
 
 
 }

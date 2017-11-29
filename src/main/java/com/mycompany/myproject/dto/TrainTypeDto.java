@@ -10,6 +10,7 @@ import lombok.Setter;
 public class TrainTypeDto {
     private Long trainTypeNumber;
     private Long carId;
+    private String carName;
     private String trainTypeName;
     private Long numberOfCars;
 
@@ -19,7 +20,8 @@ public class TrainTypeDto {
     public TrainTypeDto(TrainType trainType) {
         this.trainTypeNumber = trainType.getTrainTypeNumber().getTrainTypeNumberId();
         this.carId = trainType.getCar().getCarId();
-        this.trainTypeName = trainType.getTrainTypeName();
+        this.carName = trainType.getCar().getCarName();
+        this.trainTypeName = trainType.getTrainTypeNumber().getTrainTypeName();
         this.numberOfCars = trainType.getNumberOfCars();
     }
 }

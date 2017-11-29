@@ -30,4 +30,22 @@ public class TrainTypeNumberServiceTest {
         Assert.assertTrue(trainTypeNumber!=null);
     }
 
+    @Test
+    public void testAddTrainTypeNumber(){
+        TrainTypeNumber trainTypeNumber = new TrainTypeNumber();
+        trainTypeNumber.setTrainTypeName("Some train name2");
+//        trainTypeNumber.setTrainTypeNumberId(4L);
+        trainTypeNumberService.add(trainTypeNumber);
+        Assert.assertTrue(trainTypeNumberService.getTrainTypeByName("Some train name2")!=null);
+    }
+
+    @Test
+    public void testDeleteTrainTypeNumberById(){
+//        if(trainTypeNumberService.getTrainTypeNumberById(4L)!=null) {
+            trainTypeNumberService.deleteTrainTypeNumberById(4l);
+            Assert.assertTrue((trainTypeNumberService.getTrainTypeNumberById(4L)==null));
+//            }
+//        }
+    }
+
 }

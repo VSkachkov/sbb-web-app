@@ -2,6 +2,7 @@ package com.mycompany.myproject.service.svc;
 
 import com.mycompany.myproject.dto.CantonDto;
 import com.mycompany.myproject.dto.CarDto;
+import com.mycompany.myproject.dto.CarTicketFormDto;
 import com.mycompany.myproject.persist.entity.Canton;
 import com.mycompany.myproject.persist.entity.Car;
 
@@ -29,5 +30,7 @@ public interface CarService //extends GenericService<Canton, CantonDto_OBSOLETE,
     boolean deleteCarFromDB(CarDto carDto);
 
     void updateCar(Long carId, String carName, Long seatsNumber, float rate);
+
+    CarTicketFormDto findCarTicketByCarId(List<CarTicketFormDto> carTickets, Long carId);
 }
 

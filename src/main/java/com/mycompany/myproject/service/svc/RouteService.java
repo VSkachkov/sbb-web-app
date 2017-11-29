@@ -25,4 +25,10 @@ public interface RouteService {
     String getInitStationNameOfTrain(Long trainId);
     String getLastStationNameOfTrain(Long trainId);
     Time getTrainArrivalByStation(Long stationId, Long trainId);
+
+    List<RouteDto> getAllRoutesDto();
+
+    boolean addRouteFromWeb(RouteDto routeDto);
+
+    boolean deleteRouteFromWeb(RouteDto routeDto);
 }

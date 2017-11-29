@@ -17,6 +17,11 @@ public class RouteDto {
     private Time arrival;
     private Long stationFromId;
     private Long stationToId;
+    private String stationFromName;
+    private String stationToName;
+    private Long departureLong;
+    private Long arrivalLong;
+
 
     public RouteDto() {
     }
@@ -29,5 +34,7 @@ public class RouteDto {
         this.arrival = route.getArrival();
         this.stationFromId = route.getSection().getStationFromId().getStationId();
         this.stationToId = route.getSection().getStationToId().getStationId();
+        this.stationFromName = route.getSection().getStationFromId().getStationName();
+        this.stationToName = route.getSection().getStationToId().getStationName();
     }
 }

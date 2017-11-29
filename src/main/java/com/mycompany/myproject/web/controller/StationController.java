@@ -44,7 +44,7 @@ public class StationController {
 
 
     @CrossOrigin
-    @RequestMapping(value = "/saveStation", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/saveStation", method = RequestMethod.POST)
     public @ResponseBody
     ResponseEntity<String> getUsersList(@RequestBody StationDto stationDto, HttpServletResponse response) {
         logger.info("Web-server updates/adds station: "+ stationDto.toString());
@@ -63,6 +63,18 @@ public class StationController {
                 stationService.addNewStationByDto(stationDto);
                 return new ResponseEntity(HttpStatus.OK);
             }
+    }
+
+
+    @CrossOrigin
+    @RequestMapping(value = "/admin/deleteStation", method = RequestMethod.POST)
+    public @ResponseBody
+    ResponseEntity<String> deleteCar(@RequestBody StationDto stationDto) {
+        logger.info("Web-server requests procedure of station deleting: " + stationDto.toString());
+        if(stationService.deleteStationFromDB(stationDto))
+            return new ResponseEntity(HttpStatus.OK);
+        else
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 }    
 

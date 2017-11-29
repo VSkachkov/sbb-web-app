@@ -2,7 +2,9 @@ package com.mycompany.myproject.service.impl;
 
 
 import com.mycompany.myproject.dto.PassengerForm;
+import com.mycompany.myproject.dto.TicketWebDto;
 import com.mycompany.myproject.dto.UserDto;
+import com.mycompany.myproject.persist.entity.User;
 import com.mycompany.myproject.service.svc.*;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -92,6 +94,56 @@ public class TicketServiceImp implements  TicketService {
     }
 
     @Override
+    public boolean buyWebTicket(TicketWebDto ticketWebDto){
+        Long departureStation = ticketWebDto.getStationFromId();
+        Long arrivalStation = ticketWebDto.getStationToId();
+        Long trainId = ticketWebDto.getTrainId();
+        Date travelDate = ticketWebDto.getTravelDate();
+        if (!checkDateValidity(travelDate))
+            return false;
+        Time departure = routeService.getTrainDepartureByStation(departureStation,trainId );
+  //      travelDate.setTime(travelDate.getTime()+departure.getTime());
+        if (!trainService.checkTrainDate(trainId, travelDate))
+            return false;
+        java.sql.Date today = new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        if(travelDate==today)
+        if (!this.checkEnoughTimeBeforeDeparture(trainId, departureStation))
+            return false;
+
+        List<User> users = userService.findUsersByPersonalData(ticketWebDto.getFirstName(),
+                    ticketWebDto.getLastName(), ticketWebDto.getBirthday());
+        boolean samePassengerOnboard = false;
+        if(users!=null)
+        for (User user :
+                users) {
+            if(reserveService.isPassengerOnboard(trainId, departureStation, arrivalStation, travelDate, user.getUserId()))
+            samePassengerOnboard = true;
+        }
+
+        if (samePassengerOnboard)
+            return false;
+
+
+
+        UserDto user = new UserDto(ticketWebDto.getFirstName(),
+                ticketWebDto.getLastName(),
+                ticketWebDto.getBirthday());
+        if(!userService.doesUserExistInDb(user))
+            userService.addNewUser(user);
+        Long userId = userService.getUserIdByPrivateInfo(user);
+        Long carId = ticketWebDto.getCarId();
+        Date birthDay = ticketWebDto.getBirthday();
+        float totalRate = ticketWebDto.getFinalPrice();
+
+//        boolean isPassengerOnboard =
+//                reserveService.isPassengerOnboard(trainId, departureStation, arrivalStation, travelDate, userId);
+//        if (!isPassengerOnboard)
+//            return false;
+        reserveService.addRide(trainId, departureStation, arrivalStation, travelDate, userId, carId, totalRate);
+        return true;
+    }
+
+    @Override
     public String launchUpdatedBuyProcedure(PassengerForm passengerForm) {
         Long departureStation = (stationService.getStationByName(passengerForm.getFromStation())).getStationId();
         Long arrivalStation = (stationService.getStationByName(passengerForm.getToStation())).getStationId();
@@ -130,7 +182,7 @@ public class TicketServiceImp implements  TicketService {
     }
 
     private float launchPriceCalculation(Date birthDay, Date travelDate, Long trainId, Long carId) {
-        float totalRate = ratesService.calculateTotalRate(birthDay, travelDate, 20, 450);
+        float totalRate = ratesService.calculateTotalRate(birthDay, travelDate, 20L, 450L);
         return totalRate;
     }
 

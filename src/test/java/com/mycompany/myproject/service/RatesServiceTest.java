@@ -73,8 +73,8 @@ public class RatesServiceTest {
 
     @Test
     public void testGetRateSeatsLeft(){
-        int total = 560;
-        int occupied = 400;
+        Long total = 560L;
+        Long occupied = 400L;
         float rateOccupancy = ratesService.getRateSeatsLeft(occupied, total);
         boolean result;
         if (Math.abs(rateOccupancy - 1) < 0.00001)
@@ -92,7 +92,7 @@ public class RatesServiceTest {
         LocalDate bDate = new LocalDate(2010, 8, 05);
         Date sqlBDate = new Date(bDate.toDateTimeAtStartOfDay().getMillis());
 
-        float totalRate = ratesService.calculateTotalRate(sqlBDate, sqlTravelDate, 40, 500);
+        float totalRate = ratesService.calculateTotalRate(sqlBDate, sqlTravelDate, 40L, 500L);
 
         boolean result;
         if ((totalRate > 0.7) && (totalRate<1.2))

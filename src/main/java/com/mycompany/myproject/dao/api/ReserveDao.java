@@ -1,8 +1,6 @@
 package com.mycompany.myproject.dao.api;
 
-import com.mycompany.myproject.persist.entity.Reserve;
-import com.mycompany.myproject.persist.entity.Route;
-import com.mycompany.myproject.persist.entity.User;
+import com.mycompany.myproject.persist.entity.*;
 
 import java.sql.Date;
 import java.util.List;
@@ -15,4 +13,7 @@ public interface ReserveDao {
     Reserve getReserve(User user, Route route, Date travelDate);
     Long getBoughtTickets(User user, Route route, Date travelDate);
 
+    Long getOccupancyByRoute(Route route, Car car, Date date);
+
+    List<Reserve> getReservesByDay(Date travelDate);
 }

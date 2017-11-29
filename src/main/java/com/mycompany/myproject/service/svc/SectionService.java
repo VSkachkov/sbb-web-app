@@ -19,5 +19,6 @@ public interface SectionService {
     boolean addNewSection(Section section);
     Section getSectionById(Long sectionId);
     boolean saveSectionToDb(SectionDto sectionDto);
+    Section getSectionByFromAndToIds(Long fromId, Long toId);
 }
 

@@ -65,4 +65,6 @@ public interface StationService// extends GenericService<Station, StationDto, Lo
     List <StationDto> getAllStationDtos();
 
     void updateStation(StationDto stationDto);
+
+    boolean deleteStationFromDB(StationDto stationDto);
 }

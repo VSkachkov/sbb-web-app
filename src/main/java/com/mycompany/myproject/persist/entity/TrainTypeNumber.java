@@ -15,7 +15,7 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode
 @Entity
-@Table(name = "Train_types_numbers")
+@Table(name = "Train_types_numbers", schema = "SBB_DB")
 public class TrainTypeNumber implements Serializable{
 
     @Id
@@ -24,8 +24,8 @@ public class TrainTypeNumber implements Serializable{
     @Column(name = "train_types_number_id")
     private Long trainTypeNumberId;
 
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinColumn(name = "train_type_id")
-//    private List<TrainType> trainTypes;
+    @Basic
+    @Column(name = "train_type_name")
+    private String trainTypeName;
 
 }

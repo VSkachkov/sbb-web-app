@@ -23,6 +23,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.RememberMeServices;
+import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
@@ -30,8 +31,8 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 @EnableWebSecurity
 @ComponentScan(basePackages = {"com.mycompany.myproject.security"})
 //@ComponentScan("com.mycompany")
-//@EnableGlobalMethodSecurity(securedEnabled = true)
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(securedEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -85,24 +86,39 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/management/**").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/addTrain").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/addStation").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/failure").permitAll()
-                .antMatchers("/v2/api-docs").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/users/**").access("hasRole('ROLE_ADMIN')")
+//                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
 //                .anyRequest().authenticated()
                 .and()
+                .exceptionHandling()
+                .authenticationEntryPoint(restAuthenticationEntryPoint)
+                .accessDeniedHandler(restAccessDeniedHandler)
+                .and()
                 .formLogin()
-                .loginPage("/login")
-                .usernameParameter("login")
+                .loginProcessingUrl("/authenticate")
+                .successHandler(restAuthenticationSuccessHandler)
+                .failureHandler(restAuthenticationFailureHandler)
+                .usernameParameter("username") //TODO May be login??
                 .passwordParameter("password")
-                .successHandler(authenticationHandler)
+                .permitAll()
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler())
+                .deleteCookies("JSESSIONID")
+                .permitAll()
+//                .and()
+//                    .loginPage("/login")
+//                    .usernameParameter("login")
+//                    .passwordParameter("password")
+//                    .successHandler(authenticationHandler)
                 .and()
                 .exceptionHandling()
                 .accessDeniedPage("/403"); //TODO 403 ERROR
-        http.logout()
-                .permitAll()
-                .clearAuthentication(true);
+//        http.logout()
+//                .permitAll()
+//                .clearAuthentication(true);
     }
 
     @Bean(name = BeanIds.AUTHENTICATION_MANAGER)

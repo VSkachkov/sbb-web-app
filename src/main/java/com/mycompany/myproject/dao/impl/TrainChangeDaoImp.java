@@ -72,4 +72,16 @@ public class TrainChangeDaoImp implements TrainChangeDao {
         query.executeUpdate();
     }
 
+    @Override
+    public List<TrainChange> getAllChanges() {
+        List list  = em.createQuery("FROM TrainChange")
+                .getResultList();
+        return  (list.isEmpty()) ? null : list;
+    }
+
+    @Override
+    public void deleteChange(long changeId) {
+        em.remove((TrainChange) em.find(TrainChange.class, changeId));
+    }
+
 }

@@ -9,6 +9,7 @@ import com.mycompany.myproject.persist.entity.Station;
 import com.mycompany.myproject.service.svc.RouteService;
 import com.mycompany.myproject.service.svc.SectionService;
 import com.mycompany.myproject.service.svc.StationService;
+import com.mycompany.myproject.service.svc.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +32,10 @@ public class RouteServiceImp implements RouteService {
     @Autowired
     StationService stationService;
 
+    @Autowired
+    TrainService trainService;
+
+
 
     @Override
     public List<Route> getAllRoutes() {
@@ -44,6 +49,7 @@ public class RouteServiceImp implements RouteService {
 
     @Override
     public void addNewRoute(Route route) {
+        routeDao.addNewRoute(route);
 
     }
 
@@ -197,6 +203,55 @@ public class RouteServiceImp implements RouteService {
                 return route.getArrival();
         }
         return null;
+    }
+
+    @Override
+    public List<RouteDto> getAllRoutesDto() {
+        List<Route> routes = routeDao.getAllRoutes();
+        List<RouteDto> routeDtos = new ArrayList<>();
+        for (Route route :
+                routes) {
+            routeDtos.add(new RouteDto(route));
+        }
+        return routeDtos;
+    }
+
+    @Override
+    public boolean addRouteFromWeb(RouteDto routeDto) {
+        Long stationFromId = routeDto.getStationFromId();
+        Long stationToId = routeDto.getStationToId();
+        Long departLong = routeDto.getDepartureLong();
+        Long arrivalLong =routeDto.getArrivalLong();
+        if(departLong==null|| arrivalLong==null)
+            return false;
+        Time departure = new Time(routeDto.getDepartureLong());
+        Time arrival = new Time(routeDto.getArrivalLong());
+        if(departLong>arrivalLong)
+            return false;
+        if (routeDto.getStationFromId()==null||routeDto.getStationToId()==null)
+            return false;
+        if(routeDto.getTrainId()==null)
+            return false;
+        Section section = sectionService.getSectionByFromAndToIds(stationFromId, stationToId);
+        if (section==null)
+            return false;
+        Route route = new Route();
+        route.setTrain(trainService.getTrainByTrainId(routeDto.getTrainId()));
+        route.setSection(section);
+        route.setDeparture(departure);
+        route.setArrival(arrival);
+        this.addNewRoute(route);
+        return true;
+    }
+
+    @Override
+    public boolean deleteRouteFromWeb(RouteDto routeDto) {
+        Long routeId = routeDto.getRouteId();
+        Route route = getRouteById(routeId);
+        if (route== null)
+            return false;
+        routeDao.deleteRoute(route);
+        return true;
     }
 
 

@@ -10,4 +10,6 @@ public interface TrainTypeNumberService {
     Long add(TrainTypeNumber trainTypeNumber);
 
     TrainTypeNumber getTrainTypeNumberById(Long trainTypeNumberId);
+    TrainTypeNumber getTrainTypeByName(String trainTypeName);
+    void deleteTrainTypeNumberById(Long id);
 }

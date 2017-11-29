@@ -100,6 +100,8 @@ public class SectionServiceImp implements SectionService {
         return true;
     }
 
+
+
     @Override
     public Section getSectionById(Long sectionId) {
         return sectionDao.getSectionById(sectionId);
@@ -117,7 +119,7 @@ public class SectionServiceImp implements SectionService {
             return false;
         if (stationTwo == stationOne)
             return false;
-        if (length < 0.5 || length > 100)
+        if (length < 0.5 || length > 200)
             return false;
         if (sectionId == null) {
             addNewSectionByParams(stationOne, stationTwo, length);
@@ -126,6 +128,11 @@ public class SectionServiceImp implements SectionService {
             updateLength(sectionId, length);
             return true;
         }
+    }
+
+    @Override
+    public Section getSectionByFromAndToIds(Long fromId, Long toId) {
+        return sectionDao.getSectionByFromAndToIds(fromId, toId);
     }
 
 }

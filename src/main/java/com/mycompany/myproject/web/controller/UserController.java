@@ -6,6 +6,8 @@ import java.util.List;
 
 
 import com.mycompany.myproject.dto.RoleDto;
+import com.mycompany.myproject.persist.entity.User;
+import com.mycompany.myproject.security.SecurityUtils;
 import com.mycompany.myproject.service.svc.RoleService;
 import org.dozer.DozerBeanMapper;
 import org.slf4j.Logger;
@@ -46,37 +48,33 @@ public class UserController {
     @Autowired
     private MessageSource ms;
 
+//
+//    @RequestMapping(value = "/", method = RequestMethod.GET)
+//    public ModelAndView home() {
+//        logger.debug("redirect to home page");
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("home");
+//        return modelAndView;
+//    }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView home() {
-        logger.debug("redirect to home page");
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("home");
-        return modelAndView;
-    }
+//
+//
+//    @RequestMapping(value = "/usersList", method = RequestMethod.GET)
+//    public @ResponseBody List<UserDto> usersList() {
+//        logger.info("Request of users JSON list");
+//        return userService.getAllUsers();
+//    }
 
 
-
-    @RequestMapping(value = "/usersList", method = RequestMethod.GET)
-    public @ResponseBody List<UserDto> usersList() {
-        logger.info("Request of users JSON list");
-        return userService.getAllUsers();
-    }
-
-
-
-    @RequestMapping(value = "users", method = RequestMethod.GET)
-    public ModelAndView getUsers() {
-        logger.info("Displaying information about users");
-        ModelAndView mv= new ModelAndView("usersView");
-        mv.addObject("usersModel", userService.getAllUsers());
-        return mv;
-    }
-
-    @RequestMapping(value = "/linkToHelloWorld", method = RequestMethod.GET)
-    public ModelAndView sendHello() {
-        return new ModelAndView("helloWorld");
-    }
+//
+//    @RequestMapping(value = "users", method = RequestMethod.GET)
+//    public ModelAndView getUsers() {
+//        logger.info("Displaying information about users");
+//        ModelAndView mv= new ModelAndView("usersView");
+//        mv.addObject("usersModel", userService.getAllUsers());
+//        return mv;
+//    }
+//
 
 
     @CrossOrigin
@@ -111,8 +109,23 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+
     @CrossOrigin
-    @RequestMapping(value = "/updateUserRole", method = RequestMethod.POST)
+    @RequestMapping(value = "/getUsersPage/{pageNum}", method = RequestMethod.GET)
+    public @ResponseBody List<UserDto> getUsersByParams(@PathVariable int pageNum) {
+        logger.info("Web-server requests users by page");
+        List <UserDto> userDtos = userService.getAllUsers();
+        int itemsPerPage = 10;
+        List <UserDto> pagedUsers = new ArrayList<>();
+        for (int i = 0; i < itemsPerPage; i++) {
+            pagedUsers.add(userDtos.get((pageNum-1)*10+i));
+        }
+        return pagedUsers;
+    }
+
+
+    @CrossOrigin
+    @RequestMapping(value = "/admin/updateUserRole", method = RequestMethod.POST)
     public @ResponseBody
     ResponseEntity<String> getUsersList(@RequestBody UserDto userDto, HttpServletResponse response) {
         logger.info("Web-server updates user role: "+ userDto.toString());
@@ -127,6 +140,44 @@ public class UserController {
         myResponse = new ResponseEntity(HttpStatus.OK);
         return myResponse;
     }
+
+
+    @CrossOrigin
+    @RequestMapping(value = "/freeLogin/{login}", method = RequestMethod.GET)
+    public @ResponseBody boolean checkLoginExistence(@PathVariable("login") String login) {
+        logger.info("Web-server requests checks login availability");
+        User user = userService.getUserByLogin(login);
+
+        return (user==null);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/freeEmail/{email}", method = RequestMethod.GET)
+    public @ResponseBody boolean checkEmailExistence(@PathVariable("email") String email) {
+        logger.info("Web-server requests checks email availability");
+        return (userService.getUserByEmail(email)==null);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
+    public @ResponseBody
+    ResponseEntity<String> registerUser(@RequestBody UserDto userDto) {
+        logger.info("Web-server registers user: " + userDto.toString());
+        boolean result = userService.saveNewUser(userDto);
+        if(result)
+            return new ResponseEntity(HttpStatus.OK);
+        else
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping(value = "/security/account", method = RequestMethod.GET)
+    public @ResponseBody
+    User getUserAccount()  {
+        User user = userService.getUserByLogin(SecurityUtils.getCurrentLogin());
+        user.setPassword(null);
+        return user;
+    }
+
 
 }
 

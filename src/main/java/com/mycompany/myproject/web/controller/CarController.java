@@ -31,7 +31,7 @@ public class CarController {
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/saveCar", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/saveCar", method = RequestMethod.POST)
     public @ResponseBody
     ResponseEntity<String> saveCar(@RequestBody CarDto carDto) {
         logger.info("Web-server updates/adds car to DB: " + carDto.toString());
@@ -43,7 +43,7 @@ public class CarController {
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/deleteCar", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/deleteCar", method = RequestMethod.POST)
     public @ResponseBody
     ResponseEntity<String> deleteCar(@RequestBody CarDto carDto) {
         logger.info("Web-server requests procedure of carriage deleting: " + carDto.toString());

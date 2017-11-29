@@ -23,6 +23,7 @@ public class TrainDaoImp implements TrainDao {
     @Override
     public void addNewTrain(Train train) {
         em.persist(train);
+        em.flush();
     }
 
     @Override
@@ -35,6 +36,13 @@ public class TrainDaoImp implements TrainDao {
     public Train getTrainById(Long trainId) {
         List list = em.createQuery("FROM Train where trainId=:trainId")
                 .setParameter("trainId",trainId).getResultList();
+        return (list.isEmpty()) ? null : (Train) list.get(0);
+    }
+
+    @Override
+    public Train getTrainByName(String trainName) {
+        List list = em.createQuery("FROM Train where TrainName=:trainName")
+                .setParameter("trainName",trainName).getResultList();
         return (list.isEmpty()) ? null : (Train) list.get(0);
     }
 }

@@ -4,6 +4,7 @@ package com.mycompany.myproject.service;
 import com.mycompany.myproject.config.JPAConfig;
 import com.mycompany.myproject.config.MvcConfig;
 import com.mycompany.myproject.config.ServiceConfig;
+import com.mycompany.myproject.dto.CarTicketFormDto;
 import com.mycompany.myproject.dto.TrainDto;
 import com.mycompany.myproject.service.svc.GeneralService;
 import com.mycompany.myproject.service.svc.ReserveService;
@@ -81,5 +82,12 @@ public class GeneralServiceTest {
                         .findTrainDtosFromOneToAnotherStationWithDate(9L, 13L, new Date(2017, 11, 02));
         Assert.assertTrue(!trainDtos.isEmpty());
 
+    }
+
+    @Test
+    public void testFindSeatsCars(){
+        Date date = reserveService.getReserveById(1L).getTravelDate();
+        List <CarTicketFormDto> ticketFormDtos = generalService.findSeatsCars(1L, 9L, 13L, date);
+        Assert.assertTrue(!ticketFormDtos.isEmpty());
     }
 }

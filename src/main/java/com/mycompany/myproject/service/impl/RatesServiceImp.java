@@ -87,6 +87,18 @@ public class RatesServiceImp implements RatesService {
         return rateAgeDao.getAgeRateByAge(ageInt);
     }
 
+    @Override
+    public float getHighestAgeRate(){
+        float highestAgeRate = 0;
+        List <RateAge> rateAges = rateAgeDao.getAllAgeRates();
+        for (RateAge rate:
+             rateAges) {
+            if (rate.getAgeRate()>highestAgeRate)
+                highestAgeRate = rate.getAgeRate();
+        }
+        return highestAgeRate;
+    }
+
 
 
     @Override
@@ -108,7 +120,7 @@ public class RatesServiceImp implements RatesService {
     }
 
     @Override
-    public float getRateSeatsLeft(int occupiedSeats, int totalSeats) {
+    public float getRateSeatsLeft(Long occupiedSeats, Long totalSeats) {
         float occupied = (float) occupiedSeats;
         float occupancy = occupied/totalSeats;
         return rateSeatsLeftDao.getSeatsLeftRateByOccupancy(occupancy);
@@ -116,13 +128,27 @@ public class RatesServiceImp implements RatesService {
     }
 
     @Override
-    public float calculateTotalRate(Date birthday, Date travelDate, int occupiedSeats, int totalSeats) {
+    public float calculateStandardRate(Date travelDate, Long occupiedSeats, Long totalSeats){
+        float rateAge = getHighestAgeRate();
+        float rateSeason = this.getRateSeasonByDate(travelDate);
+        float rateBuyBefore = this.getRateDaysBeforeByTravelDate(travelDate);
+        float rateOccupancy = this.getRateSeatsLeft(occupiedSeats, totalSeats);
+        return calculateFormula(rateAge, rateSeason, rateOccupancy, rateBuyBefore);
+    }
+
+    @Override
+    public float calculateTotalRate(Date birthday, Date travelDate, Long occupiedSeats, Long totalSeats) {
         float rateAge = this.getRateAgeByBirthday(birthday);
         float rateSeason = this.getRateSeasonByDate(travelDate);
         float rateBuyBefore = this.getRateDaysBeforeByTravelDate(travelDate);
         float rateOccupancy = this.getRateSeatsLeft(occupiedSeats, totalSeats);
+//        float rateTotal = rateAge*2*(rateSeason+rateBuyBefore+rateOccupancy)/3;
+        return calculateFormula(rateAge, rateSeason, rateBuyBefore, rateOccupancy);
 
-        float rateTotal = rateAge*2*(rateSeason+rateBuyBefore+rateOccupancy)/3;
-        return rateTotal;
+    }
+
+    @Override
+    public float calculateFormula(float rateAge, float rateSeason, float rateBuyBefore, float rateOccupancy){
+        return rateAge*rateSeason*rateBuyBefore*rateOccupancy/4;
     }
 }

@@ -29,6 +29,7 @@ public class TrainDto {
     private Time departureTime;
     private Time arrivalTime;
     private Long trainTypeNumber;
+    private String trainTypeName;
     private List<TrainTypeDto> trainTypeDtos = new ArrayList<>();
     public Long trainType;
     private HashMap<Long, Long> carriage;
@@ -70,6 +71,7 @@ public class TrainDto {
         this.departSat = train.isDepartSat();
         this.departSun = train.isDepartSun();
         this.trainTypeNumber = train.getTrainTypeNumber().getTrainTypeNumberId();
+        this.trainTypeName = train.getTrainTypeNumber().getTrainTypeName();
 
 //        TrainType trainType =
 //        trainType.

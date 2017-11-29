@@ -52,19 +52,19 @@ public class StationServiceImpl implements StationService {
 
     @Override
     public List<String> getAllStationsNames() {
-        List<String> stationNames  = new ArrayList<>();
+        List<String> stationNames = new ArrayList<>();
 
-        for (Station station:
+        for (Station station :
                 stationDao.getAllStations()) {
             stationNames.add(station.getStationName());
         }
-         return stationNames;
+        return stationNames;
     }
 
     @Override
     public void addNewStationByForm(StationForm stationForm) {
         Station station = new Station();
-        station.setCanton( cantonService.getCantonByName(stationForm.getCantonName()));
+        station.setCanton(cantonService.getCantonByName(stationForm.getCantonName()));
         station.setStationName(stationForm.getStationName());
         station.setLatitude(stationForm.getLatitude());
         station.setLongitude(stationForm.getLongitude());
@@ -84,22 +84,22 @@ public class StationServiceImpl implements StationService {
 
     @Override
     public boolean isStationIdInDb(Long stationId) {
-        if(getStationById(stationId)!=null)
+        if (getStationById(stationId) != null)
             return true;
         else return false;
     }
 
     @Override
     public boolean isStationNameInDb(String stationName) {
-        if(getStationByName(stationName)!=null)
+        if (getStationByName(stationName) != null)
             return true;
         else return false;
     }
 
     @Override
     public List<StationDto> getAllStationDtos() {
-        List <Station> stations = this.getAllStations();
-        List <StationDto> stationDtos = new ArrayList<>();
+        List<Station> stations = this.getAllStations();
+        List<StationDto> stationDtos = new ArrayList<>();
 
         for (Station station :
                 stations) {
@@ -113,5 +113,15 @@ public class StationServiceImpl implements StationService {
     @Override
     public void updateStation(StationDto stationDto) {
         stationDao.updateStation(stationDto);
+    }
+
+    @Override
+    public boolean deleteStationFromDB(StationDto stationDto) {
+        if (stationDto.getStationId() == null)
+            return false;
+        if (getStationById(stationDto.getStationId()) == null)
+            return false;
+        stationDao.removeStation(stationDto.getStationId());
+        return true;
     }
 }
