@@ -27,7 +27,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class TrainServiceImpl  implements TrainService {
+public class TrainServiceImpl implements TrainService {
     final int SUN = 1;
     final int MON = 2;
     final int TUE = 3;
@@ -35,7 +35,6 @@ public class TrainServiceImpl  implements TrainService {
     final int THU = 5;
     final int FRI = 6;
     final int SAT = 7;
-
 
 
     @Autowired
@@ -83,7 +82,7 @@ public class TrainServiceImpl  implements TrainService {
         Calendar c = Calendar.getInstance();
         c.setTime(travelDate);
         int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-        switch(dayOfWeek) {
+        switch (dayOfWeek) {
             case MON:
                 return trainDto.isDepartMon();
             case TUE:
@@ -121,7 +120,7 @@ public class TrainServiceImpl  implements TrainService {
     @Override
     public boolean deleteTrainFromWeb(TrainDto trainDto) {
         Long trainId = trainDto.getTrainId();
-        if (this.getTrainById(trainId)==null)
+        if (this.getTrainById(trainId) == null)
             return false;
         else trainDao.removeTrain(trainId);
         return true;
@@ -130,14 +129,14 @@ public class TrainServiceImpl  implements TrainService {
     @Override
     public List<Car> getCarsByTrainId(Long trainId) {
         Train train = this.getTrainByTrainId(trainId);
-        List <TrainTypeDto> trainTypeDtos = trainTypeService.
+        List<TrainTypeDto> trainTypeDtos = trainTypeService.
                 getTrainTypeInfo(train.getTrainTypeNumber().getTrainTypeNumberId());
         List<Long> carIds = new ArrayList<>();
         for (TrainTypeDto trainTypeDto :
                 trainTypeDtos) {
             carIds.add(trainTypeDto.getCarId());
         }
-        List <Car> cars = new ArrayList<>();
+        List<Car> cars = new ArrayList<>();
         for (Long carId :
                 carIds) {
             Car car = carService.getCarById(carId);
@@ -147,7 +146,7 @@ public class TrainServiceImpl  implements TrainService {
     }
 
     @Override
-    public Long getCarsNumberByTrainIdCarId(Long trainId, Long carId){
+    public Long getCarsNumberByTrainIdCarId(Long trainId, Long carId) {
         TrainTypeNumber trainTypeNumber = this.getTrainByTrainId(trainId).getTrainTypeNumber();
         Car car = carService.getCarById(carId);
         TrainType trainType = trainTypeService.getCarByTypeNumberAndCar(trainTypeNumber, car);
@@ -155,10 +154,10 @@ public class TrainServiceImpl  implements TrainService {
     }
 
     @Override
-    public Long getTotalNumberOfSeats(Long trainId, Long carId){
+    public Long getTotalNumberOfSeats(Long trainId, Long carId) {
         Long carsNumber = getCarsNumberByTrainIdCarId(trainId, carId);
         Long seatsNumber = carService.getCarById(carId).getSeatsNumber();
-        return carsNumber*seatsNumber;
+        return carsNumber * seatsNumber;
     }
 
     @Override
@@ -166,34 +165,34 @@ public class TrainServiceImpl  implements TrainService {
         Train train = trainDao.getTrainById(trainId);
         TrainDto trainDto = new TrainDto(train);
         Long trainTypeNumber = trainDto.getTrainTypeNumber();
-        List <TrainTypeDto> trainTypeDtos = trainTypeService.getTrainTypeInfo(trainTypeNumber);
+        List<TrainTypeDto> trainTypeDtos = trainTypeService.getTrainTypeInfo(trainTypeNumber);
         trainDto.setTrainTypeDtos(trainTypeDtos);
         return trainDto;
     }
 
     @Override
     public List<TrainsAttribute> filterTrainsByDate(List<TrainsAttribute> trainsInfo, Date date) {
-    List<TrainsAttribute> filteredTrainsList = new ArrayList<>();
+        List<TrainsAttribute> filteredTrainsList = new ArrayList<>();
 
-        for (TrainsAttribute trainInfo:
-             trainsInfo) {
-            if(checkTrainDate(trainInfo.getTrainId(), date)){
+        for (TrainsAttribute trainInfo :
+                trainsInfo) {
+            if (checkTrainDate(trainInfo.getTrainId(), date)) {
                 filteredTrainsList.add(trainInfo);
             }
         }
         return filteredTrainsList;
     }
-    
+
     @Override
-    public HashMap<Long, Long> getCarriages(Long trainId){
+    public HashMap<Long, Long> getCarriages(Long trainId) {
         HashMap<Long, Long> carriages = new HashMap<>();
         Train train = this.getTrainByTrainId(trainId);
         TrainTypeNumber typeNumber = train.getTrainTypeNumber();
         Long typeNumberId = typeNumber.getTrainTypeNumberId();
-        List <TrainTypeDto> typeDtos = trainTypeService.getTrainTypeInfo(typeNumberId);
+        List<TrainTypeDto> typeDtos = trainTypeService.getTrainTypeInfo(typeNumberId);
 
         for (TrainTypeDto typeDto :
-             typeDtos) {
+                typeDtos) {
             Long carId = typeDto.getCarId();
             Long numberOfCars = typeDto.getNumberOfCars();
             carriages.put(carId, numberOfCars);
@@ -205,9 +204,9 @@ public class TrainServiceImpl  implements TrainService {
     public boolean addNewTrainFromWeb(TrainDto trainDto) {
         Long trainTypeNumber = trainDto.getTrainTypeNumber();
         String trainName = trainDto.getTrainName();
-        if(this.getTrainByTrainName(trainName)!=null)
+        if (this.getTrainByTrainName(trainName) != null)
             return false;
-        if(trainTypeNumber==null)
+        if (trainTypeNumber == null)
             return false;
         this.addNewTrain(trainDto);
         return true;

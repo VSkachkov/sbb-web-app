@@ -13,6 +13,7 @@ public interface RoleService {
 
     /**
      * returns Role entity by it's name
+     *
      * @param name of Role
      * @return Role entity
      */
@@ -20,10 +21,11 @@ public interface RoleService {
 
     /**
      * adds new Role for database users
+     *
      * @param name Role name
      */
     void addRole(String name);
 
-    List <Long> getRolesIds();
+    List<Long> getRolesIds();
 
 }

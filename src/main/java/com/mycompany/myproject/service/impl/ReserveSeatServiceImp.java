@@ -15,7 +15,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class ReserveSeatServiceImp implements ReserveSeatService{
+public class ReserveSeatServiceImp implements ReserveSeatService {
 
     @Autowired
     ReserveSeatDao reserveSeatDao;
@@ -28,7 +28,6 @@ public class ReserveSeatServiceImp implements ReserveSeatService{
 
     @Autowired
     StationService stationService;
-
 
 
     @Override
@@ -51,8 +50,8 @@ public class ReserveSeatServiceImp implements ReserveSeatService{
     @Override
     public void addNewRide(Long trainId, List<Long> chainOfStations, Date travelDate, Long userId) {
 
-        for (Long station:
-             chainOfStations) {
+        for (Long station :
+                chainOfStations) {
             ReserveSeat reserve = new ReserveSeat();
             reserve.setTrainId(trainService.getTrainByTrainId(trainId));
             reserve.setStationId(stationService.getStationById(station));
@@ -73,7 +72,7 @@ public class ReserveSeatServiceImp implements ReserveSeatService{
     public boolean isPassengerOnboard(Long trainId, List<Long> chainOfStations, Date travelDate, Long userId) {
         for (Long stationId :
                 chainOfStations) {
-            if (reserveSeatDao.isReserved(travelDate, userId, trainId, stationId)){
+            if (reserveSeatDao.isReserved(travelDate, userId, trainId, stationId)) {
                 return true;
             }
         }

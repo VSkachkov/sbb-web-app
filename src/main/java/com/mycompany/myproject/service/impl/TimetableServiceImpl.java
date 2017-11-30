@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 @Service
 @Transactional
 public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,TimetableDto, Long>
@@ -37,7 +36,7 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
     @Override
     public List<TimetableDto> getAllTimetable() {
         List<TimetableDto> tdto = new ArrayList<>();
-        for (Timetable timetable:
+        for (Timetable timetable :
                 timetableDao.getAllTimetable()) {
             tdto.add(new TimetableDto(timetable));
         }
@@ -56,7 +55,7 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
 
 
         List<TimetableDto> tdto = new ArrayList<>();
-        for (Timetable timetable:
+        for (Timetable timetable :
                 timetableDao.getAllRouteOfTrain(trainId)) {
             tdto.add(new TimetableDto(timetable));
         }
@@ -66,7 +65,7 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
     @Override
     public List<TimetableDto> getAllRoutesThroughStationWithName(String stationName) {
         List<TimetableDto> tdto = new ArrayList<>();
-        for (Timetable timetable:
+        for (Timetable timetable :
                 timetableDao.getAllTrainsThroughStationName(stationName)) {
             tdto.add(new TimetableDto(timetable));
         }
@@ -74,11 +73,10 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
     }
 
 
-
     @Override
-    public ArrayList <Long> getListOfTrainsByStation(String stationName){
+    public ArrayList<Long> getListOfTrainsByStation(String stationName) {
         ArrayList<Long> trainsList = new ArrayList<>();
-        for (Timetable timetable:
+        for (Timetable timetable :
                 timetableDao.getAllTrainsThroughStationName(stationName)) {
             trainsList.add(timetable.getTrain().getTrainId());
         }
@@ -87,31 +85,29 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
 
     @Override
 
-    public ArrayList <Long> getListOfTrainsByStationAndTimePeriod(String stationName, String time1, String time2){
+    public ArrayList<Long> getListOfTrainsByStationAndTimePeriod(String stationName, String time1, String time2) {
         ArrayList<Long> trainsList = new ArrayList<>();
         CustomTimeConverter myTimeConverter = new CustomTimeConverter();
         Time t1 = new Time(0L);
         Time t2 = new Time(0L);
         try {
             t1 = myTimeConverter.convertFromDString(time1);
-        }
-        catch (ParseException e){
-            try{
+        } catch (ParseException e) {
+            try {
                 t1 = myTimeConverter.convertFromDString("0000");
-            } catch (ParseException e2){
+            } catch (ParseException e2) {
 
             }
         }
         try {
             t2 = myTimeConverter.convertFromDString(time2);
-        }
-        catch (ParseException e){
-            try{
+        } catch (ParseException e) {
+            try {
                 t2 = myTimeConverter.convertFromDString("2359");
-            } catch (ParseException e2){
+            } catch (ParseException e2) {
             }
         }
-        for (Timetable timetable:
+        for (Timetable timetable :
                 timetableDao.getTrainsViaStationWithTime(stationName, t1, t2)) {
             trainsList.add(timetable.getTrain().getTrainId());
         }
@@ -145,13 +141,13 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
         Time sqlTimeTocheck = new Time(new LocalTime(timeToCheck).toDateTimeToday().
                 withZone(DateTimeZone.forID("Europe/Moscow")).getMillis());
         Time timezone = new java.sql.Time(6, 0, 0); //TODO fix problem with timezone
-        long diffInMillies = departureTime.getTime() - sqlTimeTocheck.getTime()-timezone.getTime();
+        long diffInMillies = departureTime.getTime() - sqlTimeTocheck.getTime() - timezone.getTime();
 
         Time diff = new Time(diffInMillies);
         int h = diff.getHours();
         int m = diff.getMinutes();
         Long result = new Time(h, m, 0).getTime();
-        if (result<enoughTime)
+        if (result < enoughTime)
             return false;
         else return true;
     }
@@ -164,17 +160,17 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
         Long arrivalTimeLong = this.getArrival(trainId, arrivalStation).getTime();
 
         List<Long> stations = new ArrayList<>();
-        for (TimetableDto timetable:
+        for (TimetableDto timetable :
                 tdto) {
-                    stations.add(timetable.getStationId());
-            }
+            stations.add(timetable.getStationId());
+        }
         int indexFirst = stations.indexOf(departureStation);
         int indexLast = stations.indexOf(arrivalStation);
         List<Long> stationsInRoute = new ArrayList<>();
-        for (Long stationIdx:
-             stations) {
-            if (stations.indexOf(stationIdx)<=indexLast){
-                if(stations.indexOf(stationIdx)>=indexFirst){
+        for (Long stationIdx :
+                stations) {
+            if (stations.indexOf(stationIdx) <= indexLast) {
+                if (stations.indexOf(stationIdx) >= indexFirst) {
                     stationsInRoute.add(stationIdx);
                 }
             }
@@ -190,25 +186,25 @@ public class TimetableServiceImpl //extends GenericServiceImpl<Timetable,Timetab
     }
 
     @Override
-    public List <Long> getTrainsBetweenStations(String stationFrom, String StationTo){
-        ArrayList <Long> trainsFromStation = getListOfTrainsByStation(stationFrom);
-        ArrayList <Long> trainsToStation = getListOfTrainsByStation(StationTo);
+    public List<Long> getTrainsBetweenStations(String stationFrom, String StationTo) {
+        ArrayList<Long> trainsFromStation = getListOfTrainsByStation(stationFrom);
+        ArrayList<Long> trainsToStation = getListOfTrainsByStation(StationTo);
         ArrayList<Long> common = new ArrayList<>(trainsFromStation);
         common.retainAll(trainsToStation);
-       return common;
+        return common;
     }
 
     @Override
-        public List<TrainsAttribute> getTimetableBetweenStations(String stationFrom, String stationTo,
-                String EarlyTime, String LateTime) {
+    public List<TrainsAttribute> getTimetableBetweenStations(String stationFrom, String stationTo,
+                                                             String EarlyTime, String LateTime) {
         List<Long> trainsByTime = new ArrayList<>();
-        trainsByTime = getListOfTrainsByStationAndTimePeriod(stationFrom, EarlyTime,LateTime);
+        trainsByTime = getListOfTrainsByStationAndTimePeriod(stationFrom, EarlyTime, LateTime);
 
         List<TrainsAttribute> timetableInfo = new ArrayList<>();
         List<Long> trains = new ArrayList<>();
         trains = getTrainsBetweenStations(stationFrom, stationTo);
         trains.retainAll(trainsByTime);
-        for (Long train:
+        for (Long train :
                 trains) {
             Long trainId = train;
             Long stToId = stationService.getStationByName(stationTo).getStationId();

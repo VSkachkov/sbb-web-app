@@ -57,7 +57,7 @@ public class TrainTypeServiceImp implements TrainTypeService {
     public boolean addNewTrainType(TrainTypeDto trainTypeDto) {
         String typeName = trainTypeDto.getTrainTypeName();
         Long typeNumber = trainTypeDto.getTrainTypeNumber();
-        if ((typeName == null || typeName.equals(""))&& (typeNumber==null||typeNumber==0))
+        if ((typeName == null || typeName.equals("")) && (typeNumber == null || typeNumber == 0))
             return false;
         Long carId = trainTypeDto.getCarId();
         Long carNumber = trainTypeDto.getNumberOfCars();
@@ -80,8 +80,8 @@ public class TrainTypeServiceImp implements TrainTypeService {
     public void addNerTrainTypeByParams(Long typeNumber, Long carId, long carNumber) {
         TrainTypeNumber trainTypeNumber = trainTypeNumberService.getTrainTypeNumberById(typeNumber);
         Car car = carService.getCarById(carId);
-        if (this.getCarByTypeNumberAndCar(trainTypeNumber, car)!=null)
-            trainTypeDao.updateCarsNumber(trainTypeNumber, car,carNumber );
+        if (this.getCarByTypeNumberAndCar(trainTypeNumber, car) != null)
+            trainTypeDao.updateCarsNumber(trainTypeNumber, car, carNumber);
         else {
             TrainType trainType = new TrainType();
             trainType.setTrainTypeNumber(trainTypeNumberService.getTrainTypeNumberById(typeNumber));
@@ -105,13 +105,13 @@ public class TrainTypeServiceImp implements TrainTypeService {
     @Override
     public boolean deleteTrainTypeFromWeb(TrainTypeDto trainTypeDto) {
         TrainTypeNumber typeNumber = trainTypeNumberService.getTrainTypeNumberById(trainTypeDto.getTrainTypeNumber());
-        if (typeNumber==null)
+        if (typeNumber == null)
             return false;
         Car car = carService.getCarById(trainTypeDto.getCarId());
-        if (car==null)
+        if (car == null)
             return false;
         TrainType trainType = getCarByTypeNumberAndCar(typeNumber, car);
-        if(trainType==null)
+        if (trainType == null)
             return false;
         trainTypeDao.deleteTrainTypeByTypeNumberAndCar(trainType);
         return true;

@@ -9,19 +9,33 @@ import java.util.List;
 
 public interface ReserveService {
     List<Reserve> getAllReserves();
-    List <ReserveWebDto> getWebReserves();
-    List<ReserveWebDto>getUserReserve(Long trainId, Long userId, Date date);
+
+    List<ReserveWebDto> getWebReserves();
+
+    List<ReserveWebDto> getUserReserve(Long trainId, Long userId, Date date);
+
     boolean checkReserveInTicketsList(List<TicketWebDto> tickets, ReserveWebDto reserve);
+
     List<TicketWebDto> getAllJourneys();
+
     String getDepartureStation(List<ReserveWebDto> userReserve);
-    String getArrivalStation(List<ReserveWebDto>userReserve);
+
+    String getArrivalStation(List<ReserveWebDto> userReserve);
+
     String getDepartureUserJourney(Long trainId, Long userId, Date date);
+
     String getArrivalUserJourney(Long trainId, Long userId, Date date);
+
     Reserve getReserveById(Long reserveId);
+
     List<Reserve> getReservesByUser(User user);
+
     List<Long> getStatisticsByLastMonth();
+
     void addReserve(Reserve reserve);
+
     Reserve getReserve(User user, Route route, Date travelDate);
+
     Long getStatisticsByDay(Date travelDate);
 
     boolean isPassengerOnboard(Long trainId, Long departureStation, Long arrivalStation, Date travelDate, Long userId);

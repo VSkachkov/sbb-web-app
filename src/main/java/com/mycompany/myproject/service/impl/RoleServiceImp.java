@@ -45,7 +45,7 @@ public class RoleServiceImp implements RoleService {
     @Override
     public List<Long> getRolesIds() {
         List<Long> roles = new ArrayList<>();
-        for (Role role:
+        for (Role role :
                 roleDao.getAllRoles()) {
             roles.add(role.getRoleId());
         }

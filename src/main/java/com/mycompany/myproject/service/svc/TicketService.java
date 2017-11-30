@@ -8,7 +8,9 @@ import java.sql.Date;
 public interface TicketService {
 
     boolean checkEnoughTimeBeforeDeparture(Long trainId, Long stationId);
+
     boolean checkDateValidity(Date travelDate);
+
     boolean buyWebTicket(TicketWebDto ticketWebDto);
 
 

@@ -16,7 +16,7 @@ public class CantonDto {
         this.cantonName = canton.getCantonName();
     }
 
-    public CantonDto(){
+    public CantonDto() {
 
     }
 }

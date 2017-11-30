@@ -36,7 +36,7 @@ public class ManagerServiceImp implements ManagerService {
 
     @Autowired
     SectionService sectionService;
-    
+
     @Autowired
     UserService userService;
 
@@ -59,11 +59,11 @@ public class ManagerServiceImp implements ManagerService {
     TrainTypeService trainTypeService;
 
     @Override
-    public List<TrainDto> getTrainsForManagers(){
+    public List<TrainDto> getTrainsForManagers() {
         List<TrainDto> trains = trainService.getAllTrains();
 
-        for (TrainDto tdto:
-             trains) {
+        for (TrainDto tdto :
+                trains) {
             Long initStationId, lastStationId;
             String initStationName, lastStationName;
             Long trainId = tdto.getTrainId();
@@ -72,7 +72,7 @@ public class ManagerServiceImp implements ManagerService {
                 initStationName = routeService.getInitStationNameOfTrain(trainId);
                 initStationId = routeService.getInitStationIdOfTrain(trainId);
                 startTime = routeService.getTrainDepartureByStation(initStationId, trainId);
-            } catch (IndexOutOfBoundsException e){
+            } catch (IndexOutOfBoundsException e) {
                 startTime = null;
                 initStationName = "--//--";
             }
@@ -81,8 +81,7 @@ public class ManagerServiceImp implements ManagerService {
                 lastStationId = routeService.getLastStationIdOfTrain(trainId);
                 finishTime = routeService.getTrainArrivalByStation(lastStationId, trainId);
 
-            }
-            catch (IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException e) {
                 finishTime = null;
                 lastStationName = "--//--";
             }
@@ -97,7 +96,7 @@ public class ManagerServiceImp implements ManagerService {
 
 
     @Override
-    public void addTrainToDB(TrainDto trainDto){
+    public void addTrainToDB(TrainDto trainDto) {
         trainService.addNewTrain(trainDto);
     }
 
@@ -113,28 +112,28 @@ public class ManagerServiceImp implements ManagerService {
 
     @Override
     public List<PassengerForm> getPassengers(Long trainNumber, Date travelDate) {
-        List <PassengerForm> passengers = new ArrayList<>();
+        List<PassengerForm> passengers = new ArrayList<>();
 
-        List <Long> passengersIds = new ArrayList<>();
-        for (ReserveSeat reserveSeat:
+        List<Long> passengersIds = new ArrayList<>();
+        for (ReserveSeat reserveSeat :
                 reserveSeatService.getAllReserveSeats()) {
             Long trainId = reserveSeat.getTrainId().getTrainId();
-            if (trainId==trainNumber){
+            if (trainId == trainNumber) {
                 Date date = new Date(0L);
                 date = reserveSeat.getTravelDate();
-                if(date.compareTo(travelDate)==0){
-                    if(!passengersIds.contains(reserveSeat.getUserId().getUserId())){
+                if (date.compareTo(travelDate) == 0) {
+                    if (!passengersIds.contains(reserveSeat.getUserId().getUserId())) {
                         passengersIds.add(reserveSeat.getUserId().getUserId());
                     }
                 }
             }
         }
-        for (Long userId:
+        for (Long userId :
                 passengersIds) {
             PassengerForm passForm = new PassengerForm();
             User user = userService.getUserById(userId);
-            passForm.setFirstName( user.getFirstName());
-            passForm.setLastName( user.getLastName());
+            passForm.setFirstName(user.getFirstName());
+            passForm.setLastName(user.getLastName());
             passForm.setBirthday(user.getBirthday());
             passengers.add(passForm);
         }
@@ -183,7 +182,7 @@ public class ManagerServiceImp implements ManagerService {
     }
 
     @Override
-    public void updateDataOnRemoteServer(){
+    public void updateDataOnRemoteServer() {
         new Sender().send();
 
     }

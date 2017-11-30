@@ -12,23 +12,26 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public interface TrainService
-{
+public interface TrainService {
     /**
      * gets all trains DTOs from DB
+     *
      * @return trains DTOs
      */
     List<TrainDto> getAllTrains();
 
     /**
      * adds new train to DB
+     *
      * @param trainDto train DTO
      */
 
     public void addNewTrain(TrainDto trainDto);
+
     /**
      * checks if train goes specific date
-     * @param trainId train number
+     *
+     * @param trainId    train number
      * @param travelDate required date
      * @return true if train goes that day
      */
@@ -36,12 +39,14 @@ public interface TrainService
 
     /**
      * removes train from DB
+     *
      * @param id train id to be removed
      */
     void removeTrain(Long id);
 
     /**
      * provides train entity based on train number
+     *
      * @param id train number
      * @return train entity
      */
@@ -49,6 +54,7 @@ public interface TrainService
 
     /**
      * provides train DTO by it's ID
+     *
      * @param id train number
      * @return train DTO
      */
@@ -56,11 +62,13 @@ public interface TrainService
 
     /**
      * removes trains from initial list that do not go required date
+     *
      * @param trainsInfo all trains list
-     * @param date required date
+     * @param date       required date
      * @return trains that go that day
      */
-    List <TrainsAttribute> filterTrainsByDate(List<TrainsAttribute> trainsInfo, Date date);
+    List<TrainsAttribute> filterTrainsByDate(List<TrainsAttribute> trainsInfo, Date date);
+
     HashMap<Long, Long> getCarriages(Long trainId);
 
     boolean addNewTrainFromWeb(TrainDto trainDto);
@@ -68,8 +76,11 @@ public interface TrainService
     Train getTrainByTrainName(String trainName);
 
     boolean deleteTrainFromWeb(TrainDto trainDto);
-    List <Car> getCarsByTrainId(Long trainId);
+
+    List<Car> getCarsByTrainId(Long trainId);
+
     Long getCarsNumberByTrainIdCarId(Long trainId, Long carId);
+
     Long getTotalNumberOfSeats(Long trainId, Long carId);
 
 }

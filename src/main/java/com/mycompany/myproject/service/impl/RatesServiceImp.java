@@ -40,7 +40,7 @@ public class RatesServiceImp implements RatesService {
     RateSeatsLeftDao rateSeatsLeftDao;
 
     @Override
-    public float getRateAgeByUser(Long userId){
+    public float getRateAgeByUser(Long userId) {
         User user = userService.getUserById(userId);
         UserDto userDto = new UserDto(user);
         Date bday = userDto.getBirthday();
@@ -50,9 +50,9 @@ public class RatesServiceImp implements RatesService {
     @Override
     public List<RateAgeDto> getAllAgeRates() {
         List<RateAge> ageRates = rateAgeDao.getAllAgeRates();
-        List<RateAgeDto> ageRateDtos= new ArrayList<>();
-        for (RateAge rateAge:
-             ageRates) {
+        List<RateAgeDto> ageRateDtos = new ArrayList<>();
+        for (RateAge rateAge :
+                ageRates) {
             ageRateDtos.add(new RateAgeDto(rateAge));
         }
         return ageRateDtos;
@@ -61,8 +61,8 @@ public class RatesServiceImp implements RatesService {
     @Override
     public List<RateSeasonDto> getAllSeasonRates() {
         List<RateSeasonDto> rateSeasonDtoList = new ArrayList<>();
-        for (RateSeason rateSeason:
-             rateSeasonDao.getAllSeasonRates()) {
+        for (RateSeason rateSeason :
+                rateSeasonDao.getAllSeasonRates()) {
             rateSeasonDtoList.add(new RateSeasonDto(rateSeason));
         }
         return rateSeasonDtoList;
@@ -88,17 +88,16 @@ public class RatesServiceImp implements RatesService {
     }
 
     @Override
-    public float getHighestAgeRate(){
+    public float getHighestAgeRate() {
         float highestAgeRate = 0;
-        List <RateAge> rateAges = rateAgeDao.getAllAgeRates();
-        for (RateAge rate:
-             rateAges) {
-            if (rate.getAgeRate()>highestAgeRate)
+        List<RateAge> rateAges = rateAgeDao.getAllAgeRates();
+        for (RateAge rate :
+                rateAges) {
+            if (rate.getAgeRate() > highestAgeRate)
                 highestAgeRate = rate.getAgeRate();
         }
         return highestAgeRate;
     }
-
 
 
     @Override
@@ -112,7 +111,7 @@ public class RatesServiceImp implements RatesService {
 
 
     @Override
-    public float getRateSeasonByDate(Date travelDate){
+    public float getRateSeasonByDate(Date travelDate) {
         LocalDate travelLocalDate = new LocalDate(travelDate);
         int dayOfYear = travelLocalDate.getDayOfYear();
         return rateSeasonDao.getSeasonRateByDay(dayOfYear);
@@ -122,13 +121,13 @@ public class RatesServiceImp implements RatesService {
     @Override
     public float getRateSeatsLeft(Long occupiedSeats, Long totalSeats) {
         float occupied = (float) occupiedSeats;
-        float occupancy = occupied/totalSeats;
+        float occupancy = occupied / totalSeats;
         return rateSeatsLeftDao.getSeatsLeftRateByOccupancy(occupancy);
 
     }
 
     @Override
-    public float calculateStandardRate(Date travelDate, Long occupiedSeats, Long totalSeats){
+    public float calculateStandardRate(Date travelDate, Long occupiedSeats, Long totalSeats) {
         float rateAge = getHighestAgeRate();
         float rateSeason = this.getRateSeasonByDate(travelDate);
         float rateBuyBefore = this.getRateDaysBeforeByTravelDate(travelDate);
@@ -147,7 +146,7 @@ public class RatesServiceImp implements RatesService {
     }
 
     @Override
-    public float calculateFormula(float rateAge, float rateSeason, float rateBuyBefore, float rateOccupancy){
-        return rateAge*rateSeason*rateBuyBefore*rateOccupancy/4;
+    public float calculateFormula(float rateAge, float rateSeason, float rateBuyBefore, float rateOccupancy) {
+        return rateAge * rateSeason * rateBuyBefore * rateOccupancy / 4;
     }
 }

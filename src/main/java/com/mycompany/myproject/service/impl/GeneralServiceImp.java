@@ -41,11 +41,11 @@ public class GeneralServiceImp implements GeneralService {
     RatesService ratesService;
 
     @Override
-    public List <Long> extractTrainIdsOnRoutes(List<RouteDto> routeDtos){
-        List <Long> trainIds = new ArrayList<>();
+    public List<Long> extractTrainIdsOnRoutes(List<RouteDto> routeDtos) {
+        List<Long> trainIds = new ArrayList<>();
         for (RouteDto routeDto :
                 routeDtos) {
-            if(!trainIds.contains(routeDto.getTrainId())){
+            if (!trainIds.contains(routeDto.getTrainId())) {
                 trainIds.add(routeDto.getTrainId());  // extract all train Ids (Long) that go via our station
             }
         }
@@ -55,12 +55,12 @@ public class GeneralServiceImp implements GeneralService {
     @Override
     public List<Long> findTrainsViaStation(Long stationId) {
         List<RouteDto> routeDtos = routeService.getRoutesDtosViaStationId(stationId);
-        List <Long> trainIds = this.extractTrainIdsOnRoutes(routeDtos);
-         return trainIds;
+        List<Long> trainIds = this.extractTrainIdsOnRoutes(routeDtos);
+        return trainIds;
     }
 
     @Override
-    public List <Long> findTrainsBetweenStations(Long stationIdOne, Long stationIdTwo){
+    public List<Long> findTrainsBetweenStations(Long stationIdOne, Long stationIdTwo) {
         List<Long> trainsViaStationOne = this.findTrainsViaStation(stationIdOne);
         List<Long> trainsViaStationTwo = this.findTrainsViaStation(stationIdTwo);
         trainsViaStationOne.retainAll(trainsViaStationTwo);
@@ -69,22 +69,23 @@ public class GeneralServiceImp implements GeneralService {
 
     @Override
     public List<Long> findTrainsFromStationToStation(Long stationFrom, Long stationTo) {
-        List <Long> trainsBetweenStations = this.findTrainsBetweenStations(stationFrom, stationTo);
-        List <Long> trainFromToStation = new ArrayList<>();
+        List<Long> trainsBetweenStations = this.findTrainsBetweenStations(stationFrom, stationTo);
+        List<Long> trainFromToStation = new ArrayList<>();
         Time departureFromStationFrom = new Time(0, 0, 0);
-        Time arrivalToStationTo = new Time(0, 0, 0);;
+        Time arrivalToStationTo = new Time(0, 0, 0);
+        ;
 
         for (Long trainId :
                 trainsBetweenStations) {
-            List <RouteDto> routeDtos = routeService.getRoutesOfTrain(trainId);
+            List<RouteDto> routeDtos = routeService.getRoutesOfTrain(trainId);
             for (RouteDto routeDto :
                     routeDtos) {
-                if (routeDto.getStationFromId()==stationFrom)
+                if (routeDto.getStationFromId() == stationFrom)
                     departureFromStationFrom = routeDto.getDeparture();
-                if (routeDto.getStationToId()==stationTo)
+                if (routeDto.getStationToId() == stationTo)
                     arrivalToStationTo = routeDto.getArrival();
             }
-            if (departureFromStationFrom.getTime()<arrivalToStationTo.getTime())
+            if (departureFromStationFrom.getTime() < arrivalToStationTo.getTime())
                 trainFromToStation.add(trainId);
         }
 
@@ -92,14 +93,14 @@ public class GeneralServiceImp implements GeneralService {
     }
 
     @Override
-    public TrainDto addInitAndLastStationNamesToTrainDto(TrainDto trainDto, Long trainId){
+    public TrainDto addInitAndLastStationNamesToTrainDto(TrainDto trainDto, Long trainId) {
         trainDto.setInitStation(routeService.getInitStationNameOfTrain(trainId));
         trainDto.setLastStation(routeService.getLastStationNameOfTrain(trainId));
         return trainDto;
     }
 
     @Override
-    public TrainDto getTrainInfoFromOneStationToOther(Long stationFrom, Long stationTo, Long trainId){
+    public TrainDto getTrainInfoFromOneStationToOther(Long stationFrom, Long stationTo, Long trainId) {
         TrainDto trainDto = new TrainDto(trainService.getTrainByTrainId(trainId));
         trainDto.setCarriage(trainService.getCarriages(trainId));
 
@@ -108,10 +109,10 @@ public class GeneralServiceImp implements GeneralService {
 
         for (RouteDto routeDto :
                 routeDtos) {
-                    if (routeDto.getStationFromId() == stationFrom)
-                        trainDto.setDepartureTime(routeDto.getDeparture());
-                    if (routeDto.getStationToId() == stationTo)
-                        trainDto.setArrivalTime(routeDto.getArrival());
+            if (routeDto.getStationFromId() == stationFrom)
+                trainDto.setDepartureTime(routeDto.getDeparture());
+            if (routeDto.getStationToId() == stationTo)
+                trainDto.setArrivalTime(routeDto.getArrival());
         }
         trainDto.setInitStation(routeService.getInitStationNameOfTrain(trainId));
         trainDto.setLastStation(routeService.getLastStationNameOfTrain(trainId));
@@ -119,8 +120,8 @@ public class GeneralServiceImp implements GeneralService {
     }
 
     @Override
-    public List<TrainDto> findTrainDtosFromOneToAnotherStation(Long stationFrom, Long stationTo){
-        List <Long> trainIds = this.findTrainsFromStationToStation(stationFrom, stationTo);
+    public List<TrainDto> findTrainDtosFromOneToAnotherStation(Long stationFrom, Long stationTo) {
+        List<Long> trainIds = this.findTrainsFromStationToStation(stationFrom, stationTo);
         List<TrainDto> trainDtos = new ArrayList<>();
 
         for (Long trainId :
@@ -131,13 +132,13 @@ public class GeneralServiceImp implements GeneralService {
     }
 
     @Override
-    public List<TrainDto> findTrainDtosFromOneToAnotherStationWithDate(Long stationFrom, Long stationTo, Date travelDate){
-        List <Long> trainIds = this.findTrainsFromStationToStation(stationFrom, stationTo);
+    public List<TrainDto> findTrainDtosFromOneToAnotherStationWithDate(Long stationFrom, Long stationTo, Date travelDate) {
+        List<Long> trainIds = this.findTrainsFromStationToStation(stationFrom, stationTo);
         List<Long> trainsFilteredByDate = new ArrayList<>();
 
         for (Long trainId :
                 trainIds) {
-            if(trainService.checkTrainDate(trainId, travelDate))
+            if (trainService.checkTrainDate(trainId, travelDate))
                 trainsFilteredByDate.add(trainId);
         }
 
@@ -158,28 +159,29 @@ public class GeneralServiceImp implements GeneralService {
             Long stationFrom,
             Long stationTo,
             Date travelDate
-    ){
+    ) {
         return null;
     }
 
     @Override
-    public List<TrainDto> setStatusForTrainDtos(List<TrainDto> trainDtos, Date date){
+    public List<TrainDto> setStatusForTrainDtos(List<TrainDto> trainDtos, Date date) {
         for (TrainDto trainDto :
                 trainDtos) {
             trainDto.setTrainTypeDtos(null);
             TrainChange change = trainChangeService.getChangeByTrainIdAndDate(trainDto.getTrainId(), date);
-            if (change!=null)
+            if (change != null)
                 trainDto.setStatus(change.getStatus());
-        };
-          return trainDtos;
+        }
+        ;
+        return trainDtos;
     }
 
     @Override
     public List<TrainDto> getTrainsForBoardOnline(String stationName) {
         Long stationId = stationService.getStationByName(stationName).getStationId();
         TrainsDto trainsDto = new TrainsDto();
-        Date today =  new Date(Calendar.getInstance().getTime().getTime());
-        List<TrainDto> trainDtos = getTrainDtosViaStationAndDate(stationId,today);
+        Date today = new Date(Calendar.getInstance().getTime().getTime());
+        List<TrainDto> trainDtos = getTrainDtosViaStationAndDate(stationId, today);
         setStatusForTrainDtos(trainDtos, today);
         trainsDto.setTrains(trainDtos);
         return trainDtos;
@@ -188,8 +190,8 @@ public class GeneralServiceImp implements GeneralService {
     @Override
     public List<TrainDto> getTrainsForBoardOnlineById(Long stationId) {
         TrainsDto trainsDto = new TrainsDto();
-        Date today =  new Date(Calendar.getInstance().getTime().getTime());
-        List<TrainDto> trainDtos = getTrainDtosViaStationAndDate(stationId,today);
+        Date today = new Date(Calendar.getInstance().getTime().getTime());
+        List<TrainDto> trainDtos = getTrainDtosViaStationAndDate(stationId, today);
         setStatusForTrainDtos(trainDtos, today);
         trainsDto.setTrains(trainDtos);
         return trainDtos;
@@ -197,10 +199,10 @@ public class GeneralServiceImp implements GeneralService {
 
     @Override
     public List<CarTicketFormDto> findSeatsCars(Long trainId, Long stationFromId, Long stationToId, Date date) {
-        List <CarTicketFormDto> carTickets = new ArrayList<>();
-        List <Car> cars = trainService.getCarsByTrainId(trainId);
-        for (Car car:
-             cars) {
+        List<CarTicketFormDto> carTickets = new ArrayList<>();
+        List<Car> cars = trainService.getCarsByTrainId(trainId);
+        for (Car car :
+                cars) {
             CarTicketFormDto carTicketFormDto = new CarTicketFormDto(car);
             carTicketFormDto.setOccupiedSeats(0L);
             Long carsNumber = trainService.getCarsNumberByTrainIdCarId(trainId, car.getCarId());
@@ -210,28 +212,28 @@ public class GeneralServiceImp implements GeneralService {
             carTickets.add(carTicketFormDto);
         }
         float travelLength = 0f;
-        List <Route> routes = routeService.getRoutesFromOneStToOtherByTrain(stationFromId, stationToId, trainId);
+        List<Route> routes = routeService.getRoutesFromOneStToOtherByTrain(stationFromId, stationToId, trainId);
         for (Route route :
                 routes) {
-            travelLength+=route.getSection().getLength();
+            travelLength += route.getSection().getLength();
             for (Car car :
                     cars) {
                 Long totalOccupiedSeats = reserveService.getOccupancyByRoute(route, car, date);
                 Long totalSeatsNumber = trainService.getTotalNumberOfSeats(trainId, car.getCarId());
-                Long freeSeats = totalSeatsNumber-totalOccupiedSeats;
+                Long freeSeats = totalSeatsNumber - totalOccupiedSeats;
                 CarTicketFormDto carTicket = carService.findCarTicketByCarId(carTickets, car.getCarId());
-                if (totalOccupiedSeats>carTicket.getOccupiedSeats()){
+                if (totalOccupiedSeats > carTicket.getOccupiedSeats()) {
                     carTicket.setOccupiedSeats(totalOccupiedSeats);
                 }
             }
         }
-        for (CarTicketFormDto carTicket:
-             carTickets) {
+        for (CarTicketFormDto carTicket :
+                carTickets) {
 
             float totalRate = ratesService.calculateStandardRate(date,
-                    carTicket.getOccupiedSeats(), carTicket.getTotalSeatsNumber() );
+                    carTicket.getOccupiedSeats(), carTicket.getTotalSeatsNumber());
             float carRate = carTicket.getCarPriceRate();
-            carTicket.setStandardPrice(totalRate*travelLength*carRate);
+            carTicket.setStandardPrice(totalRate * travelLength * carRate);
         }
 
 
@@ -240,22 +242,22 @@ public class GeneralServiceImp implements GeneralService {
 
 
     @Override
-    public List<TrainDto> getTrainDtosViaStation(Long stationId){
+    public List<TrainDto> getTrainDtosViaStation(Long stationId) {
 
         List<RouteDto> routeDtos = routeService.getRoutesDtosViaStationId(stationId);
-        List <Long> trainIds = this.extractTrainIdsOnRoutes(routeDtos);
+        List<Long> trainIds = this.extractTrainIdsOnRoutes(routeDtos);
         return fillTrainDtoWithData(trainIds, routeDtos, stationId);
     }
 
     @Override
-    public List<TrainDto> fillTrainDtoWithData(List<Long> trainIds, List<RouteDto> routeDtos, Long stationId){
+    public List<TrainDto> fillTrainDtoWithData(List<Long> trainIds, List<RouteDto> routeDtos, Long stationId) {
         List<TrainDto> trainDtos = new ArrayList<>();
         for (Long trainId : //for each train Id we get it's DTO with neccessary information
                 trainIds) {
             TrainDto trainDto = trainService.getTrainById(trainId);
             for (RouteDto routeDto :
                     routeDtos) {
-                if (routeDto.getTrainId()==trainId) {
+                if (routeDto.getTrainId() == trainId) {
                     if (routeDto.getStationFromId() == stationId)
                         trainDto.setDepartureTime(routeDto.getDeparture());
                     if (routeDto.getStationToId() == stationId)
@@ -272,14 +274,14 @@ public class GeneralServiceImp implements GeneralService {
     @Override
     public List<TrainDto> getTrainDtosViaStationAndDate(Long stationId, Date travelDate) {
         List<RouteDto> routeDtos = routeService.getRoutesDtosViaStationId(stationId);
-        List <Long> trainIds = this.extractTrainIdsOnRoutes(routeDtos);
+        List<Long> trainIds = this.extractTrainIdsOnRoutes(routeDtos);
         List<Long> filteredTrainIds = new ArrayList<>();
         for (Long trainId :
                 trainIds) {
-            if(trainService.checkTrainDate(trainId, travelDate))
+            if (trainService.checkTrainDate(trainId, travelDate))
                 filteredTrainIds.add(trainId);
         }
-        List <TrainDto> trains = fillTrainDtoWithData( filteredTrainIds, routeDtos, stationId);
+        List<TrainDto> trains = fillTrainDtoWithData(filteredTrainIds, routeDtos, stationId);
         trains = setStatusForTrainDtos(trains, travelDate);
         return trains;
     }

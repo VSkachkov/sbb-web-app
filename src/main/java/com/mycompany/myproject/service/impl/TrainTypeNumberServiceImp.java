@@ -18,7 +18,7 @@ public class TrainTypeNumberServiceImp implements TrainTypeNumberService {
     TrainTypeNumberDao trainTypeNumberDao;
 
     @Override
-    public List<TrainTypeNumber> getAllTrainTypesNumbers(){
+    public List<TrainTypeNumber> getAllTrainTypesNumbers() {
         return trainTypeNumberDao.getAllTrainTypeNumbers();
     }
 
@@ -33,11 +33,12 @@ public class TrainTypeNumberServiceImp implements TrainTypeNumberService {
     }
 
     @Override
-    public TrainTypeNumber getTrainTypeByName(String trainTypeName){
+    public TrainTypeNumber getTrainTypeByName(String trainTypeName) {
         return trainTypeNumberDao.getTrainTypeByName(trainTypeName);
     }
+
     @Override
-    public void deleteTrainTypeNumberById(Long id){
+    public void deleteTrainTypeNumberById(Long id) {
         trainTypeNumberDao.deleteTrainTypeNumberById(id);
     }
 

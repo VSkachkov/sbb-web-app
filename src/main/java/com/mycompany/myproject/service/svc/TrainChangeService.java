@@ -9,12 +9,19 @@ import java.util.List;
 
 public interface TrainChangeService {
     TrainChange getChangeById(Long id);
+
     TrainChange getChangeByTrainDate(Train train, Date date);
+
     Date getDateChangeById(Long changeId);
+
     String getStatusChangeById(Long changeId);
+
     void informMQService();
+
     TrainChange getChangeByTrainIdAndDate(Long trainId, Date date);
+
     void addTrainChange(TrainChange trainChange);
+
     void updateStatusByChangeId(Long changeId, String newStatus);
 
     List<TrainChangeDto> getChanges();

@@ -26,7 +26,7 @@ public class SectionServiceImp implements SectionService {
     StationService stationService;
 
     @Override
-    public List<Section> getAllSections(){
+    public List<Section> getAllSections() {
         return sectionDao.getAllSections();
     }
 
@@ -41,7 +41,7 @@ public class SectionServiceImp implements SectionService {
     }
 
     @Override
-    public List<Section>getSectionsByStationId(Long stationId){
+    public List<Section> getSectionsByStationId(Long stationId) {
         return sectionDao.getSectionsByStationId(stationId);
     }
 
@@ -56,12 +56,12 @@ public class SectionServiceImp implements SectionService {
     }
 
     @Override
-    public List<SectionDto>getSectionsDtosByStationId(Long stationId){
-        List <Section> sections = getSectionsByStationId(stationId);
+    public List<SectionDto> getSectionsDtosByStationId(Long stationId) {
+        List<Section> sections = getSectionsByStationId(stationId);
 
-        List <SectionDto> sectionsDto = new ArrayList<>();
-        for (Section section:
-             sections) {
+        List<SectionDto> sectionsDto = new ArrayList<>();
+        for (Section section :
+                sections) {
             sectionsDto.add(new SectionDto(section));
         }
         return sectionsDto;
@@ -69,8 +69,8 @@ public class SectionServiceImp implements SectionService {
 
     @Override
     public List<SectionDto> getAllSectionsDtos() {
-        List <Section> sections = getAllSections();
-        List <SectionDto> sectionDtos = new ArrayList<>();
+        List<Section> sections = getAllSections();
+        List<SectionDto> sectionDtos = new ArrayList<>();
         for (Section section :
                 sections) {
             sectionDtos.add(new SectionDto(section));
@@ -79,7 +79,7 @@ public class SectionServiceImp implements SectionService {
     }
 
     @Override
-    public boolean addNewSectionByParams(Long stationOneId, Long stationTwoId, float length){
+    public boolean addNewSectionByParams(Long stationOneId, Long stationTwoId, float length) {
         Section sectionOneDirection = new Section();
         sectionOneDirection.setStationFromId(stationService.getStationById(stationOneId));
         sectionOneDirection.setStationToId(stationService.getStationById(stationTwoId));
@@ -95,11 +95,10 @@ public class SectionServiceImp implements SectionService {
     }
 
     @Override
-    public boolean addNewSection(Section section){
+    public boolean addNewSection(Section section) {
         sectionDao.addNewSection(section);
         return true;
     }
-
 
 
     @Override

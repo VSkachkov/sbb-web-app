@@ -29,8 +29,8 @@ public class CantonServiceImpl
     public List<CantonDto> getAllCantons() {
         List<CantonDto> cdto = new ArrayList<>();
 
-        for (Canton canton:
-        cantonDao.getAllCantons()) {
+        for (Canton canton :
+                cantonDao.getAllCantons()) {
             cdto.add(new CantonDto(canton));
         }
 
@@ -56,9 +56,9 @@ public class CantonServiceImpl
 
     @Override
     public List<String> getAllCantonsNames() {
-        List<String> cantonNames  = new ArrayList<>();
+        List<String> cantonNames = new ArrayList<>();
 
-        for (Canton canton:
+        for (Canton canton :
                 cantonDao.getAllCantons()) {
             cantonNames.add(canton.getCantonName());
         }

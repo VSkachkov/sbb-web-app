@@ -22,11 +22,11 @@ import java.util.List;
 
 @Service
 @Transactional
-public class TicketServiceImp implements  TicketService {
+public class TicketServiceImp implements TicketService {
 
 
     final private Long TENMINUTES = new java.sql.Time(0, 10, 0).getTime();
-    final private Long HOUR = new java.sql.Time(1, 0, 0).getTime();;
+    final private Long HOUR = new java.sql.Time(1, 0, 0).getTime();
 
     @Autowired
     StationService stationService;
@@ -54,41 +54,40 @@ public class TicketServiceImp implements  TicketService {
 
 
     @Override
-    public boolean buyWebTicket(TicketWebDto ticketWebDto){
+    public boolean buyWebTicket(TicketWebDto ticketWebDto) {
         Long departureStation = ticketWebDto.getStationFromId();
         Long arrivalStation = ticketWebDto.getStationToId();
         Long trainId = ticketWebDto.getTrainId();
         Date travelDate = ticketWebDto.getTravelDate();
         if (!checkDateValidity(travelDate))
             return false;
-        Time departure = routeService.getTrainDepartureByStation(departureStation,trainId );
-  //      travelDate.setTime(travelDate.getTime()+departure.getTime());
+        Time departure = routeService.getTrainDepartureByStation(departureStation, trainId);
+        //      travelDate.setTime(travelDate.getTime()+departure.getTime());
         if (!trainService.checkTrainDate(trainId, travelDate))
             return false;
         java.sql.Date today = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-        if(travelDate==today)
-        if (!this.checkEnoughTimeBeforeDeparture(trainId, departureStation))
-            return false;
+        if (travelDate == today)
+            if (!this.checkEnoughTimeBeforeDeparture(trainId, departureStation))
+                return false;
 
         List<User> users = userService.findUsersByPersonalData(ticketWebDto.getFirstName(),
-                    ticketWebDto.getLastName(), ticketWebDto.getBirthday());
+                ticketWebDto.getLastName(), ticketWebDto.getBirthday());
         boolean samePassengerOnboard = false;
-        if(users!=null)
-        for (User user :
-                users) {
-            if(reserveService.isPassengerOnboard(trainId, departureStation, arrivalStation, travelDate, user.getUserId()))
-            samePassengerOnboard = true;
-        }
+        if (users != null)
+            for (User user :
+                    users) {
+                if (reserveService.isPassengerOnboard(trainId, departureStation, arrivalStation, travelDate, user.getUserId()))
+                    samePassengerOnboard = true;
+            }
 
         if (samePassengerOnboard)
             return false;
 
 
-
         UserDto user = new UserDto(ticketWebDto.getFirstName(),
                 ticketWebDto.getLastName(),
                 ticketWebDto.getBirthday());
-        if(!userService.doesUserExistInDb(user))
+        if (!userService.doesUserExistInDb(user))
             userService.addNewUser(user);
         Long userId = userService.getUserIdByPrivateInfo(user);
         Long carId = ticketWebDto.getCarId();
@@ -101,24 +100,23 @@ public class TicketServiceImp implements  TicketService {
     }
 
 
-
     @Override
-    public boolean checkDateValidity(Date travelDate){
+    public boolean checkDateValidity(Date travelDate) {
         LocalDate now = new LocalDate();
-        if (travelDate.getTime()<now.toDateTimeAtStartOfDay().getMillis())
+        if (travelDate.getTime() < now.toDateTimeAtStartOfDay().getMillis())
             return false;
         else return true;
     }
 
     @Override
-    public boolean checkEnoughTimeBeforeDeparture(Long trainId, Long stationId){
+    public boolean checkEnoughTimeBeforeDeparture(Long trainId, Long stationId) {
         LocalDate now = new LocalDate();
         DateTime currentDateTime = DateTime.now();
         Time sqlTimeDeparture = routeService.getTrainDepartureByStation(stationId, trainId);
         Long timeNow = currentDateTime.getMillis();
-        Long sqlDateTimeDepartureToLong = sqlTimeDeparture.getTime()+now.toDateTimeAtStartOfDay().getMillis();
-        Long latestPossibleTime = timeNow  + TENMINUTES;
-        if(latestPossibleTime>sqlDateTimeDepartureToLong)
+        Long sqlDateTimeDepartureToLong = sqlTimeDeparture.getTime() + now.toDateTimeAtStartOfDay().getMillis();
+        Long latestPossibleTime = timeNow + TENMINUTES;
+        if (latestPossibleTime > sqlDateTimeDepartureToLong)
             return false;
         return true;
     }

@@ -36,7 +36,6 @@ public class RouteServiceImp implements RouteService {
     TrainService trainService;
 
 
-
     @Override
     public List<Route> getAllRoutes() {
         return routeDao.getAllRoutes();
@@ -60,7 +59,7 @@ public class RouteServiceImp implements RouteService {
     }
 
     @Override
-    public List <Route> getRoutesBySection(Section section){
+    public List<Route> getRoutesBySection(Section section) {
         return routeDao.getRoutesBySection(section);
     }
 
@@ -71,15 +70,15 @@ public class RouteServiceImp implements RouteService {
     }
 
     @Override
-    public List<Route> getRoutesViaStationId(Long stationId){
+    public List<Route> getRoutesViaStationId(Long stationId) {
         List<Section> sectionsOfStation = sectionService.getSectionsByStationId(stationId);
-        List <Route> routesViaStation  = new ArrayList<>();
+        List<Route> routesViaStation = new ArrayList<>();
 
-        for (Section section:
-             sectionsOfStation) {
-            List <Route> routesViaSection = routeDao.getRoutesBySection(section);
-            for (Route route:
-                 routesViaSection) {
+        for (Section section :
+                sectionsOfStation) {
+            List<Route> routesViaSection = routeDao.getRoutesBySection(section);
+            for (Route route :
+                    routesViaSection) {
                 routesViaStation.add(route);
             }
         }
@@ -88,11 +87,11 @@ public class RouteServiceImp implements RouteService {
 
     @Override
     public Time getTrainDepartureByStation(Long stationId, Long trainId) {
-        List <Route> allTrainRoutes = routeDao.getRouteOfTrain(trainId);
+        List<Route> allTrainRoutes = routeDao.getRouteOfTrain(trainId);
 
         for (Route route :
                 allTrainRoutes) {
-            if (route.getSection().getStationFromId().getStationId()==stationId)
+            if (route.getSection().getStationFromId().getStationId() == stationId)
                 return route.getDeparture();
         }
         return null;
@@ -100,24 +99,24 @@ public class RouteServiceImp implements RouteService {
 
     @Override
     public List<Route> getRoutesFromOneStToOtherByTrain(Long stationFrom, Long stationTo, Long trainId) {
-        List <Route> allTrainRoutes = routeDao.getRouteOfTrain(trainId);
-        List <Route> routesBetweenStations = new ArrayList<>();
+        List<Route> allTrainRoutes = routeDao.getRouteOfTrain(trainId);
+        List<Route> routesBetweenStations = new ArrayList<>();
         Route routeFrom = null;
         Route routeTo = null;
 
 
-        for (Route route:
-             allTrainRoutes) {
-            if (route.getSection().getStationFromId().getStationId()==stationFrom)
+        for (Route route :
+                allTrainRoutes) {
+            if (route.getSection().getStationFromId().getStationId() == stationFrom)
                 routeFrom = route;
-            if (route.getSection().getStationToId().getStationId()==stationTo)
+            if (route.getSection().getStationToId().getStationId() == stationTo)
                 routeTo = route;
         }
 
         for (Route route :
                 allTrainRoutes) {
-            if(route.getDeparture().getTime()>=routeFrom.getDeparture().getTime())
-                if(route.getArrival().getTime()<=routeTo.getArrival().getTime())
+            if (route.getDeparture().getTime() >= routeFrom.getDeparture().getTime())
+                if (route.getArrival().getTime() <= routeTo.getArrival().getTime())
                     routesBetweenStations.add(route);
         }
 
@@ -125,8 +124,8 @@ public class RouteServiceImp implements RouteService {
     }
 
     @Override
-    public List<RouteDto> turnRoutesToDtos(List <Route> routes){
-        List <RouteDto> routesDto = new ArrayList<>();
+    public List<RouteDto> turnRoutesToDtos(List<Route> routes) {
+        List<RouteDto> routesDto = new ArrayList<>();
         for (Route route :
                 routes) {
             routesDto.add(new RouteDto(route));
@@ -136,36 +135,36 @@ public class RouteServiceImp implements RouteService {
     }
 
     @Override
-    public List <RouteDto> getRoutesDtosViaStationId(Long stationId){
-        List <Route> routes = this.getRoutesViaStationId(stationId);
+    public List<RouteDto> getRoutesDtosViaStationId(Long stationId) {
+        List<Route> routes = this.getRoutesViaStationId(stationId);
         return this.turnRoutesToDtos(routes);
     }
 
     @Override
     public List<RouteDto> getRoutesOfTrain(Long trainId) {
-        List <Route> routes = new ArrayList<>();
+        List<Route> routes = new ArrayList<>();
         routes = routeDao.getRouteOfTrain(trainId);
-        List <RouteDto> routeDtos = new ArrayList<>();
+        List<RouteDto> routeDtos = new ArrayList<>();
         routeDtos = turnRoutesToDtos(routes);
         return routeDtos;
     }
 
 
     @Override
-    public String getInitStationNameOfTrain(Long trainId){
+    public String getInitStationNameOfTrain(Long trainId) {
         String initStation = "";
         Station station = stationService.getStationById(getInitStationIdOfTrain(trainId));
-        if (station!= null){
+        if (station != null) {
             initStation = station.getStationName();
         }
         return initStation;
     }
 
     @Override
-    public Long getInitStationIdOfTrain(Long trainId){
+    public Long getInitStationIdOfTrain(Long trainId) {
         Long iniStationId = null;
-        List <Route> allRoutes = routeDao.getRouteOfTrain(trainId);
-        if (!allRoutes.isEmpty()){
+        List<Route> allRoutes = routeDao.getRouteOfTrain(trainId);
+        if (!allRoutes.isEmpty()) {
             iniStationId = allRoutes.get(0).getSection().getStationFromId().getStationId();
         }
         return iniStationId;
@@ -174,10 +173,10 @@ public class RouteServiceImp implements RouteService {
     @Override
     public Long getLastStationIdOfTrain(Long trainId) {
         Long lastStationId = null;
-        List <Route> allRoutes = routeDao.getRouteOfTrain(trainId);
-        if (!allRoutes.isEmpty()){
+        List<Route> allRoutes = routeDao.getRouteOfTrain(trainId);
+        if (!allRoutes.isEmpty()) {
             int size = allRoutes.size();
-            lastStationId = allRoutes.get(size-1).getSection().getStationToId().getStationId();
+            lastStationId = allRoutes.get(size - 1).getSection().getStationToId().getStationId();
         }
         return lastStationId;
     }
@@ -187,7 +186,7 @@ public class RouteServiceImp implements RouteService {
         String lastStation = "";
         Long lastStationId = getLastStationIdOfTrain(trainId);
         Station station = stationService.getStationById(lastStationId);
-        if (station!= null){
+        if (station != null) {
             lastStation = station.getStationName();
         }
         return lastStation;
@@ -195,11 +194,11 @@ public class RouteServiceImp implements RouteService {
 
     @Override
     public Time getTrainArrivalByStation(Long stationId, Long trainId) {
-        List <Route> allTrainRoutes = routeDao.getRouteOfTrain(trainId);
+        List<Route> allTrainRoutes = routeDao.getRouteOfTrain(trainId);
 
         for (Route route :
                 allTrainRoutes) {
-            if (route.getSection().getStationToId().getStationId()==stationId)
+            if (route.getSection().getStationToId().getStationId() == stationId)
                 return route.getArrival();
         }
         return null;
@@ -220,20 +219,20 @@ public class RouteServiceImp implements RouteService {
     public boolean addRouteFromWeb(RouteDto routeDto) {
         Long stationFromId = routeDto.getStationFromId();
         Long stationToId = routeDto.getStationToId();
-            Long departLong = routeDto.getDepartureLong();
-        Long arrivalLong =routeDto.getArrivalLong();
-        if(departLong==null|| arrivalLong==null)
+        Long departLong = routeDto.getDepartureLong();
+        Long arrivalLong = routeDto.getArrivalLong();
+        if (departLong == null || arrivalLong == null)
             return false;
         Time departure = new Time(routeDto.getDepartureLong());
         Time arrival = new Time(routeDto.getArrivalLong());
-        if(departLong>arrivalLong)
+        if (departLong > arrivalLong)
             return false;
-        if (routeDto.getStationFromId()==null||routeDto.getStationToId()==null)
+        if (routeDto.getStationFromId() == null || routeDto.getStationToId() == null)
             return false;
-        if(routeDto.getTrainId()==null)
+        if (routeDto.getTrainId() == null)
             return false;
         Section section = sectionService.getSectionByFromAndToIds(stationFromId, stationToId);
-        if (section==null)
+        if (section == null)
             return false;
         Route route = new Route();
         route.setTrain(trainService.getTrainByTrainId(routeDto.getTrainId()));
@@ -248,7 +247,7 @@ public class RouteServiceImp implements RouteService {
     public boolean deleteRouteFromWeb(RouteDto routeDto) {
         Long routeId = routeDto.getRouteId();
         Route route = getRouteById(routeId);
-        if (route== null)
+        if (route == null)
             return false;
         routeDao.deleteRoute(route);
         return true;
