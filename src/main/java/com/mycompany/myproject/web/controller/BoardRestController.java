@@ -20,7 +20,6 @@ import java.util.List;
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 @RestController
-//@Controller
 
 public class BoardRestController {
 
@@ -80,22 +79,23 @@ public class BoardRestController {
     public List<TrainDto> findTrainsBetweenStationsWithDate(@PathVariable("stationFromId") Long stationFromId,
                                                             @PathVariable("stationToId") Long stationToId,
                                                             @PathVariable("date") Long dateLong) {
-        if (stationFromId==null||stationToId==null||dateLong==null||stationFromId==stationToId)
+        if (stationFromId == null || stationToId == null || dateLong == null || stationFromId == stationToId)
             return null;
         Date date = new Date(dateLong);
-        return generalService.findTrainDtosFromOneToAnotherStationWithDate(stationFromId, stationToId, date);
+        List<TrainDto> trainDtos = generalService.findTrainDtosFromOneToAnotherStationWithDate(stationFromId, stationToId, date);
+        return trainDtos;
     }
 
     @RequestMapping(value = "/carsByTrainStationsDate/{trainId}/{stationFromId}/{stationToId}/{date}", produces = APPLICATION_JSON_VALUE,
             method = RequestMethod.GET)
     public List<CarTicketFormDto> findSeatsInTrainBetweenStationsWithDate(
-                                                            @PathVariable("trainId") Long trainId,
-                                                            @PathVariable("stationFromId") Long stationFromId,
-                                                            @PathVariable("stationToId") Long stationToId,
-                                                            @PathVariable("date") Long dateLong) {
-        if (stationFromId==null||stationToId==null||dateLong==null||stationFromId==stationToId)
+            @PathVariable("trainId") Long trainId,
+            @PathVariable("stationFromId") Long stationFromId,
+            @PathVariable("stationToId") Long stationToId,
+            @PathVariable("date") Long dateLong) {
+        if (stationFromId == null || stationToId == null || dateLong == null || stationFromId == stationToId)
             return null;
-        if(trainId==null)
+        if (trainId == null)
             return null;
         Date date = new Date(dateLong);
         return generalService.findSeatsCars(trainId, stationFromId, stationToId, date);
@@ -103,12 +103,11 @@ public class BoardRestController {
 
     @RequestMapping(value = "/correctionAgeRate/{date}", produces = APPLICATION_JSON_VALUE,
             method = RequestMethod.GET)
-    public float provideAgeCorrection(@PathVariable("date") Long dateLong){
+    public float provideAgeCorrection(@PathVariable("date") Long dateLong) {
         float highestRate = ratesService.getHighestAgeRate();
         float correctRate = ratesService.getRateAgeByBirthday(new Date(dateLong));
-        return correctRate/highestRate;
+        return correctRate / highestRate;
     }
-
 
 
 }

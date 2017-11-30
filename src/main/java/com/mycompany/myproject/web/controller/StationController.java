@@ -38,7 +38,7 @@ public class StationController {
         @RequestMapping(value = "/stationsList", method = RequestMethod.GET)
     public @ResponseBody List<StationDto> stationsList() {
         logger.info("someone requests stations list");
-        return stationService.getAllStationDtos();//.findAll();
+        return stationService.getAllStationDtos();
     }
 
 
@@ -48,7 +48,6 @@ public class StationController {
     public @ResponseBody
     ResponseEntity<String> getUsersList(@RequestBody StationDto stationDto, HttpServletResponse response) {
         logger.info("Web-server updates/adds station: "+ stationDto.toString());
-        ResponseEntity myResponse;
         if(stationService.isStationNameInDb(stationDto.getStationName())){
             stationService.updateStation(stationDto);
             return new ResponseEntity(HttpStatus.OK);

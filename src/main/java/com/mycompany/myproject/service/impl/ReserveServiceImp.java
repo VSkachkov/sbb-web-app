@@ -74,7 +74,7 @@ public class ReserveServiceImp implements ReserveService {
         List<TicketWebDto> ticketWebDtos = new ArrayList<>();
         for (ReserveWebDto reserve :
                 reserves) {
-            if (!checkReserveInTicketsList(ticketWebDtos, reserve)){
+            if (!checkReserveInTicketsList(ticketWebDtos, reserve)) {
                 TicketWebDto ticketWebDto = new TicketWebDto(reserve);
                 Long trainId = reserve.getTrainId();
                 Long userId = reserve.getUserId();
@@ -94,12 +94,12 @@ public class ReserveServiceImp implements ReserveService {
     }
 
     @Override
-    public boolean checkReserveInTicketsList(List<TicketWebDto> tickets, ReserveWebDto reserve){
+    public boolean checkReserveInTicketsList(List<TicketWebDto> tickets, ReserveWebDto reserve) {
         for (TicketWebDto ticketWebDto :
                 tickets) {
-            if(ticketWebDto.getTrainId()==reserve.getTrainId())
-                if(ticketWebDto.getUserId()== reserve.getUserId())
-                    if(ticketWebDto.getTravelDate().getTime()==reserve.getTravelDate().getTime())
+            if (ticketWebDto.getTrainId() == reserve.getTrainId())
+                if (ticketWebDto.getUserId() == reserve.getUserId())
+                    if (ticketWebDto.getTravelDate().getTime() == reserve.getTravelDate().getTime())
                         return true;
         }
         return false;
@@ -160,10 +160,10 @@ public class ReserveServiceImp implements ReserveService {
 
     @Override
     public List<Long> getStatisticsByLastMonth() {
-        List <Long> statistics = new ArrayList<>();
+        List<Long> statistics = new ArrayList<>();
         java.util.Date endDate = new java.util.Date();
         java.util.Date startDate = new java.util.Date();
-        startDate.setMonth(endDate.getMonth()-1);
+        startDate.setMonth(endDate.getMonth() - 1);
 
         Calendar start = Calendar.getInstance();
         start.setTime(startDate);
@@ -171,7 +171,7 @@ public class ReserveServiceImp implements ReserveService {
         Calendar end = Calendar.getInstance();
         end.setTime(endDate);
 
-        while( !start.after(end)){
+        while (!start.after(end)) {
             java.util.Date targetDay = start.getTime();
             java.sql.Date sqlDate = new Date(targetDay.getTime());
             statistics.add(getStatisticsByDay(sqlDate));
@@ -194,11 +194,10 @@ public class ReserveServiceImp implements ReserveService {
 
     @Override
     public Long getStatisticsByDay(Date travelDate) {
-        List <Reserve> reserves = reserveDao.getReservesByDay(travelDate);
-        Long listSize = new Long (reserves.size());
+        List<Reserve> reserves = reserveDao.getReservesByDay(travelDate);
+        Long listSize = new Long(reserves.size());
         return (Long) listSize;
     }
-
 
 
     @Override
@@ -235,12 +234,12 @@ public class ReserveServiceImp implements ReserveService {
 
     @Override
     public List<TicketWebDto> getTicketsByParams(Long trainId, Long travelDateL) {
-        List <TicketWebDto> allTickets = getAllJourneys();
-        List <TicketWebDto> ticketByParams = new ArrayList<>();
+        List<TicketWebDto> allTickets = getAllJourneys();
+        List<TicketWebDto> ticketByParams = new ArrayList<>();
         Date travelDate = new Date(travelDateL);
         for (TicketWebDto ticket :
                 allTickets) {
-            if (ticket.getTrainId()==trainId){
+            if (ticket.getTrainId() == trainId) {
                 Long datePassengerL = ticket.getTravelDate().getTime();
                 if (datePassengerL.equals(travelDateL))
                     ticketByParams.add(ticket);

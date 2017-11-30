@@ -113,7 +113,8 @@ public class GeneralServiceImp implements GeneralService {
                     if (routeDto.getStationToId() == stationTo)
                         trainDto.setArrivalTime(routeDto.getArrival());
         }
-        addInitAndLastStationNamesToTrainDto(trainDto, trainId);
+        trainDto.setInitStation(routeService.getInitStationNameOfTrain(trainId));
+        trainDto.setLastStation(routeService.getLastStationNameOfTrain(trainId));
         return trainDto;
     }
 
@@ -144,7 +145,9 @@ public class GeneralServiceImp implements GeneralService {
 
         for (Long trainId :
                 trainsFilteredByDate) {
-            trainDtos.add(this.getTrainInfoFromOneStationToOther(stationFrom, stationTo, trainId));
+            TrainDto trainDto = new TrainDto();
+            trainDto = getTrainInfoFromOneStationToOther(stationFrom, stationTo, trainId);
+            trainDtos.add(trainDto);
         }
         trainDtos = setStatusForTrainDtos(trainDtos, travelDate);
         return trainDtos;
@@ -259,7 +262,8 @@ public class GeneralServiceImp implements GeneralService {
                         trainDto.setArrivalTime(routeDto.getArrival());
                 }
             }
-            addInitAndLastStationNamesToTrainDto(trainDto, trainId);
+            trainDto.setInitStation(routeService.getInitStationNameOfTrain(trainId));
+            trainDto.setLastStation(routeService.getLastStationNameOfTrain(trainId));
             trainDtos.add(trainDto);
         }
         return trainDtos;

@@ -54,46 +54,6 @@ public class TicketServiceImp implements  TicketService {
 
 
     @Override
-    public String launchBuyingProcedure(PassengerForm passengerForm){ //TODO: fix deprecated procedure
-        String result="Success!";
-        Date travelDate = passengerForm.getTravelDate();
-        Long trainId = passengerForm.getTrainNumber();
-        if (!trainService.checkTrainDate(trainId, travelDate))
-            return result =  "Oops, something went wrong. Seems that train does not go this day";
-
-        Long departureStation = (stationService.getStationByName(passengerForm.getFromStation())).getStationId();
-        Long arrivalStation = (stationService.getStationByName(passengerForm.getToStation())).getStationId();
-        DateTime currentDateTime = DateTime.now();
-        LocalTime localTime = new LocalTime(currentDateTime);
-        java.sql.Date today = new java.sql.Date(Calendar.getInstance().getTime().getTime());
-        if(travelDate==today)
-        if (!timetableService.checkEnoughTimeBeforeDeparture(trainId, departureStation, localTime, TENMINUTES))
-            return result =  "Oops, something went wrong. It seem that you missed this train. " +
-                                "Please, choose train that departs later.";
-
-        UserDto user = new UserDto(passengerForm.getFirstName(),
-                                   passengerForm.getLastName(),
-                                   passengerForm.getBirthday());
-        if(!userService.doesUserExistInDb(user))
-            userService.addNewUser(user);
-        Long userId = userService.getUserIdByPrivateInfo(user);
-        List<Long> chainOfStations = timetableService.getChainOfStations(trainId, departureStation, arrivalStation);
-
-        boolean isFreeSeat = reserveSeatService.checkFreeSeats(trainId, chainOfStations, travelDate);
-
-        if(!isFreeSeat){
-
-            return result = "no free seats available!";
-        }
-        if (reserveSeatService.isPassengerOnboard(trainId, chainOfStations, travelDate, userId))
-            return "Error. This passenger has been registered on this train earlier.";
-        reserveSeatService.addNewRide(trainId, chainOfStations,travelDate, userId );
-
-
-        return result;
-    }
-
-    @Override
     public boolean buyWebTicket(TicketWebDto ticketWebDto){
         Long departureStation = ticketWebDto.getStationFromId();
         Long arrivalStation = ticketWebDto.getStationToId();
@@ -135,56 +95,12 @@ public class TicketServiceImp implements  TicketService {
         Date birthDay = ticketWebDto.getBirthday();
         float totalRate = ticketWebDto.getFinalPrice();
 
-//        boolean isPassengerOnboard =
-//                reserveService.isPassengerOnboard(trainId, departureStation, arrivalStation, travelDate, userId);
-//        if (!isPassengerOnboard)
-//            return false;
+
         reserveService.addRide(trainId, departureStation, arrivalStation, travelDate, userId, carId, totalRate);
         return true;
     }
 
-    @Override
-    public String launchUpdatedBuyProcedure(PassengerForm passengerForm) {
-        Long departureStation = (stationService.getStationByName(passengerForm.getFromStation())).getStationId();
-        Long arrivalStation = (stationService.getStationByName(passengerForm.getToStation())).getStationId();
-        Long trainId = passengerForm.getTrainNumber();
-        Date travelDate = passengerForm.getTravelDate();
-        if (!checkDateValidity(travelDate))
-            return "Wrong travel date";
 
-        Time departure = routeService.getTrainDepartureByStation(departureStation,trainId );
-        travelDate.setTime(travelDate.getTime()+departure.getTime());
-
-        if (!trainService.checkTrainDate(trainId, travelDate))
-            return "Oops, something went wrong. Seems that train does not go this day";
-
-        if (!this.checkEnoughTimeBeforeDeparture(trainId, departureStation))
-            return "Ooops, something went wrong. Seems that train is gone or it is not enough time.";
-
-        UserDto user = new UserDto(passengerForm.getFirstName(),
-                passengerForm.getLastName(),
-                passengerForm.getBirthday());
-        if(!userService.doesUserExistInDb(user))
-            userService.addNewUser(user);
-        Long userId = userService.getUserIdByPrivateInfo(user);
-
-        Long carId = passengerForm.getCarId();
-
-        Date birthDay = passengerForm.getBirthday();
-        float totalRate = launchPriceCalculation(birthDay, travelDate, trainId, carId );
-
-        boolean isPassengerOnboard =
-                reserveService.isPassengerOnboard(trainId, departureStation, arrivalStation, travelDate, userId);
-        if (!isPassengerOnboard)
-            return "Error. This passenger has been registered on this train earlier.";
-        reserveService.addRide(trainId, departureStation, arrivalStation, travelDate, userId, carId, totalRate);
-        return "Success!";
-    }
-
-    private float launchPriceCalculation(Date birthDay, Date travelDate, Long trainId, Long carId) {
-        float totalRate = ratesService.calculateTotalRate(birthDay, travelDate, 20L, 450L);
-        return totalRate;
-    }
 
     @Override
     public boolean checkDateValidity(Date travelDate){

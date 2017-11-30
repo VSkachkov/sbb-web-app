@@ -14,8 +14,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class CarServiceImpl //extends GenericServiceImpl<Canton,CantonDto_OBSOLETE, Long>
-        implements CarService {
+public class CarServiceImpl implements CarService {
 
 
     @Autowired
@@ -25,8 +24,8 @@ public class CarServiceImpl //extends GenericServiceImpl<Canton,CantonDto_OBSOLE
     public List<CarDto> getAllCars() {
         List<CarDto> cdto = new ArrayList<>();
 
-        for (Car car:
-        carDao.getAllCars()) {
+        for (Car car :
+                carDao.getAllCars()) {
             cdto.add(new CarDto(car));
         }
 
@@ -66,18 +65,16 @@ public class CarServiceImpl //extends GenericServiceImpl<Canton,CantonDto_OBSOLE
         String carName = carDto.getCarName();
         Long seatsNumber = carDto.getSeatsNumber();
         float rate = carDto.getCarPriceRate();
-        if (carName==null||carName.equals(""))
+        if (carName == null || carName.equals(""))
             return false;
-        if (seatsNumber<1||seatsNumber>120||seatsNumber==null)
+        if (seatsNumber < 1 || seatsNumber > 120 || seatsNumber == null)
             return false;
-        if(rate<0.1||rate>10)
+        if (rate < 0.1 || rate > 10)
             return false;
-        if(getCarById(carId)==null)
-        {
-            if (getCarByName(carName)!=null)
+        if (getCarById(carId) == null) {
+            if (getCarByName(carName) != null)
                 return false;
-            else
-            {
+            else {
                 Car car = new Car();
                 car.setCarName(carName);
                 car.setSeatsNumber(seatsNumber);
@@ -85,8 +82,7 @@ public class CarServiceImpl //extends GenericServiceImpl<Canton,CantonDto_OBSOLE
                 addNewCar(car);
                 return true;
             }
-        }
-        else {
+        } else {
             this.updateCar(carId, carName, seatsNumber, rate);
             return true;
         }
@@ -97,13 +93,12 @@ public class CarServiceImpl //extends GenericServiceImpl<Canton,CantonDto_OBSOLE
     public boolean deleteCarFromDB(CarDto carDto) {
 
         Long carId = carDto.getCarId();
-        if (carId == null )
+        if (carId == null)
             return false;
-        else
-        {
-            if(this.getCarById(carId)!=null)
+        else {
+            if (this.getCarById(carId) != null)
                 this.removeCar(carId);
-            if(this.getCarById(carId)==null)
+            if (this.getCarById(carId) == null)
                 return true;
             else return true;
         }
@@ -116,9 +111,9 @@ public class CarServiceImpl //extends GenericServiceImpl<Canton,CantonDto_OBSOLE
 
     @Override
     public CarTicketFormDto findCarTicketByCarId(List<CarTicketFormDto> carTickets, Long carId) {
-        for (CarTicketFormDto carTicket:
-             carTickets ) {
-            if (carTicket.getCarId()==carId)
+        for (CarTicketFormDto carTicket :
+                carTickets) {
+            if (carTicket.getCarId() == carId)
                 return carTicket;
         }
         return null;

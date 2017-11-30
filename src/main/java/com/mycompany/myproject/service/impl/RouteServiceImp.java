@@ -220,7 +220,7 @@ public class RouteServiceImp implements RouteService {
     public boolean addRouteFromWeb(RouteDto routeDto) {
         Long stationFromId = routeDto.getStationFromId();
         Long stationToId = routeDto.getStationToId();
-        Long departLong = routeDto.getDepartureLong();
+            Long departLong = routeDto.getDepartureLong();
         Long arrivalLong =routeDto.getArrivalLong();
         if(departLong==null|| arrivalLong==null)
             return false;

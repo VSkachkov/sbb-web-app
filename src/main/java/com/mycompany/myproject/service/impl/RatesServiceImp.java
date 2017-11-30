@@ -142,7 +142,6 @@ public class RatesServiceImp implements RatesService {
         float rateSeason = this.getRateSeasonByDate(travelDate);
         float rateBuyBefore = this.getRateDaysBeforeByTravelDate(travelDate);
         float rateOccupancy = this.getRateSeatsLeft(occupiedSeats, totalSeats);
-//        float rateTotal = rateAge*2*(rateSeason+rateBuyBefore+rateOccupancy)/3;
         return calculateFormula(rateAge, rateSeason, rateBuyBefore, rateOccupancy);
 
     }

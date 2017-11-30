@@ -13,7 +13,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class CantonServiceImpl //extends GenericServiceImpl<Canton,CantonDto_OBSOLETE, Long>
+public class CantonServiceImpl
         implements CantonService {
 
 
@@ -52,7 +52,6 @@ public class CantonServiceImpl //extends GenericServiceImpl<Canton,CantonDto_OBS
     @Override
     public Canton getCantonById(Long id) {
         return cantonDao.getCantonById(id);
-//        return new CantonDto(cantonDao.getCantonById(id));
     }
 
     @Override

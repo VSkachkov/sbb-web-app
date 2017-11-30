@@ -57,35 +57,6 @@ public class TrainController {
 
         return trainsForWeb;
     }
-//
-//    @RequestMapping(value = "/trains", method = RequestMethod.GET)
-//    public String setConditionsforTrainsBetweenStations(Model model) {
-//
-//        List<String> stationsList = new ArrayList<>();
-//        stationsList = timetableService.getAllStationsNames();
-//        model.addAttribute("someList", stationsList);
-//        model.addAttribute("trainsForm", new TrainsForm());
-//        logger.info("Setting conditions for trains between stations");
-//        return "trains";
-//    }
-//
-
-//    @RequestMapping(value = "/admin/resultTrains", method = RequestMethod.POST)
-//    public String getStationFiltered(Model model, @ModelAttribute("trainsForm") TrainsForm trainsForm) {
-//        logger.info("Providing information about traons between stations");
-//        List<Long> trainsList = new ArrayList<>();
-//        List<TrainsAttribute> trainsByRouteAndTime = timetableService.
-//                getTimetableBetweenStations(trainsForm.getStationFrom(), trainsForm.getStationTo(),
-//                        trainsForm.getEarlyTime(), trainsForm.getLateTime());
-//
-//        List<TrainsAttribute> filteredTrainsList = trainService.filterTrainsByDate(trainsByRouteAndTime,
-//                trainsForm.getTravelDate());
-//
-//        model.addAttribute("timetableModel",
-//                filteredTrainsList);
-//        logger.info("Providing information about trains between stations. Before sending to JSP");
-//        return "trainsResult";
-//    }
 
 
     @CrossOrigin

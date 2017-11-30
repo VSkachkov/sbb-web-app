@@ -16,7 +16,7 @@ import java.util.List;
 @Getter
 @Setter
 @EqualsAndHashCode
-@Entity // This tells Hibernate to make a table out of this class
+@Entity
 @Table (name = "Trains")
 public class Train  implements Serializable {
 

@@ -26,12 +26,6 @@ public class Station implements Serializable {
     @Column(name = "station_name")
     private String stationName;
 
-//
-//    @Basic
-//    @Column (name = "is_Node")
-//    private boolean node;
-
-//    @ManyToOne(cascade = CascadeType.MERGE)
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "canton_id")
     private Canton canton;

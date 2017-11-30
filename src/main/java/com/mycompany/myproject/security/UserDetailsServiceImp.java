@@ -27,8 +27,6 @@ public class UserDetailsServiceImp implements UserDetailsService {
 
     private final Logger log = LoggerFactory.getLogger(UserDetailsService.class);
 
-    //    @Override
-//    @Transactional
     public UserDetails loadUserByUsername(String s) {
         log.debug("Authenticating {}", s);
         User user;

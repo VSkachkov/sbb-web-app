@@ -41,67 +41,6 @@ public class TicketController {
     @Autowired
     TimetableService timetableService;
 
-//
-//    @PostMapping(value="buyTicketResult")
-//    public
-//    String showBuyingTicketResult(Model model, @ModelAttribute PassengerForm passengerForm){
-//        logger.info("Buying procedure starts");
-//        String result = ticketService.launchBuyingProcedure(passengerForm);
-//        logger.info("Buying procedure finishes with result:" + result);
-//        model.addAttribute("result", result);
-//        return "buyTicketResult";
-//    }
-//
-//
-//    @RequestMapping(value = "/buyTicket", method = RequestMethod.GET)
-//    public String setConditionsforTrainsBetweenStations(Model model,
-//                                                        HttpSession session) {
-//        UserDto userDto = (UserDto)session.getAttribute("user");
-//        if (!userDto.getRole().equals("ROLE_CLIENT"))
-//        return "404";
-//
-//        List<String> stationsList = new ArrayList<>();
-//        stationsList = timetableService.getAllStationsNames();
-//        model.addAttribute("someList", stationsList);
-//        model.addAttribute("trainsForm", new TrainsForm());
-//        logger.info("User starts buying ticket procedure");
-//        return "trainsForTicket";
-//    }
-//
-//
-//
-//    @RequestMapping(value = "/resultTrainsForTicket", method = RequestMethod.POST)
-//    public String getStationFilteredForTicket(Model model, @ModelAttribute("trainsForm") TrainsForm trainsForm,
-//                                              HttpSession session) {
-//        UserDto userDto = (UserDto)session.getAttribute("user");
-//        if (!userDto.getRole().equals("ROLE_CLIENT"))
-//            return "404";
-//        logger.info("Buying ticket procedure is going on");
-//        List<Long> trainsList = new ArrayList<>();
-//        PassengerForm passengerForm = new PassengerForm();
-//        model.addAttribute("trainsForm",trainsForm );
-//        model.addAttribute("TravelDate", trainsForm.getTravelDate());
-//        model.addAttribute("StationFrom", trainsForm.getStationFrom());
-//        model.addAttribute("StationTo", trainsForm.getStationTo());
-//
-//        logger.info("Buying ticket procedure is going on, all forms added");
-//        passengerForm.setFromStation(trainsForm.getStationFrom());
-//        passengerForm.setToStation(trainsForm.getStationTo()); //TODO finish code here\
-//        passengerForm.setTravelDate(trainsForm.getTravelDate());
-//        model.addAttribute("passengerForm", passengerForm);
-//        List<TrainsAttribute> trainsByRouteAndTime = timetableService.
-//                getTimetableBetweenStations(trainsForm.getStationFrom(), trainsForm.getStationTo(),
-//                        trainsForm.getEarlyTime(), trainsForm.getLateTime());
-//
-//        List<TrainsAttribute> filteredTrainsList = trainService.filterTrainsByDate(trainsByRouteAndTime,
-//                trainsForm.getTravelDate());
-//
-//        model.addAttribute("timetableModel",
-//                filteredTrainsList);
-//        logger.info("Buying ticket procedure finished");
-//        return "trainsResultForTicket";
-//    }
-//
 
     @CrossOrigin
     @RequestMapping(value = "/buyWebTicket", method = RequestMethod.POST)

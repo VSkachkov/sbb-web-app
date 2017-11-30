@@ -30,9 +30,6 @@ public class CantonController {
     @Autowired
     private CantonService cantonService;
 
-    @Autowired
-    private MessageSource ms;
-
     @CrossOrigin
     @RequestMapping(value = "/cantonsList", method = RequestMethod.GET)
     public @ResponseBody List<CantonDto> cantonsList() {

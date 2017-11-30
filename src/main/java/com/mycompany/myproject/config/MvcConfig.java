@@ -1,7 +1,4 @@
 package com.mycompany.myproject.config;
-/*
-import com.mycompany.myproject.util.RoleFilter;*/
-import com.mycompany.myproject.util.RoleFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +8,6 @@ import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.resource.GzipResourceResolver;
 import org.springframework.web.servlet.resource.PathResourceResolver;
 import org.springframework.web.servlet.resource.ResourceUrlEncodingFilter;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration

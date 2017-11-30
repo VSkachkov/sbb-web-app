@@ -30,9 +30,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 @Configuration
 @EnableWebSecurity
 @ComponentScan(basePackages = {"com.mycompany.myproject.security"})
-//@ComponentScan("com.mycompany")
 @EnableGlobalMethodSecurity(securedEnabled = true)
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -97,7 +95,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/authenticate")
                 .successHandler(restAuthenticationSuccessHandler)
                 .failureHandler(restAuthenticationFailureHandler)
-                .usernameParameter("username") //TODO May be login??
+                .usernameParameter("username")
                 .passwordParameter("password")
                 .permitAll()
                 .and()
@@ -108,17 +106,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler())
                 .deleteCookies("JSESSIONID")
                 .permitAll()
-//                .and()
-//                    .loginPage("/login")
-//                    .usernameParameter("login")
-//                    .passwordParameter("password")
-//                    .successHandler(authenticationHandler)
                 .and()
                 .exceptionHandling()
-                .accessDeniedPage("/403"); //TODO 403 ERROR
-//        http.logout()
-//                .permitAll()
-//                .clearAuthentication(true);
+                .accessDeniedPage("/403");
     }
 
     @Bean(name = BeanIds.AUTHENTICATION_MANAGER)

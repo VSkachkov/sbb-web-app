@@ -58,7 +58,6 @@ public class AuthenticationHandler implements AuthenticationSuccessHandler {
                 newUser = new UserDto(userEntityByLogin);
             }
             if (newUser != null) {
-                //TODO IF USER HAS TICKETS. IMPLEMENT
                 session.setAttribute("user", newUser);
             }
         }

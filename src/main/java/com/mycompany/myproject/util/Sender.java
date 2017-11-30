@@ -39,7 +39,7 @@ public class Sender {
             QueueSession session = connection.createQueueSession(false, QueueSession.AUTO_ACKNOWLEDGE);
 
             QueueSender sender = session.createSender(queue);
-            TextMessage message = session.createTextMessage("Hello World");
+            TextMessage message = session.createTextMessage("Inform from application server");
 
             sender.send(message);
 

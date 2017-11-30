@@ -13,77 +13,59 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
+
 @ToString
 @Getter
 @Setter
 @EqualsAndHashCode
 @Entity
-@Table(name = "users", schema="SBB_DB")
+@Table(name = "users", schema = "SBB_DB")
 public class User implements Serializable {
 
-	@Id
-	@GenericGenerator(name = "generator", strategy = "increment")
-	@GeneratedValue(generator = "generator")
-	@Column(name = "user_id", nullable = false)
-	private Long userId;
+    @Id
+    @GenericGenerator(name = "generator", strategy = "increment")
+    @GeneratedValue(generator = "generator")
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
 
-	@Basic
-	@Column(name = "first_name", nullable = false)
-	private String firstName;
+    @Basic
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
 
-	@Basic
-	@Column(name = "last_name", nullable = false)
-	private String lastName;
+    @Basic
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
 
-	@Basic
-	@Column(name = "birthday")
-	private Date birthday;
+    @Basic
+    @Column(name = "birthday")
+    private Date birthday;
 
-	@Basic
-	@Column(name = "email")
-	@GenericGenerator(name = "generator", strategy = "increment")
-	@GeneratedValue(generator = "generator")
-	private String email;
+    @Basic
+    @Column(name = "email")
+    @GenericGenerator(name = "generator", strategy = "increment")
+    @GeneratedValue(generator = "generator")
+    private String email;
 
-	@Basic
-	@Column(name = "login")
-	@GenericGenerator(name = "generator", strategy = "increment")
-	@GeneratedValue(generator = "generator")
-	private String login;
+    @Basic
+    @Column(name = "login")
+    @GenericGenerator(name = "generator", strategy = "increment")
+    @GeneratedValue(generator = "generator")
+    private String login;
 
-	@Basic
-	@Column(name = "password")
-	@GenericGenerator(name = "generator", strategy = "increment")
-	@GeneratedValue(generator = "generator")
-	private String password;
+    @Basic
+    @Column(name = "password")
+    @GenericGenerator(name = "generator", strategy = "increment")
+    @GeneratedValue(generator = "generator")
+    private String password;
 
-	@Basic
-	@Column(name = "phone_number")
-	private String phone;
+    @Basic
+    @Column(name = "phone_number")
+    private String phone;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "ROLE_ID")
-	private Role role;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ROLE_ID")
+    private Role role;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //

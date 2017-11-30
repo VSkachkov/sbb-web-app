@@ -16,7 +16,7 @@ import java.util.List;
 @EqualsAndHashCode
 @Entity
 @Table(name = "Train_types_numbers", schema = "SBB_DB")
-public class TrainTypeNumber implements Serializable{
+public class TrainTypeNumber implements Serializable {
 
     @Id
     @GenericGenerator(name = "generator", strategy = "increment")

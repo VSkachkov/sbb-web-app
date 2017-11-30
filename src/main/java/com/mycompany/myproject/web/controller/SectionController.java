@@ -34,7 +34,7 @@ public class SectionController {
     public @ResponseBody
     List<SectionDto> stationsList() {
         logger.info("Web-server requests sections list");
-        return sectionService.getAllSectionsDtos();//.findAll();
+        return sectionService.getAllSectionsDtos();
     }
 
     @CrossOrigin

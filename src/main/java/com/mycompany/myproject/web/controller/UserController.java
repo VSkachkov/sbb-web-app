@@ -45,38 +45,6 @@ public class UserController {
     private RoleService roleService;
 
 
-    @Autowired
-    private MessageSource ms;
-
-//
-//    @RequestMapping(value = "/", method = RequestMethod.GET)
-//    public ModelAndView home() {
-//        logger.debug("redirect to home page");
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("home");
-//        return modelAndView;
-//    }
-
-//
-//
-//    @RequestMapping(value = "/usersList", method = RequestMethod.GET)
-//    public @ResponseBody List<UserDto> usersList() {
-//        logger.info("Request of users JSON list");
-//        return userService.getAllUsers();
-//    }
-
-
-//
-//    @RequestMapping(value = "users", method = RequestMethod.GET)
-//    public ModelAndView getUsers() {
-//        logger.info("Displaying information about users");
-//        ModelAndView mv= new ModelAndView("usersView");
-//        mv.addObject("usersModel", userService.getAllUsers());
-//        return mv;
-//    }
-//
-
-
     @CrossOrigin
     @RequestMapping(value = "/getUserRoles", method = RequestMethod.GET)
     public @ResponseBody

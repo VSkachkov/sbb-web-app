@@ -17,14 +17,12 @@ public class RateAgeDto {
     public RateAgeDto(Long ageRateId, int ageLow, int ageHigh, float ageRate) {
         this.ageRateId = ageRateId;
         this.age = ageLow;
-//        this.ageHigh = ageHigh;
         this.ageRate = ageRate;
     }
 
     public RateAgeDto(RateAge rateAge){
         this.ageRateId = rateAge.getAgeRateId();
         this.age = rateAge.getAgeLow();
-//        this.ageHigh = rateAge.getAgeHigh();
         this.ageRate = rateAge.getAgeRate();
     }
 }

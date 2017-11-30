@@ -65,7 +65,6 @@ public class TrainTypeServiceImp implements TrainTypeService {
         if (carService.getCarById(carId) == null) return false;
         if (trainTypeNumberService.getTrainTypeNumberById(typeNumber) == null) {
             TrainTypeNumber trainTypeNumber = new TrainTypeNumber();
-//            trainTypeNumber.setTrainTypeNumberId(typeNumber);
             trainTypeNumber.setTrainTypeName(typeName);
             trainTypeNumberService.add(trainTypeNumber);
             trainTypeNumber = trainTypeNumberService.getTrainTypeByName(typeName);

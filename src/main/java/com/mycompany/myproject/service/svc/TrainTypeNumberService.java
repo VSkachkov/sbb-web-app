@@ -5,11 +5,13 @@ import com.mycompany.myproject.persist.entity.TrainTypeNumber;
 import java.util.List;
 
 public interface TrainTypeNumberService {
-     List<TrainTypeNumber> getAllTrainTypesNumbers();
+    List<TrainTypeNumber> getAllTrainTypesNumbers();
 
     Long add(TrainTypeNumber trainTypeNumber);
 
     TrainTypeNumber getTrainTypeNumberById(Long trainTypeNumberId);
+
     TrainTypeNumber getTrainTypeByName(String trainTypeName);
+
     void deleteTrainTypeNumberById(Long id);
 }

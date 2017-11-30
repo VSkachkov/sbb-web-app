@@ -18,9 +18,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class UserServiceImpl// extends GenericServiceImpl<User, UserDto, Long>
-        implements UserService
-{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     UserDao userDao;
@@ -48,27 +46,27 @@ public class UserServiceImpl// extends GenericServiceImpl<User, UserDto, Long>
         User user = new User();
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
-        if(userDto.getPassword()==null)
-        user.setPassword("0000");
+        if (userDto.getPassword() == null)
+            user.setPassword("0000");
         else
             user.setPassword(userDto.getPassword());
-        if(userDto.getLogin()==null)
-            user.setLogin(userDto.getFirstName()+"."+userDto.getLastName());
+        if (userDto.getLogin() == null)
+            user.setLogin(userDto.getFirstName() + "." + userDto.getLastName());
         else
             user.setLogin(userDto.getLogin());
 
-        if(userDto.getEmail()==null)
-            user.setEmail(userDto.getFirstName()+"."+userDto.getLastName()+"@gmail.com");
+        if (userDto.getEmail() == null)
+            user.setEmail(userDto.getFirstName() + "." + userDto.getLastName() + "@gmail.com");
         else
             user.setEmail(userDto.getEmail());
-        if(userDto.getBirthday()==null)
+        if (userDto.getBirthday() == null)
             user.setBirthday(new Date(0L));
         else
-        user.setBirthday(userDto.getBirthday());
+            user.setBirthday(userDto.getBirthday());
         user.setPhone(userDto.getPhone());
 
         Role role = roleService.getRoleByName("ROLE_CLIENT");
-        if (role!=null) {
+        if (role != null) {
             user.setRole(role);
         } else {
             role = new Role();
@@ -83,12 +81,12 @@ public class UserServiceImpl// extends GenericServiceImpl<User, UserDto, Long>
     @Override
     public boolean doesUserExistInDb(UserDto userDto) {
 
-        List<UserDto> usersDto= getAllUsers();
-        for (UserDto userInDb:
+        List<UserDto> usersDto = getAllUsers();
+        for (UserDto userInDb :
                 usersDto) {
-            if (userInDb.getFirstName().equals(userDto.getFirstName())){
-                if (userInDb.getLastName().equals(userDto.getLastName())){
-                    if(userInDb.getBirthday().equals(userDto.getBirthday())){
+            if (userInDb.getFirstName().equals(userDto.getFirstName())) {
+                if (userInDb.getLastName().equals(userDto.getLastName())) {
+                    if (userInDb.getBirthday().equals(userDto.getBirthday())) {
                         return true;
                     }
                 }
@@ -98,10 +96,6 @@ public class UserServiceImpl// extends GenericServiceImpl<User, UserDto, Long>
         return false;
     }
 
-    @Override
-    public void removeUser(Long id) { //TODO IMPLEMENT METHOD
-
-    }
 
     @Override
     public User getUserById(Long id) {
@@ -120,8 +114,8 @@ public class UserServiceImpl// extends GenericServiceImpl<User, UserDto, Long>
 
     @Override
     public UserDto loginUser(String login, String password) {
-        User user = userDao.loginUser(login,password);
-        if(user!=null)
+        User user = userDao.loginUser(login, password);
+        if (user != null)
             return new UserDto(user);
         else
             return null;
@@ -129,11 +123,12 @@ public class UserServiceImpl// extends GenericServiceImpl<User, UserDto, Long>
 
     @Override
     public User getUserByEmail(String email) {
-        return userDao.getUserByEmail(email);    }
+        return userDao.getUserByEmail(email);
+    }
 
     @Override
     public User getUserByLogin(String login) {
-            return userDao.getUserByLogin(login);
+        return userDao.getUserByLogin(login);
     }
 
     @Override
