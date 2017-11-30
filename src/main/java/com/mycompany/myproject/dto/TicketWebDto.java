@@ -13,7 +13,7 @@ public class TicketWebDto {
     private String stationFromName;
     private String stationToName;
     private Long stationFromId;
-    private Long freeSeatsNumber;
+    //    private Long freeSeatsNumber;
     private Long stationToId;
     private Time departure;
     private Time arrival;

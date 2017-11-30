@@ -60,8 +60,8 @@ public class TicketServiceImp implements TicketService {
         Long trainId = ticketWebDto.getTrainId();
         Date travelDate = ticketWebDto.getTravelDate();
 
-        if (ticketWebDto.getFreeSeatsNumber() == 0L)
-            return false;
+//        if (ticketWebDto.getFreeSeatsNumber() == 0L)
+//            return false;
 
         if (!checkDateValidity(travelDate))
             return false;
