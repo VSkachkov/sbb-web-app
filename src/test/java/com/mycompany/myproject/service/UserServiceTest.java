@@ -20,9 +20,8 @@ import com.mycompany.myproject.config.JPAConfig;
 public class UserServiceTest {
 
 
-
-    @Autowired
-    private UserService userService;
+	@Autowired
+	private UserService userService;
 
 
 	@Test
@@ -32,14 +31,6 @@ public class UserServiceTest {
 		Assert.assertEquals(1, userDto.getUserId().longValue());
 	}
 
-	@Test
-	public void testGetUserIdByEmail(){
-
-		Long userId = userService.getUserIdByEmail("bublikov@gmail.com");
-		UserDto userDto = new UserDto(userService.getUserById(userId));
-		Assert.assertNotNull(userDto);
-		Assert.assertEquals(10, userDto.getUserId().longValue());
-	}
 
 	@Test
 	public void testFindAll() {
@@ -70,7 +61,7 @@ public class UserServiceTest {
 		Long firstRoleId = userService.getUserById(2L).getRole().getRoleId();
 		if(firstRoleId!= 3L) {
 			userService.updateRole(2L, 3L);
-		Assert.assertTrue(userService.getUserById(2L).getRole().getRoleId()==3L);
+			Assert.assertTrue(userService.getUserById(2L).getRole().getRoleId() == 3L);
 		}
 		else{
 			userService.updateRole(2L, 4L);

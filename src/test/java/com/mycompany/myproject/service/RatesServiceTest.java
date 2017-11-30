@@ -84,22 +84,5 @@ public class RatesServiceTest {
 
     }
 
-    @Test
-    public void testCalculateTotalRate(){
-        LocalDate travelDate = new LocalDate(2018, 8, 05);
-        Date sqlTravelDate = new Date(travelDate.toDateTimeAtStartOfDay().getMillis());
-
-        LocalDate bDate = new LocalDate(2010, 8, 05);
-        Date sqlBDate = new Date(bDate.toDateTimeAtStartOfDay().getMillis());
-
-        float totalRate = ratesService.calculateTotalRate(sqlBDate, sqlTravelDate, 40L, 500L);
-
-        boolean result;
-        if ((totalRate > 0.7) && (totalRate<1.2))
-            result = true;
-        else result=false;
-        Assert.assertTrue(result);
-
-    }
 
 }

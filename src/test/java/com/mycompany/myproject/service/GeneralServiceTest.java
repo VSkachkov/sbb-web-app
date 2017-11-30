@@ -55,11 +55,6 @@ public class GeneralServiceTest {
         Assert.assertTrue(!commonTrains.isEmpty());
     }
 
-    @Test
-    public void testFindTrainsFromStationToStation(){
-        List <Long> trainsFromOnToTwo = generalService.findTrainsFromStationToStation(3L, 13L);
-        Assert.assertTrue(!trainsFromOnToTwo.isEmpty());
-    }
 
 
     @Test

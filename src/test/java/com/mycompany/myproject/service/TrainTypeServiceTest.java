@@ -44,7 +44,7 @@ public class TrainTypeServiceTest {
     @Test
     public void testGetTrainTypeById(){
         TrainTypeNumber trainTypeNumber= trainTypeDao.getTrainTypeNumberById(1L);
-         ;
+        ;
 //        Assert.assertNotNull(trainTypeDao.getAllTrainTypeNumber());
         Assert.assertNotNull(trainTypeNumber);
     }

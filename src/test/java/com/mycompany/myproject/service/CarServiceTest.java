@@ -29,18 +29,6 @@ public class CarServiceTest {
     }
 
     @Test
-    public void testAddNewCar(){
-        Car car = new Car();
-        car.setCarName("Giruno 2nd class");
-        car.setCarPriceRate(1);
-        car.setSeatsNumber(36L);
-
-        carService.addNewCar(car);
-        Assert.assertEquals(2L, carService.getCarByName("Giruno 2nd class").getCarId().longValue());
-
-    }
-
-    @Test
     public void testGetCarByName()
     {
         Assert.assertEquals(2L, carService.getCarByName("Giruno 2nd class").getCarId().longValue());
