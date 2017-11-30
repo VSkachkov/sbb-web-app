@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -43,8 +45,9 @@ public class TrainController {
 
     @Autowired
     private MessageSource ms;
-    
 
+
+    @CrossOrigin
     @RequestMapping(value = "/trainsList", method = RequestMethod.GET)
     public @ResponseBody List<TrainDto> usersList() {
         logger.info("Request trains list");
@@ -76,7 +79,7 @@ public class TrainController {
 
         model.addAttribute("timetableModel",
                 filteredTrainsList);
-        logger.info("Providing information about traons between stations. Before sending to JSP");
+        logger.info("Providing information about trains between stations. Before sending to JSP");
         return "trainsResult";
     }
 
@@ -97,6 +100,44 @@ public class TrainController {
         return trainTypeNumberService.getAllTrainTypesNumbers();
     }
 
+    @CrossOrigin
+    @RequestMapping(value = "/saveType", method = RequestMethod.POST)
+    public @ResponseBody
+    ResponseEntity<String> saveType(@RequestBody TrainTypeDto trainTypeDto) {
+        logger.info("Web-server updates/adds train types to DB: " + trainTypeDto.toString());
+        boolean result = trainTypeService.addNewTrainType(trainTypeDto);
+        if(result)
+            return new ResponseEntity(HttpStatus.OK);
+        else
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value="saveTrain", method = RequestMethod.POST)
+    public @ResponseBody
+    ResponseEntity<String> saveTrain(@RequestBody TrainDto trainDto) {
+        logger.info("Web-server adds train to DB: " + trainDto.toString());
+        TrainDto newTrain = trainDto;
+        boolean result = trainService.addNewTrainFromWeb(trainDto);
+        logger.info("server result: " + result);
+        if(result)
+            return new ResponseEntity(HttpStatus.OK);
+        else
+           return new ResponseEntity(HttpStatus.BAD_REQUEST);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value="deleteTrain", method = RequestMethod.POST)
+    public @ResponseBody
+    ResponseEntity<String> deleteTrain(@RequestBody TrainDto trainDto) {
+        logger.info("Web-server deletes train to DB: " + trainDto.toString());
+        boolean result = trainService.deleteTrainFromWeb(trainDto);
+        logger.info("server result: " + result);
+        if(result)
+            return new ResponseEntity(HttpStatus.OK);
+        else
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+    }
 }    
 
  

@@ -1,6 +1,7 @@
 package com.mycompany.myproject.service.impl;
 
 import com.mycompany.myproject.dto.*;
+import com.mycompany.myproject.persist.entity.Car;
 import com.mycompany.myproject.persist.entity.Route;
 import com.mycompany.myproject.persist.entity.TrainChange;
 import com.mycompany.myproject.service.svc.*;
@@ -28,7 +29,16 @@ public class GeneralServiceImp implements GeneralService {
     StationService stationService;
 
     @Autowired
+    CarService carService;
+
+    @Autowired
+    ReserveService reserveService;
+
+    @Autowired
     TrainChangeService trainChangeService;
+
+    @Autowired
+    RatesService ratesService;
 
     @Override
     public List <Long> extractTrainIdsOnRoutes(List<RouteDto> routeDtos){
@@ -136,6 +146,7 @@ public class GeneralServiceImp implements GeneralService {
                 trainsFilteredByDate) {
             trainDtos.add(this.getTrainInfoFromOneStationToOther(stationFrom, stationTo, trainId));
         }
+        trainDtos = setStatusForTrainDtos(trainDtos, travelDate);
         return trainDtos;
     }
 
@@ -149,20 +160,79 @@ public class GeneralServiceImp implements GeneralService {
     }
 
     @Override
+    public List<TrainDto> setStatusForTrainDtos(List<TrainDto> trainDtos, Date date){
+        for (TrainDto trainDto :
+                trainDtos) {
+            trainDto.setTrainTypeDtos(null);
+            TrainChange change = trainChangeService.getChangeByTrainIdAndDate(trainDto.getTrainId(), date);
+            if (change!=null)
+                trainDto.setStatus(change.getStatus());
+        };
+          return trainDtos;
+    }
+
+    @Override
     public List<TrainDto> getTrainsForBoardOnline(String stationName) {
         Long stationId = stationService.getStationByName(stationName).getStationId();
         TrainsDto trainsDto = new TrainsDto();
         Date today =  new Date(Calendar.getInstance().getTime().getTime());
         List<TrainDto> trainDtos = getTrainDtosViaStationAndDate(stationId,today);
-        for (TrainDto trainDto :
-                trainDtos) {
-            trainDto.setTrainTypeDtos(null);
-            TrainChange change = trainChangeService.getChangeByTrainIdAndDate(trainDto.getTrainId(), today);
-            if (change!=null)
-                trainDto.setStatus(change.getStatus());
-        };
+        setStatusForTrainDtos(trainDtos, today);
         trainsDto.setTrains(trainDtos);
         return trainDtos;
+    }
+
+    @Override
+    public List<TrainDto> getTrainsForBoardOnlineById(Long stationId) {
+        TrainsDto trainsDto = new TrainsDto();
+        Date today =  new Date(Calendar.getInstance().getTime().getTime());
+        List<TrainDto> trainDtos = getTrainDtosViaStationAndDate(stationId,today);
+        setStatusForTrainDtos(trainDtos, today);
+        trainsDto.setTrains(trainDtos);
+        return trainDtos;
+    }
+
+    @Override
+    public List<CarTicketFormDto> findSeatsCars(Long trainId, Long stationFromId, Long stationToId, Date date) {
+        List <CarTicketFormDto> carTickets = new ArrayList<>();
+        List <Car> cars = trainService.getCarsByTrainId(trainId);
+        for (Car car:
+             cars) {
+            CarTicketFormDto carTicketFormDto = new CarTicketFormDto(car);
+            carTicketFormDto.setOccupiedSeats(0L);
+            Long carsNumber = trainService.getCarsNumberByTrainIdCarId(trainId, car.getCarId());
+            Long totalSeatsNumber = trainService.getTotalNumberOfSeats(trainId, car.getCarId());
+            carTicketFormDto.setNumberOfCars(carsNumber);
+            carTicketFormDto.setTotalSeatsNumber(totalSeatsNumber);
+            carTickets.add(carTicketFormDto);
+        }
+        float travelLength = 0f;
+        List <Route> routes = routeService.getRoutesFromOneStToOtherByTrain(stationFromId, stationToId, trainId);
+        for (Route route :
+                routes) {
+            travelLength+=route.getSection().getLength();
+            for (Car car :
+                    cars) {
+                Long totalOccupiedSeats = reserveService.getOccupancyByRoute(route, car, date);
+                Long totalSeatsNumber = trainService.getTotalNumberOfSeats(trainId, car.getCarId());
+                Long freeSeats = totalSeatsNumber-totalOccupiedSeats;
+                CarTicketFormDto carTicket = carService.findCarTicketByCarId(carTickets, car.getCarId());
+                if (totalOccupiedSeats>carTicket.getOccupiedSeats()){
+                    carTicket.setOccupiedSeats(totalOccupiedSeats);
+                }
+            }
+        }
+        for (CarTicketFormDto carTicket:
+             carTickets) {
+
+            float totalRate = ratesService.calculateStandardRate(date,
+                    carTicket.getOccupiedSeats(), carTicket.getTotalSeatsNumber() );
+            float carRate = carTicket.getCarPriceRate();
+            carTicket.setStandardPrice(totalRate*travelLength*carRate);
+        }
+
+
+        return carTickets;
     }
 
 
@@ -205,7 +275,9 @@ public class GeneralServiceImp implements GeneralService {
             if(trainService.checkTrainDate(trainId, travelDate))
                 filteredTrainIds.add(trainId);
         }
-        return fillTrainDtoWithData( filteredTrainIds, routeDtos, stationId);
+        List <TrainDto> trains = fillTrainDtoWithData( filteredTrainIds, routeDtos, stationId);
+        trains = setStatusForTrainDtos(trains, travelDate);
+        return trains;
     }
 
 }

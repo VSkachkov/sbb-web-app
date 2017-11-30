@@ -18,6 +18,9 @@ public interface RatesService{
     float getRateAgeByBirthday(Date birthday);
     float getRateDaysBeforeByTravelDate(Date travelDate);
     float getRateSeasonByDate(Date travelDate);
-    float getRateSeatsLeft(int occupiedSeats, int totalSeats);
-    float calculateTotalRate(Date birthday, Date travelDate, int occupiedSeats, int totalSeats);
+    float getRateSeatsLeft(Long occupiedSeats, Long totalSeats);
+    float calculateTotalRate(Date birthday, Date travelDate, Long occupiedSeats, Long totalSeats);
+    float getHighestAgeRate();
+    float calculateStandardRate(Date travelDate, Long occupiedSeats, Long totalSeats);
+    float calculateFormula(float rateAge, float rateSeason, float rateBuyBefore, float rateOccupancy);
 }

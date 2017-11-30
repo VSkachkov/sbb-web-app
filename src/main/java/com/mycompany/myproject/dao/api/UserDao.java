@@ -18,4 +18,6 @@ public interface UserDao {
     User loginUser(String login, String password);
     Long getUserByPrivateData(String firstName, String lastName, Date birthday);
     void updateRole(Long userId, Long roleId);
+
+    List<User> findUsersByPersonalData(String firstName, String lastName, Date birthday);
 }

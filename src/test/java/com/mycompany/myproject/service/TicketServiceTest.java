@@ -37,13 +37,4 @@ public class TicketServiceTest {
 
     }
 
-    @Test
-    public void testCheckEnoughTimeBeforeDeparture(){
-        boolean result; //THIS TEST IS FOR CURRENT TIME 19.39
-        result = ticketService.checkEnoughTimeBeforeDeparture(2L, 9L);
-        Assert.assertTrue(result);
-
-        result = ticketService.checkEnoughTimeBeforeDeparture(1L, 9L);
-        Assert.assertFalse(result);
-    }
 }

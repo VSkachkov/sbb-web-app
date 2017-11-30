@@ -4,6 +4,8 @@ package com.mycompany.myproject.service;
 import com.mycompany.myproject.config.JPAConfig;
 import com.mycompany.myproject.config.MvcConfig;
 import com.mycompany.myproject.config.ServiceConfig;
+import com.mycompany.myproject.dto.ReserveWebDto;
+import com.mycompany.myproject.dto.TicketWebDto;
 import com.mycompany.myproject.persist.entity.Reserve;
 import com.mycompany.myproject.persist.entity.Route;
 import com.mycompany.myproject.persist.entity.User;
@@ -56,18 +58,6 @@ public class ReserveServiceTest {
         Assert.assertTrue(!userReserves.isEmpty());
     }
 
-    @Test
-    public void testAddReserve(){
-        Reserve reserve = new Reserve();
-        reserve.setCar(carService.getCarByName("ICN 2nd class"));
-        reserve.setRoute(routeService.getRouteById(3L));
-        reserve.setUser(userService.getUserById(1L));
-        reserve.setTravelDate(new Date(2017, 11, 05));
-        reserve.setTotalPriceRate(0.9f);
-        reserveService.addReserve(reserve);
-        Reserve addedReserve = reserveService.getReserveById(3L);
-        Assert.assertTrue( addedReserve!= null);
-    }
 
     @Test
     public void testGetReserve(){
@@ -85,11 +75,31 @@ public class ReserveServiceTest {
         Assert.assertTrue(result);
     }
 
+
+
     @Test
-    public void testAddRide(){
-        Date date = reserveService.getReserveById(3L).getTravelDate();
-        reserveService.addRide(1L, 44L, 13L, date, 1L, 4L, 0.9f);
-        Assert.assertTrue(reserveService.getReserveById(4L)!=null);
+    public void testGetAllWebReserves(){
+        List <ReserveWebDto> webDtos = reserveService.getWebReserves();
+        Assert.assertTrue(!webDtos.isEmpty());
     }
 
+    @Test
+    public  void testGetArrivalUserJourney(){
+        Date date = reserveService.getReserveById(3L).getTravelDate();
+        String arrivalStation = reserveService.getArrivalUserJourney(1L, 1L, date);
+        Assert.assertTrue(arrivalStation!=null);
+    }
+
+    @Test
+    public  void testGetDepartureUserJourney(){
+        Date date = reserveService.getReserveById(3L).getTravelDate();
+        String departureStation = reserveService.getDepartureUserJourney(1L, 1L, date);
+        Assert.assertTrue(departureStation!=null);
+    }
+
+    @Test
+    public void testGetAllJourneys(){
+        List<TicketWebDto> tickets = reserveService.getAllJourneys();
+        Assert.assertTrue(!tickets.isEmpty());
+    }
 }

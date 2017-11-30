@@ -37,4 +37,11 @@ public class TrainDaoImp implements TrainDao {
                 .setParameter("trainId",trainId).getResultList();
         return (list.isEmpty()) ? null : (Train) list.get(0);
     }
+
+    @Override
+    public Train getTrainByName(String trainName) {
+        List list = em.createQuery("FROM Train where TrainName=:trainName")
+                .setParameter("trainName",trainName).getResultList();
+        return (list.isEmpty()) ? null : (Train) list.get(0);
+    }
 }

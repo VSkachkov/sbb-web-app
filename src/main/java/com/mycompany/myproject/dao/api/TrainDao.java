@@ -10,4 +10,6 @@ public interface TrainDao
     void addNewTrain(Train train);
     void removeTrain(Long id);
     Train getTrainById(Long id);
+
+    Train getTrainByName(String trainName);
 }

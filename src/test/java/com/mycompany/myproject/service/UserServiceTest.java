@@ -32,14 +32,6 @@ public class UserServiceTest {
 		Assert.assertEquals(1, userDto.getUserId().longValue());
 	}
 
-	@Test
-	public void testGetUserIdByEmail(){
-
-		Long userId = userService.getUserIdByEmail("bublikov@gmail.com");
-		UserDto userDto = new UserDto(userService.getUserById(userId));
-		Assert.assertNotNull(userDto);
-		Assert.assertEquals(10, userDto.getUserId().longValue());
-	}
 
 	@Test
 	public void testFindAll() {

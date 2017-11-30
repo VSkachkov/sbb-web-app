@@ -5,7 +5,11 @@ import com.mycompany.myproject.config.MvcConfig;
 import com.mycompany.myproject.config.ServiceConfig;
 import com.mycompany.myproject.dao.api.TrainTypeDao;
 import com.mycompany.myproject.dto.TrainTypeDto;
+import com.mycompany.myproject.persist.entity.Car;
+import com.mycompany.myproject.persist.entity.TrainType;
 import com.mycompany.myproject.persist.entity.TrainTypeNumber;
+import com.mycompany.myproject.service.svc.CarService;
+import com.mycompany.myproject.service.svc.TrainTypeNumberService;
 import com.mycompany.myproject.service.svc.TrainTypeService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -23,6 +27,12 @@ public class TrainTypeServiceTest {
     TrainTypeService trainTypeService;
 
     @Autowired
+    TrainTypeNumberService trainTypeNumberService;
+
+    @Autowired
+    CarService carService;
+
+    @Autowired
     TrainTypeDao trainTypeDao;
 
     @Test
@@ -37,6 +47,28 @@ public class TrainTypeServiceTest {
          ;
 //        Assert.assertNotNull(trainTypeDao.getAllTrainTypeNumber());
         Assert.assertNotNull(trainTypeNumber);
+    }
+
+    @Test
+    public void testGetAllTrainTypes(){
+        Assert.assertTrue(trainTypeService.getAllTrainTypes()!=null);
+    }
+
+    @Test
+    public void testAddNewTrainType(){
+        TrainTypeDto  trainTypeDto = new TrainTypeDto();
+        trainTypeDto.setTrainTypeNumber(1L);
+        trainTypeDto.setCarId(4L);
+        trainTypeDto.setNumberOfCars(3L);
+
+    }
+
+    @Test
+    public void testGetCarByTypeNumberAndCar() {
+        TrainTypeNumber trainTypeNumber = trainTypeNumberService.getTrainTypeNumberById(1L);
+        Car car = carService.getCarById(1L);
+        TrainType trainType = trainTypeService.getCarByTypeNumberAndCar(trainTypeNumber, car);
+        Assert.assertTrue(trainType != null);
     }
 
 }

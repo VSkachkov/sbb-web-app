@@ -18,7 +18,7 @@ public class TrainTypeDaoImp implements TrainTypeDao {
 
     @Override
     public List<TrainType> getAllTrainTypes() {
-        List <TrainType> trainTypes = em.createQuery("FROM TrainType")
+        List <TrainType> trainTypes = em.createQuery("FROM TrainType ")
                 .getResultList();
         return trainTypes;
     }
@@ -46,14 +46,9 @@ public class TrainTypeDaoImp implements TrainTypeDao {
     }
 
     @Override
-    public void addNewTrainType(List<TrainType> trainTypes) {
-
-        for (TrainType trainType :
-                trainTypes) {
-            {
-                em.persist(trainType);
-            }
-        }
+    public void addNewTrainType(TrainType trainType) {
+        em.persist(trainType);
+        em.flush();
     }
 
     @Override
@@ -72,5 +67,13 @@ public class TrainTypeDaoImp implements TrainTypeDao {
                 .setParameter("trainId", trainId)
                 .getResultList();
         return trainTypes;
+    }
+
+    @Override
+    public TrainType getCarByTypeNumberAndCar(TrainTypeNumber trainTypeNumber, Car car) {
+        List list = em.createQuery("FROM TrainType where trainTypeNumber=:trainTypeNumber AND car =:car")
+                .setParameter("trainTypeNumber",trainTypeNumber)
+                .setParameter("car", car).getResultList();
+        return (list.isEmpty()) ? null : (TrainType) list.get(0);
     }
 }

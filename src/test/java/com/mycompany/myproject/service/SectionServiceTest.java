@@ -47,23 +47,5 @@ public class SectionServiceTest {
         Assert.assertTrue(!sectionsDtos.isEmpty());
     }
 
-    @Test
-
-    public void testAddDeleteSection(){
-//        Section section = new Section();
-//        section.setSectionId(333L);
-//        section.setStationFromId(stationService.getStationById(1L));
-//        section.setStationToId(stationService.getStationById(2L));
-//        section.setLength(100f);
-//        sectionService.addNewSection(section);
-//        Assert.assertTrue(sectionService.getSectionById(333L) != null);
-
-        if(sectionService.getSectionById(333L)!=null) {
-            sectionService.deleteSection(333L);
-            Assert.assertTrue(sectionService.getSectionById(333L) == null);
-        }
-
-    }
-
 
 }

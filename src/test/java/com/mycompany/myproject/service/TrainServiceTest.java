@@ -4,7 +4,9 @@ package com.mycompany.myproject.service;
 import com.mycompany.myproject.config.JPAConfig;
 import com.mycompany.myproject.config.MvcConfig;
 import com.mycompany.myproject.config.ServiceConfig;
+import com.mycompany.myproject.dto.CarDto;
 import com.mycompany.myproject.dto.TrainDto;
+import com.mycompany.myproject.persist.entity.Car;
 import com.mycompany.myproject.service.svc.ReserveService;
 import com.mycompany.myproject.service.svc.TrainService;
 import org.junit.Assert;
@@ -15,7 +17,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {MvcConfig.class, JPAConfig.class, ServiceConfig.class})
@@ -51,5 +55,12 @@ public class TrainServiceTest {
         date.setDate(date.getDate()-1);
         boolean result = trainService.checkTrainDate(2L, date);
         Assert.assertTrue(!result);
+    }
+
+    @Test
+    public void testGetCarsByTrainId(){
+        List<Car> carsList = trainService.getCarsByTrainId(1L);
+        Assert.assertTrue(!carsList.isEmpty());
+
     }
 }

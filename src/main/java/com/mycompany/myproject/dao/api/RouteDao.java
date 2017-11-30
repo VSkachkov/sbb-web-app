@@ -13,4 +13,6 @@ public interface RouteDao {
     List<Route>getRoutesBySection(Section section);
     List<Route> getRouteOfTrain(Long trainId);
     void addNewRoute(Route route);
+
+    void deleteRoute(Route route);
 }

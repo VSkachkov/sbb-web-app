@@ -48,10 +48,19 @@ public class UserServiceImpl// extends GenericServiceImpl<User, UserDto, Long>
         User user = new User();
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
-        user.setPassword(userDto.getPassword());
-        user.setPassword(userDto.getPassword());
-        user.setLogin(userDto.getLogin());
-        user.setEmail(userDto.getEmail());
+        if(userDto.getPassword()==null)
+        user.setPassword("0000");
+        else
+            user.setPassword(userDto.getPassword());
+        if(userDto.getLogin()==null)
+            user.setLogin(userDto.getFirstName()+"."+userDto.getLastName());
+        else
+            user.setLogin(userDto.getLogin());
+
+        if(userDto.getEmail()==null)
+            user.setEmail(userDto.getFirstName()+"."+userDto.getLastName()+"@gmail.com");
+        else
+            user.setEmail(userDto.getEmail());
         user.setBirthday(userDto.getBirthday());
         user.setPhone(userDto.getPhone());
 
@@ -135,5 +144,10 @@ public class UserServiceImpl// extends GenericServiceImpl<User, UserDto, Long>
     @Override
     public void updateRole(Long userId, Long roleId) {
         userDao.updateRole(userId, roleId);
+    }
+
+    @Override
+    public List<User> findUsersByPersonalData(String firstName, String lastName, Date birthday) {
+        return userDao.findUsersByPersonalData(firstName, lastName, birthday);
     }
 }

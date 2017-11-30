@@ -59,4 +59,9 @@ public class RouteDaoImp implements RouteDao {
         em.persist(route);
 
     }
+
+    @Override
+    public void deleteRoute(Route route) {
+        em.remove((Route) em.find(Route.class, route.getRouteId()));
+    }
 }

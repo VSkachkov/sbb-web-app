@@ -86,6 +86,7 @@ CREATE TABLE IF NOT EXISTS `SBB_DB`.`Stations` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SBB_DB`.`train_types_numbers` (
   `train_types_number_id` INT NOT NULL,
+  `train_type_name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`train_types_number_id`))
   ENGINE = InnoDB;
 

@@ -104,6 +104,17 @@ public class UserDaoImp implements UserDao {
         query.executeUpdate();
     }
 
+    @Override
+    public List<User> findUsersByPersonalData(String firstName, String lastName, Date birthday) {
+        List list =  em.createQuery("FROM User where firstName=:firstName" +
+                " and lastName=:lastName and birthday=:birthday")
+                .setParameter("firstName", firstName)
+                .setParameter("lastName", lastName)
+                .setParameter("birthday", birthday)
+                .getResultList();
+
+        return (list.isEmpty()) ? null : list;
+    }
 
 
 }

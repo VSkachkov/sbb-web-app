@@ -46,6 +46,15 @@ public class SectionDaoImp implements SectionDao {
     }
 
     @Override
+    public Section getSectionByFromAndToIds(Long stationFromId, Long stationToId) {
+        List list = em.createQuery("FROM Section where stationFromId=:stationFromId and stationToId=:stationToId")
+                .setParameter("stationFromId",stationDao.getStationById(stationFromId))
+                .setParameter("stationToId",stationDao.getStationById(stationToId))
+                .getResultList();
+        return (list.isEmpty()) ? null : (Section) list.get(0);
+    }
+
+    @Override
     public List<Section> getSectionsByStationToId(Long stationId) {
         List <Section> sections = em.createQuery("FROM Section WHERE stationToId=:stationId")
                 .setParameter("stationId", stationDao.getStationById(stationId))

@@ -2,7 +2,9 @@ package com.mycompany.myproject.service.impl;
 
 import com.mycompany.myproject.dao.api.TrainTypeDao;
 import com.mycompany.myproject.dto.TrainTypeDto;
+import com.mycompany.myproject.persist.entity.Car;
 import com.mycompany.myproject.persist.entity.TrainType;
+import com.mycompany.myproject.persist.entity.TrainTypeNumber;
 import com.mycompany.myproject.service.svc.CarService;
 import com.mycompany.myproject.service.svc.TrainTypeNumberService;
 import com.mycompany.myproject.service.svc.TrainTypeService;
@@ -28,23 +30,23 @@ public class TrainTypeServiceImp implements TrainTypeService {
     TrainTypeNumberService trainTypeNumberService;
 
     @Override
-    public List<TrainTypeDto> getTrainTypeInfo(Long trainTypeId){
+    public List<TrainTypeDto> getTrainTypeInfo(Long trainTypeId) {
         List<TrainTypeDto> trainTypeDtos = new ArrayList<>();
 
-        List <TrainType> trainTypes = trainTypeDao.getTrainTypeInfo(trainTypeId);
+        List<TrainType> trainTypes = trainTypeDao.getTrainTypeInfo(trainTypeId);
 
-        for (TrainType trainType:
-             trainTypes) {
+        for (TrainType trainType :
+                trainTypes) {
             trainTypeDtos.add(new TrainTypeDto(trainType));
         }
-    return trainTypeDtos;
+        return trainTypeDtos;
     }
 
     @Override
     public List<TrainTypeDto> getAllTrainTypes() {
-        List <TrainTypeDto> trainTypeDtos = new ArrayList<>();
-        for (TrainType trainType:
-        trainTypeDao.getAllTrainTypes()) {
+        List<TrainTypeDto> trainTypeDtos = new ArrayList<>();
+        for (TrainType trainType :
+                trainTypeDao.getAllTrainTypes()) {
             trainTypeDtos.add(new TrainTypeDto(trainType));
         }
 
@@ -52,14 +54,40 @@ public class TrainTypeServiceImp implements TrainTypeService {
     }
 
     @Override
-    public void addNewTrainType(TrainTypeDto trainTypeDto) {
-        List<TrainType> trainTypes = new ArrayList<>();
+    public boolean addNewTrainType(TrainTypeDto trainTypeDto) {
+        String typeName = trainTypeDto.getTrainTypeName();
+        Long typeNumber = trainTypeDto.getTrainTypeNumber();
+        if ((typeName == null || typeName.equals(""))&& (typeNumber==null||typeNumber==0))
+            return false;
+        Long carId = trainTypeDto.getCarId();
+        Long carNumber = trainTypeDto.getNumberOfCars();
+        if (carNumber < 1L) return false;
+        if (carService.getCarById(carId) == null) return false;
+        if (trainTypeNumberService.getTrainTypeNumberById(typeNumber) == null) {
+            TrainTypeNumber trainTypeNumber = new TrainTypeNumber();
+//            trainTypeNumber.setTrainTypeNumberId(typeNumber);
+            trainTypeNumber.setTrainTypeName(typeName);
+            trainTypeNumberService.add(trainTypeNumber);
+            trainTypeNumber = trainTypeNumberService.getTrainTypeByName(typeName);
+            addNerTrainTypeByParams(trainTypeNumber.getTrainTypeNumberId(), carId, carNumber);
+        } else {
+            addNerTrainTypeByParams(typeNumber, carId, carNumber);
+        }
+        return true;
+    }
+
+
+    @Override
+    public void addNerTrainTypeByParams(Long typeNumber, Long carId, long carNumber) {
         TrainType trainType = new TrainType();
-        trainType.setTrainTypeName(trainTypeDto.getTrainTypeName());
-        trainType.setNumberOfCars(trainTypeDto.getNumberOfCars());
-        trainType.setCar(carService.getCarById(trainTypeDto.getCarId()));
-        trainType.setTrainTypeNumber(trainTypeNumberService.getTrainTypeNumberById(trainTypeDto.getTrainTypeNumber()));
-        trainTypes.add(trainType);
-        trainTypeDao.addNewTrainType(trainTypes);
+        trainType.setTrainTypeNumber(trainTypeNumberService.getTrainTypeNumberById(typeNumber));
+        trainType.setCar(carService.getCarById(carId));
+        trainType.setNumberOfCars(carNumber);
+        trainTypeDao.addNewTrainType(trainType);
+    }
+
+    @Override
+    public TrainType getCarByTypeNumberAndCar(TrainTypeNumber trainTypeNumber, Car car) {
+        return trainTypeDao.getCarByTypeNumberAndCar(trainTypeNumber, car);
     }
 }

@@ -37,14 +37,6 @@ public class TrainChangeServiceTest {
     @Test
     public void testGetStatusChangeById(){
         String status = trainChangeService.getStatusChangeById(1L);
-        Assert.assertTrue(status.equals("Cancelled"));
-    }
-
-    @Test
-    public void testUpdateStatusByChangeId(){
-        String status = "Postponed";
-        trainChangeService.updateStatusByChangeId(2L, status);
-        String newStatus = trainChangeService.getStatusChangeById(2L);
-        Assert.assertTrue(newStatus.equals("Postponed"));
+        Assert.assertTrue(status.equals("Delay 6 min"));
     }
 }

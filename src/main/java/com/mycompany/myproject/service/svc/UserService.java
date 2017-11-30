@@ -3,6 +3,7 @@ package com.mycompany.myproject.service.svc;
 import com.mycompany.myproject.persist.entity.User;
 import com.mycompany.myproject.dto.UserDto;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface UserService //extends GenericService<User, UserDto, Long>
@@ -83,4 +84,6 @@ public interface UserService //extends GenericService<User, UserDto, Long>
     Long getUserIdByPrivateInfo(UserDto user);
 
     void updateRole(Long userId, Long roleId);
+
+    List<User> findUsersByPersonalData(String firstName, String lastName, Date birthday);
 }

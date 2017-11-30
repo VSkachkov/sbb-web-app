@@ -1,5 +1,7 @@
 package com.mycompany.myproject.service.svc;
 
+import com.mycompany.myproject.dto.CarDto;
+import com.mycompany.myproject.persist.entity.Car;
 import com.mycompany.myproject.persist.entity.Train;
 import com.mycompany.myproject.dto.TrainDto;
 import com.mycompany.myproject.dto.TrainsAttribute;
@@ -9,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public interface TrainService //extends GenericService<Train, TrainDto, Long>
+public interface TrainService
 {
     /**
      * gets all trains DTOs from DB
@@ -59,4 +61,13 @@ public interface TrainService //extends GenericService<Train, TrainDto, Long>
      */
     List <TrainsAttribute> filterTrainsByDate(List<TrainsAttribute> trainsInfo, Date date);
     HashMap<Long, Long> getCarriages(Long trainId);
+
+    boolean addNewTrainFromWeb(TrainDto trainDto);
+
+    Train getTrainByTrainName(String trainName);
+
+    boolean deleteTrainFromWeb(TrainDto trainDto);
+    List <Car> getCarsByTrainId(Long trainId);
+    Long getCarsNumberByTrainIdCarId(Long trainId, Long carId);
+    Long getTotalNumberOfSeats(Long trainId, Long carId);
 }

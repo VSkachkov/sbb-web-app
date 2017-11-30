@@ -2,6 +2,7 @@ package com.mycompany.myproject.service.impl;
 
 import com.mycompany.myproject.dao.api.CarDao;
 import com.mycompany.myproject.dto.CarDto;
+import com.mycompany.myproject.dto.CarTicketFormDto;
 import com.mycompany.myproject.persist.entity.Car;
 import com.mycompany.myproject.service.svc.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,6 +112,16 @@ public class CarServiceImpl //extends GenericServiceImpl<Canton,CantonDto_OBSOLE
     @Override
     public void updateCar(Long carId, String carName, Long seatsNumber, float rate) {
         carDao.updateCar(carId, carName, seatsNumber, rate);
+    }
+
+    @Override
+    public CarTicketFormDto findCarTicketByCarId(List<CarTicketFormDto> carTickets, Long carId) {
+        for (CarTicketFormDto carTicket:
+             carTickets ) {
+            if (carTicket.getCarId()==carId)
+                return carTicket;
+        }
+        return null;
     }
 
 }
