@@ -71,16 +71,49 @@ public interface TrainService {
 
     HashMap<Long, Long> getCarriages(Long trainId);
 
+    /**
+     * adds new train to DB
+     *
+     * @param trainDto
+     * @return true if success
+     */
     boolean addNewTrainFromWeb(TrainDto trainDto);
 
+    /**
+     * finds train by name
+     * @param trainName
+     * @return
+     */
     Train getTrainByTrainName(String trainName);
 
+    /**
+     * deletes train by info from web
+     * @param trainDto
+     * @return true if success
+     */
     boolean deleteTrainFromWeb(TrainDto trainDto);
 
+    /**
+     * gets list of cars belonging to train
+     * @param trainId
+     * @return
+     */
     List<Car> getCarsByTrainId(Long trainId);
 
+    /**\
+     * find cars number in train by car and train
+     * @param trainId
+     * @param carId
+     * @return number of cars
+     */
     Long getCarsNumberByTrainIdCarId(Long trainId, Long carId);
 
+    /**
+     * finds total number of sseats in all cars of one type in train by car type and train
+     * @param trainId
+     * @param carId
+     * @return total number of seats
+     */
     Long getTotalNumberOfSeats(Long trainId, Long carId);
 
 }

@@ -59,10 +59,13 @@ public class TicketServiceImp implements TicketService {
         Long arrivalStation = ticketWebDto.getStationToId();
         Long trainId = ticketWebDto.getTrainId();
         Date travelDate = ticketWebDto.getTravelDate();
+
+        if (ticketWebDto.getFreeSeatsNumber() == 0L)
+            return false;
+
         if (!checkDateValidity(travelDate))
             return false;
         Time departure = routeService.getTrainDepartureByStation(departureStation, trainId);
-        //      travelDate.setTime(travelDate.getTime()+departure.getTime());
         if (!trainService.checkTrainDate(trainId, travelDate))
             return false;
         java.sql.Date today = new java.sql.Date(Calendar.getInstance().getTime().getTime());

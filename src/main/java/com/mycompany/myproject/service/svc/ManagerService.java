@@ -58,7 +58,15 @@ public interface ManagerService {
 
     void addCarToDB(CarDto carDto);
 
+    /**
+     * adds new train type by params in DTO
+     *
+     * @param trainTypeDto
+     */
     void addTrainType(TrainTypeDto trainTypeDto);
 
+    /**
+     * updates data on remote server
+     */
     public void updateDataOnRemoteServer();
 }

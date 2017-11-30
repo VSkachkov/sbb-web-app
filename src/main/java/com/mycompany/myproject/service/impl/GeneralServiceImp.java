@@ -73,7 +73,6 @@ public class GeneralServiceImp implements GeneralService {
         List<Long> trainFromToStation = new ArrayList<>();
         Time departureFromStationFrom = new Time(0, 0, 0);
         Time arrivalToStationTo = new Time(0, 0, 0);
-        ;
 
         for (Long trainId :
                 trainsBetweenStations) {

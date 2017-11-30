@@ -87,9 +87,27 @@ public interface UserService //extends GenericService<User, UserDto, Long>
      */
     Long getUserIdByPrivateInfo(UserDto user);
 
+    /**
+     * updates role for user
+     *
+     * @param userId user ID
+     * @param roleId role ID
+     */
     void updateRole(Long userId, Long roleId);
 
+    /**
+     * finds user by private info
+     * @param firstName
+     * @param lastName
+     * @param birthday
+     * @return User entity
+     */
     List<User> findUsersByPersonalData(String firstName, String lastName, Date birthday);
 
+    /**
+     * adds USER to db
+     * @param userDto
+     * @return true if user added
+     */
     boolean saveNewUser(UserDto userDto);
 }
